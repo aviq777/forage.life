@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>forage.life — Chrome Extensions</title>
+    <meta name="description" content="forage.life builds focused, privacy-respecting Chrome extensions. CleanSearch Pro is our first." />
+    <meta name="theme-color" content="#05060a" />
+
+    <meta property="og:title" content="forage.life — Chrome Extensions" />
+    <meta property="og:description" content="Focused, privacy-respecting Chrome extensions." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/assets/cleansearch-pro-logo.png" />
+
+    <link rel="icon" href="/assets/cleansearch-pro-logo.png" />
+    <link rel="preload" href="/assets/cleansearch-pro-logo.png" as="image" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="bg" aria-hidden="true">
+      <div class="bg__grid"></div>
+      <div class="bg__glow"></div>
+      <div class="bg__noise"></div>
+    </div>
+
+    <main class="wrap">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="forage.life home">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">forage<span class="brand__dot">.</span>life</span>
+        </a>
+        <nav class="nav">
+          <a href="#extensions" class="nav__link">Extensions</a>
+          <a href="#contact" class="nav__link">Contact</a>
+        </nav>
+      </header>
+
+      <section class="hero" id="extensions">
+        <div class="hero__left">
+          <p class="kicker">Chrome Extensions</p>
+
+          <h1 class="headline">
+            Clean up your search.
+            <span class="headline__accent">Keep the signal.</span>
+          </h1>
+
+          <p class="subhead">
+            forage.life ships focused, privacy‑respecting extensions that remove clutter and help you stay in flow.
+            This site is a placeholder — more soon.
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn btn--primary" href="#" aria-label="Get CleanSearch Pro (coming soon)">
+              <span class="btn__glow" aria-hidden="true"></span>
+              Get CleanSearch Pro
+              <span class="btn__tag">coming soon</span>
+            </a>
+
+            <a class="btn btn--ghost" id="contact" href="mailto:jclem07@protonmail.com?subject=forage.life%20—%20Hello" aria-label="Email forage.life">
+              Contact Email
+            </a>
+          </div>
+
+          <div class="mini">
+            <div class="mini__card">
+              <div class="mini__title">What we build</div>
+              <ul class="mini__list">
+                <li>Search cleanup &amp; focus tools</li>
+                <li>Lightweight UI with premium polish</li>
+                <li>Privacy‑first by default</li>
+              </ul>
+            </div>
+
+            <div class="mini__card">
+              <div class="mini__title">forage.life</div>
+              <div class="mini__muted">Launching soon. Follow along via email.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__right" aria-hidden="true">
+          <div class="logoFrame">
+            <img class="logoFrame__img" src="/assets/cleansearch-pro-logo.png" alt="" />
+            <div class="logoFrame__ring"></div>
+            <div class="logoFrame__ring logoFrame__ring--b"></div>
+            <div class="logoFrame__scan"></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer__left">
+          <span class="footer__muted">© <span id="y"></span> forage.life</span>
+        </div>
+        <div class="footer__right">
+          <a class="footer__link" href="mailto:jclem07@protonmail.com?subject=forage.life%20—%20Hello">jclem07@protonmail.com</a>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
