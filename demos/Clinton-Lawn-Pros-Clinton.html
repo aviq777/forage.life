@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clinton Lawn Pros — Free Website Demo</title>
+  <style>
+    :root {
+      --ink: #1e293b;
+      --accent: #0f766e;
+      --accent-soft: #ccfbf1;
+      --bg: #f8fafc;
+      --panel: #ffffff;
+      --line: #dbe4ee;
+      --muted: #64748b;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Georgia, serif; background: linear-gradient(180deg, #ecfeff, var(--bg)); color: var(--ink); }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 48px 24px; }
+    .hero, .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08); }
+    .hero { padding: 40px; }
+    .panel { padding: 28px; margin-top: 24px; }
+    h1, h2, h3 { margin-top: 0; }
+    .eyebrow { color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; font-weight: bold; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .card { background: #f8fafc; border-radius: 16px; padding: 16px; border: 1px solid var(--line); }
+    .cta { display: inline-block; margin-top: 18px; padding: 14px 28px; border-radius: 999px; background: var(--accent); color: white; text-decoration: none; font-weight: bold; font-size: 1.05rem; }
+    .cta-secondary { display: inline-block; margin-top: 12px; margin-left: 12px; padding: 14px 28px; border-radius: 999px; background: transparent; color: var(--accent); text-decoration: none; font-weight: bold; font-size: 1.05rem; border: 2px solid var(--accent); }
+    ul { padding-left: 20px; }
+    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    .before-after .card { border-left: 4px solid var(--line); }
+    .before-after .card.after { border-left-color: var(--accent); }
+    .before-after .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: bold; margin-bottom: 8px; color: var(--muted); }
+    .before-after .card.after .label { color: var(--accent); }
+    /* Site mockup styles */
+    .mockup-wrapper { margin-top: 8px; border: 2px solid var(--line); border-radius: 12px; overflow: hidden; }
+    .mockup-bar { background: #e2e8f0; padding: 8px 14px; display: flex; align-items: center; gap: 6px; }
+    .mockup-dot { width: 10px; height: 10px; border-radius: 50%; background: #cbd5e1; }
+    .mockup-dot.r { background: #fca5a5; }
+    .mockup-dot.y { background: #fde68a; }
+    .mockup-dot.g { background: #86efac; }
+    .mockup-url { flex: 1; background: white; border-radius: 4px; padding: 3px 10px; font-size: 0.75rem; color: var(--muted); font-family: monospace; }
+    .mockup-site { background: white; }
+    .mockup-nav { background: var(--accent); color: white; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
+    .mockup-nav .brand { font-weight: bold; font-size: 1rem; }
+    .mockup-nav .nav-links { display: flex; gap: 20px; opacity: 0.9; font-size: 0.85rem; }
+    .mockup-hero { background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%); color: white; padding: 48px 32px; text-align: center; }
+    .mockup-hero h2 { font-size: 1.8rem; margin: 0 0 12px; }
+    .mockup-hero p { opacity: 0.9; margin: 0 0 24px; font-size: 1rem; }
+    .mockup-cta-btn { background: white; color: var(--accent); padding: 12px 28px; border-radius: 999px; font-weight: bold; display: inline-block; font-size: 0.95rem; }
+    .mockup-services { padding: 32px; background: #f8fafc; }
+    .mockup-services h3 { color: var(--ink); margin: 0 0 16px; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .mockup-service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .mockup-service-card { background: white; border: 1px solid var(--line); border-radius: 10px; padding: 14px; font-size: 0.85rem; font-weight: bold; color: var(--ink); }
+    .mockup-contact { padding: 28px 32px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+    .mockup-phone { font-size: 1.1rem; font-weight: bold; color: var(--accent); }
+    .mockup-addr { font-size: 0.85rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    
+    <section class="hero">
+      <div class="eyebrow">Private Demo — Prepared for Clinton Lawn Pros</div>
+      <h1>Here's what your new website could look like</h1>
+      <p>We built this concept specifically for <strong>Clinton Lawn Pros</strong> in Clinton. No obligation — just a free preview of what a modern site could do for your business.</p>
+      <div class="grid">
+        <div class="card"><strong>Package</strong><br>$2200 launch build</div>
+        <div class="card"><strong>Category</strong><br>Lawn Care</div>
+        <div class="card"><strong>Location</strong><br>Clinton</div>
+        <div class="card"><strong>Reviews</strong><br><span style="color:#f59e0b;">★★★★★</span> 4.8 (41 reviews)</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Before &amp; After</h2>
+      <p style="color:var(--muted);margin-top:0;">Your current web presence vs. what we'd build for you.</p>
+      <div class="before-after">
+        <div class="card before"><div class="label">Their current site</div><span style="color:var(--muted)">No website found</span></div>
+        <div class="card after"><div class="label">What we'd build</div><a href="https://forage.life/demos/clinton-lawn-pros-clinton.html" style="color:var(--accent);font-weight:bold;">This demo →</a></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Website Preview</h2>
+      <p style="color:var(--muted);margin-top:0;">This is a mockup of what your homepage would look like.</p>
+      <div class="mockup-wrapper">
+        <div class="mockup-bar">
+          <div class="mockup-dot r"></div>
+          <div class="mockup-dot y"></div>
+          <div class="mockup-dot g"></div>
+          <div class="mockup-url">https://forage.life/demos/clinton-lawn-pros-clinton.html</div>
+        </div>
+        <div class="mockup-site">
+          <nav class="mockup-nav">
+            <span class="brand">Clinton Lawn Pros</span>
+            <span class="nav-links"><span>Home</span><span>Services</span><span>About</span><span>Contact</span></span>
+          </nav>
+          <div class="mockup-hero">
+            <h2>Clinton Lawn Pros deserves a sharper web presence in Clinton</h2>
+            <p>Serving Clinton — trusted, local, ready to help.</p>
+            <span class="mockup-cta-btn">Get a Free Quote</span>
+          </div>
+          <div class="mockup-services">
+            <h3>Our Services</h3>
+            <div class="mockup-service-grid"><div class="mockup-service-card">Lawn Mowing</div><div class="mockup-service-card">Fertilization</div><div class="mockup-service-card">Weed Control</div></div>
+          </div>
+          <div class="mockup-contact">
+            <span class="mockup-phone">865-000-1111</span>
+            <span class="mockup-addr">Clinton, TN</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Want this built for your business?</h2>
+      <p>This demo was designed specifically for Clinton Lawn Pros. If you'd like to claim it or learn more, reach out:</p>
+      <div style="margin-top:16px;"><a class="cta" href="tel:865-000-1111">865-000-1111</a><a class="cta" href="mailto:hello@clintonlawnpros.example">hello@clintonlawnpros.example</a></div>
+    </section>
+
+    <section class="panel">
+      <h2>Why we think you'd love this</h2>
+      <ul>
+        <li>You have <strong>41 reviews averaging 4.8 stars</strong> — that's real trust built with real customers. A modern site puts that credibility front and center where new customers can find it.</li>
+        <li>Most people in Clinton search for lawn care on their phone. A mobile-first site means you show up — and look great — when it counts.</li>
+        <li>We focus on local lawn care businesses in Clinton. This isn't a generic template — it's built for how your customers actually find and choose a business like yours.</li>
+        <li>No long contracts. The $2200 launch package gets you live fast, and everything is yours to keep.</li>
+      </ul>
+    </section>
+    
+  </main>
+</body>
+</html>
