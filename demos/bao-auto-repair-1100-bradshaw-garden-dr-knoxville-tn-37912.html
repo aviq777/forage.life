@@ -3,878 +3,972 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bao Auto Repair · Private demo by forage.life</title>
-    <meta name="description" content="A private website demo built for Bao Auto Repair in Knoxville, Tennessee." />
+    <title>Bao Auto Repair | Auto repair in Knoxville, TN</title>
+    <meta name="description" content="Bao Auto Repair in Knoxville, Tennessee. Honest diagnostics. Clear repair plans. Faster phone calls. Call, directions, and the main service paths stay obvious." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --accent: #32d6c8;
-        --accent-soft: #bdf3ed;
-        --ink: #eaf4f5;
-        --surface: #0e1719;
-        --hero-start: #091113;
-        --hero-end: #183033;
-        --display-font: 'Barlow Condensed', serif;
-        --body-font: 'Space Grotesk', sans-serif;
-        --line-dark: rgba(255, 255, 255, 0.12);
-        --line-light: rgba(0, 0, 0, 0.1);
-        --max: 1240px;
+        --bg: #f2ece6;
+        --surface: #fffaf5;
+        --surface-2: #f7f1ea;
+        --ink: #1f1b18;
+        --muted: #6f655d;
+        --line: #d9cec3;
+        --accent: #d06a39;
+        --accent-soft: #f2d8ca;
+        --header: rgba(255, 250, 245, 0.92);
+        --max: 1180px;
+        --shadow: 0 18px 48px rgba(20, 16, 12, 0.06);
       }
 
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
       body {
         margin: 0;
-        background: var(--surface);
+        background: var(--bg);
         color: var(--ink);
-        font-family: var(--body-font);
+        font-family: "Manrope", sans-serif;
       }
 
       a { color: inherit; }
 
-      .preview-strip {
+      .preview-note {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
         gap: 1rem;
-        padding: 0.75rem 5vw;
-        background: #0b1112;
-        color: white;
-        font-size: 0.88rem;
+        padding: 0.55rem 1rem;
+        background: #17120f;
+        color: #f4ede7;
+        font-size: 0.8rem;
       }
 
-      .preview-strip .owner-links {
-        display: inline-flex;
-        gap: 0.75rem;
-        flex-wrap: wrap;
-      }
-
-      .preview-strip a {
+      .preview-note a {
         text-decoration: none;
-        font-weight: 700;
+        opacity: 0.86;
+      }
+
+      .shell {
+        width: min(var(--max), calc(100% - 2rem));
+        margin: 0 auto;
       }
 
       .site-header {
         position: sticky;
         top: 0;
-        z-index: 20;
+        z-index: 30;
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(14px);
+        background: var(--header);
+      }
+
+      .site-header .shell {
         display: flex;
+        align-items: center;
         justify-content: space-between;
-        align-items: center;
         gap: 1rem;
-        padding: 1rem 5vw;
-        background: rgba(245, 247, 239, 0.92);
-        backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--line-light);
+        min-height: 4.9rem;
       }
 
-      .demo--bao-bay .site-header,
-      .demo--carfix-booking .site-header,
-      .demo--asian-lab .site-header,
-      .demo--webb-maintenance .site-header,
-      .demo--sha-selector .site-header,
-      .demo--westside-urgency .site-header,
-      .demo--losamigos-bilingual .site-header {
-        background: rgba(9, 15, 17, 0.9);
-        color: white;
-        border-bottom-color: var(--line-dark);
-      }
-
-      .brand-lockup {
+      .brand {
         display: grid;
-        gap: 0.2rem;
+        gap: 0.18rem;
       }
 
-      .brand-lockup strong {
-        font-size: 1.05rem;
-        letter-spacing: 0.02em;
-      }
-
-      .brand-lockup span {
-        font-size: 0.78rem;
+      .brand span,
+      .section-kicker {
+        font-size: 0.72rem;
+        letter-spacing: 0.16em;
         text-transform: uppercase;
-        letter-spacing: 0.14em;
-        opacity: 0.72;
+        color: var(--muted);
       }
 
-      .header-nav,
-      .header-actions {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.8rem;
-        flex-wrap: wrap;
+      .brand strong {
+        font-size: 1.04rem;
+        line-height: 1;
       }
 
-      .header-nav a,
-      .header-actions a,
-      .owner-links a {
-        border-radius: 999px;
-        padding: 0.7rem 1rem;
-      }
-
-      .header-nav a {
-        text-decoration: none;
-        opacity: 0.86;
-      }
-
-      .header-actions a,
-      .owner-links a {
-        text-decoration: none;
-        font-weight: 700;
-      }
-
-      .action-primary {
-        background: var(--accent);
-        color: #081011;
-      }
-
-      .action-secondary {
-        border: 1px solid currentColor;
-      }
-
-      .action-ghost {
-        background: rgba(255,255,255,0.08);
-      }
-
-      .hero {
-        position: relative;
-        overflow: hidden;
-        padding: 4rem 5vw 3rem;
-        background:
-          radial-gradient(circle at 85% 18%, rgba(255,255,255,0.12), transparent 24%),
-          linear-gradient(135deg, var(--hero-start), var(--hero-end));
-        color: white;
-      }
-
-      .hero-shell {
-        width: min(var(--max), 100%);
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-        gap: 2.5rem;
-        align-items: start;
-      }
-
-      .demo--carfix-booking .hero-shell,
-      .demo--southern-atlas .hero-shell {
-        grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
-      }
-
-      .hero-copy {
-        max-width: 44rem;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.76rem;
-        text-transform: uppercase;
-        letter-spacing: 0.18em;
-        opacity: 0.8;
-      }
-
-      .brand-name {
-        margin: 1rem 0 0;
-        font-family: var(--display-font);
-        font-size: clamp(3.1rem, 8vw, 6.4rem);
-        line-height: 0.9;
-        max-width: 10ch;
-      }
-
-      .hero-title {
-        margin: 1rem 0 0;
-        font-size: clamp(1.1rem, 2vw, 1.55rem);
-        line-height: 1.45;
-        max-width: 40rem;
-        opacity: 0.92;
-      }
-
-      .hero-points {
-        display: grid;
-        gap: 0.8rem;
-        margin: 1.8rem 0 0;
-        padding: 0;
-        list-style: none;
-        max-width: 36rem;
-      }
-
-      .hero-points li {
-        padding-left: 1.1rem;
-        position: relative;
-        line-height: 1.65;
-      }
-
-      .hero-points li::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0.72rem;
-        width: 0.45rem;
-        height: 0.45rem;
-        border-radius: 999px;
-        background: var(--accent);
-      }
-
-      .hero-actions {
+      .top-nav,
+      .header-actions,
+      .action-row,
+      .quick-links,
+      .language-row {
         display: flex;
+        align-items: center;
         flex-wrap: wrap;
-        gap: 0.85rem;
-        margin-top: 1.8rem;
+        gap: 0.7rem;
       }
 
-      .hero-actions a,
-      .owner-cta-row a {
+      .top-nav a {
+        text-decoration: none;
+        color: var(--muted);
+      }
+
+      .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 3.15rem;
-        padding: 0 1.2rem;
+        min-height: 3rem;
+        padding: 0 1.15rem;
         border-radius: 999px;
+        border: 1px solid transparent;
         text-decoration: none;
-        font-weight: 700;
+        font-weight: 800;
+        letter-spacing: 0.01em;
       }
 
-      .trust-rail {
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: inherit;
+        border-color: var(--line);
+      }
+
+      .hero-band {
+        padding: 3.2rem 0 2.5rem;
+      }
+
+      .hero-band--diagnostic {
+        background:
+          radial-gradient(circle at top left, rgba(208, 106, 57, 0.18), transparent 48%),
+          linear-gradient(180deg, #f4ece5 0%, rgba(244, 236, 229, 0) 100%);
+      }
+
+      .hero-band--booking {
+        background:
+          radial-gradient(circle at top right, rgba(27, 118, 156, 0.18), transparent 44%),
+          linear-gradient(180deg, #e7eef3 0%, rgba(231, 238, 243, 0) 100%);
+      }
+
+      .hero-band--specialist {
+        background:
+          linear-gradient(180deg, rgba(10, 18, 22, 0.98), rgba(13, 20, 23, 0.92)),
+          #0d1417;
+      }
+
+      .hero-band--maintenance {
+        background:
+          radial-gradient(circle at top left, rgba(115, 132, 69, 0.14), transparent 44%),
+          linear-gradient(180deg, #f0f2ea 0%, rgba(240, 242, 234, 0) 100%);
+      }
+
+      .hero-band--plainspoken {
+        background:
+          radial-gradient(circle at top left, rgba(191, 99, 53, 0.14), transparent 40%),
+          linear-gradient(180deg, #f3ece6 0%, rgba(243, 236, 230, 0) 100%);
+      }
+
+      .hero-band--legacy {
+        background:
+          linear-gradient(180deg, #f6f1eb 0%, rgba(246, 241, 235, 0) 100%);
+      }
+
+      .hero-band--bilingual {
+        background:
+          radial-gradient(circle at top right, rgba(201, 105, 57, 0.18), transparent 42%),
+          linear-gradient(180deg, #f6ede6 0%, rgba(246, 237, 230, 0) 100%);
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: 1.8rem;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .panel-body,
+      .form-panel,
+      .info-panel,
+      .contact-panel,
+      .owner-note {
+        padding: 1.55rem;
+      }
+
+      .headline {
+        margin: 0.5rem 0 0;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(2.6rem, 6vw, 5.7rem);
+        line-height: 0.92;
+        letter-spacing: 0.01em;
+      }
+
+      .headline--compact {
+        font-size: clamp(2.2rem, 5vw, 4.2rem);
+      }
+
+      .subhead {
+        margin: 0.95rem 0 0;
+        font-size: clamp(1.08rem, 1.8vw, 1.42rem);
+        line-height: 1.46;
+      }
+
+      .lede,
+      .muted-copy,
+      .faq-list p,
+      .service-card p,
+      .step-card p,
+      .proof-card p,
+      .contact-panel p,
+      .owner-note p,
+      .response-text {
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .hero-grid,
+      .split-grid,
+      .contact-grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 1rem;
-        margin-top: 2.1rem;
       }
 
-      .trust-item {
-        padding-top: 0.9rem;
-        border-top: 1px solid var(--line-dark);
+      .diag-grid,
+      .booking-grid,
+      .specialist-grid,
+      .maint-grid,
+      .plain-grid,
+      .legacy-grid,
+      .bilingual-grid {
+        display: grid;
+        gap: 1rem;
+        align-items: stretch;
       }
 
-      .trust-item strong {
-        display: block;
-        font-size: 1.02rem;
-        margin-bottom: 0.25rem;
+      .diag-grid { grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr); }
+      .booking-grid { grid-template-columns: minmax(340px, 0.86fr) minmax(0, 1.14fr); }
+      .specialist-grid { grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr); }
+      .maint-grid { grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.96fr); }
+      .plain-grid { grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.9fr); }
+      .legacy-grid { grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr); }
+      .bilingual-grid { grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr); }
+
+      .split-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .hero-stage {
-        position: relative;
-        padding: 1.25rem;
-        border-radius: 2rem;
-        background: rgba(7, 11, 13, 0.38);
-        border: 1px solid var(--line-dark);
-        box-shadow: 0 28px 80px rgba(0,0,0,0.22);
-        backdrop-filter: blur(14px);
+      .contact-grid {
+        grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
+        align-items: start;
       }
 
-      .demo--southern-atlas .hero-stage {
-        background: rgba(255,255,255,0.09);
+      .stack {
+        display: grid;
+        gap: 1rem;
       }
 
-      .widget-label {
-        display: block;
-        font-size: 0.74rem;
-        text-transform: uppercase;
-        letter-spacing: 0.14em;
-        opacity: 0.72;
-      }
-
-      .widget-title {
-        margin: 0.7rem 0 0;
-        font-family: var(--display-font);
-        font-size: clamp(2rem, 4vw, 3rem);
-        line-height: 0.95;
-      }
-
-      .widget-body {
-        margin: 0.8rem 0 1.25rem;
-        line-height: 1.65;
-        opacity: 0.88;
-      }
-
-      .widget-form,
-      .widget-stack,
-      .widget-choice-grid {
+      .signal-list,
+      .service-grid,
+      .step-grid,
+      .proof-grid,
+      .mini-grid,
+      .language-cards {
         display: grid;
         gap: 0.85rem;
       }
 
-      .widget-form input,
-      .widget-form select,
-      .widget-form textarea,
-      .widget-stack button,
-      .widget-choice-grid button {
-        width: 100%;
-        min-height: 3rem;
-        border-radius: 1rem;
-        border: 1px solid var(--line-dark);
-        background: rgba(255,255,255,0.08);
-        color: white;
-        font: inherit;
-        padding: 0.85rem 1rem;
+      .signal-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 1.35rem;
       }
 
-      .widget-form textarea {
-        min-height: 7rem;
-        resize: vertical;
-      }
-
-      .widget-form button {
-        border: 0;
-        background: var(--accent);
-        color: #081011;
-        font-weight: 700;
-        cursor: pointer;
-      }
-
-      .widget-choice-grid {
+      .service-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .widget-choice-grid button,
-      .widget-stack button {
-        text-align: left;
-        cursor: pointer;
+      .mini-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .widget-choice-grid button.is-active,
-      .widget-stack button.is-active {
-        background: rgba(255,255,255,0.18);
-        border-color: rgba(255,255,255,0.3);
+      .step-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .widget-output {
+      .proof-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .language-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         margin-top: 1rem;
-        padding: 1rem 1.1rem;
-        border-radius: 1rem;
-        background: rgba(255,255,255,0.08);
-        border: 1px solid var(--line-dark);
-        min-height: 7rem;
       }
 
-      .widget-output strong {
+      .signal-chip,
+      .service-card,
+      .step-card,
+      .proof-card,
+      .language-card,
+      .quote-block,
+      .utility-card {
+        border: 1px solid var(--line);
+        border-radius: 1.25rem;
+        background: var(--surface-2);
+      }
+
+      .signal-chip,
+      .service-card,
+      .step-card,
+      .proof-card,
+      .utility-card,
+      .language-card {
+        padding: 1rem;
+      }
+
+      .signal-chip strong,
+      .service-card strong,
+      .step-card strong,
+      .proof-card strong,
+      .utility-card strong,
+      .language-card strong,
+      .form-response strong,
+      .faq-item strong,
+      .contact-panel strong {
         display: block;
-        margin-bottom: 0.45rem;
-        font-size: 1rem;
+        margin-bottom: 0.3rem;
+        font-size: 0.98rem;
       }
 
-      .widget-note {
-        margin-top: 0.8rem;
-        font-size: 0.92rem;
-        opacity: 0.72;
+      .quote-block {
+        margin: 1.4rem 0 0;
+        padding: 1.2rem 1.2rem 1.3rem;
+        font-size: 1rem;
+        line-height: 1.72;
+      }
+
+      .quote-block cite {
+        display: block;
+        margin-top: 0.6rem;
+        font-style: normal;
+        color: var(--muted);
+      }
+
+      .utility-strip,
+      .legacy-navline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .utility-strip a,
+      .legacy-navline a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.85rem;
+        padding: 0 0.95rem;
+        border-radius: 999px;
+        text-decoration: none;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.64);
       }
 
       .section {
-        padding: 4.8rem 5vw;
-      }
-
-      .section-shell {
-        width: min(var(--max), 100%);
-        margin: 0 auto;
-      }
-
-      .section-alt {
-        background: rgba(255,255,255,0.62);
+        padding: 1.15rem 0 0;
       }
 
       .section-head {
         display: grid;
-        grid-template-columns: minmax(0, 0.95fr) minmax(260px, 0.75fr);
-        gap: 1.8rem;
-        align-items: end;
-        margin-bottom: 1.6rem;
+        gap: 0.7rem;
+        margin-bottom: 1rem;
       }
 
       .section-title {
-        margin: 0.35rem 0 0;
-        font-family: var(--display-font);
-        font-size: clamp(2rem, 5vw, 4.1rem);
-        line-height: 0.94;
+        margin: 0;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(1.95rem, 4vw, 3.2rem);
+        line-height: 0.96;
       }
 
-      .section-copy {
-        line-height: 1.75;
-        color: rgba(0,0,0,0.72);
-      }
-
-      .services-grid,
-      .highlights-grid,
-      .process-grid,
-      .contact-grid {
+      .list-clean,
+      .faq-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
         display: grid;
-        gap: 1.1rem;
+        gap: 0.85rem;
       }
 
-      .services-grid,
-      .highlights-grid {
+      .list-clean li,
+      .faq-item {
+        position: relative;
+        padding-left: 1rem;
+        line-height: 1.7;
+      }
+
+      .list-clean li::before,
+      .faq-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.75rem;
+        width: 0.38rem;
+        height: 0.38rem;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .faq-item strong {
+        margin-bottom: 0.25rem;
+      }
+
+      .option-grid,
+      .option-stack,
+      .request-form {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .option-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .process-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+      .request-form input,
+      .request-form select,
+      .request-form textarea,
+      .option-grid button,
+      .option-stack button {
+        width: 100%;
+        min-height: 3.15rem;
+        padding: 0.9rem 1rem;
+        border-radius: 1rem;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.82);
+        color: var(--ink);
+        font: inherit;
       }
 
-      .contact-grid {
-        grid-template-columns: minmax(0, 0.9fr) minmax(300px, 1.1fr);
-        align-items: start;
+      .request-form textarea {
+        min-height: 7rem;
+        resize: vertical;
       }
 
-      .line-panel {
-        padding: 1.2rem 0 0;
-        border-top: 1px solid var(--line-light);
+      .request-form button,
+      .option-grid button,
+      .option-stack button {
+        cursor: pointer;
       }
 
-      .line-panel strong {
-        display: block;
-        margin-bottom: 0.45rem;
-        font-size: 1.04rem;
+      .request-form button {
+        border: 0;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 800;
+      }
+
+      .option-grid button.is-active,
+      .option-stack button.is-active {
+        background: var(--accent-soft);
+      }
+
+      .option-output,
+      .form-response {
+        margin-top: 0.9rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: 1px solid var(--line);
+        background: var(--surface-2);
+      }
+
+      .form-response[hidden] {
+        display: none;
+      }
+
+      .response-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-top: 0.85rem;
+      }
+
+      .legacy-service-list {
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .legacy-service {
+        display: grid;
+        gap: 0.3rem;
+        padding: 0.95rem 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .legacy-service:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .contact-stack {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .contact-panel h2,
+      .owner-note h3 {
+        margin: 0.45rem 0 0;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 0.98;
       }
 
       .map-frame {
         width: 100%;
-        min-height: 22rem;
+        min-height: 27rem;
         border: 0;
-        border-radius: 1.35rem;
+        border-radius: 1.75rem;
       }
 
-      .contact-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        margin-top: 1rem;
+      .owner-note {
+        background: linear-gradient(180deg, rgba(26, 20, 16, 0.96), rgba(26, 20, 16, 0.9));
+        color: #f3ece6;
+        box-shadow: none;
+        border-radius: 1.4rem;
+        padding: 1.2rem 1.25rem;
       }
 
-      .contact-actions a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 3rem;
-        padding: 0 1rem;
-        border-radius: 999px;
-        text-decoration: none;
-        border: 1px solid var(--line-light);
+      .owner-note .section-kicker,
+      .owner-note p {
+        color: rgba(243, 236, 230, 0.8);
       }
 
-      details.faq-item {
-        padding: 1rem 0;
-        border-top: 1px solid var(--line-light);
+      .owner-note h3 {
+        font-size: clamp(1.45rem, 2.6vw, 2.05rem);
       }
 
-      details.faq-item summary {
-        cursor: pointer;
-        font-weight: 700;
+      .owner-note .btn-secondary {
+        color: #f3ece6;
+        border-color: rgba(243, 236, 230, 0.24);
       }
 
-      details.faq-item p {
-        margin: 0.7rem 0 0;
-        line-height: 1.7;
+      .site--booking {
+        --bg: #e8eef2;
+        --surface: #ffffff;
+        --surface-2: #f3f7fa;
+        --ink: #15252d;
+        --muted: #61727b;
+        --line: #cad6dd;
+        --accent: #1b769c;
+        --accent-soft: #dcecf3;
+        --header: rgba(255, 255, 255, 0.94);
       }
 
-      .owner-band {
-        padding: 4rem 5vw 4.8rem;
-        background: #0c1214;
-        color: white;
+      .site--specialist {
+        --bg: #0d1417;
+        --surface: #141f23;
+        --surface-2: #1b292e;
+        --ink: #edf4f5;
+        --muted: #b7c6cb;
+        --line: #2c4248;
+        --accent: #4e9ab8;
+        --accent-soft: #224250;
+        --header: rgba(13, 20, 23, 0.92);
+        --shadow: none;
       }
 
-      .owner-band .section-copy {
-        color: rgba(255,255,255,0.78);
+      .site--maintenance {
+        --bg: #eef1e8;
+        --surface: #fbfcf8;
+        --surface-2: #f2f5eb;
+        --ink: #273019;
+        --muted: #667154;
+        --line: #d9decb;
+        --accent: #718243;
+        --accent-soft: #dde5ca;
+        --header: rgba(251, 252, 248, 0.93);
       }
 
-      .owner-cta-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.85rem;
-        margin-top: 1.4rem;
+      .site--plainspoken {
+        --bg: #f5eee8;
+        --surface: #fffaf7;
+        --surface-2: #f7eee8;
+        --ink: #241a15;
+        --muted: #6f6258;
+        --line: #dbcabe;
+        --accent: #c26437;
+        --accent-soft: #f0d6ca;
       }
 
-      .owner-cta-row .ghost {
-        border: 1px solid rgba(255,255,255,0.3);
+      .site--legacy-simple {
+        --bg: #f4f0eb;
+        --surface: #fffdfa;
+        --surface-2: #f6f1eb;
+        --ink: #2b221b;
+        --muted: #72665b;
+        --line: #ddd1c5;
+        --accent: #a4683f;
+        --accent-soft: #f0dfd0;
       }
 
-      .owner-callout {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 1rem;
-        margin-top: 2rem;
+      .site--bilingual {
+        --bg: #f5ede7;
+        --surface: #fff8f3;
+        --surface-2: #f8ece4;
+        --ink: #261a14;
+        --muted: #75655b;
+        --line: #e0cbbd;
+        --accent: #c86a39;
+        --accent-soft: #f3d8ca;
       }
 
-      .owner-callout div {
-        padding-top: 0.9rem;
-        border-top: 1px solid var(--line-dark);
+      .site--specialist .top-nav a,
+      .site--specialist .brand span,
+      .site--specialist .section-kicker,
+      .site--specialist .lede,
+      .site--specialist .muted-copy,
+      .site--specialist .faq-list p,
+      .site--specialist .service-card p,
+      .site--specialist .step-card p,
+      .site--specialist .proof-card p,
+      .site--specialist .contact-panel p,
+      .site--specialist .response-text,
+      .site--specialist .quote-block cite {
+        color: var(--muted);
       }
 
-      .owner-callout strong {
-        display: block;
-        margin-bottom: 0.25rem;
+      .site--specialist .btn-secondary,
+      .site--specialist .utility-strip a,
+      .site--specialist .legacy-navline a {
+        background: rgba(255, 255, 255, 0.02);
       }
 
-      .demo--southern-atlas .hero {
-        background:
-          radial-gradient(circle at 20% 15%, rgba(255,255,255,0.16), transparent 20%),
-          linear-gradient(135deg, #2e2419, #5c4424 52%, #84673a);
+      .site--specialist .map-frame {
+        box-shadow: 0 0 0 1px var(--line);
       }
 
-      .demo--losamigos-bilingual .hero {
-        background:
-          radial-gradient(circle at 82% 24%, rgba(255,255,255,0.15), transparent 20%),
-          linear-gradient(135deg, #10181b, #283437 52%, #8d3a25);
+      .site--legacy-simple .headline,
+      .site--plainspoken .headline {
+        letter-spacing: 0;
       }
 
-      .demo--carfix-booking .hero {
-        background:
-          radial-gradient(circle at 84% 16%, rgba(255,255,255,0.18), transparent 21%),
-          linear-gradient(135deg, #091113, #16323a 50%, #1d595e);
+      .site--legacy-simple .panel,
+      .site--plainspoken .panel,
+      .site--maintenance .panel,
+      .site--diagnostic .panel,
+      .site--booking .panel,
+      .site--bilingual .panel {
+        background: var(--surface);
       }
 
-      .demo--westside-urgency .hero {
-        background:
-          radial-gradient(circle at 75% 18%, rgba(255,255,255,0.14), transparent 22%),
-          linear-gradient(135deg, #0b1113, #1a2528 50%, #434e53);
+      .fade-up {
+        opacity: 0;
+        transform: translateY(16px);
+        animation: fade-up 0.55s ease forwards;
+      }
+
+      .delay-1 { animation-delay: 0.08s; }
+      .delay-2 { animation-delay: 0.16s; }
+
+      @keyframes fade-up {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       @media (max-width: 1080px) {
-        .hero-shell,
-        .section-head,
-        .contact-grid,
-        .process-grid,
-        .trust-rail,
-        .owner-callout {
+        .signal-list,
+        .step-grid,
+        .proof-grid {
           grid-template-columns: 1fr;
         }
+      }
 
-        .services-grid,
-        .highlights-grid,
-        .widget-choice-grid {
+      @media (max-width: 980px) {
+        .diag-grid,
+        .booking-grid,
+        .specialist-grid,
+        .maint-grid,
+        .plain-grid,
+        .legacy-grid,
+        .bilingual-grid,
+        .split-grid,
+        .contact-grid,
+        .service-grid,
+        .mini-grid,
+        .language-cards {
           grid-template-columns: 1fr;
         }
       }
 
       @media (max-width: 760px) {
-        .preview-strip,
-        .site-header {
-          padding-inline: 1rem;
+        .site-header .shell {
+          min-height: auto;
+          padding: 0.9rem 0;
+          align-items: start;
+          flex-direction: column;
         }
 
-        .preview-strip,
-        .site-header,
-        .hero,
-        .section,
-        .owner-band {
-          padding-left: 1rem;
-          padding-right: 1rem;
-        }
-
-        .header-nav {
+        .top-nav {
           display: none;
         }
 
+        .option-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .preview-note {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .headline {
+          font-size: clamp(2.3rem, 14vw, 4rem);
+        }
       }
     </style>
   </head>
-  <body class="demo demo--bao-bay">
-    <div class="preview-strip">
-      <span>Private preview prepared for Bao Auto Repair owner review</span>
-      <div class="owner-links">
+  <body class="site site--diagnostic">
+    <div class="preview-note">
+      <span>Private preview for Bao Auto Repair owner review</span>
+      <div>
         <a href="mailto:jclem07@protonmail.com?subject=I%20want%20the%20Bao%20Auto%20Repair%20website%20demo">Claim redesign</a>
         <a href="mailto:jclem07@protonmail.com?subject=Questions%20about%20the%20Bao%20Auto%20Repair%20demo">Ask questions</a>
       </div>
     </div>
 
     <header class="site-header">
-      <div class="brand-lockup">
-        <span>Independent auto repair in Knoxville</span>
-        <strong>Bao Auto Repair</strong>
-      </div>
-      <nav class="header-nav">
-        <a href="#services">Services</a>
-        <a href="#proof">Why this works</a>
-        <a href="#process">Process</a>
-        <a href="#contact">Contact</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <div class="header-actions">
-          <a class="action-primary" href="tel:+18656888695">Call (865) 688-8695</a>
-          <a class="action-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Bao+Auto+Repair+1100+Bradshaw+Garden+Dr%2C+Knoxville%2C+TN+37912">Get directions</a>
-          <a class="action-ghost" href="#request">Request estimate</a>
+      <div class="shell">
+        <div class="brand">
+          <span>Independent auto repair in Knoxville</span>
+          <strong>Bao Auto Repair</strong>
+        </div>
+        <nav class="top-nav">
+            <a href="#services">Services</a>
+            <a href="#proof">Trust</a>
+            <a href="#request">Visit plan</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-primary" href="#request">Start intake</a>
+          <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Bao+Auto+Repair+1100+Bradshaw+Garden+Dr%2C+Knoxville%2C+TN+37912" target="_blank" rel="noopener noreferrer">Directions</a>
+        </div>
       </div>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="hero-shell">
-          <div class="hero-copy">
-            <span class="eyebrow">Independent auto repair in Knoxville</span>
-            <h1 class="brand-name">Bao Auto Repair</h1>
-            <p class="hero-title">Honest diagnostics. Clear repair plans. Faster phone calls.</p>
-            <p class="hero-title">This version makes Bao Auto Repair feel immediate on mobile: call-first actions, strong proof, and a service request flow that sounds like a real shop instead of a brochure.</p>
-            <div class="hero-actions">
-                <a class="action-primary" href="tel:+18656888695">Call (865) 688-8695</a>
-                <a class="action-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Bao+Auto+Repair+1100+Bradshaw+Garden+Dr%2C+Knoxville%2C+TN+37912">Get directions</a>
-                <a class="action-ghost" href="#request">Request estimate</a>
+        <section class="hero-band hero-band--diagnostic">
+          <div class="shell diag-grid">
+            <div class="panel panel-body fade-up">
+              <span class="section-kicker">Independent auto repair in Knoxville</span>
+              <h1 class="headline">Bao Auto Repair</h1>
+              <p class="subhead">Honest diagnostics. Clear repair plans. Faster phone calls.</p>
+              <p class="lede">This version makes Bao Auto Repair feel immediate on mobile: call-first actions, strong proof, and a service request flow that sounds like a real shop instead of a brochure.</p>
+              <div class="action-row">
+<a class="btn btn-primary" href="tel:+18656888695">Call (865) 688-8695</a>                <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Bao+Auto+Repair+1100+Bradshaw+Garden+Dr%2C+Knoxville%2C+TN+37912" target="_blank" rel="noopener noreferrer">Get directions</a>
+<a class="btn btn-secondary" href="http://www.baoautorepair.com/" target="_blank" rel="noopener noreferrer">Open current site</a>              </div>
+              <div class="signal-list">
+                  <div class="signal-chip">
+                    <strong>4.5 rating from 596 Google reviews</strong>
+                    <span class="muted-copy">Trust should show up before the first scroll.</span>
+                  </div>
+                  <div class="signal-chip">
+                    <strong>1100 Bradshaw Garden Dr, Knoxville, TN 37912</strong>
+                    <span class="muted-copy">Trust should show up before the first scroll.</span>
+                  </div>
+                  <div class="signal-chip">
+                    <strong>(865) 688-8695</strong>
+                    <span class="muted-copy">Trust should show up before the first scroll.</span>
+                  </div>
+              </div>
+              <blockquote class="quote-block">
+                Review quote: &#34;A real hidden gem in Knoxville auto repair scene!&#34;
+                <cite>Neighborhood trust needs to lead this homepage.</cite>
+              </blockquote>
             </div>
-            <ul class="hero-points">
-                <li>Review-heavy trust is visible right away</li>
-                <li>Call and directions stay easy from the first screen</li>
-                <li>A symptom form helps capture the problem before the phone rings</li>
-            </ul>
-            <div class="trust-rail">
-              <div class="trust-item">
-                <strong>4.5 stars from 596 Google reviews</strong>
-                <span>Google reputation that should not be buried below the fold.</span>
-              </div>
-              <div class="trust-item">
-                <strong>1100 Bradshaw Garden Dr, Knoxville, TN 37912</strong>
-                <span>Local presence should be easy to verify and easy to route to.</span>
-              </div>
-              <div class="trust-item">
-                <strong>(865) 688-8695</strong>
-                <span>Phone stays available because that is still the fastest path for many customers.</span>
-              </div>
-            </div>
-          </div>
 
-          <aside class="hero-stage" id="request">
-            <span class="widget-label">Interactive preview</span>
-            <h2 class="widget-title">Tell us what the car is doing</h2>
-            <p class="widget-body">A preview of a better service request flow for Bao Auto Repair.</p>
-
-              <form class="widget-form" data-demo-form data-subject="Bao Auto Repair preview inquiry">
-                  <select name="Concern">
-                      <option>Check engine light</option>
-                      <option>Brake or steering issue</option>
-                      <option>AC or heat</option>
-                      <option>Maintenance request</option>
-                      <option>Strange noise or vibration</option>
-                  </select>
-                  <input type="text" name="Phone" placeholder="Best callback number" />
-                  <textarea name="Notes" placeholder="What is the car doing right now?"></textarea>
-                <button type="submit">Preview the request flow</button>
+            <aside class="panel form-panel fade-up delay-1" id="request">
+              <span class="section-kicker">Diagnostic intake</span>
+              <h2 class="section-title">Tell us what the car is doing</h2>
+              <p class="muted-copy">A preview of a better service request flow for Bao Auto Repair.</p>
+              <form class="request-form" data-demo-form>
+                <select name="Concern">
+                    <option>Check engine light</option>
+                    <option>Brake or steering issue</option>
+                    <option>AC or heat</option>
+                    <option>Maintenance request</option>
+                    <option>Strange noise or vibration</option>
+                </select>
+                <input type="text" name="Phone" placeholder="Best callback number" />
+                <textarea name="Notes" placeholder="What is the car doing right now?"></textarea>
+                <button type="submit">Call for diagnostics</button>
               </form>
-              <p class="widget-note">This preview form still routes to the demo inbox until launch. The customer-facing behavior is the point here, not the mailbox plumbing.</p>
-          </aside>
-        </div>
-      </section>
+              <div class="form-response" data-form-response hidden></div>
+              <ul class="list-clean" style="margin-top: 1rem;">
+                  <li>Review-heavy trust is visible right away</li>
+                  <li>Call and directions stay easy from the first screen</li>
+                  <li>A symptom form helps capture the problem before the phone rings</li>
+              </ul>
+            </aside>
+          </div>
+        </section>
 
-      <section class="section section-alt" id="services">
-        <div class="section-shell">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow">Service framing</span>
-              <h2 class="section-title">This site is built around how Bao Auto Repair should actually convert.</h2>
+        <section class="section" id="services">
+          <div class="shell split-grid">
+            <div class="panel info-panel">
+              <div class="section-head">
+                <span class="section-kicker">Core repair lanes</span>
+                <h2 class="section-title">The shop’s strengths should feel obvious right away.</h2>
+              </div>
+              <div class="service-grid">
+                  <article class="service-card">
+                    <strong>Diagnostics and drivability</strong>
+                    <p>For warning lights, rough idle, sudden noises, or something that just started feeling off.</p>
+                  </article>
+                  <article class="service-card">
+                    <strong>Brake, steering, and suspension</strong>
+                    <p>A clearer path for the jobs people usually call about from a phone in a parking lot.</p>
+                  </article>
+                  <article class="service-card">
+                    <strong>Routine maintenance</strong>
+                    <p>Oil service, fluid checks, and maintenance reminders without burying the contact path.</p>
+                  </article>
+                  <article class="service-card">
+                    <strong>Trusted next-step advice</strong>
+                    <p>The site puts reassurance and clarity ahead of filler copy and generic promises.</p>
+                  </article>
+              </div>
             </div>
-            <p class="section-copy">
-              These sections are not filler. They are here to help a customer understand the fit fast, then move to call, directions, or a request path without wandering.
-            </p>
-          </div>
-          <div class="services-grid">
-              <div class="line-panel">
-                <strong>Diagnostics and drivability</strong>
-                <span>For warning lights, rough idle, sudden noises, or something that just started feeling off.</span>
+            <div class="panel info-panel" id="proof">
+              <div class="section-head">
+                <span class="section-kicker">Why this version converts</span>
+                <h2 class="section-title">Proof and next-step clarity replace vague brochure copy.</h2>
               </div>
-              <div class="line-panel">
-                <strong>Brake, steering, and suspension</strong>
-                <span>A clearer path for the jobs people usually call about from a phone in a parking lot.</span>
+              <div class="step-grid">
+                  <article class="step-card">
+                    <strong>Describe the issue</strong>
+                    <p>Customers can say what the car is doing before they arrive.</p>
+                  </article>
+                  <article class="step-card">
+                    <strong>Get the next step</strong>
+                    <p>The site funnels them into a call or intake path instead of dead-end scrolling.</p>
+                  </article>
+                  <article class="step-card">
+                    <strong>Show up with context</strong>
+                    <p>The shop gets a cleaner handoff and fewer vague first conversations.</p>
+                  </article>
               </div>
-              <div class="line-panel">
-                <strong>Routine maintenance</strong>
-                <span>Oil service, fluid checks, and maintenance reminders without burying the contact path.</span>
-              </div>
-              <div class="line-panel">
-                <strong>Trusted next-step advice</strong>
-                <span>The site puts reassurance and clarity ahead of filler copy and generic promises.</span>
-              </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="proof">
-        <div class="section-shell">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow">Why this works</span>
-              <h2 class="section-title">The redesign is different because the business problem is different.</h2>
+              <ul class="list-clean" style="margin-top: 1rem;">
+                  <li>Very high review volume for an independent local shop.</li>
+                  <li>Strong hidden-gem reputation in Knoxville.</li>
+                  <li>The current site was not reliably reachable from the build server.</li>
+                  <li>A business with nearly six hundred reviews should not have fragile web access or hidden trust cues.</li>
+              </ul>
             </div>
-            <p class="section-copy">
-              The point is not “make it prettier.” The point is to make the homepage fit the actual business, the actual customer decision, and the actual first action.
-            </p>
           </div>
-          <div class="highlights-grid">
-              <div class="line-panel">
-                <strong>Phone-first service path</strong>
-                <span>Call, describe the symptom, and get the next best move without hunting through the page.</span>
-              </div>
-              <div class="line-panel">
-                <strong>Proof near the hero</strong>
-                <span>The review count and location do real conversion work, so they belong above the fold.</span>
-              </div>
-              <div class="line-panel">
-                <strong>Clear diagnostic intake</strong>
-                <span>A customer can send the issue in plain English before the first callback.</span>
-              </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-alt" id="process">
-        <div class="section-shell">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow">Customer path</span>
-              <h2 class="section-title">The homepage now helps the visitor decide what to do next.</h2>
-            </div>
-            <p class="section-copy">
-              Each site pushes a different interaction because each business should guide customers differently, even inside the same market.
-            </p>
-          </div>
-          <div class="process-grid">
-              <div class="line-panel">
-                <strong>Describe the issue</strong>
-                <span>Customers can say what the car is doing before they arrive.</span>
-              </div>
-              <div class="line-panel">
-                <strong>Get the next step</strong>
-                <span>The site funnels them into a call or intake path instead of dead-end scrolling.</span>
-              </div>
-              <div class="line-panel">
-                <strong>Show up with context</strong>
-                <span>The shop gets a cleaner handoff and fewer vague first conversations.</span>
-              </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
       <section class="section" id="contact">
-        <div class="section-shell">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow">Contact and location</span>
-              <h2 class="section-title">The practical actions stay obvious.</h2>
+        <div class="shell contact-grid">
+          <div class="contact-stack">
+            <div class="panel contact-panel">
+              <span class="section-kicker">Contact and location</span>
+              <h2>Bao Auto Repair</h2>
+              <p>1100 Bradshaw Garden Dr, Knoxville, TN 37912; primary focus remains Knoxville, Tennessee.</p>
+              <div class="action-row">
+<a class="btn btn-primary" href="tel:+18656888695">Call (865) 688-8695</a>                <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Bao+Auto+Repair+1100+Bradshaw+Garden+Dr%2C+Knoxville%2C+TN+37912" target="_blank" rel="noopener noreferrer">Get directions</a>
+<a class="btn btn-secondary" href="http://www.baoautorepair.com/" target="_blank" rel="noopener noreferrer">Open current site</a>              </div>
+              <ul class="list-clean" style="margin-top: 1rem;">
+                  <li>Very high review volume for an independent local shop.</li>
+                  <li>Strong hidden-gem reputation in Knoxville.</li>
+              </ul>
+                <div class="quick-links" style="margin-top: 1rem;">
+                    <a class="btn btn-secondary" href="http://www.baoautorepair.com/" target="_blank" rel="noopener noreferrer">Current site</a>
+                </div>
             </div>
-            <p class="section-copy">
-              This is the difference between a pretty mockup and a usable local-business homepage: phone, directions, map context, and a request flow all stay easy to reach.
-            </p>
-          </div>
-          <div class="contact-grid">
-            <div class="line-panel">
-              <strong>Bao Auto Repair</strong>
-              <span>1100 Bradshaw Garden Dr, Knoxville, TN 37912</span>
-              <div class="contact-actions">
-<a href="tel:+18656888695">Call (865) 688-8695</a><a href="sms:+18656888695">Text the shop</a>                <a href="https://www.google.com/maps/search/?api=1&amp;query=Bao+Auto+Repair+1100+Bradshaw+Garden+Dr%2C+Knoxville%2C+TN+37912" target="_blank" rel="noopener noreferrer">Open directions</a>
-<a href="http://www.baoautorepair.com/" target="_blank" rel="noopener noreferrer">Compare current site</a>              </div>
-              <div class="line-panel">
-                <strong>Current-site gaps this demo addresses</strong>
-                <span>Site is still served over plain HTTP. No viewport meta tag was detected, which usually means weak mobile handling. The homepage does not surface a clear quote or booking CTA. No HTML form was detected on the homepage.</span>
+            <div class="owner-note">
+              <span class="section-kicker">Owner note</span>
+              <h3>Claim the redesign or request revisions.</h3>
+              <p>The customer-facing hierarchy stays focused on calls, directions, and service clarity. Owner-only actions stay here at the bottom.</p>
+              <div class="action-row">
+                <a class="btn btn-primary" href="mailto:jclem07@protonmail.com?subject=I%20want%20the%20Bao%20Auto%20Repair%20website%20demo">Claim redesign</a>
+                <a class="btn btn-secondary" href="mailto:jclem07@protonmail.com?subject=Questions%20about%20the%20Bao%20Auto%20Repair%20demo">Ask questions</a>
               </div>
             </div>
+          </div>
+          <div class="stack">
+            <div class="panel contact-panel" id="proof">
+              <span class="section-kicker">Trust signals</span>
+              <ul class="list-clean">
+                  <li>4.5 rating from 596 Google reviews</li>
+                  <li>1100 Bradshaw Garden Dr, Knoxville, TN 37912</li>
+                  <li>(865) 688-8695</li>
+                  <li>Closed · Opens 8 AM</li>
+              </ul>
+            </div>
             <iframe class="map-frame" src="https://www.google.com/maps?q=Bao+Auto+Repair+1100+Bradshaw+Garden+Dr%2C+Knoxville%2C+TN+37912&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map for Bao Auto Repair"></iframe>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-alt" id="faq">
-        <div class="section-shell">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow">FAQ</span>
-              <h2 class="section-title">Questions this version answers more clearly.</h2>
-            </div>
-            <p class="section-copy">
-              These answers show the intended positioning and why the interaction model changed from site to site.
-            </p>
-          </div>
-            <details class="faq-item" open>
-              <summary>Can I call before coming in?</summary>
-              <p>Yes. The redesign keeps the call path obvious because that is how many repair decisions start.</p>
-            </details>
-            <details class="faq-item" >
-              <summary>What if I only know the symptom?</summary>
-              <p>The intake flow is built around plain-language problems like warning lights, noises, braking, and drivability.</p>
-            </details>
-            <details class="faq-item" >
-              <summary>Why move reviews higher?</summary>
-              <p>Because hundreds of reviews are already earned trust. The site should stop hiding that.</p>
-            </details>
-        </div>
-      </section>
-
-      <section class="owner-band" id="owner">
-        <div class="section-shell">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow">Owner next step</span>
-              <h2 class="section-title">This preview is meant to feel like a real business site first.</h2>
-            </div>
-            <p class="section-copy">
-              The owner pitch stays here on purpose. The customer-facing page should sell the business. The private preview controls should not hijack the homepage.
-            </p>
-          </div>
-          <div class="owner-cta-row">
-            <a class="action-primary" href="mailto:jclem07@protonmail.com?subject=I%20want%20the%20Bao%20Auto%20Repair%20website%20demo">Claim this redesign</a>
-            <a class="ghost" href="mailto:jclem07@protonmail.com?subject=Questions%20about%20the%20Bao%20Auto%20Repair%20demo">Talk through changes</a>
-              <a class="ghost" href="http://www.baoautorepair.com/" target="_blank" rel="noopener noreferrer">Open current site</a>
-          </div>
-          <div class="owner-callout">
-            <div>
-              <strong>$2,900 launch build</strong>
-              <span>Current launch price for this demo path.</span>
-            </div>
-            <div>
-              <strong>Auto Repair</strong>
-              <span>Different site logic because the business need is different.</span>
-            </div>
-            <div>
-              <strong>4.5 stars from 596 Google reviews</strong>
-              <span>Existing proof that should be doing more work online.</span>
-            </div>
-            <div>
-              <strong>forage.life/demos/bao-auto-repair-1100-bradshaw-garden-dr-knoxville-tn-37912</strong>
-              <span>Live private preview link for owner review.</span>
-            </div>
           </div>
         </div>
       </section>
     </main>
 
     <script>
-      const contactEmail = "jclem07@protonmail.com";
+      const callHref = "tel:+18656888695";
+      const callLabel = Call (865) 688-8695;
+      const directionsHref = "https://www.google.com/maps/search/?api=1\u0026query=Bao+Auto+Repair+1100+Bradshaw+Garden+Dr%2C+Knoxville%2C+TN+37912";
+      const currentSiteUrl = "http://www.baoautorepair.com/";
 
-      function openMailto(subject, pairs) {
-        const body = pairs
-          .filter(([key, value]) => value && String(value).trim())
-          .map(([key, value]) => `${key}: ${value}`)
-          .join('\n');
-        window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
       }
 
-      document.querySelectorAll('[data-demo-form]').forEach((form) => {
-        form.addEventListener('submit', (event) => {
+      function responseMarkup(summary) {
+        const actions = [];
+        if (callHref) {
+          actions.push(`<a class="btn btn-primary" href="${callHref}">${escapeHtml(callLabel)}</a>`);
+        }
+        actions.push(`<a class="btn btn-secondary" href="${escapeHtml(directionsHref)}" target="_blank" rel="noopener noreferrer">Get directions</a>`);
+        if (currentSiteUrl) {
+          actions.push(`<a class="btn btn-secondary" href="${escapeHtml(currentSiteUrl)}" target="_blank" rel="noopener noreferrer">Open current site</a>`);
+        }
+        return `
+          <strong>Preview next step</strong>
+          <p class="response-text">${summary}</p>
+          <div class="response-actions">${actions.join("")}</div>
+        `;
+      }
+
+      document.querySelectorAll("[data-demo-form]").forEach((form) => {
+        const response = form.parentElement.querySelector("[data-form-response]");
+        form.addEventListener("submit", (event) => {
           event.preventDefault();
-          const subject = form.getAttribute('data-subject') || 'Bao Auto Repair demo inquiry';
-          const pairs = Array.from(new FormData(form).entries());
-          openMailto(subject, pairs);
+          const values = Array.from(new FormData(form).entries())
+            .filter(([, value]) => value && String(value).trim())
+            .map(([key, value]) => `${escapeHtml(key)}: ${escapeHtml(value)}`);
+          const summary = values.length
+            ? `This preview would hand the shop a clearer intake: ${values.join(" · ")}.`
+            : "This preview turns the first click into a clearer service request instead of a dead-end brochure.";
+          response.hidden = false;
+          response.innerHTML = responseMarkup(summary);
         });
       });
 
-      document.querySelectorAll('[data-option-panel]').forEach((panel) => {
-        const output = panel.parentElement.querySelector('[data-panel-output]');
-        panel.querySelectorAll('button').forEach((button) => {
-          button.addEventListener('click', () => {
-            panel.querySelectorAll('button').forEach((candidate) => candidate.classList.remove('is-active'));
-            button.classList.add('is-active');
-            output.innerHTML = `<strong>${button.dataset.panelTitle}</strong><span>${button.dataset.panelBody}</span>`;
+      document.querySelectorAll("[data-option-panel]").forEach((panel) => {
+        const output = panel.parentElement.querySelector("[data-panel-output]");
+        panel.querySelectorAll("button").forEach((button) => {
+          button.addEventListener("click", () => {
+            panel.querySelectorAll("button").forEach((candidate) => candidate.classList.remove("is-active"));
+            button.classList.add("is-active");
+            output.innerHTML = `<strong>${escapeHtml(button.dataset.panelTitle)}</strong><span class="response-text">${escapeHtml(button.dataset.panelBody)}</span>`;
           });
         });
       });
 
-      document.querySelectorAll('[data-translate-buttons]').forEach((panel) => {
-        const textarea = panel.parentElement.querySelector('textarea');
-        panel.querySelectorAll('button').forEach((button) => {
-          button.addEventListener('click', () => {
-            panel.querySelectorAll('button').forEach((candidate) => candidate.classList.remove('is-active'));
-            button.classList.add('is-active');
-            if (button.dataset.translation === 'es') {
-              textarea.placeholder = textarea.dataset.es;
-            } else {
-              textarea.placeholder = textarea.dataset.en;
-            }
+      document.querySelectorAll("[data-translate-buttons]").forEach((panel) => {
+        const textarea = panel.parentElement.querySelector("textarea");
+        panel.querySelectorAll("button").forEach((button) => {
+          button.addEventListener("click", () => {
+            panel.querySelectorAll("button").forEach((candidate) => candidate.classList.remove("is-active"));
+            button.classList.add("is-active");
+            textarea.placeholder = button.dataset.translation === "es" ? textarea.dataset.es : textarea.dataset.en;
           });
         });
       });
