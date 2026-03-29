@@ -8,19 +8,45 @@
   <style>
     :root { --bg: #0F172A; --surface: #1E293B; --cyan: #06B6D4; --text: #F8FAFC; --muted: #94A3B8; --border: #334155; }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Space Grotesk', sans-serif; }
-    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 100px; }
-    .container { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
-    header { padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center;}
-    .logo { font-size: 1.25rem; font-weight: 700; }
+    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 90px; }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 1.25rem; }
+    
+    header { padding: 1.25rem 0; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.25rem; font-weight: 700; color: #fff; }
     .logo span { color: var(--cyan); }
-    h1 { font-size: 2.5rem; line-height: 1.1; margin-bottom: 1rem; color: #fff; }
-    p { color: var(--muted); margin-bottom: 2rem; font-size: 1.125rem; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 2rem; }
-    .btn { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 1.25rem; border-radius: 8px; font-size: 1rem; font-weight: 600; text-align: center; text-decoration: none; display: block; }
+    
+    .tech-spec { display: inline-block; font-family: monospace; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--cyan); border: 1px solid var(--border); padding: 0.25rem 0.5rem; border-radius: 4px; margin-bottom: 1rem; background: var(--surface); }
+    h1 { font-size: 2.25rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem; line-height: 1.1; }
+    p.lead { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.05rem; }
+
+    /* Interactive Grid */
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .btn-make { background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 1.25rem; border-radius: 8px; font-size: 1.125rem; font-weight: 600; text-align: center; cursor: pointer; display: flex; flex-direction: column; gap: 0.25rem; }
+    .btn-make:active { border-color: var(--cyan); background: #233145; }
+    .btn-make span { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+
+    /* Forms (Revealed on click) */
+    .service-form { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-bottom: 2rem; animation: fade 0.2s ease-in; }
+    .service-form.active { display: block; }
+    @keyframes fade { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .f-title { font-size: 1.125rem; font-weight: 700; color: var(--cyan); margin-bottom: 1rem; }
+    .btn-action { display: block; width: 100%; text-align: left; padding: 1rem; background: var(--bg); border: 1px solid var(--border); color: #fff; border-radius: 6px; margin-bottom: 0.5rem; font-weight: 600; text-decoration: none; cursor: pointer; }
+    .btn-action:active { border-color: var(--cyan); }
+
+    /* Sections */
     .section { border-top: 1px solid var(--border); padding: 2rem 0; }
-    h2 { font-size: 1.5rem; margin-bottom: 1rem; color: #fff; }
-    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(15,23,42,0.95); border-top: 1px solid var(--border); padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 1rem; z-index: 100; }
-    .nav-btn { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 600; text-decoration: none; }
+    h2 { font-size: 1.5rem; color: #fff; margin-bottom: 1rem; font-weight: 700; }
+    
+    .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+    .proof-box { background: var(--surface); border: 1px solid var(--border); padding: 1rem; border-radius: 8px; }
+    .proof-val { font-size: 1.75rem; font-weight: 700; color: #fff; line-height: 1; }
+    .proof-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; font-family: monospace; margin-top: 0.25rem; }
+    .review-terminal { background: #000; border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; font-family: monospace; font-size: 0.85rem; color: var(--cyan); line-height: 1.6; }
+
+    /* Bottom Nav */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(15, 23, 42, 0.95); border-top: 1px solid var(--border); padding: 1rem 1.25rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 0.75rem; z-index: 100; backdrop-filter: blur(10px); }
+    .nav-btn { flex: 1; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; }
     .nav-primary { background: var(--cyan); color: #000; }
     .nav-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
   </style>
@@ -29,30 +55,76 @@
   <div class="container">
     <header>
       <div class="logo">Asian Auto <span>Specialists</span></div>
-      <div style="color:var(--muted); font-weight: 600; font-family: monospace;">(865) 240-3004</div>
+      <div style="font-family: monospace; font-size: 0.85rem; color: var(--muted);">(865) 240-3004</div>
     </header>
-    <h1>Import repair.<br>Done right.</h1>
-    <p>Knoxville's precision specialists. What do you drive?</p>
+
+    <div class="tech-spec">SYS.READY // IMPORT_DIAG</div>
+    <h1>Specialist repair.<br>Without the runaround.</h1>
+    <p class="lead">Knoxville's precision import specialists.</p>
+    
+    <div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">Select Vehicle Make</div>
     <div class="grid">
-      <a href="tel:8652403004" class="btn">Toyota / Lexus</a>
-      <a href="tel:8652403004" class="btn">Honda / Acura</a>
-      <a href="tel:8652403004" class="btn">Nissan / Infiniti</a>
-      <a href="tel:8652403004" class="btn">Hyundai / Kia</a>
-      <a href="tel:8652403004" class="btn" style="grid-column: span 2;">Subaru</a>
+      <div class="btn-make" onclick="openMake('Toyota / Lexus')">Toyota <span>& Lexus</span></div>
+      <div class="btn-make" onclick="openMake('Honda / Acura')">Honda <span>& Acura</span></div>
+      <div class="btn-make" onclick="openMake('Nissan / Infiniti')">Nissan <span>& Infiniti</span></div>
+      <div class="btn-make" onclick="openMake('Hyundai / Kia')">Hyundai <span>& Kia</span></div>
+      <div class="btn-make" onclick="openMake('Subaru')" style="grid-column: span 2;">Subaru <span>Boxer Engine Service</span></div>
     </div>
+
+    <div id="service-form" class="service-form">
+      <div class="f-title" id="form-title">Toyota Service</div>
+      <div style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--muted);">What do you need handled?</div>
+      <a href="tel:8652403004" class="btn-action">Warning Light / Diagnostics &rarr;</a>
+      <a href="tel:8652403004" class="btn-action">Brakes & Rotors &rarr;</a>
+      <a href="tel:8652403004" class="btn-action">Routine Maintenance &rarr;</a>
+      <a href="tel:8652403004" class="btn-action">Other (Call to describe) &rarr;</a>
+    </div>
+
     <div class="section">
-      <h2>Proven expertise.</h2>
-      <p style="margin-bottom: 0.5rem; color: #fff;">4.9★ from 118 Reviews</p>
-      <p style="font-family: monospace; color: var(--cyan);">> "These guys listened, troubleshot, and solved it, even faster than promised!"</p>
+      <h2>Technical confidence.</h2>
+      <p style="font-size: 0.95rem;">We solve the problems general mechanics guess at.</p>
+      <div class="proof-grid">
+        <div class="proof-box">
+          <div class="proof-val">4.9<span style="font-size: 1rem; color: var(--cyan);">★</span></div>
+          <div class="proof-label">Avg Rating</div>
+        </div>
+        <div class="proof-box">
+          <div class="proof-val">118</div>
+          <div class="proof-label">Verified Reviews</div>
+        </div>
+      </div>
+      <div class="review-terminal">
+        > RUN REVIEW_QUERY<br>
+        > MATCH: "These guys listened, troubleshot, and solved it, even faster than promised!"<br>
+        > STATUS: VERIFIED
+      </div>
     </div>
+
     <div class="section" style="border-bottom: none;">
-      <h2>Visit the shop</h2>
-      <p>6404 Maynardville Pike<br>Knoxville, TN 37918<br><br>Mon-Fri &middot; Opens 8 AM</p>
+      <h2>Shop Details</h2>
+      <div style="margin-bottom: 1.5rem;">
+        <div style="font-size: 0.75rem; color: var(--muted); font-family: monospace; margin-bottom: 0.25rem;">ADDRESS</div>
+        <div style="color: #fff; font-weight: 500;">6404 Maynardville Pike<br>Knoxville, TN 37918</div>
+      </div>
+      <div>
+        <div style="font-size: 0.75rem; color: var(--muted); font-family: monospace; margin-bottom: 0.25rem;">HOURS</div>
+        <div style="color: #fff; font-weight: 500;">Mon-Fri &middot; Opens 8 AM</div>
+      </div>
     </div>
   </div>
+
   <div class="bottom-nav">
     <a href="tel:8652403004" class="nav-btn nav-primary">Call Shop</a>
     <a href="https://maps.google.com/?q=6404+Maynardville+Pike,+Knoxville,+TN" target="_blank" class="nav-btn nav-secondary">Directions</a>
   </div>
+
+  <script>
+    function openMake(make) {
+      document.getElementById('service-form').classList.add('active');
+      document.getElementById('form-title').innerText = make + " Service";
+      // Scroll to form so it's in view
+      document.getElementById('service-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  </script>
 </body>
 </html>
