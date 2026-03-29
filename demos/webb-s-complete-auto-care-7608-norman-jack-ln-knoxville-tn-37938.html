@@ -3,27 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Webb's Complete Auto Care</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>Webb's Complete Auto Care | Knoxville</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #FAFAFA; --surface: #FFFFFF; --primary: #2563EB; --text: #0F172A; --muted: #64748B; --border: #E2E8F0; }
+    :root { --bg: #F8FAFC; --surface: #FFFFFF; --primary: #0284C7; --primary-hover: #0891B2; --text: #0F172A; --muted: #475569; --border: #E2E8F0; }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 100px; }
-    .container { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
-    header { padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center;}
-    .logo { font-size: 1.25rem; font-weight: 800; }
+    body { background: var(--bg); color: var(--text); line-height: 1.6; padding-bottom: 90px; }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 1.25rem; }
+    
+    header { padding: 1.25rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.25rem; font-weight: 800; color: #000; letter-spacing: -0.02em; }
     .logo span { color: var(--primary); }
-    h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; color: #000; }
-    p { color: var(--muted); margin-bottom: 2rem; font-size: 1.125rem; }
-    .btn { display: block; width: 100%; padding: 1rem; border-radius: 8px; font-weight: 600; text-align: center; text-decoration: none; margin-bottom: 1rem; }
-    .btn-solid { background: var(--primary); color: #fff; }
-    .section { border-top: 1px solid var(--border); padding: 2rem 0; }
-    h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; color: #000; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
-    .card h3 { font-size: 1.125rem; margin-bottom: 0.5rem; color: #000; }
-    .card p { margin-bottom: 0; font-size: 1rem; }
-    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); border-top: 1px solid var(--border); padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 1rem; z-index: 100; }
-    .nav-btn { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 600; text-decoration: none; }
+    
+    .rating-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; font-weight: 600; color: #000; margin-bottom: 1rem; }
+    .rating-badge .stars { color: var(--primary); font-size: 1rem; letter-spacing: 1px; }
+
+    h1 { font-size: 2.25rem; font-weight: 800; color: #000; margin-bottom: 0.75rem; line-height: 1.1; letter-spacing: -0.03em; }
+    p.lead { color: var(--muted); margin-bottom: 2rem; font-size: 1.05rem; }
+
+    /* Mileage Planner */
+    .planner-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    .planner-title { font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: #000; }
+    
+    .mileage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .mile-btn { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 1rem 0.5rem; border-radius: 8px; font-weight: 600; text-align: center; cursor: pointer; transition: all 0.2s; }
+    .mile-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+    .checklist-content { display: none; font-size: 0.95rem; color: var(--muted); padding-top: 1rem; border-top: 1px solid var(--border); animation: fade 0.2s ease-in; }
+    .checklist-content.active { display: block; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    .btn-action { display: block; width: 100%; text-align: center; padding: 1rem; background: var(--surface); border: 2px solid var(--primary); color: var(--primary); border-radius: 8px; font-weight: 700; text-decoration: none; cursor: pointer; margin-top: 1rem; }
+    .btn-action:active { background: var(--primary); color: #fff; }
+
+    /* Sections */
+    .section { border-top: 1px solid var(--border); padding: 2.5rem 0; }
+    h2 { font-size: 1.5rem; color: #000; margin-bottom: 1.25rem; font-weight: 800; letter-spacing: -0.02em; }
+    
+    .service-row { margin-bottom: 1.5rem; }
+    .service-row h3 { font-size: 1.125rem; font-weight: 700; color: #000; margin-bottom: 0.25rem; }
+    .service-row p { font-size: 0.95rem; margin-bottom: 0; }
+
+    .review-quote { font-size: 1.125rem; font-weight: 500; font-style: italic; color: #000; line-height: 1.4; border-left: 4px solid var(--primary); padding-left: 1rem; margin-bottom: 1rem; }
+
+    /* Bottom Nav */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); border-top: 1px solid var(--border); padding: 1rem 1.25rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 0.75rem; z-index: 100; backdrop-filter: blur(10px); }
+    .nav-btn { flex: 1; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; }
     .nav-primary { background: var(--primary); color: #fff; }
     .nav-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
   </style>
@@ -32,30 +57,91 @@
   <div class="container">
     <header>
       <div class="logo">Webb's <span>Auto Care</span></div>
-      <div style="color:var(--muted); font-weight:600;">(865) 339-4950</div>
+      <div style="font-weight: 600; font-size: 0.9rem; color: var(--muted);">(865) 339-4950</div>
     </header>
+
+    <div class="rating-badge">
+      <span class="stars">★★★★★</span> 4.7 &middot; 156 Reviews
+    </div>
     <h1>Keep it running.<br>Avoid surprises.</h1>
-    <p>Knoxville's practical, maintenance-first auto shop.</p>
-    <a href="tel:8653394950" class="btn btn-solid">Call to Schedule</a>
+    <p class="lead">Knoxville's dependable neighborhood shop.</p>
+
+    <!-- Maintenance Planner -->
+    <div class="planner-card">
+      <div class="planner-title">Check your mileage</div>
+      <div class="mileage-grid">
+        <div class="mile-btn" onclick="showChecklist(this, '30k')" id="btn-30k">30k miles</div>
+        <div class="mile-btn" onclick="showChecklist(this, '60k')" id="btn-60k">60k miles</div>
+        <div class="mile-btn" onclick="showChecklist(this, '90k')" id="btn-90k">90k+ miles</div>
+        <div class="mile-btn" onclick="showChecklist(this, 'repair')" id="btn-repair">Something broke</div>
+      </div>
+
+      <div id="check-30k" class="checklist-content">
+        <strong style="color:#000;">Routine Checkpoint:</strong> Oil service, filters, fluid top-off, tire inspection, and a quick under-hood review to ensure everything looks tight.
+        <a href="tel:8653394950" class="btn-action">Schedule 30k Service</a>
+      </div>
+      
+      <div id="check-60k" class="checklist-content">
+        <strong style="color:#000;">Deep Inspection:</strong> Everything from the 30k service, plus a deeper look at belts, hoses, brake pads, and wear items that start showing age.
+        <a href="tel:8653394950" class="btn-action">Schedule 60k Service</a>
+      </div>
+      
+      <div id="check-90k" class="checklist-content">
+        <strong style="color:#000;">Heavy Maintenance:</strong> Major fluid flushes (transmission, coolant), spark plugs, suspension checks, and drivability reviews to keep it on the road.
+        <a href="tel:8653394950" class="btn-action">Schedule 90k+ Service</a>
+      </div>
+      
+      <div id="check-repair" class="checklist-content">
+        <strong style="color:#000;">Diagnostics & Repair:</strong> Engine light on? Strange noise? We'll read the code, drive it, and tell you exactly what's failing without the upsell.
+        <a href="tel:8653394950" class="btn-action">Call the Shop</a>
+      </div>
+    </div>
+
+    <!-- Core Services -->
     <div class="section">
-      <h2>What we do</h2>
-      <div class="card"><h3>Routine Maintenance</h3><p>Oil, fluids, and filters. The things that keep you out of the repair shop later.</p></div>
-      <div class="card"><h3>Brakes & Tires</h3><p>Honest assessments of wear and tear so you stop safely every time.</p></div>
-      <div class="card"><h3>Diagnostics</h3><p>Check engine light on? We'll read the code and explain it simply.</p></div>
+      <h2>Complete Auto Care</h2>
+      <div class="service-row">
+        <h3>Brakes & Tires</h3>
+        <p>Honest assessments of wear and tear so you stop safely every time.</p>
+      </div>
+      <div class="service-row">
+        <h3>Diagnostics</h3>
+        <p>Check engine light on? We'll figure out why and explain it simply.</p>
+      </div>
+      <div class="service-row">
+        <h3>Routine Maintenance</h3>
+        <p>Oil, fluids, and filters. The things that keep you out of the repair shop later.</p>
+      </div>
     </div>
-    <div class="section">
-      <h2>Local Trust</h2>
-      <p style="color: #000; font-weight: 600; margin-bottom: 0.5rem;">4.6★ &middot; 100+ Reviews</p>
-      <p style="font-style: italic; border-left: 3px solid var(--primary); padding-left: 1rem;">"Great service, fair prices, and they don't push things you don't need."</p>
+
+    <!-- Proof & Location -->
+    <div class="section" style="border-bottom: none; background: var(--surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border);">
+      <div class="review-quote">"Great service and my car was fixed in a timely matter."</div>
+      <p style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; margin-bottom: 1.5rem;">— Verified Customer</p>
+      
+      <h3 style="font-size: 1.125rem; font-weight: 700; color: #000; margin-bottom: 0.5rem;">Visit the shop</h3>
+      <p style="font-size: 0.95rem; color: var(--text); margin-bottom: 0.25rem;">7608 Norman Jack Ln, Knoxville, TN 37938</p>
+      <p style="font-size: 0.85rem; font-weight: 500;">Mon-Fri &middot; Opens 7:30 AM</p>
     </div>
-    <div class="section" style="border-bottom: none;">
-      <h2>Visit the shop</h2>
-      <p>7608 Norman Jack Ln<br>Knoxville, TN 37938<br><br>Mon-Fri &middot; Opens 8 AM</p>
-    </div>
+
   </div>
+
+  <!-- Sticky Nav -->
   <div class="bottom-nav">
     <a href="tel:8653394950" class="nav-btn nav-primary">Call Shop</a>
     <a href="https://maps.google.com/?q=7608+Norman+Jack+Ln,+Knoxville,+TN" target="_blank" class="nav-btn nav-secondary">Directions</a>
   </div>
+
+  <script>
+    function showChecklist(btn, id) {
+      document.querySelectorAll('.mile-btn').forEach(el => el.classList.remove('active'));
+      btn.classList.add('active');
+      
+      document.querySelectorAll('.checklist-content').forEach(el => el.classList.remove('active'));
+      document.getElementById('check-' + id).classList.add('active');
+    }
+    // Set default
+    document.getElementById('btn-60k').click();
+  </script>
 </body>
 </html>
