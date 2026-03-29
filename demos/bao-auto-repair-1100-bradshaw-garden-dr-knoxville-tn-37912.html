@@ -3,288 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bao Auto Repair | Knoxville, TN</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Bao Auto Repair | Knoxville</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-color: #111315;
-      --surface-color: #1A1D20;
-      --surface-active: #2C3035;
-      --text-main: #E2E8F0;
-      --text-muted: #94A3B8;
-      --accent-green: #10B981;
-      --accent-yellow: #F59E0B;
-      --border-color: #334155;
-      --font-stack: 'Inter', system-ui, -apple-system, sans-serif;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      font-family: var(--font-stack);
-      -webkit-font-smoothing: antialiased;
-      line-height: 1.5;
-      padding-bottom: 90px;
-    }
-
-    h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; color: #fff; }
-    h1 { font-size: 2.25rem; line-height: 1.1; margin-bottom: 0.5rem; }
-    h2 { font-size: 1.75rem; margin-bottom: 1rem; }
-    p { font-size: 1rem; color: var(--text-muted); margin-bottom: 1.5rem; }
-
-    .text-green { color: var(--accent-green); }
-    .text-yellow { color: var(--accent-yellow); }
-    .text-white { color: #fff; }
-
-    .container { width: 100%; max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
-
-    /* Header / Hero */
-    header { padding: 1.5rem 0; border-bottom: 1px solid var(--border-color); margin-bottom: 2rem; }
-    .logo { font-size: 1.25rem; font-weight: 700; color: #fff; letter-spacing: -0.02em; }
-    .logo span { color: var(--accent-green); }
-
-    .rating-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--surface-color); padding: 0.5rem 1rem;
-      border-radius: 2rem; font-size: 0.875rem; font-weight: 500;
-      color: var(--accent-yellow); margin-bottom: 1.5rem; border: 1px solid var(--border-color);
-    }
-
-    /* Intake Section */
-    .intake-section {
-      background: var(--surface-color); padding: 1.5rem; border-radius: 16px; 
-      border: 1px solid var(--border-color); margin-bottom: 3rem;
-    }
-    .wizard-step { display: none; }
-    .wizard-step.active { display: block; }
-
-    .intake-title { font-size: 1.25rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
-    .step-indicator { font-size: 0.875rem; color: var(--accent-yellow); font-weight: 500; }
-    
-    .symptom-grid { display: flex; flex-direction: column; gap: 0.75rem; }
-    .symptom-btn {
-      background: var(--bg-color); border: 1px solid var(--border-color);
-      color: var(--text-main); padding: 1rem; border-radius: 12px;
-      font-size: 1rem; font-weight: 500; text-align: left; cursor: pointer;
-      display: flex; justify-content: space-between; align-items: center;
-      transition: border-color 0.2s; min-height: 56px;
-    }
-    .symptom-btn:active { border-color: var(--accent-green); }
-
-    .btn-back { background: none; border: none; color: var(--text-muted); font-size: 0.875rem; cursor: pointer; margin-bottom: 1rem; }
-    .form-group { margin-bottom: 1.25rem; }
-    .form-label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.875rem; }
-    .form-input { width: 100%; background: var(--bg-color); border: 1px solid var(--border-color); color: #fff; padding: 1rem; border-radius: 8px; font-size: 1rem; }
-    .btn-submit { width: 100%; height: 56px; background: var(--accent-green); color: #000; font-size: 1rem; font-weight: 600; border: none; border-radius: 12px; cursor: pointer; margin-top: 1rem; }
-    .summary-box { background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; font-size: 0.875rem; }
-
-    /* Proof Section */
-    .proof-section { padding: 3rem 0; border-top: 1px solid var(--border-color); }
-    .review-card { background: var(--surface-color); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color); position: relative; margin-top: 1.5rem; }
-    .quote-mark { font-size: 4rem; color: var(--border-color); position: absolute; top: 1rem; left: 1.5rem; line-height: 1; font-family: serif; }
-    .review-text { font-size: 1.25rem; color: #fff; position: relative; z-index: 1; margin-bottom: 1rem; font-style: italic; line-height: 1.4; }
-
-    /* Services Section */
-    .services-section { padding: 3rem 0; border-top: 1px solid var(--border-color); }
-    .service-item { margin-bottom: 2rem; }
-    .service-item h3 { font-size: 1.125rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
-    .service-item h3::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%; }
-
-    /* Contact Section */
-    .contact-section { padding: 3rem 0; border-top: 1px solid var(--border-color); }
-    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-    .contact-list li { display: flex; flex-direction: column; }
-    .contact-list span { font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.25rem; }
-    .contact-list strong { font-size: 1.125rem; color: #fff; font-weight: 500; }
-
-    /* Sticky Bottom Nav */
-    .bottom-nav {
-      position: fixed; bottom: 0; left: 0; right: 0; background: rgba(17, 19, 21, 0.95);
-      backdrop-filter: blur(10px); border-top: 1px solid var(--border-color);
-      padding: 1rem 1.5rem env(safe-area-inset-bottom, 1rem); display: flex; gap: 1rem; z-index: 100;
-    }
-    .nav-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; height: 50px; border-radius: 12px; font-size: 1rem; font-weight: 600; text-decoration: none; border: none; }
-    .btn-primary { background: var(--accent-green); color: #000; }
-    .btn-secondary { background: var(--surface-color); color: var(--text-main); border: 1px solid var(--border-color); }
-    
-    @media (min-width: 768px) {
-      .bottom-nav { max-width: 600px; margin: 0 auto; border-left: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-radius: 24px 24px 0 0; }
-    }
+    :root { --bg: #111315; --surface: #1A1D20; --green: #10B981; --yellow: #F59E0B; --text: #E2E8F0; --muted: #94A3B8; --border: #334155; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 100px; }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
+    header { padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.25rem; font-weight: 700; color: #fff; }
+    .logo span { color: var(--green); }
+    h1 { font-size: 2.25rem; font-weight: 700; color: #fff; margin-bottom: 1rem; line-height: 1.1; }
+    p { color: var(--muted); margin-bottom: 2rem; font-size: 1.125rem; }
+    .btn { display: block; width: 100%; padding: 1.25rem; border-radius: 12px; font-weight: 600; text-align: left; background: var(--surface); border: 1px solid var(--border); color: var(--text); margin-bottom: 0.75rem; text-decoration: none; cursor: pointer; display: flex; justify-content: space-between;}
+    .btn:active { border-color: var(--green); }
+    .badge { display: inline-block; background: var(--surface); border: 1px solid var(--border); color: var(--yellow); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.875rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .section { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 1rem; }
+    h2 { font-size: 1.5rem; color: #fff; margin-bottom: 1rem; }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(17,19,21,0.95); border-top: 1px solid var(--border); padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 1rem; z-index: 100; }
+    .nav-btn { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: 600; text-decoration: none; }
+    .nav-primary { background: var(--green); color: #000; }
+    .nav-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
   </style>
 </head>
 <body>
-
   <div class="container">
     <header>
       <div class="logo">Bao <span>Auto</span> Repair</div>
+      <div style="color:var(--muted); font-weight:600;">(865) 688-8695</div>
     </header>
+    <div class="badge">★ 4.5 (596 Reviews)</div>
+    <h1>Honest repair.<br>Fast answers.</h1>
+    <p>Knoxville's trusted independent shop. What's the car doing?</p>
+    
+    <a href="tel:8656888695" class="btn"><span>Warning light came on</span> <span>&rarr;</span></a>
+    <a href="tel:8656888695" class="btn"><span>Making a strange noise</span> <span>&rarr;</span></a>
+    <a href="tel:8656888695" class="btn"><span>Handling or drivability issue</span> <span>&rarr;</span></a>
+    <a href="tel:8656888695" class="btn"><span>Routine maintenance</span> <span>&rarr;</span></a>
 
-    <!-- Hero -->
-    <div class="rating-badge">
-      ★ <span class="text-white">4.5</span> <span>(596 Reviews)</span>
-    </div>
-    <h1>Honest diagnostics.<br>Clear repair plans.</h1>
-    <p>Knoxville's trusted independent shop. Tell us what the car is doing — we'll take it from there.</p>
-
-    <!-- Wizard UI -->
-    <div class="intake-section">
-      <!-- Step 1 -->
-      <div id="step-1" class="wizard-step active">
-        <h2 class="intake-title">
-          What's going on?
-          <span class="step-indicator">Step 1 of 3</span>
-        </h2>
-        <div class="symptom-grid">
-          <button class="symptom-btn" onclick="nextStep(1, 'Warning Light')"><span>Warning light came on</span> <span>→</span></button>
-          <button class="symptom-btn" onclick="nextStep(1, 'Strange Noise')"><span>Making a strange noise</span> <span>→</span></button>
-          <button class="symptom-btn" onclick="nextStep(1, 'Handling / Drivability')"><span>Handling or drivability</span> <span>→</span></button>
-          <button class="symptom-btn" onclick="nextStep(1, 'Routine Service')"><span>Routine maintenance</span> <span>→</span></button>
-        </div>
-      </div>
-
-      <!-- Step 2 -->
-      <div id="step-2" class="wizard-step">
-        <button class="btn-back" onclick="prevStep(2)">← Back</button>
-        <h2 class="intake-title" id="step-2-title">
-          Could you be more specific?
-          <span class="step-indicator">Step 2 of 3</span>
-        </h2>
-        <div class="symptom-grid" id="step-2-options"></div>
-      </div>
-
-      <!-- Step 3 -->
-      <div id="step-3" class="wizard-step">
-        <button class="btn-back" onclick="prevStep(3)">← Back</button>
-        <h2 class="intake-title">
-          How long has this been happening?
-          <span class="step-indicator">Step 3 of 3</span>
-        </h2>
-        <div class="symptom-grid">
-          <button class="symptom-btn" onclick="nextStep(3, 'Just started today')"><span>Just started today</span></button>
-          <button class="symptom-btn" onclick="nextStep(3, 'A few days')"><span>A few days</span></button>
-          <button class="symptom-btn" onclick="nextStep(3, 'A few weeks or more')"><span>A few weeks or more</span></button>
-          <button class="symptom-btn" onclick="nextStep(3, 'Intermittent / Comes and goes')"><span>Intermittent / Comes and goes</span></button>
-        </div>
-      </div>
-
-      <!-- Step 4 (Final Form) -->
-      <div id="step-4" class="wizard-step">
-        <button class="btn-back" onclick="prevStep(4)">← Start over</button>
-        <h2 class="intake-title" style="margin-bottom: 1rem;">Send to Shop</h2>
-        <div class="summary-box">
-          <div class="text-muted" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Diagnostic Request:</div>
-          <div id="wizard-summary" class="text-white" style="font-weight: 500;">...</div>
-        </div>
-        <form action="mailto:[REPLACE_ME]_contact@baoautorepair.com" method="POST" enctype="text/plain">
-          <input type="hidden" id="finalSymptomInput" name="Diagnostic_Request">
-          <div class="form-group">
-            <label class="form-label">Vehicle (Year/Make/Model)</label>
-            <input type="text" class="form-input" name="Vehicle" placeholder="e.g. 2017 Honda Accord" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Phone Number</label>
-            <input type="tel" class="form-input" name="Phone" placeholder="(865) 555-1234" required>
-          </div>
-          <button type="submit" class="btn-submit">Request Appointment</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- Proof Block -->
-    <section class="proof-section">
+    <div class="section">
       <h2>The neighborhood hidden gem.</h2>
-      <p>We don't do high-pressure sales. We just fix cars and tell you the truth.</p>
-      <div class="review-card">
-        <div class="quote-mark">"</div>
-        <div class="review-text">A real hidden gem in Knoxville auto repair scene!</div>
-        <div style="display: flex; flex-direction: column;">
-          <span class="text-yellow" style="letter-spacing: 2px;">★★★★★</span>
-          <span class="text-muted" style="font-size: 0.875rem;">Actual customer review</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services -->
-    <section class="services-section">
-      <h2>Core Repair Lanes</h2>
-      <div class="service-item">
-        <h3>Diagnostics & Drivability</h3>
-        <p>For warning lights, rough idle, sudden noises, or something that just started feeling off. We plug in, drive it, and tell you exactly what's failing.</p>
-      </div>
-      <div class="service-item">
-        <h3>Brakes, Steering & Suspension</h3>
-        <p>A clearer path for the jobs people usually call about from a phone in a parking lot. If it shakes, pulls, or grinds, we handle it.</p>
-      </div>
-      <div class="service-item">
-        <h3>Routine Maintenance</h3>
-        <p>Oil service, fluid checks, and maintenance reminders. No upsells for things your car doesn't actually need.</p>
-      </div>
-    </section>
-
-    <!-- Contact Info -->
-    <section class="contact-section">
-      <h2>Contact & Location</h2>
-      <ul class="contact-list">
-        <li><span>Phone</span> <strong>(865) 688-8695</strong></li>
-        <li><span>Address</span> <strong>1100 Bradshaw Garden Dr<br>Knoxville, TN 37912</strong></li>
-        <li><span>Hours</span> <strong>Mon-Fri &middot; Opens 8 AM</strong></li>
-      </ul>
-    </section>
-
+      <p style="margin-bottom:0;">"A real hidden gem in Knoxville auto repair scene!"</p>
+    </div>
+    <div class="section" style="border-bottom:none;">
+      <h2>Contact & Hours</h2>
+      <p>1100 Bradshaw Garden Dr<br>Knoxville, TN 37912<br><br>Mon-Fri &middot; Opens 8 AM</p>
+    </div>
   </div>
-
-  <!-- Bottom Nav -->
   <div class="bottom-nav">
-    <a href="tel:8656888695" class="nav-btn btn-primary">Call Shop</a>
-    <a href="https://maps.google.com/?q=1100+Bradshaw+Garden+Dr,+Knoxville,+TN+37912" target="_blank" class="nav-btn btn-secondary">Directions</a>
+    <a href="tel:8656888695" class="nav-btn nav-primary">Call Shop</a>
+    <a href="https://maps.google.com/?q=1100+Bradshaw+Garden+Dr,+Knoxville,+TN" target="_blank" class="nav-btn nav-secondary">Directions</a>
   </div>
-
-  <script>
-    const wData = { cat: '', spec: '', dur: '' };
-    const specOptions = {
-      'Warning Light': ['Check Engine Light', 'Battery / Charging System', 'Oil Pressure Warning', 'Other / Not Sure'],
-      'Strange Noise': ['Grinding when braking', 'Squealing / Chirping', 'Rattling underneath', 'Clicking when turning'],
-      'Handling / Drivability': ['Rough idle / Shaking', 'Pulling to one side', 'Hard to start', 'Loss of power'],
-      'Routine Service': ['Oil Change & Fluids', 'Brake Pad Replacement', 'Pre-trip Inspection', 'Scheduled Mileage Service']
-    };
-
-    function nextStep(currentStep, value) {
-      document.getElementById(`step-${currentStep}`).classList.remove('active');
-      
-      if (currentStep === 1) {
-        wData.cat = value;
-        const opts = specOptions[value];
-        let html = '';
-        opts.forEach(opt => {
-          html += `<button class="symptom-btn" onclick="nextStep(2, '${opt}')"><span>${opt}</span> <span>→</span></button>`;
-        });
-        document.getElementById('step-2-options').innerHTML = html;
-        document.getElementById('step-2-title').innerHTML = `Which ${value.toLowerCase()}? <span class="step-indicator">Step 2 of 3</span>`;
-        document.getElementById('step-2').classList.add('active');
-      } 
-      else if (currentStep === 2) {
-        wData.spec = value;
-        document.getElementById('step-3').classList.add('active');
-      }
-      else if (currentStep === 3) {
-        wData.dur = value;
-        const summary = `${wData.cat} > ${wData.spec} > ${wData.dur}`;
-        document.getElementById('wizard-summary').textContent = summary;
-        document.getElementById('finalSymptomInput').value = summary;
-        document.getElementById('step-4').classList.add('active');
-      }
-    }
-
-    function prevStep(currentStep) {
-      document.getElementById(`step-${currentStep}`).classList.remove('active');
-      if (currentStep === 4) {
-        document.getElementById('step-1').classList.add('active');
-      } else {
-        document.getElementById(`step-${currentStep - 1}`).classList.add('active');
-      }
-    }
-  </script>
 </body>
 </html>

@@ -1,252 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Webb's Complete Auto Care | Knoxville, TN</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#fafaf8;
-  --card:#fff;
-  --green:#2d6a4f;
-  --green2:#40916c;
-  --green3:#74c69d;
-  --accent:#1b4332;
-  --text:#1a1a2e;
-  --muted:#6b7280;
-  --border:#e5e7eb;
-  --light:#f0faf4;
-}
-html{font-size:16px}
-body{background:var(--bg);color:var(--text);font-family:'Nunito Sans',sans-serif;min-height:100dvh;padding-bottom:72px}
-a{color:inherit;text-decoration:none}
-
-header{background:var(--accent);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
-.logo-wrap{display:flex;flex-direction:column}
-.logo-main{font-size:17px;font-weight:800;color:#fff;letter-spacing:-.2px}
-.logo-sub{font-size:11px;color:var(--green3);font-weight:600;letter-spacing:.5px;margin-top:2px}
-.header-call{background:var(--green3);color:var(--accent);font-weight:800;font-size:13px;padding:8px 14px;border-radius:20px}
-
-.hero{background:var(--accent);padding:24px 20px 32px;color:#fff}
-.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--green3);margin-bottom:12px}
-.hero h1{font-size:34px;font-weight:800;line-height:1.1;margin-bottom:12px}
-.hero h1 em{font-style:normal;color:var(--green3)}
-.hero-sub{font-size:14px;color:#a7d4b5;line-height:1.6;margin-bottom:20px}
-.hero-review{background:rgba(255,255,255,.08);border-radius:10px;padding:14px;border-left:3px solid var(--green3);font-size:13px;font-style:italic;color:#d4ede2}
-.hero-meta{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
-.stars-g{color:var(--green3);font-size:16px;letter-spacing:1px}
-.meta-text{font-size:13px;color:#a7d4b5}
-.meta-text strong{color:#fff}
-
-.planner-section{padding:28px 20px;border-bottom:1px solid var(--border)}
-.section-chip{display:inline-block;background:var(--light);color:var(--green);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:10px}
-.planner-title{font-size:22px;font-weight:800;margin-bottom:6px}
-.planner-sub{font-size:13px;color:var(--muted);margin-bottom:20px}
-
-.mile-tabs{display:flex;background:var(--border);border-radius:10px;padding:4px;gap:4px;margin-bottom:20px}
-.mile-tab{flex:1;text-align:center;padding:10px 4px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);transition:.15s;border:none;background:transparent}
-.mile-tab.active{background:#fff;color:var(--green);box-shadow:0 1px 4px rgba(0,0,0,.1)}
-
-.checklist{display:grid;gap:8px}
-.check-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:flex;align-items:center;gap:12px}
-.check-icon{width:28px;height:28px;background:var(--light);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.check-text{font-size:13px;font-weight:600;color:var(--text)}
-.check-note{font-size:11px;color:var(--muted);margin-top:2px}
-
-.planner-cta{display:block;width:100%;background:var(--green);color:#fff;font-weight:800;font-size:15px;padding:15px;border:none;border-radius:10px;cursor:pointer;text-align:center;margin-top:16px}
-
-.services-section{padding:28px 20px;border-bottom:1px solid var(--border)}
-.services-grid{display:grid;gap:12px;margin-top:16px}
-.service-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;gap:12px;align-items:flex-start}
-.service-num{font-size:18px;font-weight:800;color:var(--green3);min-width:28px}
-.service-body h3{font-size:14px;font-weight:700;margin-bottom:4px}
-.service-body p{font-size:12px;color:var(--muted);line-height:1.5}
-
-.proof-section{padding:28px 20px;border-bottom:1px solid var(--border);background:var(--light)}
-.stats-row{display:flex;gap:12px;margin-top:16px}
-.stat-block{flex:1;background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
-.stat-num{font-size:28px;font-weight:800;color:var(--green)}
-.stat-label{font-size:11px;color:var(--muted);margin-top:4px}
-
-.contact-section{padding:28px 20px}
-.contact-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-.c-row{display:flex;align-items:center;gap:14px;padding:15px 16px;border-bottom:1px solid var(--border)}
-.c-row:last-child{border-bottom:none}
-.c-dot{width:36px;height:36px;background:var(--light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.c-info .c-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
-.c-info .c-val{font-size:14px;font-weight:700;color:var(--text);margin-top:2px}
-
-.sticky-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid var(--green);padding:12px 16px;display:flex;gap:10px;z-index:100;box-shadow:0 -2px 12px rgba(0,0,0,.08)}
-.s-btn{flex:1;padding:13px 8px;border-radius:10px;font-size:14px;font-weight:800;text-align:center;cursor:pointer;border:none}
-.s-call{background:var(--green);color:#fff}
-.s-dir{background:var(--light);color:var(--green);border:2px solid var(--green)}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Webb's Complete Auto Care</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #FAFAFA; --surface: #FFFFFF; --primary: #2563EB; --text: #0F172A; --muted: #64748B; --border: #E2E8F0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 100px; }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
+    header { padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center;}
+    .logo { font-size: 1.25rem; font-weight: 800; }
+    .logo span { color: var(--primary); }
+    h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; color: #000; }
+    p { color: var(--muted); margin-bottom: 2rem; font-size: 1.125rem; }
+    .btn { display: block; width: 100%; padding: 1rem; border-radius: 8px; font-weight: 600; text-align: center; text-decoration: none; margin-bottom: 1rem; }
+    .btn-solid { background: var(--primary); color: #fff; }
+    .section { border-top: 1px solid var(--border); padding: 2rem 0; }
+    h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; color: #000; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.125rem; margin-bottom: 0.5rem; color: #000; }
+    .card p { margin-bottom: 0; font-size: 1rem; }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); border-top: 1px solid var(--border); padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 1rem; z-index: 100; }
+    .nav-btn { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 600; text-decoration: none; }
+    .nav-primary { background: var(--primary); color: #fff; }
+    .nav-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+  </style>
 </head>
 <body>
-
-<header>
-  <div class="logo-wrap">
-    <span class="logo-main">Webb's Complete Auto Care</span>
-    <span class="logo-sub">Knoxville, TN &middot; 37938</span>
-  </div>
-  <a class="header-call" href="tel:+18653394950">(865) 339-4950</a>
-</header>
-
-<section class="hero">
-  <div class="hero-eyebrow">Neighborhood Auto Care</div>
-  <h1>The shop that keeps<br><em>your car</em> on the road.</h1>
-  <p class="hero-sub">Routine maintenance, repairs, and honest advice from a shop at 7608 Norman Jack Ln that Knoxville families count on.</p>
-  <div class="hero-review">"Great service and my car was fixed in a timely matter."</div>
-  <div class="hero-meta">
-    <span class="stars-g">&#9733;&#9733;&#9733;&#9733;&#189;</span>
-    <span class="meta-text"><strong>4.7</strong> &middot; 156 Google reviews</span>
-  </div>
-</section>
-
-<section class="planner-section">
-  <span class="section-chip">Maintenance Planner</span>
-  <div class="planner-title">What's your mileage range?</div>
-  <p class="planner-sub">See what your car likely needs before you call.</p>
-
-  <div class="mile-tabs">
-    <button class="mile-tab active" onclick="showMile(0,this)">30k</button>
-    <button class="mile-tab" onclick="showMile(1,this)">60k</button>
-    <button class="mile-tab" onclick="showMile(2,this)">90k+</button>
-    <button class="mile-tab" onclick="showMile(3,this)">Not sure</button>
-  </div>
-
-  <div id="mile0" class="checklist">
-    <div class="check-item"><div class="check-icon">&#128749;</div><div><div class="check-text">Oil &amp; filter</div><div class="check-note">Synthetic or conventional per spec</div></div></div>
-    <div class="check-item"><div class="check-icon">&#128168;</div><div><div class="check-text">Air filter check</div><div class="check-note">Cabin and engine filters</div></div></div>
-    <div class="check-item"><div class="check-icon">&#128167;</div><div><div class="check-text">Fluid top-off</div><div class="check-note">Coolant, brake, power steering</div></div></div>
-    <div class="check-item"><div class="check-icon">&#128260;</div><div><div class="check-text">Tire inspection</div><div class="check-note">Pressure, tread, and wear pattern</div></div></div>
-  </div>
-  <div id="mile1" class="checklist" style="display:none">
-    <div class="check-item"><div class="check-icon">&#128749;</div><div><div class="check-text">Oil &amp; filter</div><div class="check-note">Full service</div></div></div>
-    <div class="check-item"><div class="check-icon">&#9881;</div><div><div class="check-text">Spark plugs</div><div class="check-note">Inspect or replace depending on type</div></div></div>
-    <div class="check-item"><div class="check-icon">&#128721;</div><div><div class="check-text">Brake inspection</div><div class="check-note">Pads, rotors, and fluid</div></div></div>
-    <div class="check-item"><div class="check-icon">&#128295;</div><div><div class="check-text">Belt &amp; hose check</div><div class="check-note">Serpentine, timing belt if applicable</div></div></div>
-    <div class="check-item"><div class="check-icon">&#128167;</div><div><div class="check-text">Coolant flush</div><div class="check-note">Often due around 60k</div></div></div>
-  </div>
-  <div id="mile2" class="checklist" style="display:none">
-    <div class="check-item"><div class="check-icon">&#128749;</div><div><div class="check-text">Full fluid service</div><div class="check-note">Oil, transmission, brake, and coolant</div></div></div>
-    <div class="check-item"><div class="check-icon">&#9881;</div><div><div class="check-text">Spark plugs &amp; ignition</div><div class="check-note">High-mileage replacement</div></div></div>
-    <div class="check-item"><div class="check-icon">&#128663;</div><div><div class="check-text">Drivability check</div><div class="check-note">Steering, suspension, ride quality</div></div></div>
-    <div class="check-item"><div class="check-icon">&#9889;</div><div><div class="check-text">Battery test</div><div class="check-note">CCA and charge health</div></div></div>
-    <div class="check-item"><div class="check-icon">&#128721;</div><div><div class="check-text">Brake system</div><div class="check-note">Full inspection and pad measurement</div></div></div>
-  </div>
-  <div id="mile3" class="checklist" style="display:none">
-    <div class="check-item"><div class="check-icon">&#128222;</div><div><div class="check-text">Call us first</div><div class="check-note">Describe what the car has been doing lately</div></div></div>
-    <div class="check-item"><div class="check-icon">&#128295;</div><div><div class="check-text">We'll figure it out</div><div class="check-note">No mileage needed &mdash; just describe the symptoms</div></div></div>
-  </div>
-
-  <a href="tel:+18653394950"><button class="planner-cta">Call about service</button></a>
-</section>
-
-<section class="services-section">
-  <span class="section-chip">Services</span>
-  <h2 class="planner-title">What we handle</h2>
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-num">01</div>
-      <div class="service-body">
-        <h3>Routine maintenance</h3>
-        <p>Oil changes, filters, fluids, and scheduled care to keep your car out of the shop longer.</p>
-      </div>
+  <div class="container">
+    <header>
+      <div class="logo">Webb's <span>Auto Care</span></div>
+      <div style="color:var(--muted); font-weight:600;">(865) 339-4950</div>
+    </header>
+    <h1>Keep it running.<br>Avoid surprises.</h1>
+    <p>Knoxville's practical, maintenance-first auto shop.</p>
+    <a href="tel:8653394950" class="btn btn-solid">Call to Schedule</a>
+    <div class="section">
+      <h2>What we do</h2>
+      <div class="card"><h3>Routine Maintenance</h3><p>Oil, fluids, and filters. The things that keep you out of the repair shop later.</p></div>
+      <div class="card"><h3>Brakes & Tires</h3><p>Honest assessments of wear and tear so you stop safely every time.</p></div>
+      <div class="card"><h3>Diagnostics</h3><p>Check engine light on? We'll read the code and explain it simply.</p></div>
     </div>
-    <div class="service-card">
-      <div class="service-num">02</div>
-      <div class="service-body">
-        <h3>Brakes &amp; drivability</h3>
-        <p>Squealing, pulling, or soft pedal &mdash; we diagnose it and explain what needs to happen.</p>
-      </div>
+    <div class="section">
+      <h2>Local Trust</h2>
+      <p style="color: #000; font-weight: 600; margin-bottom: 0.5rem;">4.6★ &middot; 100+ Reviews</p>
+      <p style="font-style: italic; border-left: 3px solid var(--primary); padding-left: 1rem;">"Great service, fair prices, and they don't push things you don't need."</p>
     </div>
-    <div class="service-card">
-      <div class="service-num">03</div>
-      <div class="service-body">
-        <h3>Family &amp; commuter vehicles</h3>
-        <p>The cars Knoxville families depend on every day get honest care and clear timelines.</p>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">04</div>
-      <div class="service-body">
-        <h3>Diagnostics</h3>
-        <p>Warning lights, strange noises, or something that just changed &mdash; we start with answers.</p>
-      </div>
+    <div class="section" style="border-bottom: none;">
+      <h2>Visit the shop</h2>
+      <p>7608 Norman Jack Ln<br>Knoxville, TN 37938<br><br>Mon-Fri &middot; Opens 8 AM</p>
     </div>
   </div>
-</section>
-
-<section class="proof-section">
-  <span class="section-chip">Reputation</span>
-  <h2 class="planner-title">Knoxville trusts Webb's</h2>
-  <div class="stats-row">
-    <div class="stat-block">
-      <div class="stat-num">4.7&#9733;</div>
-      <div class="stat-label">Google rating</div>
-    </div>
-    <div class="stat-block">
-      <div class="stat-num">156</div>
-      <div class="stat-label">Reviews</div>
-    </div>
+  <div class="bottom-nav">
+    <a href="tel:8653394950" class="nav-btn nav-primary">Call Shop</a>
+    <a href="https://maps.google.com/?q=7608+Norman+Jack+Ln,+Knoxville,+TN" target="_blank" class="nav-btn nav-secondary">Directions</a>
   </div>
-</section>
-
-<section class="contact-section">
-  <span class="section-chip">Find Us</span>
-  <h2 class="planner-title" style="margin-bottom:14px">Webb's Complete Auto Care</h2>
-  <div class="contact-card">
-    <a href="tel:+18653394950" class="c-row">
-      <div class="c-dot">&#128222;</div>
-      <div class="c-info">
-        <div class="c-label">Call</div>
-        <div class="c-val">(865) 339-4950</div>
-      </div>
-    </a>
-    <a href="https://maps.google.com/?q=7608+Norman+Jack+Ln+Knoxville+TN+37938" target="_blank" class="c-row">
-      <div class="c-dot">&#128205;</div>
-      <div class="c-info">
-        <div class="c-label">Address</div>
-        <div class="c-val">7608 Norman Jack Ln, Knoxville, TN 37938</div>
-      </div>
-    </a>
-    <div class="c-row">
-      <div class="c-dot">&#128336;</div>
-      <div class="c-info">
-        <div class="c-label">Hours</div>
-        <div class="c-val">Mon&ndash;Fri &middot; Opens 7:30 AM</div>
-      </div>
-    </div>
-    <a href="mailto:contact@webbsautocare.com" class="c-row">
-      <div class="c-dot">&#9993;</div>
-      <div class="c-info">
-        <div class="c-label">Email</div>
-        <div class="c-val">contact@webbsautocare.com</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<div class="sticky-bar">
-  <a href="tel:+18653394950" style="flex:1;display:block">
-    <button class="s-btn s-call" style="width:100%">Call</button>
-  </a>
-  <a href="https://maps.google.com/?q=7608+Norman+Jack+Ln+Knoxville+TN+37938" target="_blank" style="flex:1;display:block">
-    <button class="s-btn s-dir" style="width:100%">Directions</button>
-  </a>
-</div>
-
-<script>
-function showMile(idx,el){
-  for(var i=0;i<4;i++) document.getElementById('mile'+i).style.display='none';
-  document.getElementById('mile'+idx).style.display='grid';
-  document.querySelectorAll('.mile-tab').forEach(function(t){t.classList.remove('active')});
-  el.classList.add('active');
-}
-</script>
 </body>
 </html>

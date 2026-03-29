@@ -1,305 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Southern Style Landscapes | Knoxville, TN</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#f7f5f0;
-  --card:#fff;
-  --sage:#2d5016;
-  --sage2:#3a6b1e;
-  --sage3:#74a843;
-  --gold:#c8942a;
-  --gold2:#e6aa30;
-  --cream:#fdf6e3;
-  --text:#1a1a10;
-  --muted:#6b7054;
-  --border:#d8d0b8;
-}
-html{font-size:16px}
-body{background:var(--bg);color:var(--text);font-family:'Lato',sans-serif;min-height:100dvh;padding-bottom:80px}
-a{color:inherit;text-decoration:none}
-
-header{background:var(--sage);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
-.logo-wrap{display:flex;flex-direction:column}
-.logo-main{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#fff;letter-spacing:.3px}
-.logo-sub{font-size:10px;color:var(--sage3);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-top:2px}
-.header-est{background:var(--gold);color:#fff;font-size:12px;font-weight:700;padding:8px 14px;border-radius:4px}
-
-.hero{background:var(--sage);padding:32px 20px 48px;color:#fff;position:relative;overflow:hidden}
-.hero-wave{position:absolute;bottom:-1px;left:0;right:0;height:32px;background:var(--bg);border-radius:50% 50% 0 0 / 100% 100% 0 0}
-.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sage3);margin-bottom:14px}
-.hero h1{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;line-height:1.1;margin-bottom:14px}
-.hero h1 em{font-style:normal;color:var(--gold2)}
-.hero-sub{font-size:14px;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:20px}
-.hero-proof{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid rgba(255,255,255,.15)}
-.stars-g{color:var(--gold2);font-size:16px;letter-spacing:1px}
-.proof-text{font-size:13px;color:rgba(255,255,255,.8)}
-.proof-text strong{color:#fff}
-
-.planner-section{padding:32px 20px;border-bottom:1px solid var(--border)}
-.editorial-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-.planner-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:8px;line-height:1.2}
-.planner-sub{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:24px}
-
-.project-options{display:grid;gap:10px;margin-bottom:20px}
-.project-opt{background:var(--card);border:2px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:.15s}
-.project-opt.open{border-color:var(--sage)}
-.project-opt-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px}
-.opt-left{display:flex;align-items:center;gap:10px}
-.opt-check{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;transition:.15s;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent}
-.project-opt.open .opt-check{background:var(--sage);border-color:var(--sage);color:#fff}
-.opt-name{font-size:14px;font-weight:700;color:var(--text)}
-.opt-arrow{font-size:16px;color:var(--border);transition:.2s}
-.project-opt.open .opt-arrow{color:var(--sage);transform:rotate(90deg)}
-.project-opt-body{display:none;padding:0 16px 14px;font-size:13px;color:var(--muted);line-height:1.6;border-top:1px solid var(--border)}
-.project-opt.open .project-opt-body{display:block}
-
-.timing-row{display:flex;gap:8px;margin-bottom:20px}
-.timing-btn{flex:1;padding:10px 4px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:2px solid var(--border);color:var(--muted);background:transparent;text-align:center;transition:.15s}
-.timing-btn.active{border-color:var(--sage);color:var(--sage);background:rgba(45,80,22,.06)}
-
-.estimate-cta{display:block;width:100%;background:var(--sage);color:#fff;font-family:'Lato',sans-serif;font-weight:700;font-size:15px;padding:16px;border:none;border-radius:10px;cursor:pointer;text-align:center;letter-spacing:.3px}
-
-.services-section{padding:32px 20px;border-bottom:1px solid var(--border)}
-.services-editorial{display:grid;gap:1px;background:var(--border);border-radius:10px;overflow:hidden;margin-top:20px}
-.svc-editorial-row{background:var(--card);padding:16px 18px;display:flex;align-items:flex-start;gap:14px}
-.svc-leaf{width:32px;height:32px;background:rgba(45,80,22,.08);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;margin-top:1px}
-.svc-ed-text h3{font-size:14px;font-weight:700;margin-bottom:4px}
-.svc-ed-text p{font-size:12px;color:var(--muted);line-height:1.5}
-
-.trust-section{padding:32px 20px;border-bottom:1px solid var(--border);background:var(--cream)}
-.trust-nums{display:flex;gap:12px;margin-top:16px;margin-bottom:16px}
-.t-n{flex:1;background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
-.t-n-val{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--sage)}
-.t-n-lbl{font-size:11px;color:var(--muted);margin-top:4px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-.review-pull{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;border-left:4px solid var(--gold)}
-.rp-quote{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:var(--text);line-height:1.5}
-.rp-attr{font-size:11px;color:var(--muted);margin-top:8px;font-weight:700}
-
-.contact-section{padding:32px 20px}
-.contact-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-.c-row{display:flex;align-items:center;gap:14px;padding:15px 16px;border-bottom:1px solid var(--border)}
-.c-row:last-child{border-bottom:none}
-.c-leaf{width:36px;height:36px;background:rgba(45,80,22,.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.c-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:700}
-.c-val{font-size:14px;font-weight:700;margin-top:2px;color:var(--text)}
-
-.sticky-bar{position:fixed;bottom:0;left:0;right:0;background:var(--sage);padding:12px 16px;display:flex;gap:10px;z-index:100;border-top:3px solid var(--gold)}
-.s-btn{flex:1;padding:13px 8px;border-radius:8px;font-size:14px;font-weight:700;text-align:center;cursor:pointer;border:none;font-family:'Lato',sans-serif}
-.s-est{background:var(--gold);color:#fff}
-.s-dir{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3)}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Southern Style Landscapes | Knoxville</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #f8fafc; --surface: #ffffff; --primary: #166534; --text: #0f172a; --muted: #475569; --border: #e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 100px; }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
+    header { padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.25rem; font-weight: 700; color: #000; }
+    .logo span { color: var(--primary); }
+    h1 { font-size: 2.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; color: #000; letter-spacing: -0.02em; }
+    p { color: var(--muted); margin-bottom: 2rem; font-size: 1.125rem; }
+    .btn { display: block; width: 100%; padding: 1rem; border-radius: 8px; font-weight: 600; text-align: center; text-decoration: none; margin-bottom: 1rem; }
+    .btn-solid { background: var(--primary); color: #fff; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.125rem; margin-bottom: 0.5rem; color: var(--primary); }
+    .section { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 1rem; }
+    h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #000; }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); border-top: 1px solid var(--border); padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 1rem; z-index: 100; }
+    .nav-btn { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 600; text-decoration: none; }
+    .nav-primary { background: var(--primary); color: #fff; }
+    .nav-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <header>
+      <div class="logo">Southern Style <span>Landscapes</span></div>
+      <div style="font-weight:600; color:var(--muted);">(865) 200-3273</div>
+    </header>
+    <h1>Curb appeal.<br>Done right.</h1>
+    <p>Professional landscaping, hardscaping, and maintenance for Knoxville homeowners.</p>
+    
+    <a href="tel:8652003273" class="btn btn-solid">Call for an Estimate</a>
 
-<header>
-  <div class="logo-wrap">
-    <span class="logo-main">Southern Style Landscapes</span>
-    <span class="logo-sub">Knoxville, TN</span>
-  </div>
-  <a class="header-est" href="tel:+18652003273">(865) 200-3273</a>
-</header>
-
-<section class="hero">
-  <div class="hero-eyebrow">Knoxville landscape planning</div>
-  <h1>Your outdoor space,<br>the way you <em>pictured it.</em></h1>
-  <p class="hero-sub">Landscaping, mulching, planting, and drainage done right by a Knoxville crew that shows up on time and prices it fairly.</p>
-  <div class="hero-proof">
-    <span class="stars-g">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-    <span class="proof-text"><strong>4.9</strong> &middot; 30 Google reviews</span>
-  </div>
-  <div class="hero-wave"></div>
-</section>
-
-<section class="planner-section">
-  <div class="editorial-label">Project Planner</div>
-  <h2 class="planner-title">What does your yard need?</h2>
-  <p class="planner-sub">Pick the project type and timing &mdash; we'll give you an estimate that's actually useful.</p>
-
-  <div class="project-options">
-    <div class="project-opt" onclick="toggleOpt(this)">
-      <div class="project-opt-header">
-        <div class="opt-left">
-          <div class="opt-check">&#10003;</div>
-          <div class="opt-name">Landscape refresh</div>
-        </div>
-        <span class="opt-arrow">&rsaquo;</span>
-      </div>
-      <div class="project-opt-body">Cleanup, new planting, bed reshaping, or a full curb-appeal overhaul. Great for spring prep or before putting your home on the market.</div>
+    <div class="section">
+      <h2>Our Services</h2>
+      <div class="card"><h3>Lawn Maintenance</h3><p style="margin:0;font-size:0.95rem;">Mowing, trimming, and seasonal cleanups to keep your property sharp.</p></div>
+      <div class="card"><h3>Hardscaping</h3><p style="margin:0;font-size:0.95rem;">Patios, retaining walls, and structured outdoor living spaces.</p></div>
+      <div class="card"><h3>Installations</h3><p style="margin:0;font-size:0.95rem;">New sod, plants, mulch, and complete landscape redesigns.</p></div>
     </div>
-    <div class="project-opt" onclick="toggleOpt(this)">
-      <div class="project-opt-header">
-        <div class="opt-left">
-          <div class="opt-check">&#10003;</div>
-          <div class="opt-name">Drainage or grading</div>
-        </div>
-        <span class="opt-arrow">&rsaquo;</span>
-      </div>
-      <div class="project-opt-body">Standing water, erosion, or low spots that collect after rain. We assess the grade and recommend the right solution before quoting.</div>
-    </div>
-    <div class="project-opt" onclick="toggleOpt(this)">
-      <div class="project-opt-header">
-        <div class="opt-left">
-          <div class="opt-check">&#10003;</div>
-          <div class="opt-name">Planting &amp; beds</div>
-        </div>
-        <span class="opt-arrow">&rsaquo;</span>
-      </div>
-      <div class="project-opt-body">New trees, shrubs, perennials, or seasonal color. We advise on what grows well in East Tennessee and handle installation to spec.</div>
-    </div>
-    <div class="project-opt" onclick="toggleOpt(this)">
-      <div class="project-opt-header">
-        <div class="opt-left">
-          <div class="opt-check">&#10003;</div>
-          <div class="opt-name">Mulching &amp; edging</div>
-        </div>
-        <span class="opt-arrow">&rsaquo;</span>
-      </div>
-      <div class="project-opt-body">Fresh mulch keeps beds clean and plants healthy. We cut clean edges and lay it right &mdash; fast turnaround, neat results.</div>
-    </div>
-    <div class="project-opt" onclick="toggleOpt(this)">
-      <div class="project-opt-header">
-        <div class="opt-left">
-          <div class="opt-check">&#10003;</div>
-          <div class="opt-name">Bigger outdoor project</div>
-        </div>
-        <span class="opt-arrow">&rsaquo;</span>
-      </div>
-      <div class="project-opt-body">Hardscape, retaining walls, large-scale planting, or a full property plan. Let's talk through scope before we quote.</div>
+    
+    <div class="section" style="border-bottom: none;">
+      <h2>Contact</h2>
+      <p>10928 Snyder Rd<br>Knoxville, TN 37932</p>
     </div>
   </div>
-
-  <div style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">When do you need this done?</div>
-  <div class="timing-row">
-    <button class="timing-btn active" onclick="setTiming(this)">This spring</button>
-    <button class="timing-btn" onclick="setTiming(this)">Next month</button>
-    <button class="timing-btn" onclick="setTiming(this)">Planning ahead</button>
+  <div class="bottom-nav">
+    <a href="tel:8652003273" class="nav-btn nav-primary">Call Now</a>
+    <a href="https://www.facebook.com/p/Southern-Style-Landscapes-100063644706584" target="_blank" class="nav-btn nav-secondary">View Work</a>
   </div>
-
-  <a href="tel:+18652003273"><button class="estimate-cta">Request an estimate</button></a>
-</section>
-
-<section class="services-section">
-  <div class="editorial-label">Services</div>
-  <h2 class="planner-title">What we do</h2>
-  <div class="services-editorial">
-    <div class="svc-editorial-row">
-      <div class="svc-leaf">&#127807;</div>
-      <div class="svc-ed-text">
-        <h3>Landscape refreshes</h3>
-        <p>Curb-appeal changes, cleanup, planting, and visual improvement for Knoxville homes.</p>
-      </div>
-    </div>
-    <div class="svc-editorial-row">
-      <div class="svc-leaf">&#127807;</div>
-      <div class="svc-ed-text">
-        <h3>Mulching &amp; edging</h3>
-        <p>Clean lines, fresh color, and healthier beds. One of our most-requested services every spring.</p>
-      </div>
-    </div>
-    <div class="svc-editorial-row">
-      <div class="svc-leaf">&#127807;</div>
-      <div class="svc-ed-text">
-        <h3>Plant installation</h3>
-        <p>Trees, shrubs, and perennials selected and planted for East Tennessee's growing conditions.</p>
-      </div>
-    </div>
-    <div class="svc-editorial-row">
-      <div class="svc-leaf">&#127807;</div>
-      <div class="svc-ed-text">
-        <h3>Drainage &amp; grading</h3>
-        <p>Solve standing water and erosion before they damage your foundation or yard long-term.</p>
-      </div>
-    </div>
-    <div class="svc-editorial-row">
-      <div class="svc-leaf">&#127807;</div>
-      <div class="svc-ed-text">
-        <h3>Lawn care &amp; mowing</h3>
-        <p>Reliable recurring service or one-time cleanup &mdash; always leaving your property looking sharp.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="trust-section">
-  <div class="editorial-label">Reputation</div>
-  <h2 class="planner-title">Knoxville homeowners trust us.</h2>
-  <div class="trust-nums">
-    <div class="t-n">
-      <div class="t-n-val">4.9&#9733;</div>
-      <div class="t-n-lbl">Google rating</div>
-    </div>
-    <div class="t-n">
-      <div class="t-n-val">30</div>
-      <div class="t-n-lbl">Reviews</div>
-    </div>
-  </div>
-  <div class="review-pull">
-    <div class="rp-quote">"They did a very neat job and with reasonable pricing."</div>
-    <div class="rp-attr">&mdash; Google reviewer</div>
-  </div>
-</section>
-
-<section class="contact-section">
-  <div class="editorial-label">Find us</div>
-  <h2 class="planner-title" style="margin-bottom:16px">Southern Style Landscapes</h2>
-  <div class="contact-card">
-    <a href="tel:+18652003273" class="c-row">
-      <div class="c-leaf">&#128222;</div>
-      <div>
-        <div class="c-label">Phone</div>
-        <div class="c-val">(865) 200-3273</div>
-      </div>
-    </a>
-    <a href="https://maps.google.com/?q=10928+Snyder+Rd+Knoxville+TN+37932" target="_blank" class="c-row">
-      <div class="c-leaf">&#128205;</div>
-      <div>
-        <div class="c-label">Address</div>
-        <div class="c-val">10928 Snyder Rd, Knoxville, TN 37932</div>
-      </div>
-    </a>
-    <div class="c-row">
-      <div class="c-leaf">&#128336;</div>
-      <div>
-        <div class="c-label">Hours</div>
-        <div class="c-val">Mon&ndash;Sat &middot; Opens 8 AM</div>
-      </div>
-    </div>
-    <a href="mailto:contact@southernstylelandscapes.com" class="c-row">
-      <div class="c-leaf">&#9993;</div>
-      <div>
-        <div class="c-label">Email</div>
-        <div class="c-val">contact@southernstylelandscapes.com</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<div class="sticky-bar">
-  <a href="tel:+18652003273" style="flex:1;display:block">
-    <button class="s-btn s-est" style="width:100%">Request estimate</button>
-  </a>
-  <a href="https://maps.google.com/?q=10928+Snyder+Rd+Knoxville+TN+37932" target="_blank" style="flex:1;display:block">
-    <button class="s-btn s-dir" style="width:100%">Directions</button>
-  </a>
-</div>
-
-<script>
-function toggleOpt(el){
-  var isOpen=el.classList.contains('open');
-  document.querySelectorAll('.project-opt').forEach(function(o){o.classList.remove('open')});
-  if(!isOpen) el.classList.add('open');
-}
-function setTiming(el){
-  document.querySelectorAll('.timing-btn').forEach(function(b){b.classList.remove('active')});
-  el.classList.add('active');
-}
-</script>
 </body>
 </html>

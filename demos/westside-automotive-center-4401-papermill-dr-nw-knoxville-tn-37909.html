@@ -1,264 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Westside Automotive Center | Papermill Dr, Knoxville TN</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --navy:#0f172a;
-  --navy2:#1e293b;
-  --navy3:#334155;
-  --orange:#f97316;
-  --orange2:#fb923c;
-  --text:#f1f5f9;
-  --muted:#94a3b8;
-  --border:#334155;
-  --lorange:rgba(249,115,22,.12);
-}
-html{font-size:16px}
-body{background:var(--navy);color:var(--text);font-family:'Outfit',sans-serif;min-height:100dvh;padding-bottom:72px}
-a{color:inherit;text-decoration:none}
-
-nav{background:var(--navy2);border-bottom:1px solid var(--border);padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-size:16px;font-weight:800;letter-spacing:-.3px}
-.nav-logo span{color:var(--orange)}
-.nav-cta{background:var(--orange);color:#fff;font-weight:700;font-size:13px;padding:7px 14px;border-radius:6px}
-
-.hero{background:linear-gradient(160deg,var(--navy2) 0%,var(--navy) 100%);padding:28px 20px 32px;border-bottom:1px solid var(--border)}
-.hero-eyebrow{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-weight:500;margin-bottom:16px}
-.eye-dot{width:6px;height:6px;background:var(--orange);border-radius:50%;display:inline-block}
-.hero h1{font-size:36px;font-weight:800;line-height:1.08;margin-bottom:12px;letter-spacing:-.5px}
-.hero h1 em{font-style:normal;color:var(--orange)}
-.hero-body{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:20px}
-.hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.badge{background:var(--navy2);border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--muted)}
-.badge.hi{border-color:var(--orange);color:var(--orange2)}
-.review-strip{background:var(--lorange);border:1px solid rgba(249,115,22,.25);border-radius:8px;padding:12px 14px}
-.stars-o{color:var(--orange);font-size:15px;letter-spacing:1px;display:block;margin-bottom:4px}
-.review-main{font-size:13px;color:var(--text)}
-.review-main strong{color:#fff}
-.review-quote{font-size:12px;font-style:italic;color:var(--muted);margin-top:10px;border-top:1px solid rgba(249,115,22,.2);padding-top:10px}
-
-.urgency-section{padding:28px 20px;border-bottom:1px solid var(--border)}
-.sec-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
-.urgency-title{font-size:22px;font-weight:800;margin-bottom:6px;letter-spacing:-.3px}
-.urgency-sub{font-size:13px;color:var(--muted);margin-bottom:20px}
-
-.urgency-tabs{display:flex;gap:8px;margin-bottom:20px}
-.u-tab{flex:1;text-align:center;padding:11px 4px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:2px solid var(--border);color:var(--muted);background:transparent;transition:.15s}
-.u-tab.active{border-color:var(--orange);color:var(--orange);background:var(--lorange)}
-
-.urgency-panel{display:none}
-.urgency-panel.active{display:block}
-
-.u-card{background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:14px}
-.u-card-label{font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-.u-card-body{font-size:14px;line-height:1.6;color:var(--muted)}
-.u-card-body strong{color:var(--text)}
-.u-actions{display:flex;gap:10px}
-.u-primary{flex:1;background:var(--orange);color:#fff;font-weight:700;font-size:14px;padding:13px 8px;border:none;border-radius:8px;cursor:pointer}
-.u-secondary{flex:1;background:var(--navy3);color:var(--text);font-size:14px;padding:13px 8px;border:none;border-radius:8px;cursor:pointer}
-
-.services-section{padding:28px 20px;border-bottom:1px solid var(--border)}
-.svc-cards{display:grid;gap:10px;margin-top:16px}
-.svc-card{background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;align-items:flex-start;gap:12px}
-.svc-num{font-size:11px;font-weight:800;color:var(--orange);background:var(--lorange);border-radius:4px;padding:4px 8px;flex-shrink:0;margin-top:2px}
-.svc-info h3{font-size:14px;font-weight:700;margin-bottom:4px}
-.svc-info p{font-size:12px;color:var(--muted);line-height:1.5}
-
-.trust-section{padding:28px 20px;border-bottom:1px solid var(--border)}
-.trust-row{display:flex;gap:10px;margin-top:16px}
-.t-box{flex:1;background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
-.t-num{font-size:28px;font-weight:800;color:var(--orange)}
-.t-lbl{font-size:11px;color:var(--muted);margin-top:4px}
-
-.contact-section{padding:28px 20px}
-.c-stack{display:grid;gap:10px}
-.c-item{background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:15px 16px;display:flex;align-items:center;gap:14px}
-.c-icon{font-size:20px;width:36px;text-align:center;flex-shrink:0}
-.c-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:600}
-.c-val{font-size:14px;font-weight:600;margin-top:2px}
-
-.sticky-bar{position:fixed;bottom:0;left:0;right:0;background:var(--navy2);border-top:2px solid var(--orange);padding:12px 16px;display:flex;gap:10px;z-index:100}
-.s-btn{flex:1;padding:13px 8px;border-radius:8px;font-size:14px;font-weight:700;text-align:center;cursor:pointer;border:none}
-.s-call{background:var(--orange);color:#fff}
-.s-dir{background:var(--navy3);color:var(--text)}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Westside Automotive Center | Knoxville</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #ffffff; --surface: #f8fafc; --primary: #dc2626; --text: #0f172a; --muted: #475569; --border: #e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 100px; }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
+    header { padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
+    h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; color: #000; }
+    p { color: var(--muted); margin-bottom: 2rem; font-size: 1.125rem; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; text-align: center; }
+    .card h3 { font-size: 1.125rem; margin-bottom: 0.5rem; color: #000; }
+    .section { border-top: 1px solid var(--border); padding: 2rem 0; }
+    h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #000; }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); border-top: 1px solid var(--border); padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 1rem; z-index: 100; }
+    .nav-btn { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 600; text-decoration: none; }
+    .nav-primary { background: var(--primary); color: #fff; }
+    .nav-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+  </style>
 </head>
 <body>
-
-<nav>
-  <span class="nav-logo">Westside <span>Automotive</span></span>
-  <a class="nav-cta" href="tel:+18652125524">(865) 212-5524</a>
-</nav>
-
-<section class="hero">
-  <div class="hero-eyebrow"><span class="eye-dot"></span> Papermill Drive &middot; Knoxville, TN 37909</div>
-  <h1>How soon do<br>you need <em>help?</em></h1>
-  <p class="hero-body">Westside Automotive Center has been keeping Knoxville drivers moving for years. Tell us when you need us &mdash; we'll point you the right way.</p>
-  <div class="hero-badges">
-    <span class="badge hi">Tires</span>
-    <span class="badge hi">U-Haul</span>
-    <span class="badge">Brakes</span>
-    <span class="badge">Maintenance</span>
-    <span class="badge">Diagnostics</span>
-  </div>
-  <div class="review-strip">
-    <span class="stars-o">&#9733;&#9733;&#9733;&#9733;&#189;</span>
-    <span class="review-main"><strong>4.6</strong> &middot; 93 Google reviews</span>
-    <div class="review-quote">"Best repair shop in Knoxville."</div>
-  </div>
-</section>
-
-<section class="urgency-section">
-  <div class="sec-label">Get the right help</div>
-  <div class="urgency-title">How soon do you need in?</div>
-  <p class="urgency-sub">Pick your timing &mdash; we'll show you the best next step.</p>
-
-  <div class="urgency-tabs">
-    <button class="u-tab active" onclick="switchUrgency(0,this)">Today</button>
-    <button class="u-tab" onclick="switchUrgency(1,this)">This week</button>
-    <button class="u-tab" onclick="switchUrgency(2,this)">Planning</button>
-  </div>
-
-  <div class="urgency-panel active" id="u0">
-    <div class="u-card">
-      <div class="u-card-label">Needs attention now</div>
-      <div class="u-card-body"><strong>Noises, lights, brake feel, or anything that just changed</strong> &mdash; call us first. We'll tell you if it's safe to drive in or if you should stop now.</div>
+  <div class="container">
+    <header>
+      <div class="logo">Westside Auto</div>
+      <div style="font-weight:600; color:var(--muted);">(865) 212-5524</div>
+    </header>
+    <h1>Trusted local repair & U-Haul rental.</h1>
+    <p>Simple, reliable service on Papermill Dr.</p>
+    <div class="grid">
+      <div class="card"><h3>Auto Repair</h3><p style="font-size:0.875rem;margin:0;">Brakes, engine, routine service.</p></div>
+      <div class="card"><h3>Tires</h3><p style="font-size:0.875rem;margin:0;">Sales, mounting, and balancing.</p></div>
+      <div class="card" style="grid-column: span 2;"><h3>U-Haul Rentals</h3><p style="font-size:0.875rem;margin:0;">Authorized neighborhood dealer.</p></div>
     </div>
-    <div class="u-actions">
-      <a href="tel:+18652125524" style="flex:1"><button class="u-primary" style="width:100%">Call the shop</button></a>
-      <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW+Knoxville+TN+37909" target="_blank" style="flex:1"><button class="u-secondary" style="width:100%">Directions</button></a>
+    <div class="section" style="border-bottom: none;">
+      <h2>Location & Hours</h2>
+      <p>4401 Papermill Dr NW<br>Knoxville, TN 37909<br><br>Mon-Fri &middot; Opens 8 AM</p>
     </div>
   </div>
-
-  <div class="urgency-panel" id="u1">
-    <div class="u-card">
-      <div class="u-card-label">Schedule this week</div>
-      <div class="u-card-body"><strong>Recurring concern, known follow-up, or deferred maintenance</strong> &mdash; call us to set a time. We'll hold a spot and make sure the right parts are ready.</div>
-    </div>
-    <div class="u-actions">
-      <a href="tel:+18652125524" style="flex:1"><button class="u-primary" style="width:100%">Schedule a visit</button></a>
-      <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW+Knoxville+TN+37909" target="_blank" style="flex:1"><button class="u-secondary" style="width:100%">Find us</button></a>
-    </div>
+  <div class="bottom-nav">
+    <a href="tel:8652125524" class="nav-btn nav-primary">Call Shop</a>
+    <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW,+Knoxville,+TN" target="_blank" class="nav-btn nav-secondary">Directions</a>
   </div>
-
-  <div class="urgency-panel" id="u2">
-    <div class="u-card">
-      <div class="u-card-label">Planning ahead</div>
-      <div class="u-card-body"><strong>Tires, seasonal prep, or general upkeep when there's time</strong> &mdash; no urgency, but good timing to get ahead of it. Call or stop in when convenient.</div>
-    </div>
-    <div class="u-actions">
-      <a href="tel:+18652125524" style="flex:1"><button class="u-primary" style="width:100%">Ask about timing</button></a>
-      <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW+Knoxville+TN+37909" target="_blank" style="flex:1"><button class="u-secondary" style="width:100%">Find us</button></a>
-    </div>
-  </div>
-</section>
-
-<section class="services-section">
-  <div class="sec-label">Services</div>
-  <h2 style="font-size:22px;font-weight:800;letter-spacing:-.3px">What we handle</h2>
-  <div class="svc-cards">
-    <div class="svc-card">
-      <span class="svc-num">NOW</span>
-      <div class="svc-info">
-        <h3>Emergency repairs</h3>
-        <p>Noises, lights, brake concerns &mdash; when something just changed, call us first.</p>
-      </div>
-    </div>
-    <div class="svc-card">
-      <span class="svc-num">SVC</span>
-      <div class="svc-info">
-        <h3>Maintenance &amp; brakes</h3>
-        <p>Oil service, brake work, and routine upkeep on a schedule that fits your week.</p>
-      </div>
-    </div>
-    <div class="svc-card">
-      <span class="svc-num">TIRE</span>
-      <div class="svc-info">
-        <h3>Tires</h3>
-        <p>New tires, rotation, balance, and alignment for every vehicle type.</p>
-      </div>
-    </div>
-    <div class="svc-card">
-      <span class="svc-num">VAN</span>
-      <div class="svc-info">
-        <h3>U-Haul rentals</h3>
-        <p>Moving trucks and trailers available on site. Call to check availability.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="trust-section">
-  <div class="sec-label">Reputation</div>
-  <h2 style="font-size:20px;font-weight:800;letter-spacing:-.3px">Papermill's shop of choice</h2>
-  <div class="trust-row">
-    <div class="t-box">
-      <div class="t-num">4.6&#9733;</div>
-      <div class="t-lbl">Google rating</div>
-    </div>
-    <div class="t-box">
-      <div class="t-num">93</div>
-      <div class="t-lbl">Reviews</div>
-    </div>
-  </div>
-</section>
-
-<section class="contact-section">
-  <div class="sec-label">Find us</div>
-  <h2 style="font-size:22px;font-weight:800;letter-spacing:-.3px;margin-bottom:16px">Westside Automotive Center</h2>
-  <div class="c-stack">
-    <a href="tel:+18652125524" class="c-item">
-      <span class="c-icon">&#128222;</span>
-      <div>
-        <div class="c-lbl">Call</div>
-        <div class="c-val">(865) 212-5524</div>
-      </div>
-    </a>
-    <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW+Knoxville+TN+37909" target="_blank" class="c-item">
-      <span class="c-icon">&#128205;</span>
-      <div>
-        <div class="c-lbl">Address</div>
-        <div class="c-val">4401 Papermill Dr NW, Knoxville, TN 37909</div>
-      </div>
-    </a>
-    <div class="c-item">
-      <span class="c-icon">&#128336;</span>
-      <div>
-        <div class="c-lbl">Hours</div>
-        <div class="c-val">Mon&ndash;Sat &middot; Opens 10 AM</div>
-      </div>
-    </div>
-    <a href="mailto:contact@westsideautocenter.com" class="c-item">
-      <span class="c-icon">&#9993;</span>
-      <div>
-        <div class="c-lbl">Email</div>
-        <div class="c-val">contact@westsideautocenter.com</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<div class="sticky-bar">
-  <a href="tel:+18652125524" style="flex:1;display:block">
-    <button class="s-btn s-call" style="width:100%">Call now</button>
-  </a>
-  <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW+Knoxville+TN+37909" target="_blank" style="flex:1;display:block">
-    <button class="s-btn s-dir" style="width:100%">Directions</button>
-  </a>
-</div>
-
-<script>
-function switchUrgency(idx,el){
-  for(var i=0;i<3;i++) document.getElementById('u'+i).classList.toggle('active',i===idx);
-  document.querySelectorAll('.u-tab').forEach(function(t){t.classList.remove('active')});
-  el.classList.add('active');
-}
-</script>
 </body>
 </html>

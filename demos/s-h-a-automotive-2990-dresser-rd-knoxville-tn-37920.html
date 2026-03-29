@@ -1,262 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S.H.A. Automotive | Knoxville, TN</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#f5f0e8;
-  --card:#fff;
-  --dark:#1c1c1e;
-  --dark2:#2c2c2e;
-  --amber:#f59e0b;
-  --amber2:#fbbf24;
-  --text:#1c1c1e;
-  --muted:#6b7280;
-  --border:#d1d5db;
-  --light:#fffbf0;
-}
-html{font-size:16px}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100dvh;padding-bottom:72px}
-a{color:inherit;text-decoration:none}
-
-header{background:var(--dark);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;color:#fff}
-.logo span{color:var(--amber)}
-.h-phone{background:var(--amber);color:var(--dark);font-family:'DM Mono',monospace;font-size:12px;font-weight:500;padding:8px 12px;border-radius:4px}
-
-.hero{background:var(--dark);padding:28px 20px 32px;color:#fff;border-bottom:3px solid var(--amber)}
-.hero-tag{font-family:'DM Mono',monospace;font-size:10px;color:#9ca3af;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
-.hero h1{font-size:38px;font-weight:700;line-height:1.05;margin-bottom:10px}
-.hero h1 span{color:var(--amber)}
-.hero-sub{font-size:14px;color:#9ca3af;line-height:1.6;margin-bottom:18px}
-.rating-strip{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:6px;padding:10px 14px;display:flex;align-items:center;gap:10px}
-.stars-a{color:var(--amber);font-size:16px;letter-spacing:1px}
-.rating-detail{font-size:13px;color:#e5e7eb}
-.rating-detail strong{color:#fff}
-.review-line{font-family:'DM Mono',monospace;font-size:12px;font-style:italic;color:#9ca3af;margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px}
-
-.selector-section{padding:28px 20px;border-bottom:1px solid var(--border)}
-.mono-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--amber);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
-.selector-title{font-size:22px;font-weight:700;margin-bottom:6px}
-.selector-sub{font-size:13px;color:var(--muted);margin-bottom:20px}
-
-.problem-list{display:grid;gap:10px}
-.problem-item{background:var(--card);border:2px solid var(--border);border-radius:8px;padding:15px 16px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:.15s}
-.problem-item:active,.problem-item.selected{border-color:var(--amber);background:var(--light)}
-.p-glyph{font-family:'DM Mono',monospace;font-size:20px;width:32px;text-align:center;flex-shrink:0}
-.p-right{flex:1}
-.p-name{font-size:14px;font-weight:700;margin-bottom:3px}
-.p-desc{font-size:12px;color:var(--muted);line-height:1.4}
-.p-arrow{font-size:18px;color:var(--border)}
-.problem-item.selected .p-arrow{color:var(--amber)}
-
-.action-row{display:flex;gap:10px;margin-top:20px}
-.act-primary{flex:1;background:var(--dark);color:#fff;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;padding:14px 10px;border:none;border-radius:6px;cursor:pointer;text-align:center}
-.act-secondary{flex:1;background:transparent;border:2px solid var(--dark);color:var(--dark);font-size:13px;font-family:'DM Mono',monospace;padding:14px 10px;border-radius:6px;cursor:pointer;text-align:center}
-
-.services-section{padding:28px 20px;border-bottom:1px solid var(--border)}
-.services-grid{display:grid;gap:10px;margin-top:16px}
-.svc{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;display:grid;grid-template-columns:4px 1fr;gap:12px;align-items:start}
-.svc-bar{background:var(--amber);border-radius:2px;height:100%;min-height:40px}
-.svc-text h3{font-size:14px;font-weight:700;margin-bottom:4px}
-.svc-text p{font-size:12px;color:var(--muted);line-height:1.5}
-
-.trust-section{padding:28px 20px;border-bottom:1px solid var(--border);background:var(--dark);color:#fff}
-.trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.trust-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:16px;text-align:center}
-.trust-num{font-family:'DM Mono',monospace;font-size:30px;color:var(--amber)}
-.trust-label{font-size:11px;color:#9ca3af;margin-top:4px}
-.trust-quote{grid-column:span 2;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:14px;font-size:13px;font-style:italic;color:#e5e7eb}
-
-.contact-section{padding:28px 20px}
-.contact-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.c-row{display:flex;align-items:center;gap:14px;padding:15px 16px;border-bottom:1px solid var(--border)}
-.c-row:last-child{border-bottom:none}
-.c-badge{font-family:'DM Mono',monospace;font-size:10px;background:var(--light);color:var(--amber);border:1px solid rgba(245,158,11,.3);padding:4px 8px;border-radius:4px;flex-shrink:0;letter-spacing:.5px}
-.c-detail{flex:1}
-.c-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-family:'DM Mono',monospace}
-.c-val{font-size:14px;font-weight:700;margin-top:2px}
-
-.sticky-bar{position:fixed;bottom:0;left:0;right:0;background:var(--dark);padding:12px 16px;display:flex;gap:10px;z-index:100;border-top:3px solid var(--amber)}
-.s-btn{flex:1;padding:13px 8px;border-radius:6px;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;text-align:center;cursor:pointer;border:none;letter-spacing:.3px}
-.s-call{background:var(--amber);color:var(--dark)}
-.s-dir{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2)}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>S.H.A. Automotive | Knoxville</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg: #f4f4f5; --surface: #ffffff; --primary: #eab308; --text: #27272a; --muted: #52525b; --border: #d4d4d8; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Roboto Mono', monospace; }
+    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 100px; }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
+    header { padding: 1.5rem 0; border-bottom: 2px solid var(--text); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.25rem; font-weight: 700; background: var(--text); color: var(--primary); padding: 0.25rem 0.5rem; }
+    h1 { font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; color: #000; text-transform: uppercase; }
+    p { color: var(--muted); margin-bottom: 2rem; font-size: 1rem; }
+    .btn { display: block; width: 100%; padding: 1.25rem; background: var(--surface); border: 2px solid var(--text); color: var(--text); font-weight: 700; text-align: center; text-decoration: none; margin-bottom: 1rem; box-shadow: 4px 4px 0 var(--text); transition: transform 0.1s, box-shadow 0.1s; }
+    .btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--text); }
+    .section { border-top: 2px dashed var(--border); padding: 2rem 0; }
+    h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: #000; text-transform: uppercase; }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface); border-top: 2px solid var(--text); padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 1rem; z-index: 100; }
+    .nav-btn { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; font-weight: 700; text-decoration: none; border: 2px solid var(--text); color: var(--text); }
+    .nav-primary { background: var(--primary); }
+    .nav-secondary { background: var(--bg); }
+  </style>
 </head>
 <body>
-
-<header>
-  <div class="logo">S.H.A. <span>Automotive</span></div>
-  <a class="h-phone" href="tel:+18656091700">(865) 609-1700</a>
-</header>
-
-<section class="hero">
-  <div class="hero-tag">// neighborhood garage &middot; knoxville tn</div>
-  <h1>Pick the problem.<br><span>Call with</span> confidence.</h1>
-  <p class="hero-sub">Straightforward auto repair at 2990 Dresser Rd. Honest prices, clear advice, no runaround.</p>
-  <div class="rating-strip">
-    <span class="stars-a">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-    <span class="rating-detail"><strong>4.9</strong> &middot; 67 Google reviews</span>
-  </div>
-  <div class="review-line">"Excellent service and really good prices."</div>
-</section>
-
-<section class="selector-section">
-  <div class="mono-label">// what brings you in?</div>
-  <div class="selector-title">Name the problem.</div>
-  <p class="selector-sub">Pick the closest match &mdash; we'll figure out the rest.</p>
-
-  <div class="problem-list">
-    <div class="problem-item" onclick="selectProblem(this)">
-      <span class="p-glyph">&#9888;</span>
-      <div class="p-right">
-        <div class="p-name">Warning light</div>
-        <div class="p-desc">Check engine, ABS, battery, or another dashboard alert</div>
-      </div>
-      <span class="p-arrow">&rsaquo;</span>
+  <div class="container">
+    <header>
+      <div class="logo">S.H.A. AUTO</div>
+      <div style="font-weight:700;">(865) 609-1700</div>
+    </header>
+    <h1>No gimmicks.<br>Just honest mechanics.</h1>
+    <p>Straightforward auto repair in Knoxville.</p>
+    <a href="tel:8656091700" class="btn">Call to talk to a mechanic</a>
+    <div class="section">
+      <h2>The Bottom Line</h2>
+      <p style="color: #000; font-weight: 700; margin-bottom: 0.5rem;">4.8★ Reviews</p>
+      <p>"They fixed it right the first time and didn't charge me an arm and a leg."</p>
     </div>
-    <div class="problem-item" onclick="selectProblem(this)">
-      <span class="p-glyph">&#128721;</span>
-      <div class="p-right">
-        <div class="p-name">Brakes or steering</div>
-        <div class="p-desc">Shaking, squeal, soft pedal, or pull while driving</div>
-      </div>
-      <span class="p-arrow">&rsaquo;</span>
-    </div>
-    <div class="problem-item" onclick="selectProblem(this)">
-      <span class="p-glyph">&#128295;</span>
-      <div class="p-right">
-        <div class="p-name">Maintenance</div>
-        <div class="p-desc">Oil service, inspection, or routine upkeep</div>
-      </div>
-      <span class="p-arrow">&rsaquo;</span>
-    </div>
-    <div class="problem-item" onclick="selectProblem(this)">
-      <span class="p-glyph">&#126;</span>
-      <div class="p-right">
-        <div class="p-name">Noise or vibration</div>
-        <div class="p-desc">Something changed and you're not sure what to call it</div>
-      </div>
-      <span class="p-arrow">&rsaquo;</span>
+    <div class="section" style="border-bottom: none;">
+      <h2>Location & Hours</h2>
+      <p>2990 Dresser Rd<br>Knoxville, TN 37920<br><br>Mon-Fri &middot; Opens 8 AM</p>
     </div>
   </div>
-
-  <div class="action-row">
-    <a href="tel:+18656091700" style="flex:1">
-      <button class="act-primary" style="width:100%">Call for advice</button>
-    </a>
-    <a href="https://maps.google.com/?q=2990+Dresser+Rd+Knoxville+TN+37920" target="_blank" style="flex:1">
-      <button class="act-secondary" style="width:100%">Directions</button>
-    </a>
+  <div class="bottom-nav">
+    <a href="tel:8656091700" class="nav-btn nav-primary">Call Shop</a>
+    <a href="https://maps.google.com/?q=2990+Dresser+Rd,+Knoxville,+TN" target="_blank" class="nav-btn nav-secondary">Directions</a>
   </div>
-</section>
-
-<section class="services-section">
-  <div class="mono-label">// services</div>
-  <h2 style="font-size:22px;font-weight:700">What we fix</h2>
-  <div class="services-grid">
-    <div class="svc">
-      <div class="svc-bar"></div>
-      <div class="svc-text">
-        <h3>Engine &amp; warning lights</h3>
-        <p>Clear routing for jobs that start with uncertainty. We explain what the code means.</p>
-      </div>
-    </div>
-    <div class="svc">
-      <div class="svc-bar"></div>
-      <div class="svc-text">
-        <h3>Brakes, steering &amp; ride</h3>
-        <p>Name the symptom &mdash; we handle the rest without overselling the fix.</p>
-      </div>
-    </div>
-    <div class="svc">
-      <div class="svc-bar"></div>
-      <div class="svc-text">
-        <h3>Routine service</h3>
-        <p>Oil changes, fluid checks, and scheduled maintenance done right, priced fair.</p>
-      </div>
-    </div>
-    <div class="svc">
-      <div class="svc-bar"></div>
-      <div class="svc-text">
-        <h3>Diagnostics</h3>
-        <p>When something's wrong and you can't name it yet &mdash; start with a call.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="trust-section">
-  <div class="mono-label" style="color:var(--amber2)">// reputation</div>
-  <h2 style="font-size:20px;font-weight:700;margin-bottom:4px">Built on honest work.</h2>
-  <p style="font-size:13px;color:#9ca3af">2990 Dresser Rd, Knoxville, TN 37920</p>
-  <div class="trust-grid">
-    <div class="trust-box">
-      <div class="trust-num">4.9&#9733;</div>
-      <div class="trust-label">Rating</div>
-    </div>
-    <div class="trust-box">
-      <div class="trust-num">67</div>
-      <div class="trust-label">Reviews</div>
-    </div>
-    <div class="trust-quote">"Excellent service and really good prices." &mdash; Google reviewer</div>
-  </div>
-</section>
-
-<section class="contact-section">
-  <div class="mono-label">// contact</div>
-  <h2 style="font-size:22px;font-weight:700;margin-bottom:14px">S.H.A. Automotive</h2>
-  <div class="contact-card">
-    <a href="tel:+18656091700" class="c-row">
-      <span class="c-badge">CALL</span>
-      <div class="c-detail">
-        <div class="c-label">Phone</div>
-        <div class="c-val">(865) 609-1700</div>
-      </div>
-    </a>
-    <a href="https://maps.google.com/?q=2990+Dresser+Rd+Knoxville+TN+37920" target="_blank" class="c-row">
-      <span class="c-badge">MAP</span>
-      <div class="c-detail">
-        <div class="c-label">Address</div>
-        <div class="c-val">2990 Dresser Rd, Knoxville, TN 37920</div>
-      </div>
-    </a>
-    <div class="c-row">
-      <span class="c-badge">HRS</span>
-      <div class="c-detail">
-        <div class="c-label">Hours</div>
-        <div class="c-val">Mon&ndash;Fri &middot; Opens 8 AM</div>
-      </div>
-    </div>
-    <a href="mailto:contact@shaautomotive.com" class="c-row">
-      <span class="c-badge">MSG</span>
-      <div class="c-detail">
-        <div class="c-label">Email</div>
-        <div class="c-val">contact@shaautomotive.com</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<div class="sticky-bar">
-  <a href="tel:+18656091700" style="flex:1;display:block">
-    <button class="s-btn s-call" style="width:100%">Call now</button>
-  </a>
-  <a href="https://maps.google.com/?q=2990+Dresser+Rd+Knoxville+TN+37920" target="_blank" style="flex:1;display:block">
-    <button class="s-btn s-dir" style="width:100%">Directions</button>
-  </a>
-</div>
-
-<script>
-function selectProblem(el){
-  document.querySelectorAll('.problem-item').forEach(function(i){i.classList.remove('selected')});
-  el.classList.add('selected');
-}
-</script>
 </body>
 </html>
