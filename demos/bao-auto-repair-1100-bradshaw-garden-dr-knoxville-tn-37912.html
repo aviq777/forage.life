@@ -1,293 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bao Auto Repair | Knoxville, TN</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --slate:#111827;
-  --slate2:#1f2937;
-  --slate3:#374151;
-  --green:#39d353;
-  --green2:#22c55e;
-  --text:#f9fafb;
-  --muted:#9ca3af;
-  --border:#374151;
-}
-html{font-size:16px;scroll-behavior:smooth}
-body{background:var(--slate);color:var(--text);font-family:'Inter',sans-serif;min-height:100dvh;padding-bottom:72px}
-a{color:inherit;text-decoration:none}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Bao Auto Repair | Knoxville, TN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #111315;
+      --surface-color: #1A1D20;
+      --surface-active: #2C3035;
+      --text-main: #E2E8F0;
+      --text-muted: #94A3B8;
+      --accent-green: #10B981;
+      --accent-yellow: #F59E0B;
+      --border-color: #334155;
+      --font-stack: 'Inter', system-ui, -apple-system, sans-serif;
+    }
 
-header{background:var(--slate2);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.5px;color:var(--text)}
-.logo span{color:var(--green)}
-.header-phone{background:var(--green);color:#000;font-weight:600;font-size:13px;padding:8px 14px;border-radius:6px}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      padding-bottom: 90px;
+    }
 
-.hero{padding:32px 20px 24px;border-bottom:1px solid var(--border)}
-.rating-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px}
-.stars{color:var(--green);font-size:18px;letter-spacing:1px}
-.rating-text{font-size:13px;color:var(--muted)}
-.rating-text strong{color:var(--text);font-weight:600}
-.hero h1{font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1.05;letter-spacing:.5px;margin-bottom:10px}
-.hero h1 span{color:var(--green)}
-.hero-sub{font-size:15px;color:var(--muted);line-height:1.55;margin-bottom:20px}
-.review-badge{background:var(--slate2);border:1px solid var(--border);border-left:3px solid var(--green);padding:12px 14px;border-radius:6px;font-size:13px;font-style:italic;color:#d1d5db;margin-bottom:8px}
+    h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; color: #fff; }
+    h1 { font-size: 2.25rem; line-height: 1.1; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+    p { font-size: 1rem; color: var(--text-muted); margin-bottom: 1.5rem; }
 
-.wizard-section{padding:28px 20px;border-bottom:1px solid var(--border)}
-.section-label{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:6px}
-.wizard-title{font-size:20px;font-weight:600;margin-bottom:6px}
-.wizard-sub{font-size:13px;color:var(--muted);margin-bottom:20px}
+    .text-green { color: var(--accent-green); }
+    .text-yellow { color: var(--accent-yellow); }
+    .text-white { color: #fff; }
 
-.wizard-steps{display:flex;gap:8px;margin-bottom:20px}
-.step-pill{flex:1;text-align:center;padding:8px 4px;border-radius:6px;font-size:12px;font-weight:600;border:2px solid var(--border);color:var(--muted);transition:.2s}
-.step-pill.active{border-color:var(--green);color:var(--green)}
-.step-pill.done{border-color:var(--green2);background:rgba(57,211,83,.12);color:var(--green2)}
+    .container { width: 100%; max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
 
-.symptom-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
-.symptom-chip{background:var(--slate2);border:2px solid var(--border);border-radius:8px;padding:14px 12px;cursor:pointer;transition:.2s;text-align:left}
-.symptom-chip:active,.symptom-chip.selected{border-color:var(--green);background:rgba(57,211,83,.1)}
-.chip-icon{font-size:20px;margin-bottom:6px;display:block}
-.chip-label{font-size:13px;font-weight:600;display:block;color:var(--text)}
-.chip-sub{font-size:11px;color:var(--muted);margin-top:3px;display:block}
+    /* Header / Hero */
+    header { padding: 1.5rem 0; border-bottom: 1px solid var(--border-color); margin-bottom: 2rem; }
+    .logo { font-size: 1.25rem; font-weight: 700; color: #fff; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent-green); }
 
-.wizard-next{width:100%;background:var(--green);color:#000;font-weight:700;font-size:15px;padding:14px;border:none;border-radius:8px;cursor:pointer;letter-spacing:.3px;margin-top:4px}
-.wizard-next:active{background:var(--green2)}
+    .rating-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--surface-color); padding: 0.5rem 1rem;
+      border-radius: 2rem; font-size: 0.875rem; font-weight: 500;
+      color: var(--accent-yellow); margin-bottom: 1.5rem; border: 1px solid var(--border-color);
+    }
 
-.step-panel{display:none}
-.step-panel.active{display:block}
+    /* Intake Section */
+    .intake-section {
+      background: var(--surface-color); padding: 1.5rem; border-radius: 16px; 
+      border: 1px solid var(--border-color); margin-bottom: 3rem;
+    }
+    .wizard-step { display: none; }
+    .wizard-step.active { display: block; }
 
-.detail-input{width:100%;background:var(--slate2);border:2px solid var(--border);border-radius:8px;color:var(--text);font-family:'Inter',sans-serif;font-size:14px;padding:12px;resize:none;margin-bottom:14px}
-.detail-input:focus{outline:none;border-color:var(--green)}
+    .intake-title { font-size: 1.25rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .step-indicator { font-size: 0.875rem; color: var(--accent-yellow); font-weight: 500; }
+    
+    .symptom-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+    .symptom-btn {
+      background: var(--bg-color); border: 1px solid var(--border-color);
+      color: var(--text-main); padding: 1rem; border-radius: 12px;
+      font-size: 1rem; font-weight: 500; text-align: left; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      transition: border-color 0.2s; min-height: 56px;
+    }
+    .symptom-btn:active { border-color: var(--accent-green); }
 
-.confirm-box{background:var(--slate2);border:1px solid var(--green);border-radius:10px;padding:20px;margin-bottom:16px}
-.confirm-label{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
-.confirm-value{font-size:15px;font-weight:600;margin-bottom:16px}
-.confirm-cta{width:100%;background:var(--green);color:#000;font-weight:700;font-size:16px;padding:16px;border:none;border-radius:8px;cursor:pointer;margin-bottom:10px}
-.confirm-secondary{width:100%;background:transparent;border:2px solid var(--border);color:var(--text);font-size:14px;padding:12px;border-radius:8px;cursor:pointer}
+    .btn-back { background: none; border: none; color: var(--text-muted); font-size: 0.875rem; cursor: pointer; margin-bottom: 1rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.875rem; }
+    .form-input { width: 100%; background: var(--bg-color); border: 1px solid var(--border-color); color: #fff; padding: 1rem; border-radius: 8px; font-size: 1rem; }
+    .btn-submit { width: 100%; height: 56px; background: var(--accent-green); color: #000; font-size: 1rem; font-weight: 600; border: none; border-radius: 12px; cursor: pointer; margin-top: 1rem; }
+    .summary-box { background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; font-size: 0.875rem; }
 
-.services-section{padding:28px 20px;border-bottom:1px solid var(--border)}
-.services-grid{display:grid;gap:12px;margin-top:16px}
-.service-card{background:var(--slate2);border:1px solid var(--border);border-radius:10px;padding:16px}
-.service-card h3{font-size:15px;font-weight:600;margin-bottom:5px}
-.service-card p{font-size:13px;color:var(--muted);line-height:1.5}
+    /* Proof Section */
+    .proof-section { padding: 3rem 0; border-top: 1px solid var(--border-color); }
+    .review-card { background: var(--surface-color); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color); position: relative; margin-top: 1.5rem; }
+    .quote-mark { font-size: 4rem; color: var(--border-color); position: absolute; top: 1rem; left: 1.5rem; line-height: 1; font-family: serif; }
+    .review-text { font-size: 1.25rem; color: #fff; position: relative; z-index: 1; margin-bottom: 1rem; font-style: italic; line-height: 1.4; }
 
-.proof-section{padding:28px 20px;border-bottom:1px solid var(--border)}
-.proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.proof-stat{background:var(--slate2);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
-.proof-num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--green);line-height:1}
-.proof-desc{font-size:12px;color:var(--muted);margin-top:4px}
+    /* Services Section */
+    .services-section { padding: 3rem 0; border-top: 1px solid var(--border-color); }
+    .service-item { margin-bottom: 2rem; }
+    .service-item h3 { font-size: 1.125rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .service-item h3::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%; }
 
-.contact-section{padding:28px 20px}
-.contact-block{background:var(--slate2);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.contact-row{display:flex;align-items:center;gap:14px;padding:16px;border-bottom:1px solid var(--border)}
-.contact-row:last-child{border-bottom:none}
-.contact-icon{width:40px;height:40px;background:rgba(57,211,83,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.contact-info{flex:1}
-.contact-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
-.contact-value{font-size:14px;font-weight:600;margin-top:2px}
+    /* Contact Section */
+    .contact-section { padding: 3rem 0; border-top: 1px solid var(--border-color); }
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .contact-list li { display: flex; flex-direction: column; }
+    .contact-list span { font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 0.25rem; }
+    .contact-list strong { font-size: 1.125rem; color: #fff; font-weight: 500; }
 
-.sticky-bar{position:fixed;bottom:0;left:0;right:0;background:var(--slate2);border-top:2px solid var(--green);padding:12px 16px;display:flex;gap:10px;z-index:100}
-.sticky-btn{flex:1;padding:13px 8px;border-radius:8px;font-size:14px;font-weight:700;text-align:center;cursor:pointer;border:none}
-.sticky-call{background:var(--green);color:#000}
-.sticky-dir{background:var(--slate3);color:var(--text)}
-</style>
+    /* Sticky Bottom Nav */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0; background: rgba(17, 19, 21, 0.95);
+      backdrop-filter: blur(10px); border-top: 1px solid var(--border-color);
+      padding: 1rem 1.5rem env(safe-area-inset-bottom, 1rem); display: flex; gap: 1rem; z-index: 100;
+    }
+    .nav-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; height: 50px; border-radius: 12px; font-size: 1rem; font-weight: 600; text-decoration: none; border: none; }
+    .btn-primary { background: var(--accent-green); color: #000; }
+    .btn-secondary { background: var(--surface-color); color: var(--text-main); border: 1px solid var(--border-color); }
+    
+    @media (min-width: 768px) {
+      .bottom-nav { max-width: 600px; margin: 0 auto; border-left: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-radius: 24px 24px 0 0; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">Bao <span>Auto</span> Repair</div>
-  <a class="header-phone" href="tel:+18656888695">(865) 688-8695</a>
-</header>
+  <div class="container">
+    <header>
+      <div class="logo">Bao <span>Auto</span> Repair</div>
+    </header>
 
-<section class="hero">
-  <div class="rating-bar">
-    <span class="stars">★★★★½</span>
-    <span class="rating-text"><strong>4.5</strong> &middot; 596 Google reviews</span>
+    <!-- Hero -->
+    <div class="rating-badge">
+      ★ <span class="text-white">4.5</span> <span>(596 Reviews)</span>
+    </div>
+    <h1>Honest diagnostics.<br>Clear repair plans.</h1>
+    <p>Knoxville's trusted independent shop. Tell us what the car is doing — we'll take it from there.</p>
+
+    <!-- Wizard UI -->
+    <div class="intake-section">
+      <!-- Step 1 -->
+      <div id="step-1" class="wizard-step active">
+        <h2 class="intake-title">
+          What's going on?
+          <span class="step-indicator">Step 1 of 3</span>
+        </h2>
+        <div class="symptom-grid">
+          <button class="symptom-btn" onclick="nextStep(1, 'Warning Light')"><span>Warning light came on</span> <span>→</span></button>
+          <button class="symptom-btn" onclick="nextStep(1, 'Strange Noise')"><span>Making a strange noise</span> <span>→</span></button>
+          <button class="symptom-btn" onclick="nextStep(1, 'Handling / Drivability')"><span>Handling or drivability</span> <span>→</span></button>
+          <button class="symptom-btn" onclick="nextStep(1, 'Routine Service')"><span>Routine maintenance</span> <span>→</span></button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="step-2" class="wizard-step">
+        <button class="btn-back" onclick="prevStep(2)">← Back</button>
+        <h2 class="intake-title" id="step-2-title">
+          Could you be more specific?
+          <span class="step-indicator">Step 2 of 3</span>
+        </h2>
+        <div class="symptom-grid" id="step-2-options"></div>
+      </div>
+
+      <!-- Step 3 -->
+      <div id="step-3" class="wizard-step">
+        <button class="btn-back" onclick="prevStep(3)">← Back</button>
+        <h2 class="intake-title">
+          How long has this been happening?
+          <span class="step-indicator">Step 3 of 3</span>
+        </h2>
+        <div class="symptom-grid">
+          <button class="symptom-btn" onclick="nextStep(3, 'Just started today')"><span>Just started today</span></button>
+          <button class="symptom-btn" onclick="nextStep(3, 'A few days')"><span>A few days</span></button>
+          <button class="symptom-btn" onclick="nextStep(3, 'A few weeks or more')"><span>A few weeks or more</span></button>
+          <button class="symptom-btn" onclick="nextStep(3, 'Intermittent / Comes and goes')"><span>Intermittent / Comes and goes</span></button>
+        </div>
+      </div>
+
+      <!-- Step 4 (Final Form) -->
+      <div id="step-4" class="wizard-step">
+        <button class="btn-back" onclick="prevStep(4)">← Start over</button>
+        <h2 class="intake-title" style="margin-bottom: 1rem;">Send to Shop</h2>
+        <div class="summary-box">
+          <div class="text-muted" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">Diagnostic Request:</div>
+          <div id="wizard-summary" class="text-white" style="font-weight: 500;">...</div>
+        </div>
+        <form action="mailto:[REPLACE_ME]_contact@baoautorepair.com" method="POST" enctype="text/plain">
+          <input type="hidden" id="finalSymptomInput" name="Diagnostic_Request">
+          <div class="form-group">
+            <label class="form-label">Vehicle (Year/Make/Model)</label>
+            <input type="text" class="form-input" name="Vehicle" placeholder="e.g. 2017 Honda Accord" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" class="form-input" name="Phone" placeholder="(865) 555-1234" required>
+          </div>
+          <button type="submit" class="btn-submit">Request Appointment</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Proof Block -->
+    <section class="proof-section">
+      <h2>The neighborhood hidden gem.</h2>
+      <p>We don't do high-pressure sales. We just fix cars and tell you the truth.</p>
+      <div class="review-card">
+        <div class="quote-mark">"</div>
+        <div class="review-text">A real hidden gem in Knoxville auto repair scene!</div>
+        <div style="display: flex; flex-direction: column;">
+          <span class="text-yellow" style="letter-spacing: 2px;">★★★★★</span>
+          <span class="text-muted" style="font-size: 0.875rem;">Actual customer review</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services-section">
+      <h2>Core Repair Lanes</h2>
+      <div class="service-item">
+        <h3>Diagnostics & Drivability</h3>
+        <p>For warning lights, rough idle, sudden noises, or something that just started feeling off. We plug in, drive it, and tell you exactly what's failing.</p>
+      </div>
+      <div class="service-item">
+        <h3>Brakes, Steering & Suspension</h3>
+        <p>A clearer path for the jobs people usually call about from a phone in a parking lot. If it shakes, pulls, or grinds, we handle it.</p>
+      </div>
+      <div class="service-item">
+        <h3>Routine Maintenance</h3>
+        <p>Oil service, fluid checks, and maintenance reminders. No upsells for things your car doesn't actually need.</p>
+      </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="contact-section">
+      <h2>Contact & Location</h2>
+      <ul class="contact-list">
+        <li><span>Phone</span> <strong>(865) 688-8695</strong></li>
+        <li><span>Address</span> <strong>1100 Bradshaw Garden Dr<br>Knoxville, TN 37912</strong></li>
+        <li><span>Hours</span> <strong>Mon-Fri &middot; Opens 8 AM</strong></li>
+      </ul>
+    </section>
+
   </div>
-  <h1>Honest Repair.<br><span>Fast Answers.</span></h1>
-  <p class="hero-sub">Knoxville's trusted independent shop at 1100 Bradshaw Garden Dr. Tell us what the car is doing &mdash; we'll take it from there.</p>
-  <div class="review-badge">"A real hidden gem in Knoxville auto repair scene!"</div>
-</section>
 
-<section class="wizard-section">
-  <div class="section-label">Service Request</div>
-  <div class="wizard-title">Tell us what the car is doing</div>
-  <p class="wizard-sub">Three quick steps to a faster first call.</p>
-
-  <div class="wizard-steps">
-    <div class="step-pill active" id="s1">1&nbsp;&middot;&nbsp;Symptom</div>
-    <div class="step-pill" id="s2">2&nbsp;&middot;&nbsp;Detail</div>
-    <div class="step-pill" id="s3">3&nbsp;&middot;&nbsp;Confirm</div>
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <a href="tel:8656888695" class="nav-btn btn-primary">Call Shop</a>
+    <a href="https://maps.google.com/?q=1100+Bradshaw+Garden+Dr,+Knoxville,+TN+37912" target="_blank" class="nav-btn btn-secondary">Directions</a>
   </div>
 
-  <div class="step-panel active" id="panel1">
-    <div class="symptom-grid">
-      <div class="symptom-chip" onclick="selectSymptom(this,'Check engine light')">
-        <span class="chip-icon">&#9888;</span>
-        <span class="chip-label">Check engine</span>
-        <span class="chip-sub">Dashboard warning</span>
-      </div>
-      <div class="symptom-chip" onclick="selectSymptom(this,'Brake or steering issue')">
-        <span class="chip-icon">&#128721;</span>
-        <span class="chip-label">Brakes / steering</span>
-        <span class="chip-sub">Noise, pull, or soft pedal</span>
-      </div>
-      <div class="symptom-chip" onclick="selectSymptom(this,'AC or heat not working')">
-        <span class="chip-icon">&#10052;</span>
-        <span class="chip-label">AC or heat</span>
-        <span class="chip-sub">Climate not working</span>
-      </div>
-      <div class="symptom-chip" onclick="selectSymptom(this,'Routine maintenance')">
-        <span class="chip-icon">&#128295;</span>
-        <span class="chip-label">Maintenance</span>
-        <span class="chip-sub">Oil, fluids, routine service</span>
-      </div>
-      <div class="symptom-chip" onclick="selectSymptom(this,'Noise or vibration')">
-        <span class="chip-icon">&#128308;</span>
-        <span class="chip-label">Noise / vibration</span>
-        <span class="chip-sub">Something new or changed</span>
-      </div>
-      <div class="symptom-chip" onclick="selectSymptom(this,'Something else')">
-        <span class="chip-icon">&#63;</span>
-        <span class="chip-label">Something else</span>
-        <span class="chip-sub">I'll describe it</span>
-      </div>
-    </div>
-    <button class="wizard-next" onclick="goStep(2)">Next &rarr;</button>
-  </div>
+  <script>
+    const wData = { cat: '', spec: '', dur: '' };
+    const specOptions = {
+      'Warning Light': ['Check Engine Light', 'Battery / Charging System', 'Oil Pressure Warning', 'Other / Not Sure'],
+      'Strange Noise': ['Grinding when braking', 'Squealing / Chirping', 'Rattling underneath', 'Clicking when turning'],
+      'Handling / Drivability': ['Rough idle / Shaking', 'Pulling to one side', 'Hard to start', 'Loss of power'],
+      'Routine Service': ['Oil Change & Fluids', 'Brake Pad Replacement', 'Pre-trip Inspection', 'Scheduled Mileage Service']
+    };
 
-  <div class="step-panel" id="panel2">
-    <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Anything else helpful? Year, make, or how long it's been happening.</p>
-    <textarea class="detail-input" rows="4" placeholder="e.g. 2017 Honda Accord, light came on yesterday after highway driving..." id="detailText"></textarea>
-    <button class="wizard-next" onclick="goStep(3)">Review &amp; send &rarr;</button>
-  </div>
+    function nextStep(currentStep, value) {
+      document.getElementById(`step-${currentStep}`).classList.remove('active');
+      
+      if (currentStep === 1) {
+        wData.cat = value;
+        const opts = specOptions[value];
+        let html = '';
+        opts.forEach(opt => {
+          html += `<button class="symptom-btn" onclick="nextStep(2, '${opt}')"><span>${opt}</span> <span>→</span></button>`;
+        });
+        document.getElementById('step-2-options').innerHTML = html;
+        document.getElementById('step-2-title').innerHTML = `Which ${value.toLowerCase()}? <span class="step-indicator">Step 2 of 3</span>`;
+        document.getElementById('step-2').classList.add('active');
+      } 
+      else if (currentStep === 2) {
+        wData.spec = value;
+        document.getElementById('step-3').classList.add('active');
+      }
+      else if (currentStep === 3) {
+        wData.dur = value;
+        const summary = `${wData.cat} > ${wData.spec} > ${wData.dur}`;
+        document.getElementById('wizard-summary').textContent = summary;
+        document.getElementById('finalSymptomInput').value = summary;
+        document.getElementById('step-4').classList.add('active');
+      }
+    }
 
-  <div class="step-panel" id="panel3">
-    <div class="confirm-box">
-      <div class="confirm-label">Your issue</div>
-      <div class="confirm-value" id="confirmIssue">&mdash;</div>
-      <div class="confirm-label">Notes</div>
-      <div class="confirm-value" id="confirmDetail" style="font-weight:400;font-size:13px;color:var(--muted)">&mdash;</div>
-    </div>
-    <a href="tel:+18656888695">
-      <button class="confirm-cta">Call Bao Auto Repair</button>
-    </a>
-    <button class="confirm-secondary" onclick="goStep(1)">Start over</button>
-  </div>
-</section>
-
-<section class="services-section">
-  <div class="section-label">Services</div>
-  <h2 style="font-size:22px;font-weight:700;margin-bottom:4px">What we fix</h2>
-  <p style="font-size:13px;color:var(--muted)">Common repair lanes at 1100 Bradshaw Garden Dr.</p>
-  <div class="services-grid">
-    <div class="service-card">
-      <h3>Diagnostics &amp; drivability</h3>
-      <p>Warning lights, rough idle, sudden noises, or anything that just started feeling off.</p>
-    </div>
-    <div class="service-card">
-      <h3>Brakes, steering &amp; suspension</h3>
-      <p>Squeal, pull, vibration, or soft pedal feel &mdash; we start with a clear diagnosis.</p>
-    </div>
-    <div class="service-card">
-      <h3>Routine maintenance</h3>
-      <p>Oil service, fluid checks, and scheduled maintenance without the runaround.</p>
-    </div>
-    <div class="service-card">
-      <h3>AC &amp; heating</h3>
-      <p>Knoxville summers make climate work matter. We diagnose and fix it right.</p>
-    </div>
-  </div>
-</section>
-
-<section class="proof-section">
-  <div class="section-label">By the numbers</div>
-  <h2 style="font-size:22px;font-weight:700;margin-bottom:16px">Earned trust</h2>
-  <div class="proof-grid">
-    <div class="proof-stat">
-      <div class="proof-num">596</div>
-      <div class="proof-desc">Google reviews</div>
-    </div>
-    <div class="proof-stat">
-      <div class="proof-num">4.5&#9733;</div>
-      <div class="proof-desc">Avg. rating</div>
-    </div>
-    <div class="proof-stat" style="grid-column:span 2">
-      <div style="font-size:13px;font-style:italic;color:#d1d5db;text-align:left">"A real hidden gem in Knoxville auto repair scene!"</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:8px">&mdash; Google reviewer</div>
-    </div>
-  </div>
-</section>
-
-<section class="contact-section">
-  <div class="section-label">Find Us</div>
-  <h2 style="font-size:22px;font-weight:700;margin-bottom:16px">Bao Auto Repair</h2>
-  <div class="contact-block">
-    <a href="tel:+18656888695" class="contact-row">
-      <div class="contact-icon">&#128222;</div>
-      <div class="contact-info">
-        <div class="contact-label">Phone</div>
-        <div class="contact-value">(865) 688-8695</div>
-      </div>
-    </a>
-    <a href="https://maps.google.com/?q=1100+Bradshaw+Garden+Dr+Knoxville+TN+37912" target="_blank" class="contact-row">
-      <div class="contact-icon">&#128205;</div>
-      <div class="contact-info">
-        <div class="contact-label">Address</div>
-        <div class="contact-value">1100 Bradshaw Garden Dr, Knoxville, TN 37912</div>
-      </div>
-    </a>
-    <div class="contact-row">
-      <div class="contact-icon">&#128336;</div>
-      <div class="contact-info">
-        <div class="contact-label">Hours</div>
-        <div class="contact-value">Mon&ndash;Fri &middot; Opens 8 AM</div>
-      </div>
-    </div>
-    <a href="mailto:contact@baoautorepair.com" class="contact-row">
-      <div class="contact-icon">&#9993;</div>
-      <div class="contact-info">
-        <div class="contact-label">Email</div>
-        <div class="contact-value">contact@baoautorepair.com</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<div class="sticky-bar">
-  <a href="tel:+18656888695" style="flex:1;display:block">
-    <button class="sticky-btn sticky-call" style="width:100%">Call Now</button>
-  </a>
-  <a href="https://maps.google.com/?q=1100+Bradshaw+Garden+Dr+Knoxville+TN+37912" target="_blank" style="flex:1;display:block">
-    <button class="sticky-btn sticky-dir" style="width:100%">Directions</button>
-  </a>
-</div>
-
-<script>
-var chosen='';
-function selectSymptom(el,label){
-  document.querySelectorAll('.symptom-chip').forEach(function(c){c.classList.remove('selected')});
-  el.classList.add('selected');
-  chosen=label;
-}
-function goStep(n){
-  for(var i=1;i<=3;i++){
-    document.getElementById('panel'+i).classList.toggle('active',i===n);
-    var pill=document.getElementById('s'+i);
-    pill.classList.remove('active','done');
-    if(i===n) pill.classList.add('active');
-    else if(i<n) pill.classList.add('done');
-  }
-  if(n===3){
-    document.getElementById('confirmIssue').textContent=chosen||'Not specified';
-    var d=document.getElementById('detailText').value.trim();
-    document.getElementById('confirmDetail').textContent=d||'No additional notes';
-  }
-}
-</script>
+    function prevStep(currentStep) {
+      document.getElementById(`step-${currentStep}`).classList.remove('active');
+      if (currentStep === 4) {
+        document.getElementById('step-1').classList.add('active');
+      } else {
+        document.getElementById(`step-${currentStep - 1}`).classList.add('active');
+      }
+    }
+  </script>
 </body>
 </html>

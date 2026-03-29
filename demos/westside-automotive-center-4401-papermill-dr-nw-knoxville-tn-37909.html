@@ -1,341 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Westside Automotive Center — Papermill Drive, Knoxville TN</title>
-  <meta name="description" content="Westside Automotive Center on Papermill Drive, Knoxville TN. 4.6★ from 93 Google reviews. Practical local repair and maintenance. Call (865) 212-5524.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #0b1422;
-      --card: #132038;
-      --card2: #1a2b48;
-      --gold: #f59e0b;
-      --gold-glow: rgba(245,158,11,0.12);
-      --text: #dce8f8;
-      --muted: #6e8aaa;
-      --border: #1e3050;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100dvh;
-      padding-bottom: 80px;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-    .site-header {
-      background: var(--card);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 18px;
-      display: flex; align-items: center; justify-content: space-between;
-      position: sticky; top: 0; z-index: 50;
-    }
-    .logo { font-size: 15px; font-weight: 800; color: var(--text); letter-spacing: -0.2px; line-height: 1.25; }
-    .logo-loc { font-size: 10px; font-weight: 600; color: var(--gold); display: block; text-transform: uppercase; letter-spacing: 0.08em; }
-    .hdr-phone {
-      font-size: 13px; font-weight: 700; color: var(--gold);
-      text-decoration: none; background: var(--gold-glow);
-      padding: 6px 12px; border-radius: 20px;
-      border: 1px solid rgba(245,158,11,0.25);
-    }
-    .hero {
-      padding: 30px 18px 26px;
-      background: linear-gradient(165deg, var(--card) 0%, var(--bg) 60%);
-      border-bottom: 1px solid var(--border);
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.1em; color: var(--gold);
-      border-bottom: 1px solid rgba(245,158,11,0.3);
-      padding-bottom: 10px; margin-bottom: 12px;
-    }
-    .hero-title {
-      font-size: 28px; font-weight: 800; line-height: 1.18;
-      margin-bottom: 10px; letter-spacing: -0.3px;
-    }
-    .hero-sub { font-size: 15px; color: var(--muted); margin-bottom: 18px; line-height: 1.5; }
-    .hero-trust {
-      background: var(--card2); border: 1px solid var(--border);
-      border-radius: 10px; padding: 12px 14px;
-      display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
-    }
-    .trust-stars { color: var(--gold); font-size: 15px; letter-spacing: 2px; }
-    .trust-info { font-size: 13px; }
-    .trust-info strong { font-weight: 700; color: var(--text); }
-    .trust-info span { color: var(--muted); font-size: 11px; display: block; margin-top: 1px; }
-    .hero-quote {
-      font-size: 13px; font-style: italic; color: var(--muted);
-      border-left: 2px solid var(--gold); padding-left: 10px; line-height: 1.5;
-    }
-    .section { padding: 24px 18px 0; }
-    .section-eyebrow {
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.12em; color: var(--gold); margin-bottom: 6px;
-    }
-    .section-title { font-size: 18px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.2px; }
-    /* URGENCY SWITCHER */
-    .urgency-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 14px; overflow: hidden;
-    }
-    .urgency-tabs {
-      display: flex; background: var(--card2);
-    }
-    .u-tab {
-      flex: 1; padding: 13px 8px; text-align: center;
-      font-family: 'Nunito', sans-serif;
-      font-size: 13px; font-weight: 700; color: var(--muted);
-      background: none; border: none; cursor: pointer;
-      border-bottom: 3px solid transparent;
-      transition: color 0.15s, border-color 0.15s;
-    }
-    .u-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-    .u-panel { display: none; padding: 20px 18px; }
-    .u-panel.active { display: block; }
-    .u-headline { font-size: 17px; font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
-    .u-body { font-size: 14px; color: var(--muted); margin-bottom: 18px; line-height: 1.55; }
-    .u-items { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
-    .u-item {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 13px; color: var(--text);
-    }
-    .u-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--gold); flex-shrink: 0;
-    }
-    .u-cta {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      background: var(--gold); color: #000;
-      font-family: 'Nunito', sans-serif;
-      font-size: 15px; font-weight: 800;
-      text-decoration: none; padding: 15px 20px;
-      border-radius: 10px;
-    }
-    /* SERVICES GRID */
-    .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .svc-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 14px;
-    }
-    .svc-icon { font-size: 22px; margin-bottom: 8px; }
-    .svc-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
-    .svc-body { font-size: 12px; color: var(--muted); line-height: 1.4; }
-    /* PROOF */
-    .proof-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; padding: 18px;
-    }
-    .stat-row { display: flex; margin-bottom: 16px; }
-    .stat { flex: 1; text-align: center; }
-    .stat-div { width: 1px; background: var(--border); flex-shrink: 0; }
-    .stat-num { font-size: 22px; font-weight: 800; color: var(--gold); line-height: 1.1; }
-    .stat-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
-    .proof-quote {
-      font-size: 13px; font-style: italic; color: var(--muted);
-      border-left: 2px solid var(--gold); padding-left: 12px; line-height: 1.55;
-    }
-    /* CONTACT */
-    .contact-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 12px; overflow: hidden;
-    }
-    .contact-hdr { background: var(--gold); padding: 13px 18px; }
-    .contact-hdr-name { font-size: 14px; font-weight: 800; color: #000; }
-    .contact-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 13px; }
-    .c-row { display: flex; align-items: flex-start; gap: 12px; }
-    .c-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
-    .c-text { font-size: 14px; line-height: 1.45; }
-    .c-text a { color: var(--gold); text-decoration: none; font-weight: 700; }
-    .c-text small { color: var(--muted); font-size: 12px; display: block; margin-top: 2px; }
-    .section-bottom-pad { padding-bottom: 28px; }
-    .sticky-bar {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      background: var(--card); border-top: 1px solid var(--border);
-      display: flex; gap: 10px; padding: 10px 16px;
-      padding-bottom: max(10px, env(safe-area-inset-bottom));
-      z-index: 100;
-    }
-    .sb-btn {
-      flex: 1; display: flex; align-items: center; justify-content: center;
-      gap: 7px; padding: 13px 12px; border-radius: 10px;
-      font-family: 'Nunito', sans-serif;
-      font-size: 14px; font-weight: 800;
-      text-decoration: none; border: none; cursor: pointer;
-    }
-    .sb-call { background: var(--gold); color: #000; }
-    .sb-dir { background: transparent; color: var(--text); border: 1px solid var(--border); }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Westside Automotive Center | Papermill Dr, Knoxville TN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f172a;
+  --navy2:#1e293b;
+  --navy3:#334155;
+  --orange:#f97316;
+  --orange2:#fb923c;
+  --text:#f1f5f9;
+  --muted:#94a3b8;
+  --border:#334155;
+  --lorange:rgba(249,115,22,.12);
+}
+html{font-size:16px}
+body{background:var(--navy);color:var(--text);font-family:'Outfit',sans-serif;min-height:100dvh;padding-bottom:72px}
+a{color:inherit;text-decoration:none}
+
+nav{background:var(--navy2);border-bottom:1px solid var(--border);padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:16px;font-weight:800;letter-spacing:-.3px}
+.nav-logo span{color:var(--orange)}
+.nav-cta{background:var(--orange);color:#fff;font-weight:700;font-size:13px;padding:7px 14px;border-radius:6px}
+
+.hero{background:linear-gradient(160deg,var(--navy2) 0%,var(--navy) 100%);padding:28px 20px 32px;border-bottom:1px solid var(--border)}
+.hero-eyebrow{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-weight:500;margin-bottom:16px}
+.eye-dot{width:6px;height:6px;background:var(--orange);border-radius:50%;display:inline-block}
+.hero h1{font-size:36px;font-weight:800;line-height:1.08;margin-bottom:12px;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero-body{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:20px}
+.hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.badge{background:var(--navy2);border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--muted)}
+.badge.hi{border-color:var(--orange);color:var(--orange2)}
+.review-strip{background:var(--lorange);border:1px solid rgba(249,115,22,.25);border-radius:8px;padding:12px 14px}
+.stars-o{color:var(--orange);font-size:15px;letter-spacing:1px;display:block;margin-bottom:4px}
+.review-main{font-size:13px;color:var(--text)}
+.review-main strong{color:#fff}
+.review-quote{font-size:12px;font-style:italic;color:var(--muted);margin-top:10px;border-top:1px solid rgba(249,115,22,.2);padding-top:10px}
+
+.urgency-section{padding:28px 20px;border-bottom:1px solid var(--border)}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.urgency-title{font-size:22px;font-weight:800;margin-bottom:6px;letter-spacing:-.3px}
+.urgency-sub{font-size:13px;color:var(--muted);margin-bottom:20px}
+
+.urgency-tabs{display:flex;gap:8px;margin-bottom:20px}
+.u-tab{flex:1;text-align:center;padding:11px 4px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:2px solid var(--border);color:var(--muted);background:transparent;transition:.15s}
+.u-tab.active{border-color:var(--orange);color:var(--orange);background:var(--lorange)}
+
+.urgency-panel{display:none}
+.urgency-panel.active{display:block}
+
+.u-card{background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:14px}
+.u-card-label{font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.u-card-body{font-size:14px;line-height:1.6;color:var(--muted)}
+.u-card-body strong{color:var(--text)}
+.u-actions{display:flex;gap:10px}
+.u-primary{flex:1;background:var(--orange);color:#fff;font-weight:700;font-size:14px;padding:13px 8px;border:none;border-radius:8px;cursor:pointer}
+.u-secondary{flex:1;background:var(--navy3);color:var(--text);font-size:14px;padding:13px 8px;border:none;border-radius:8px;cursor:pointer}
+
+.services-section{padding:28px 20px;border-bottom:1px solid var(--border)}
+.svc-cards{display:grid;gap:10px;margin-top:16px}
+.svc-card{background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;align-items:flex-start;gap:12px}
+.svc-num{font-size:11px;font-weight:800;color:var(--orange);background:var(--lorange);border-radius:4px;padding:4px 8px;flex-shrink:0;margin-top:2px}
+.svc-info h3{font-size:14px;font-weight:700;margin-bottom:4px}
+.svc-info p{font-size:12px;color:var(--muted);line-height:1.5}
+
+.trust-section{padding:28px 20px;border-bottom:1px solid var(--border)}
+.trust-row{display:flex;gap:10px;margin-top:16px}
+.t-box{flex:1;background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.t-num{font-size:28px;font-weight:800;color:var(--orange)}
+.t-lbl{font-size:11px;color:var(--muted);margin-top:4px}
+
+.contact-section{padding:28px 20px}
+.c-stack{display:grid;gap:10px}
+.c-item{background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:15px 16px;display:flex;align-items:center;gap:14px}
+.c-icon{font-size:20px;width:36px;text-align:center;flex-shrink:0}
+.c-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:600}
+.c-val{font-size:14px;font-weight:600;margin-top:2px}
+
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;background:var(--navy2);border-top:2px solid var(--orange);padding:12px 16px;display:flex;gap:10px;z-index:100}
+.s-btn{flex:1;padding:13px 8px;border-radius:8px;font-size:14px;font-weight:700;text-align:center;cursor:pointer;border:none}
+.s-call{background:var(--orange);color:#fff}
+.s-dir{background:var(--navy3);color:var(--text)}
+</style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="logo">
-    Westside Automotive Center
-    <span class="logo-loc">Papermill Drive · Knoxville, TN</span>
-  </div>
-  <a href="tel:+18652125524" class="hdr-phone">(865) 212-5524</a>
-</header>
+<nav>
+  <span class="nav-logo">Westside <span>Automotive</span></span>
+  <a class="nav-cta" href="tel:+18652125524">(865) 212-5524</a>
+</nav>
 
 <section class="hero">
-  <p class="hero-badge">🔧 Local Auto Repair &amp; Maintenance</p>
-  <h1 class="hero-title">Practical local service<br>on Papermill Drive.</h1>
-  <p class="hero-sub">Tell us how soon you need help — we'll point you to the right next step.</p>
-  <div class="hero-trust">
-    <span class="trust-stars">★★★★★</span>
-    <div class="trust-info">
-      <strong>4.6 · 93 Google reviews</strong>
-      <span>4401 Papermill Dr NW, Knoxville, TN</span>
-    </div>
+  <div class="hero-eyebrow"><span class="eye-dot"></span> Papermill Drive &middot; Knoxville, TN 37909</div>
+  <h1>How soon do<br>you need <em>help?</em></h1>
+  <p class="hero-body">Westside Automotive Center has been keeping Knoxville drivers moving for years. Tell us when you need us &mdash; we'll point you the right way.</p>
+  <div class="hero-badges">
+    <span class="badge hi">Tires</span>
+    <span class="badge hi">U-Haul</span>
+    <span class="badge">Brakes</span>
+    <span class="badge">Maintenance</span>
+    <span class="badge">Diagnostics</span>
   </div>
-  <p class="hero-quote">"Best repair shop in Knoxville."</p>
-</section>
-
-<section class="section">
-  <p class="section-eyebrow">How Soon Do You Need Help?</p>
-  <p class="section-title">Pick your timing.</p>
-  <div class="urgency-card">
-    <div class="urgency-tabs">
-      <button class="u-tab active" onclick="showUrgency('today', this)">Today</button>
-      <button class="u-tab" onclick="showUrgency('week', this)">This week</button>
-      <button class="u-tab" onclick="showUrgency('plan', this)">Planning ahead</button>
-    </div>
-
-    <div class="u-panel active" id="u-today">
-      <p class="u-headline">Something needs attention now.</p>
-      <p class="u-body">Give us a call — we'll walk through the issue with you and figure out whether you should come in right away.</p>
-      <div class="u-items">
-        <div class="u-item"><span class="u-dot"></span>Warning light just came on</div>
-        <div class="u-item"><span class="u-dot"></span>Braking or steering feels wrong</div>
-        <div class="u-item"><span class="u-dot"></span>Something started making noise</div>
-        <div class="u-item"><span class="u-dot"></span>Car is running rough or stalling</div>
-      </div>
-      <a href="tel:+18652125524" class="u-cta">📞 Call the shop now</a>
-    </div>
-
-    <div class="u-panel" id="u-week">
-      <p class="u-headline">You want to schedule something soon.</p>
-      <p class="u-body">Call us and we'll find a drop-off time that works. No pressure — just tell us what the car has been doing.</p>
-      <div class="u-items">
-        <div class="u-item"><span class="u-dot"></span>Something has been going on for a while</div>
-        <div class="u-item"><span class="u-dot"></span>Maintenance is overdue</div>
-        <div class="u-item"><span class="u-dot"></span>Follow-up from a previous visit</div>
-        <div class="u-item"><span class="u-dot"></span>Tires or seasonal preparation</div>
-      </div>
-      <a href="tel:+18652125524" class="u-cta">📞 Call to schedule</a>
-    </div>
-
-    <div class="u-panel" id="u-plan">
-      <p class="u-headline">You're thinking ahead.</p>
-      <p class="u-body">Good time to ask about upkeep, upcoming maintenance, or seasonal service. Low-pressure conversation welcome.</p>
-      <div class="u-items">
-        <div class="u-item"><span class="u-dot"></span>Tires before winter or summer</div>
-        <div class="u-item"><span class="u-dot"></span>Planning a high-mileage checkpoint</div>
-        <div class="u-item"><span class="u-dot"></span>General health check before a trip</div>
-        <div class="u-item"><span class="u-dot"></span>Asking about a vehicle you're considering buying</div>
-      </div>
-      <a href="tel:+18652125524" class="u-cta">📞 Call anytime</a>
-    </div>
+  <div class="review-strip">
+    <span class="stars-o">&#9733;&#9733;&#9733;&#9733;&#189;</span>
+    <span class="review-main"><strong>4.6</strong> &middot; 93 Google reviews</span>
+    <div class="review-quote">"Best repair shop in Knoxville."</div>
   </div>
 </section>
 
-<section class="section section-bottom-pad">
-  <p class="section-eyebrow">What We Do</p>
-  <div class="svc-grid">
-    <div class="svc-card">
-      <div class="svc-icon">🔧</div>
-      <p class="svc-title">Routine maintenance</p>
-      <p class="svc-body">Oil, filters, fluids, and scheduled upkeep for all makes.</p>
+<section class="urgency-section">
+  <div class="sec-label">Get the right help</div>
+  <div class="urgency-title">How soon do you need in?</div>
+  <p class="urgency-sub">Pick your timing &mdash; we'll show you the best next step.</p>
+
+  <div class="urgency-tabs">
+    <button class="u-tab active" onclick="switchUrgency(0,this)">Today</button>
+    <button class="u-tab" onclick="switchUrgency(1,this)">This week</button>
+    <button class="u-tab" onclick="switchUrgency(2,this)">Planning</button>
+  </div>
+
+  <div class="urgency-panel active" id="u0">
+    <div class="u-card">
+      <div class="u-card-label">Needs attention now</div>
+      <div class="u-card-body"><strong>Noises, lights, brake feel, or anything that just changed</strong> &mdash; call us first. We'll tell you if it's safe to drive in or if you should stop now.</div>
     </div>
-    <div class="svc-card">
-      <div class="svc-icon">🛑</div>
-      <p class="svc-title">Brakes &amp; steering</p>
-      <p class="svc-body">Pads, rotors, fluid flush, and steering system service.</p>
+    <div class="u-actions">
+      <a href="tel:+18652125524" style="flex:1"><button class="u-primary" style="width:100%">Call the shop</button></a>
+      <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW+Knoxville+TN+37909" target="_blank" style="flex:1"><button class="u-secondary" style="width:100%">Directions</button></a>
     </div>
-    <div class="svc-card">
-      <div class="svc-icon">🔍</div>
-      <p class="svc-title">Diagnostics</p>
-      <p class="svc-body">Warning lights, drivability issues, and inspection service.</p>
+  </div>
+
+  <div class="urgency-panel" id="u1">
+    <div class="u-card">
+      <div class="u-card-label">Schedule this week</div>
+      <div class="u-card-body"><strong>Recurring concern, known follow-up, or deferred maintenance</strong> &mdash; call us to set a time. We'll hold a spot and make sure the right parts are ready.</div>
     </div>
-    <div class="svc-card">
-      <div class="svc-icon">🚐</div>
-      <p class="svc-title">Tires &amp; U-Haul</p>
-      <p class="svc-body">Tire service and U-Haul rentals available on site.</p>
+    <div class="u-actions">
+      <a href="tel:+18652125524" style="flex:1"><button class="u-primary" style="width:100%">Schedule a visit</button></a>
+      <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW+Knoxville+TN+37909" target="_blank" style="flex:1"><button class="u-secondary" style="width:100%">Find us</button></a>
+    </div>
+  </div>
+
+  <div class="urgency-panel" id="u2">
+    <div class="u-card">
+      <div class="u-card-label">Planning ahead</div>
+      <div class="u-card-body"><strong>Tires, seasonal prep, or general upkeep when there's time</strong> &mdash; no urgency, but good timing to get ahead of it. Call or stop in when convenient.</div>
+    </div>
+    <div class="u-actions">
+      <a href="tel:+18652125524" style="flex:1"><button class="u-primary" style="width:100%">Ask about timing</button></a>
+      <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW+Knoxville+TN+37909" target="_blank" style="flex:1"><button class="u-secondary" style="width:100%">Find us</button></a>
     </div>
   </div>
 </section>
 
-<section class="section section-bottom-pad">
-  <p class="section-eyebrow">Trusted by Knoxville</p>
-  <div class="proof-card">
-    <div class="stat-row">
-      <div class="stat">
-        <div class="stat-num">4.6★</div>
-        <div class="stat-lbl">Rating</div>
-      </div>
-      <div class="stat-div"></div>
-      <div class="stat">
-        <div class="stat-num">93</div>
-        <div class="stat-lbl">Reviews</div>
-      </div>
-      <div class="stat-div"></div>
-      <div class="stat">
-        <div class="stat-num">Local</div>
-        <div class="stat-lbl">Papermill Dr</div>
+<section class="services-section">
+  <div class="sec-label">Services</div>
+  <h2 style="font-size:22px;font-weight:800;letter-spacing:-.3px">What we handle</h2>
+  <div class="svc-cards">
+    <div class="svc-card">
+      <span class="svc-num">NOW</span>
+      <div class="svc-info">
+        <h3>Emergency repairs</h3>
+        <p>Noises, lights, brake concerns &mdash; when something just changed, call us first.</p>
       </div>
     </div>
-    <p class="proof-quote">"Best repair shop in Knoxville."</p>
+    <div class="svc-card">
+      <span class="svc-num">SVC</span>
+      <div class="svc-info">
+        <h3>Maintenance &amp; brakes</h3>
+        <p>Oil service, brake work, and routine upkeep on a schedule that fits your week.</p>
+      </div>
+    </div>
+    <div class="svc-card">
+      <span class="svc-num">TIRE</span>
+      <div class="svc-info">
+        <h3>Tires</h3>
+        <p>New tires, rotation, balance, and alignment for every vehicle type.</p>
+      </div>
+    </div>
+    <div class="svc-card">
+      <span class="svc-num">VAN</span>
+      <div class="svc-info">
+        <h3>U-Haul rentals</h3>
+        <p>Moving trucks and trailers available on site. Call to check availability.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="section section-bottom-pad">
-  <p class="section-eyebrow">Find Us</p>
-  <div class="contact-card">
-    <div class="contact-hdr">
-      <p class="contact-hdr-name">Westside Automotive Center</p>
+<section class="trust-section">
+  <div class="sec-label">Reputation</div>
+  <h2 style="font-size:20px;font-weight:800;letter-spacing:-.3px">Papermill's shop of choice</h2>
+  <div class="trust-row">
+    <div class="t-box">
+      <div class="t-num">4.6&#9733;</div>
+      <div class="t-lbl">Google rating</div>
     </div>
-    <div class="contact-body">
-      <div class="c-row">
-        <span class="c-icon">📍</span>
-        <p class="c-text">4401 Papermill Dr NW<br>Knoxville, TN 37909</p>
+    <div class="t-box">
+      <div class="t-num">93</div>
+      <div class="t-lbl">Reviews</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="sec-label">Find us</div>
+  <h2 style="font-size:22px;font-weight:800;letter-spacing:-.3px;margin-bottom:16px">Westside Automotive Center</h2>
+  <div class="c-stack">
+    <a href="tel:+18652125524" class="c-item">
+      <span class="c-icon">&#128222;</span>
+      <div>
+        <div class="c-lbl">Call</div>
+        <div class="c-val">(865) 212-5524</div>
       </div>
-      <div class="c-row">
-        <span class="c-icon">📞</span>
-        <p class="c-text">
-          <a href="tel:+18652125524">(865) 212-5524</a>
-          <small>Opens 10 AM · Mon–Sat · Call for hours</small>
-        </p>
+    </a>
+    <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW+Knoxville+TN+37909" target="_blank" class="c-item">
+      <span class="c-icon">&#128205;</span>
+      <div>
+        <div class="c-lbl">Address</div>
+        <div class="c-val">4401 Papermill Dr NW, Knoxville, TN 37909</div>
       </div>
-      <div class="c-row">
-        <span class="c-icon">✉️</span>
-        <p class="c-text">
-          <a href="mailto:contact@westside-automotive-center.com">contact@westside-automotive-center.com</a>
-        </p>
+    </a>
+    <div class="c-item">
+      <span class="c-icon">&#128336;</span>
+      <div>
+        <div class="c-lbl">Hours</div>
+        <div class="c-val">Mon&ndash;Sat &middot; Opens 10 AM</div>
       </div>
     </div>
+    <a href="mailto:contact@westsideautocenter.com" class="c-item">
+      <span class="c-icon">&#9993;</span>
+      <div>
+        <div class="c-lbl">Email</div>
+        <div class="c-val">contact@westsideautocenter.com</div>
+      </div>
+    </a>
   </div>
 </section>
 
 <div class="sticky-bar">
-  <a href="tel:+18652125524" class="sb-btn sb-call">📞 Call Now</a>
-  <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW+Knoxville+TN+37909"
-     target="_blank" rel="noopener" class="sb-btn sb-dir">🗺 Directions</a>
+  <a href="tel:+18652125524" style="flex:1;display:block">
+    <button class="s-btn s-call" style="width:100%">Call now</button>
+  </a>
+  <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW+Knoxville+TN+37909" target="_blank" style="flex:1;display:block">
+    <button class="s-btn s-dir" style="width:100%">Directions</button>
+  </a>
 </div>
 
 <script>
-  function showUrgency(id, el) {
-    document.querySelectorAll('.u-panel').forEach(function(p){ p.classList.remove('active'); });
-    document.querySelectorAll('.u-tab').forEach(function(t){ t.classList.remove('active'); });
-    document.getElementById('u-' + id).classList.add('active');
-    el.classList.add('active');
-  }
+function switchUrgency(idx,el){
+  for(var i=0;i<3;i++) document.getElementById('u'+i).classList.toggle('active',i===idx);
+  document.querySelectorAll('.u-tab').forEach(function(t){t.classList.remove('active')});
+  el.classList.add('active');
+}
 </script>
 </body>
 </html>
