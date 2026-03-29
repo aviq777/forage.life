@@ -1,237 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Asian Auto Specialists | Import Repair Knoxville, TN</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0d1117;
-  --bg2:#161b22;
-  --bg3:#21262d;
-  --blue:#3b82f6;
-  --blue2:#60a5fa;
-  --text:#e6edf3;
-  --muted:#8b949e;
-  --border:#30363d;
-}
-html{font-size:16px}
-body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;min-height:100dvh;padding-bottom:72px}
-a{color:inherit;text-decoration:none}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Asian Auto Specialists | Knoxville</title>
+  <style>
+    :root {
+      --bg-color: #0F172A; /* Deep matte navy */
+      --surface-color: #1E293B;
+      --surface-active: #334155;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --accent-cyan: #06B6D4; /* Crisp precision blue */
+      --accent-cyan-hover: #0891B2;
+      --border-color: #334155;
+      --font-stack: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      --safe-area-bottom: env(safe-area-inset-bottom, 20px);
+    }
 
-header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:.5px;color:var(--text)}
-.logo span{color:var(--blue2)}
-.logo-sub{font-size:10px;color:var(--muted);font-family:'IBM Plex Mono',monospace;letter-spacing:.8px;display:block;margin-top:2px}
-.header-cta{background:var(--blue);color:#fff;font-weight:600;font-size:12px;padding:7px 12px;border-radius:5px;font-family:'IBM Plex Mono',monospace;letter-spacing:.3px}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-bottom: calc(80px + var(--safe-area-bottom));
+    }
 
-.hero{padding:28px 20px;border-bottom:1px solid var(--border)}
-.tag-line{display:inline-flex;align-items:center;gap:6px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);padding:5px 10px;border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue2);margin-bottom:18px;letter-spacing:.5px}
-.hero h1{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;line-height:1.2;margin-bottom:8px}
-.hero h1 .accent{color:var(--blue2)}
-.hero-sub{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:16px}
-.rating-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border)}
-.stars-blue{color:var(--blue2);font-size:15px;letter-spacing:2px}
-.rating-text{font-size:13px;color:var(--muted)}
-.rating-text strong{color:var(--text)}
-.review-pill{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:10px 12px;font-size:12px;font-style:italic;color:#a0aab4;margin-top:12px;border-left:3px solid var(--blue)}
+    h1, h2, h3 { font-weight: 600; letter-spacing: -0.03em; }
+    h1 { font-size: 2.25rem; line-height: 1.1; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.5rem; margin-bottom: 1rem; color: #fff; }
+    p { font-size: 1rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    
+    .text-cyan { color: var(--accent-cyan); }
+    .text-white { color: #fff; }
 
-.brands-section{padding:28px 20px;border-bottom:1px solid var(--border)}
-.section-mono{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--blue2);text-transform:uppercase;margin-bottom:10px}
-.brands-title{font-size:19px;font-weight:700;margin-bottom:6px}
-.brands-sub{font-size:13px;color:var(--muted);margin-bottom:20px}
-.brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.brand-card{background:var(--bg2);border:2px solid var(--border);border-radius:8px;padding:16px;cursor:pointer;transition:.15s}
-.brand-card:active,.brand-card.selected{border-color:var(--blue);background:rgba(59,130,246,.08)}
-.brand-logo{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
-.brand-detail{font-size:12px;color:var(--muted);line-height:1.5}
-.brand-cta-wrap{margin-top:16px}
-.brand-cta{display:block;width:100%;background:var(--blue);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;padding:14px;border:none;border-radius:6px;cursor:pointer;text-align:center;letter-spacing:.3px}
-.other-brand{margin-top:10px;display:block;width:100%;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:13px;padding:11px;border-radius:6px;cursor:pointer;text-align:center}
+    .container { width: 100%; max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
 
-.services-section{padding:28px 20px;border-bottom:1px solid var(--border)}
-.service-list{margin-top:16px;display:grid;gap:10px}
-.service-row{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;display:flex;align-items:flex-start;gap:12px}
-.service-dot{width:8px;height:8px;background:var(--blue);border-radius:50%;margin-top:5px;flex-shrink:0}
-.service-text h3{font-size:14px;font-weight:600;margin-bottom:4px}
-.service-text p{font-size:12px;color:var(--muted);line-height:1.5}
+    header { padding: 1.5rem 0; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); margin-bottom: 2rem;}
+    .logo { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent-cyan); }
 
-.proof-section{padding:28px 20px;border-bottom:1px solid var(--border)}
-.metrics-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;margin-bottom:16px}
-.metric-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
-.metric-val{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:600;color:var(--blue2)}
-.metric-label{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.5px}
+    /* Hero / Make Selector */
+    .hero { min-height: auto; display: flex; flex-direction: column; padding-bottom: 1rem; }
+    
+    .tech-spec {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: monospace; font-size: 0.8rem; letter-spacing: 0.1em;
+      color: var(--accent-cyan); border: 1px solid var(--border-color);
+      padding: 0.25rem 0.75rem; border-radius: 4px; margin-bottom: 1rem;
+      background: var(--surface-color);
+    }
 
-.contact-section{padding:28px 20px}
-.contact-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.contact-item{display:flex;align-items:center;gap:14px;padding:15px 16px;border-bottom:1px solid var(--border)}
-.contact-item:last-child{border-bottom:none}
-.ci-icon{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue2);width:28px;text-align:center;flex-shrink:0;font-weight:600}
-.ci-content{flex:1}
-.ci-label{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-family:'IBM Plex Mono',monospace}
-.ci-val{font-size:14px;font-weight:500;margin-top:2px}
+    .make-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
 
-.sticky-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--blue);padding:12px 16px;display:flex;gap:10px;z-index:100}
-.sticky-btn{flex:1;padding:13px;border-radius:6px;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;text-align:center;cursor:pointer;border:none;letter-spacing:.3px}
-.s-call{background:var(--blue);color:#fff}
-.s-dir{background:var(--bg3);color:var(--text);border:1px solid var(--border)}
-</style>
+    .make-btn {
+      background: var(--surface-color);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 1.25rem 1rem;
+      border-radius: 8px;
+      font-size: 1.125rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      min-height: 80px;
+    }
+    
+    .make-btn:active {
+      border-color: var(--accent-cyan);
+      background: var(--surface-active);
+    }
+
+    /* Form UI within drawer */
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label { display: block; margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text-muted); }
+    .form-input, .form-select {
+      width: 100%; background: var(--bg-color); border: 1px solid var(--border-color);
+      color: #fff; padding: 1rem; border-radius: 6px; font-size: 1rem;
+      font-family: inherit;
+    }
+    .form-input:focus, .form-select:focus { outline: none; border-color: var(--accent-cyan); }
+    
+    .btn-submit {
+      width: 100%; height: 52px; background: var(--accent-cyan); color: #000;
+      font-size: 1rem; font-weight: 600; border: none; border-radius: 6px;
+      cursor: pointer; margin-top: 1rem;
+    }
+
+    /* Proof Section (Technical specs feel) */
+    .proof-section { padding: 3rem 0; border-top: 1px solid var(--border-color); margin-top: 2rem;}
+    .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;}
+    .spec-box { background: var(--surface-color); border: 1px solid var(--border-color); padding: 1.25rem; border-radius: 8px;}
+    .spec-val { font-size: 1.75rem; font-weight: 600; color: #fff; line-height: 1; margin-bottom: 0.25rem;}
+    .spec-label { font-size: 0.75rem; font-family: monospace; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase;}
+    
+    .review-terminal {
+      background: #000; border: 1px solid var(--border-color); border-radius: 8px;
+      padding: 1.5rem; font-family: monospace; font-size: 0.9rem; color: var(--accent-cyan);
+    }
+
+    /* Bottom Nav Bar */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0; background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px); border-top: 1px solid var(--border-color);
+      padding: 1rem 1.5rem var(--safe-area-bottom); display: flex; gap: 1rem; z-index: 100;
+    }
+    .nav-btn {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      height: 50px; border-radius: 8px; font-size: 1rem; font-weight: 600; text-decoration: none; border: none;
+    }
+    .btn-primary { background: var(--accent-cyan); color: #000; }
+    .btn-secondary { background: var(--surface-color); color: var(--text-main); border: 1px solid var(--border-color); }
+
+    /* Slide-Up Drawer */
+    .drawer-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7);
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 200;
+    }
+    .drawer-overlay.active { opacity: 1; pointer-events: auto; }
+
+    .drawer {
+      position: fixed; bottom: -100%; left: 0; right: 0; background: var(--surface-color);
+      border-top-left-radius: 16px; border-top-right-radius: 16px; border-top: 1px solid var(--border-color);
+      padding: 1.5rem 1.5rem calc(2rem + var(--safe-area-bottom));
+      transition: bottom 0.3s cubic-bezier(0.32, 0.72, 0, 1); z-index: 201;
+    }
+    .drawer.active { bottom: 0; }
+    
+    .drawer-handle { width: 36px; height: 4px; background: var(--border-color); border-radius: 2px; margin: -0.5rem auto 1.5rem; }
+    
+    .reveal { opacity: 0; transform: translateY(15px); transition: opacity 0.4s ease, transform 0.4s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    
+    @media (min-width: 768px) {
+      .bottom-nav, .drawer { max-width: 600px; margin: 0 auto; left: 50%; transform: translateX(-50%); border-left: 1px solid var(--border-color); border-right: 1px solid var(--border-color); border-radius: 16px 16px 0 0; }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header>
-  <div>
-    <div class="logo">Asian <span>Auto</span> Specialists</div>
-    <div class="logo-sub">Import repair &middot; Knoxville, TN</div>
-  </div>
-  <a class="header-cta" href="tel:+18652403004">Call</a>
-</header>
+  <div class="container">
+    <header>
+      <div class="logo">Asian Auto <span>Specialists</span></div>
+      <div style="font-family: monospace; font-size: 0.8rem; color: var(--text-muted);">(865) 240-3004</div>
+    </header>
 
-<section class="hero">
-  <div class="tag-line">Import-focused repair</div>
-  <h1>Your import.<br>Our <span class="accent">specialty</span>.</h1>
-  <p class="hero-sub">Toyota, Honda, Nissan, Hyundai &mdash; we know the vehicles most shops treat as just another car. 6404 Maynardville Pike, Knoxville.</p>
-  <div class="rating-row">
-    <span class="stars-blue">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-    <span class="rating-text"><strong>4.9</strong> &middot; 118 Google reviews</span>
-  </div>
-  <div class="review-pill">"These guys listened, troubleshot, and solved it, even faster than promised!"</div>
-</section>
+    <section class="hero reveal visible">
+      <div class="tech-spec">SYS.READY // IMPORT_DIAG</div>
+      <h1>Specialist repair.<br>Without the runaround.</h1>
+      <p>Precision service for import vehicles at 6404 Maynardville Pike.</p>
 
-<section class="brands-section">
-  <div class="section-mono">// select vehicle</div>
-  <div class="brands-title">What are you driving?</div>
-  <p class="brands-sub">Pick your make &mdash; we'll tell you what to expect.</p>
-  <div class="brand-grid">
-    <div class="brand-card" onclick="selectBrand(this)">
-      <div class="brand-logo">Toyota / Lexus</div>
-      <div class="brand-detail">Maintenance, warning lights, cooling issues, everyday drivability.</div>
-    </div>
-    <div class="brand-card" onclick="selectBrand(this)">
-      <div class="brand-logo">Honda / Acura</div>
-      <div class="brand-detail">Routine service, brake work, diagnostics, noise investigation.</div>
-    </div>
-    <div class="brand-card" onclick="selectBrand(this)">
-      <div class="brand-logo">Nissan / Infiniti</div>
-      <div class="brand-detail">Inspection-led service with a clear explanation path.</div>
-    </div>
-    <div class="brand-card" onclick="selectBrand(this)">
-      <div class="brand-logo">Hyundai / Kia</div>
-      <div class="brand-detail">Maintenance and repair routing without generic filler.</div>
-    </div>
-  </div>
-  <div class="brand-cta-wrap">
-    <a href="tel:+18652403004">
-      <button class="brand-cta">Call for import diagnostics &rarr;</button>
-    </a>
-    <button class="other-brand">Different make? Call us anyway</button>
-  </div>
-</section>
+      <h3 style="margin-top: 1rem; font-size: 1rem; color: var(--text-muted);">What do you drive?</h3>
+      <div class="make-grid">
+        <button class="make-btn" onclick="openDrawer('Toyota / Lexus')">Toyota / Lexus</button>
+        <button class="make-btn" onclick="openDrawer('Honda / Acura')">Honda / Acura</button>
+        <button class="make-btn" onclick="openDrawer('Nissan / Infiniti')">Nissan / Infiniti</button>
+        <button class="make-btn" onclick="openDrawer('Hyundai / Kia')">Hyundai / Kia</button>
+        <button class="make-btn" onclick="openDrawer('Subaru')" style="grid-column: span 2;">Subaru</button>
+      </div>
+    </section>
 
-<section class="services-section">
-  <div class="section-mono">// services</div>
-  <h2 style="font-size:19px;font-weight:700;margin-bottom:6px">Specialist repair lanes</h2>
-  <p style="font-size:13px;color:var(--muted);margin-bottom:4px">Built around import vehicles, not a generic service menu.</p>
-  <div class="service-list">
-    <div class="service-row">
-      <div class="service-dot"></div>
-      <div class="service-text">
-        <h3>Import diagnostics</h3>
-        <p>Specialist-level troubleshooting for Asian-manufactured vehicles.</p>
+    <section class="proof-section reveal">
+      <h2>Technical confidence.</h2>
+      <p>We solve the problems general mechanics guess at.</p>
+      
+      <div class="spec-grid">
+        <div class="spec-box">
+          <div class="spec-val">4.9<span style="font-size: 1rem; color: var(--accent-cyan);">★</span></div>
+          <div class="spec-label">Avg Rating</div>
+        </div>
+        <div class="spec-box">
+          <div class="spec-val">118</div>
+          <div class="spec-label">Verified Reviews</div>
+        </div>
       </div>
-    </div>
-    <div class="service-row">
-      <div class="service-dot"></div>
-      <div class="service-text">
-        <h3>Maintenance by make</h3>
-        <p>Oil service, scheduled maintenance, and fluid care matched to your vehicle.</p>
+      
+      <div class="review-terminal">
+        > RUN REVIEW_QUERY<br>
+        > MATCH: "These guys listened, troubleshot, and solved it, even faster than promised!"<br>
+        > STATUS: VERIFIED
       </div>
-    </div>
-    <div class="service-row">
-      <div class="service-dot"></div>
-      <div class="service-text">
-        <h3>Brake, cooling &amp; drivability</h3>
-        <p>Core repair work with parts and techniques matched to import specs.</p>
+    </section>
+
+    <section class="proof-section reveal" style="border-top: none; padding-top: 0;">
+      <h2>Contact & Location</h2>
+      <div class="spec-box" style="margin-top: 1rem;">
+        <div class="form-label" style="margin-bottom: 0;">ADDRESS</div>
+        <div class="text-white" style="margin-bottom: 1rem; font-weight: 500;">6404 Maynardville Pike<br>Knoxville, TN 37918</div>
+        <div class="form-label" style="margin-bottom: 0;">HOURS</div>
+        <div class="text-white" style="font-weight: 500;">Mon-Fri &middot; Opens 8 AM</div>
       </div>
-    </div>
-    <div class="service-row">
-      <div class="service-dot"></div>
-      <div class="service-text">
-        <h3>Tires</h3>
-        <p>Selection and installation for import vehicles of every size and class.</p>
-      </div>
-    </div>
+    </section>
+
   </div>
-</section>
 
-<section class="proof-section">
-  <div class="section-mono">// reputation</div>
-  <h2 style="font-size:19px;font-weight:700">Track record</h2>
-  <div class="metrics-row">
-    <div class="metric-box">
-      <div class="metric-val">4.9&#9733;</div>
-      <div class="metric-label">Rating</div>
-    </div>
-    <div class="metric-box">
-      <div class="metric-val">118</div>
-      <div class="metric-label">Reviews</div>
-    </div>
+  <div class="bottom-nav">
+    <a href="tel:8652403004" class="nav-btn btn-primary">Call Shop</a>
+    <a href="https://maps.google.com/?q=6404+Maynardville+Pike,+Knoxville,+TN+37918" target="_blank" class="nav-btn btn-secondary">Directions</a>
   </div>
-  <div class="review-pill">"Even faster than promised" &mdash; a phrase that shows up in multiple reviews.</div>
-</section>
 
-<section class="contact-section">
-  <div class="section-mono">// find us</div>
-  <h2 style="font-size:19px;font-weight:700;margin-bottom:14px">Asian Auto Specialists</h2>
-  <div class="contact-card">
-    <a href="tel:+18652403004" class="contact-item">
-      <span class="ci-icon">TEL</span>
-      <div class="ci-content">
-        <div class="ci-label">Phone</div>
-        <div class="ci-val">(865) 240-3004</div>
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+  <div class="drawer" id="makeDrawer">
+    <div class="drawer-handle"></div>
+    <h3 id="drawerTitle" style="color: var(--accent-cyan); margin-bottom: 0.25rem;">Toyota / Lexus</h3>
+    <p class="text-muted" style="font-size: 0.875rem; margin-bottom: 1.5rem;">Request a specialist appointment.</p>
+    
+    <form action="mailto:[REPLACE_ME]_contact@asianautospecialists.com" method="POST" enctype="text/plain">
+      <input type="hidden" id="hiddenMake" name="Vehicle_Make">
+      
+      <div class="form-group">
+        <label class="form-label">Service Needed</label>
+        <select class="form-select" name="Service" required>
+          <option value="" disabled selected>Select an option...</option>
+          <option value="Diagnostics">Warning Light / Diagnostics</option>
+          <option value="Brakes">Brakes & Rotors</option>
+          <option value="Routine">Routine Maintenance</option>
+          <option value="Other">Other (Describe over phone)</option>
+        </select>
       </div>
-    </a>
-    <a href="https://maps.google.com/?q=6404+Maynardville+Pike+Knoxville+TN+37918" target="_blank" class="contact-item">
-      <span class="ci-icon">MAP</span>
-      <div class="ci-content">
-        <div class="ci-label">Address</div>
-        <div class="ci-val">6404 Maynardville Pike, Knoxville, TN 37918</div>
+
+      <div class="form-group">
+        <label class="form-label">Phone Number</label>
+        <input type="tel" class="form-input" name="Phone" placeholder="(865) 555-1234" required>
       </div>
-    </a>
-    <div class="contact-item">
-      <span class="ci-icon">HRS</span>
-      <div class="ci-content">
-        <div class="ci-label">Hours</div>
-        <div class="ci-val">Mon&ndash;Fri &middot; Opens 8 AM</div>
-      </div>
-    </div>
-    <a href="mailto:contact@asianautospecialists.com" class="contact-item">
-      <span class="ci-icon">MSG</span>
-      <div class="ci-content">
-        <div class="ci-label">Email</div>
-        <div class="ci-val">contact@asianautospecialists.com</div>
-      </div>
-    </a>
+      
+      <button type="submit" class="btn-submit">Send to Shop</button>
+    </form>
   </div>
-</section>
 
-<div class="sticky-bar">
-  <a href="tel:+18652403004" style="flex:1;display:block">
-    <button class="sticky-btn s-call" style="width:100%">Call now</button>
-  </a>
-  <a href="https://maps.google.com/?q=6404+Maynardville+Pike+Knoxville+TN+37918" target="_blank" style="flex:1;display:block">
-    <button class="sticky-btn s-dir" style="width:100%">Directions</button>
-  </a>
-</div>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-<script>
-function selectBrand(el){
-  document.querySelectorAll('.brand-card').forEach(function(c){c.classList.remove('selected')});
-  el.classList.add('selected');
-}
-</script>
+    const drawer = document.getElementById('makeDrawer');
+    const overlay = document.getElementById('drawerOverlay');
+    const dTitle = document.getElementById('drawerTitle');
+    const dHidden = document.getElementById('hiddenMake');
+
+    function openDrawer(make) {
+      dTitle.textContent = make + " Service";
+      dHidden.value = make;
+      drawer.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  </script>
 </body>
 </html>
