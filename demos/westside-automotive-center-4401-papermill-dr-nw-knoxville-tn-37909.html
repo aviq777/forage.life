@@ -1,953 +1,341 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Westside Automotive Center | Auto repair in Knoxville, TN</title>
-    <meta name="description" content="Westside Automotive Center in Knoxville, Tennessee. Answer the urgency question before the customer leaves the search result. Call, directions, and the main service paths stay obvious." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <style>
-      :root {
-        --bg: #f2ece6;
-        --surface: #fffaf5;
-        --surface-2: #f7f1ea;
-        --ink: #1f1b18;
-        --muted: #6f655d;
-        --line: #d9cec3;
-        --accent: #d06a39;
-        --accent-soft: #f2d8ca;
-        --header: rgba(255, 250, 245, 0.92);
-        --max: 1180px;
-        --shadow: 0 18px 48px rgba(20, 16, 12, 0.06);
-      }
-
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--ink);
-        font-family: "Manrope", sans-serif;
-      }
-
-      a { color: inherit; }
-
-      .preview-note {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        padding: 0.55rem 1rem;
-        background: #17120f;
-        color: #f4ede7;
-        font-size: 0.8rem;
-      }
-
-      .preview-note a {
-        text-decoration: none;
-        opacity: 0.86;
-      }
-
-      .shell {
-        width: min(var(--max), calc(100% - 2rem));
-        margin: 0 auto;
-      }
-
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 30;
-        border-bottom: 1px solid var(--line);
-        backdrop-filter: blur(14px);
-        background: var(--header);
-      }
-
-      .site-header .shell {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        min-height: 4.9rem;
-      }
-
-      .brand {
-        display: grid;
-        gap: 0.18rem;
-      }
-
-      .brand span,
-      .section-kicker {
-        font-size: 0.72rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-
-      .brand strong {
-        font-size: 1.04rem;
-        line-height: 1;
-      }
-
-      .top-nav,
-      .header-actions,
-      .action-row,
-      .quick-links,
-      .language-row {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-      }
-
-      .top-nav a {
-        text-decoration: none;
-        color: var(--muted);
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 3rem;
-        padding: 0 1.15rem;
-        border-radius: 999px;
-        border: 1px solid transparent;
-        text-decoration: none;
-        font-weight: 800;
-        letter-spacing: 0.01em;
-      }
-
-      .btn-primary {
-        background: var(--accent);
-        color: #fff;
-      }
-
-      .btn-secondary {
-        background: transparent;
-        color: inherit;
-        border-color: var(--line);
-      }
-
-      .hero-band {
-        padding: 3.2rem 0 2.5rem;
-      }
-
-      .hero-band--diagnostic {
-        background:
-          radial-gradient(circle at top left, rgba(208, 106, 57, 0.18), transparent 48%),
-          linear-gradient(180deg, #f4ece5 0%, rgba(244, 236, 229, 0) 100%);
-      }
-
-      .hero-band--booking {
-        background:
-          radial-gradient(circle at top right, rgba(27, 118, 156, 0.18), transparent 44%),
-          linear-gradient(180deg, #e7eef3 0%, rgba(231, 238, 243, 0) 100%);
-      }
-
-      .hero-band--specialist {
-        background:
-          linear-gradient(180deg, rgba(10, 18, 22, 0.98), rgba(13, 20, 23, 0.92)),
-          #0d1417;
-      }
-
-      .hero-band--maintenance {
-        background:
-          radial-gradient(circle at top left, rgba(115, 132, 69, 0.14), transparent 44%),
-          linear-gradient(180deg, #f0f2ea 0%, rgba(240, 242, 234, 0) 100%);
-      }
-
-      .hero-band--plainspoken {
-        background:
-          radial-gradient(circle at top left, rgba(191, 99, 53, 0.14), transparent 40%),
-          linear-gradient(180deg, #f3ece6 0%, rgba(243, 236, 230, 0) 100%);
-      }
-
-      .hero-band--legacy {
-        background:
-          linear-gradient(180deg, #f6f1eb 0%, rgba(246, 241, 235, 0) 100%);
-      }
-
-      .hero-band--bilingual {
-        background:
-          radial-gradient(circle at top right, rgba(201, 105, 57, 0.18), transparent 42%),
-          linear-gradient(180deg, #f6ede6 0%, rgba(246, 237, 230, 0) 100%);
-      }
-
-      .panel {
-        border: 1px solid var(--line);
-        border-radius: 1.8rem;
-        background: var(--surface);
-        box-shadow: var(--shadow);
-      }
-
-      .panel-body,
-      .form-panel,
-      .info-panel,
-      .contact-panel,
-      .owner-note {
-        padding: 1.55rem;
-      }
-
-      .headline {
-        margin: 0.5rem 0 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(2.6rem, 6vw, 5.7rem);
-        line-height: 0.92;
-        letter-spacing: 0.01em;
-      }
-
-      .headline--compact {
-        font-size: clamp(2.2rem, 5vw, 4.2rem);
-      }
-
-      .subhead {
-        margin: 0.95rem 0 0;
-        font-size: clamp(1.08rem, 1.8vw, 1.42rem);
-        line-height: 1.46;
-      }
-
-      .lede,
-      .muted-copy,
-      .faq-list p,
-      .service-card p,
-      .step-card p,
-      .proof-card p,
-      .contact-panel p,
-      .owner-note p,
-      .response-text {
-        color: var(--muted);
-        line-height: 1.75;
-      }
-
-      .hero-grid,
-      .split-grid,
-      .contact-grid {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .diag-grid,
-      .booking-grid,
-      .specialist-grid,
-      .maint-grid,
-      .plain-grid,
-      .legacy-grid,
-      .bilingual-grid {
-        display: grid;
-        gap: 1rem;
-        align-items: stretch;
-      }
-
-      .diag-grid { grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr); }
-      .booking-grid { grid-template-columns: minmax(340px, 0.86fr) minmax(0, 1.14fr); }
-      .specialist-grid { grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr); }
-      .maint-grid { grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.96fr); }
-      .plain-grid { grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.9fr); }
-      .legacy-grid { grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr); }
-      .bilingual-grid { grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr); }
-
-      .split-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .contact-grid {
-        grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
-        align-items: start;
-      }
-
-      .stack {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .signal-list,
-      .service-grid,
-      .step-grid,
-      .proof-grid,
-      .mini-grid,
-      .language-cards {
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .signal-list {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        margin-top: 1.35rem;
-      }
-
-      .service-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .mini-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .step-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .proof-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .language-cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin-top: 1rem;
-      }
-
-      .signal-chip,
-      .service-card,
-      .step-card,
-      .proof-card,
-      .language-card,
-      .quote-block,
-      .utility-card {
-        border: 1px solid var(--line);
-        border-radius: 1.25rem;
-        background: var(--surface-2);
-      }
-
-      .signal-chip,
-      .service-card,
-      .step-card,
-      .proof-card,
-      .utility-card,
-      .language-card {
-        padding: 1rem;
-      }
-
-      .signal-chip strong,
-      .service-card strong,
-      .step-card strong,
-      .proof-card strong,
-      .utility-card strong,
-      .language-card strong,
-      .form-response strong,
-      .faq-item strong,
-      .contact-panel strong {
-        display: block;
-        margin-bottom: 0.3rem;
-        font-size: 0.98rem;
-      }
-
-      .quote-block {
-        margin: 1.4rem 0 0;
-        padding: 1.2rem 1.2rem 1.3rem;
-        font-size: 1rem;
-        line-height: 1.72;
-      }
-
-      .quote-block cite {
-        display: block;
-        margin-top: 0.6rem;
-        font-style: normal;
-        color: var(--muted);
-      }
-
-      .utility-strip,
-      .legacy-navline {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-      }
-
-      .utility-strip a,
-      .legacy-navline a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 2.85rem;
-        padding: 0 0.95rem;
-        border-radius: 999px;
-        text-decoration: none;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.64);
-      }
-
-      .section {
-        padding: 1.15rem 0 0;
-      }
-
-      .section-head {
-        display: grid;
-        gap: 0.7rem;
-        margin-bottom: 1rem;
-      }
-
-      .section-title {
-        margin: 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(1.95rem, 4vw, 3.2rem);
-        line-height: 0.96;
-      }
-
-      .list-clean,
-      .faq-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .list-clean li,
-      .faq-item {
-        position: relative;
-        padding-left: 1rem;
-        line-height: 1.7;
-      }
-
-      .list-clean li::before,
-      .faq-item::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0.75rem;
-        width: 0.38rem;
-        height: 0.38rem;
-        border-radius: 999px;
-        background: var(--accent);
-      }
-
-      .faq-item strong {
-        margin-bottom: 0.25rem;
-      }
-
-      .option-grid,
-      .option-stack,
-      .request-form {
-        display: grid;
-        gap: 0.8rem;
-      }
-
-      .option-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .request-form input,
-      .request-form select,
-      .request-form textarea,
-      .option-grid button,
-      .option-stack button {
-        width: 100%;
-        min-height: 3.15rem;
-        padding: 0.9rem 1rem;
-        border-radius: 1rem;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.82);
-        color: var(--ink);
-        font: inherit;
-      }
-
-      .request-form textarea {
-        min-height: 7rem;
-        resize: vertical;
-      }
-
-      .request-form button,
-      .option-grid button,
-      .option-stack button {
-        cursor: pointer;
-      }
-
-      .request-form button {
-        border: 0;
-        background: var(--accent);
-        color: #fff;
-        font-weight: 800;
-      }
-
-      .option-grid button.is-active,
-      .option-stack button.is-active {
-        background: var(--accent-soft);
-      }
-
-      .option-output,
-      .form-response {
-        margin-top: 0.9rem;
-        padding: 1rem;
-        border-radius: 1rem;
-        border: 1px solid var(--line);
-        background: var(--surface-2);
-      }
-
-      .form-response[hidden] {
-        display: none;
-      }
-
-      .response-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-        margin-top: 0.85rem;
-      }
-
-      .legacy-service-list {
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .legacy-service {
-        display: grid;
-        gap: 0.3rem;
-        padding: 0.95rem 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .legacy-service:first-child {
-        border-top: 0;
-        padding-top: 0;
-      }
-
-      .contact-stack {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .contact-panel h2,
-      .owner-note h3 {
-        margin: 0.45rem 0 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(2rem, 4vw, 3rem);
-        line-height: 0.98;
-      }
-
-      .map-frame {
-        width: 100%;
-        min-height: 27rem;
-        border: 0;
-        border-radius: 1.75rem;
-      }
-
-      .owner-note {
-        background: linear-gradient(180deg, rgba(26, 20, 16, 0.96), rgba(26, 20, 16, 0.9));
-        color: #f3ece6;
-        box-shadow: none;
-        border-radius: 1.4rem;
-        padding: 1.2rem 1.25rem;
-      }
-
-      .owner-note .section-kicker,
-      .owner-note p {
-        color: rgba(243, 236, 230, 0.8);
-      }
-
-      .owner-note h3 {
-        font-size: clamp(1.45rem, 2.6vw, 2.05rem);
-      }
-
-      .owner-note .btn-secondary {
-        color: #f3ece6;
-        border-color: rgba(243, 236, 230, 0.24);
-      }
-
-      .site--booking {
-        --bg: #e8eef2;
-        --surface: #ffffff;
-        --surface-2: #f3f7fa;
-        --ink: #15252d;
-        --muted: #61727b;
-        --line: #cad6dd;
-        --accent: #1b769c;
-        --accent-soft: #dcecf3;
-        --header: rgba(255, 255, 255, 0.94);
-      }
-
-      .site--specialist {
-        --bg: #0d1417;
-        --surface: #141f23;
-        --surface-2: #1b292e;
-        --ink: #edf4f5;
-        --muted: #b7c6cb;
-        --line: #2c4248;
-        --accent: #4e9ab8;
-        --accent-soft: #224250;
-        --header: rgba(13, 20, 23, 0.92);
-        --shadow: none;
-      }
-
-      .site--maintenance {
-        --bg: #eef1e8;
-        --surface: #fbfcf8;
-        --surface-2: #f2f5eb;
-        --ink: #273019;
-        --muted: #667154;
-        --line: #d9decb;
-        --accent: #718243;
-        --accent-soft: #dde5ca;
-        --header: rgba(251, 252, 248, 0.93);
-      }
-
-      .site--plainspoken {
-        --bg: #f5eee8;
-        --surface: #fffaf7;
-        --surface-2: #f7eee8;
-        --ink: #241a15;
-        --muted: #6f6258;
-        --line: #dbcabe;
-        --accent: #c26437;
-        --accent-soft: #f0d6ca;
-      }
-
-      .site--legacy-simple {
-        --bg: #f4f0eb;
-        --surface: #fffdfa;
-        --surface-2: #f6f1eb;
-        --ink: #2b221b;
-        --muted: #72665b;
-        --line: #ddd1c5;
-        --accent: #a4683f;
-        --accent-soft: #f0dfd0;
-      }
-
-      .site--bilingual {
-        --bg: #f5ede7;
-        --surface: #fff8f3;
-        --surface-2: #f8ece4;
-        --ink: #261a14;
-        --muted: #75655b;
-        --line: #e0cbbd;
-        --accent: #c86a39;
-        --accent-soft: #f3d8ca;
-      }
-
-      .site--specialist .top-nav a,
-      .site--specialist .brand span,
-      .site--specialist .section-kicker,
-      .site--specialist .lede,
-      .site--specialist .muted-copy,
-      .site--specialist .faq-list p,
-      .site--specialist .service-card p,
-      .site--specialist .step-card p,
-      .site--specialist .proof-card p,
-      .site--specialist .contact-panel p,
-      .site--specialist .response-text,
-      .site--specialist .quote-block cite {
-        color: var(--muted);
-      }
-
-      .site--specialist .btn-secondary,
-      .site--specialist .utility-strip a,
-      .site--specialist .legacy-navline a {
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .site--specialist .map-frame {
-        box-shadow: 0 0 0 1px var(--line);
-      }
-
-      .site--legacy-simple .headline,
-      .site--plainspoken .headline {
-        letter-spacing: 0;
-      }
-
-      .site--legacy-simple .panel,
-      .site--plainspoken .panel,
-      .site--maintenance .panel,
-      .site--diagnostic .panel,
-      .site--booking .panel,
-      .site--bilingual .panel {
-        background: var(--surface);
-      }
-
-      .fade-up {
-        opacity: 0;
-        transform: translateY(16px);
-        animation: fade-up 0.55s ease forwards;
-      }
-
-      .delay-1 { animation-delay: 0.08s; }
-      .delay-2 { animation-delay: 0.16s; }
-
-      @keyframes fade-up {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @media (max-width: 1080px) {
-        .signal-list,
-        .step-grid,
-        .proof-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 980px) {
-        .diag-grid,
-        .booking-grid,
-        .specialist-grid,
-        .maint-grid,
-        .plain-grid,
-        .legacy-grid,
-        .bilingual-grid,
-        .split-grid,
-        .contact-grid,
-        .service-grid,
-        .mini-grid,
-        .language-cards {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 760px) {
-        .site-header .shell {
-          min-height: auto;
-          padding: 0.9rem 0;
-          align-items: start;
-          flex-direction: column;
-        }
-
-        .top-nav {
-          display: none;
-        }
-
-        .option-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .preview-note {
-          align-items: flex-start;
-          flex-direction: column;
-        }
-
-        .headline {
-          font-size: clamp(2.3rem, 14vw, 4rem);
-        }
-      }
-    </style>
-  </head>
-  <body class="site site--legacy-simple">
-    <div class="preview-note">
-      <span>Private preview for Westside Automotive Center owner review</span>
-      <div>
-        <a href="mailto:[REPLACE_ME]_contact@westsideautomotive.com?subject=I%20want%20the%20Westside%20Automotive%20Center%20website%20demo">Claim redesign</a>
-        <a href="mailto:[REPLACE_ME]_contact@westsideautomotive.com?subject=Questions%20about%20the%20Westside%20Automotive%20Center%20demo">Ask questions</a>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Westside Automotive Center — Papermill Drive, Knoxville TN</title>
+  <meta name="description" content="Westside Automotive Center on Papermill Drive, Knoxville TN. 4.6★ from 93 Google reviews. Practical local repair and maintenance. Call (865) 212-5524.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0b1422;
+      --card: #132038;
+      --card2: #1a2b48;
+      --gold: #f59e0b;
+      --gold-glow: rgba(245,158,11,0.12);
+      --text: #dce8f8;
+      --muted: #6e8aaa;
+      --border: #1e3050;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      padding-bottom: 80px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .site-header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+    }
+    .logo { font-size: 15px; font-weight: 800; color: var(--text); letter-spacing: -0.2px; line-height: 1.25; }
+    .logo-loc { font-size: 10px; font-weight: 600; color: var(--gold); display: block; text-transform: uppercase; letter-spacing: 0.08em; }
+    .hdr-phone {
+      font-size: 13px; font-weight: 700; color: var(--gold);
+      text-decoration: none; background: var(--gold-glow);
+      padding: 6px 12px; border-radius: 20px;
+      border: 1px solid rgba(245,158,11,0.25);
+    }
+    .hero {
+      padding: 30px 18px 26px;
+      background: linear-gradient(165deg, var(--card) 0%, var(--bg) 60%);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--gold);
+      border-bottom: 1px solid rgba(245,158,11,0.3);
+      padding-bottom: 10px; margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: 28px; font-weight: 800; line-height: 1.18;
+      margin-bottom: 10px; letter-spacing: -0.3px;
+    }
+    .hero-sub { font-size: 15px; color: var(--muted); margin-bottom: 18px; line-height: 1.5; }
+    .hero-trust {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 14px;
+      display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+    }
+    .trust-stars { color: var(--gold); font-size: 15px; letter-spacing: 2px; }
+    .trust-info { font-size: 13px; }
+    .trust-info strong { font-weight: 700; color: var(--text); }
+    .trust-info span { color: var(--muted); font-size: 11px; display: block; margin-top: 1px; }
+    .hero-quote {
+      font-size: 13px; font-style: italic; color: var(--muted);
+      border-left: 2px solid var(--gold); padding-left: 10px; line-height: 1.5;
+    }
+    .section { padding: 24px 18px 0; }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--gold); margin-bottom: 6px;
+    }
+    .section-title { font-size: 18px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.2px; }
+    /* URGENCY SWITCHER */
+    .urgency-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+    }
+    .urgency-tabs {
+      display: flex; background: var(--card2);
+    }
+    .u-tab {
+      flex: 1; padding: 13px 8px; text-align: center;
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px; font-weight: 700; color: var(--muted);
+      background: none; border: none; cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .u-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .u-panel { display: none; padding: 20px 18px; }
+    .u-panel.active { display: block; }
+    .u-headline { font-size: 17px; font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+    .u-body { font-size: 14px; color: var(--muted); margin-bottom: 18px; line-height: 1.55; }
+    .u-items { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+    .u-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: var(--text);
+    }
+    .u-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+    .u-cta {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--gold); color: #000;
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px; font-weight: 800;
+      text-decoration: none; padding: 15px 20px;
+      border-radius: 10px;
+    }
+    /* SERVICES GRID */
+    .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .svc-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px;
+    }
+    .svc-icon { font-size: 22px; margin-bottom: 8px; }
+    .svc-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
+    .svc-body { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    /* PROOF */
+    .proof-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 18px;
+    }
+    .stat-row { display: flex; margin-bottom: 16px; }
+    .stat { flex: 1; text-align: center; }
+    .stat-div { width: 1px; background: var(--border); flex-shrink: 0; }
+    .stat-num { font-size: 22px; font-weight: 800; color: var(--gold); line-height: 1.1; }
+    .stat-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
+    .proof-quote {
+      font-size: 13px; font-style: italic; color: var(--muted);
+      border-left: 2px solid var(--gold); padding-left: 12px; line-height: 1.55;
+    }
+    /* CONTACT */
+    .contact-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    .contact-hdr { background: var(--gold); padding: 13px 18px; }
+    .contact-hdr-name { font-size: 14px; font-weight: 800; color: #000; }
+    .contact-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 13px; }
+    .c-row { display: flex; align-items: flex-start; gap: 12px; }
+    .c-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+    .c-text { font-size: 14px; line-height: 1.45; }
+    .c-text a { color: var(--gold); text-decoration: none; font-weight: 700; }
+    .c-text small { color: var(--muted); font-size: 12px; display: block; margin-top: 2px; }
+    .section-bottom-pad { padding-bottom: 28px; }
+    .sticky-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--card); border-top: 1px solid var(--border);
+      display: flex; gap: 10px; padding: 10px 16px;
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+      z-index: 100;
+    }
+    .sb-btn {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      gap: 7px; padding: 13px 12px; border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px; font-weight: 800;
+      text-decoration: none; border: none; cursor: pointer;
+    }
+    .sb-call { background: var(--gold); color: #000; }
+    .sb-dir { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">
+    Westside Automotive Center
+    <span class="logo-loc">Papermill Drive · Knoxville, TN</span>
+  </div>
+  <a href="tel:+18652125524" class="hdr-phone">(865) 212-5524</a>
+</header>
+
+<section class="hero">
+  <p class="hero-badge">🔧 Local Auto Repair &amp; Maintenance</p>
+  <h1 class="hero-title">Practical local service<br>on Papermill Drive.</h1>
+  <p class="hero-sub">Tell us how soon you need help — we'll point you to the right next step.</p>
+  <div class="hero-trust">
+    <span class="trust-stars">★★★★★</span>
+    <div class="trust-info">
+      <strong>4.6 · 93 Google reviews</strong>
+      <span>4401 Papermill Dr NW, Knoxville, TN</span>
+    </div>
+  </div>
+  <p class="hero-quote">"Best repair shop in Knoxville."</p>
+</section>
+
+<section class="section">
+  <p class="section-eyebrow">How Soon Do You Need Help?</p>
+  <p class="section-title">Pick your timing.</p>
+  <div class="urgency-card">
+    <div class="urgency-tabs">
+      <button class="u-tab active" onclick="showUrgency('today', this)">Today</button>
+      <button class="u-tab" onclick="showUrgency('week', this)">This week</button>
+      <button class="u-tab" onclick="showUrgency('plan', this)">Planning ahead</button>
     </div>
 
-    <header class="site-header">
-      <div class="shell">
-        <div class="brand">
-          <span>Papermill Drive service preview</span>
-          <strong>Westside Automotive Center</strong>
-        </div>
-        <nav class="top-nav">
-            <a href="https://westsideauto.weebly.com/">Home</a>
-            <a href="https://westsideauto.weebly.com/about.html">About</a>
-            <a href="https://westsideauto.weebly.com/services.html">Services</a>
-            <a href="https://westsideauto.weebly.com/contact.html">Contact</a>
-        </nav>
-        <div class="header-actions">
-          <a class="btn btn-primary" href="#request">Choose timing</a>
-          <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Westside+Automotive+Center+4401+Papermill+Dr+NW%2C+Knoxville%2C+TN+37909" target="_blank" rel="noopener noreferrer">Directions</a>
-        </div>
+    <div class="u-panel active" id="u-today">
+      <p class="u-headline">Something needs attention now.</p>
+      <p class="u-body">Give us a call — we'll walk through the issue with you and figure out whether you should come in right away.</p>
+      <div class="u-items">
+        <div class="u-item"><span class="u-dot"></span>Warning light just came on</div>
+        <div class="u-item"><span class="u-dot"></span>Braking or steering feels wrong</div>
+        <div class="u-item"><span class="u-dot"></span>Something started making noise</div>
+        <div class="u-item"><span class="u-dot"></span>Car is running rough or stalling</div>
       </div>
-    </header>
+      <a href="tel:+18652125524" class="u-cta">📞 Call the shop now</a>
+    </div>
 
-    <main>
-        <section class="hero-band hero-band--legacy">
-          <div class="shell">
-            <div class="legacy-navline fade-up">
-                <a href="https://westsideauto.weebly.com/" target="_blank" rel="noopener noreferrer">Home</a>
-                <a href="https://westsideauto.weebly.com/about.html" target="_blank" rel="noopener noreferrer">About</a>
-                <a href="https://westsideauto.weebly.com/services.html" target="_blank" rel="noopener noreferrer">Services</a>
-                <a href="https://westsideauto.weebly.com/contact.html" target="_blank" rel="noopener noreferrer">Contact</a>
-            </div>
-            <div class="legacy-grid" style="margin-top: 1rem;">
-              <div class="panel panel-body fade-up delay-1">
-                <span class="section-kicker">Papermill Drive service preview</span>
-                <h1 class="headline headline--compact">Westside Automotive Center</h1>
-                <p class="subhead">Answer the urgency question before the customer leaves the search result.</p>
-                <p class="lede">This version is organized around timing: today, this week, or planning ahead. It feels different from the other shop demos because it is structured around urgency rather than generic service categories.</p>
-                <div class="action-row">
-<a class="btn btn-primary" href="tel:+18652125524">Call the shop</a>                  <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Westside+Automotive+Center+4401+Papermill+Dr+NW%2C+Knoxville%2C+TN+37909" target="_blank" rel="noopener noreferrer">Get directions</a>
-<a class="btn btn-secondary" href="https://westsideauto.weebly.com/" target="_blank" rel="noopener noreferrer">Open current site</a>                </div>
-                <blockquote class="quote-block">
-                  Review quote: &#34;Best repair shop in Knoxville.&#34;
-                  <cite>Keep the useful old bones, but make them credible.</cite>
-                </blockquote>
-              </div>
-              <aside class="panel form-panel fade-up delay-2" id="request">
-                <span class="section-kicker">Timing-first intake</span>
-                <h2 class="section-title">How soon do you need help?</h2>
-                <p class="muted-copy">A different kind of homepage interaction built around timing instead of generic service lists.</p>
-                <div class="option-stack" data-option-panel>
-                    <button type="button" class="is-active" data-panel-title="Today" data-panel-body="Show the call path first and keep the directions link obvious.">Today</button>
-                    <button type="button"  data-panel-title="This week" data-panel-body="Present a lighter booking/request path with maintenance and repair lanes.">This week</button>
-                    <button type="button"  data-panel-title="Planning ahead" data-panel-body="Highlight upkeep, seasonal care, and a lower-pressure contact path.">Planning ahead</button>
-                </div>
-                <div class="option-output" data-panel-output>
-                  <strong>Today</strong>
-                  <span>Show the call path first and keep the directions link obvious.</span>
-                </div>
-              </aside>
-            </div>
-          </div>
-        </section>
+    <div class="u-panel" id="u-week">
+      <p class="u-headline">You want to schedule something soon.</p>
+      <p class="u-body">Call us and we'll find a drop-off time that works. No pressure — just tell us what the car has been doing.</p>
+      <div class="u-items">
+        <div class="u-item"><span class="u-dot"></span>Something has been going on for a while</div>
+        <div class="u-item"><span class="u-dot"></span>Maintenance is overdue</div>
+        <div class="u-item"><span class="u-dot"></span>Follow-up from a previous visit</div>
+        <div class="u-item"><span class="u-dot"></span>Tires or seasonal preparation</div>
+      </div>
+      <a href="tel:+18652125524" class="u-cta">📞 Call to schedule</a>
+    </div>
 
-        <section class="section" id="services">
-          <div class="shell split-grid">
-            <div class="panel info-panel">
-              <div class="section-head">
-                <span class="section-kicker">Preserve the useful structure</span>
-                <h2 class="section-title">Home, About, Services, and Contact stay obvious.</h2>
-              </div>
-              <div class="legacy-service-list">
-                  <article class="legacy-service">
-                    <strong>Needs attention today</strong>
-                    <p class="muted-copy">For noises, lights, brake feel, or anything that just changed suddenly.</p>
-                  </article>
-                  <article class="legacy-service">
-                    <strong>Schedule this week</strong>
-                    <p class="muted-copy">For recurring concerns, maintenance, or known follow-up service.</p>
-                  </article>
-                  <article class="legacy-service">
-                    <strong>Plan ahead</strong>
-                    <p class="muted-copy">For tires, seasonal care, and general upkeep when there is time to decide.</p>
-                  </article>
-                  <article class="legacy-service">
-                    <strong>Local convenience</strong>
-                    <p class="muted-copy">The page should feel easy and practical for nearby drivers.</p>
-                  </article>
-              </div>
-            </div>
-            <div class="panel info-panel" id="proof">
-              <div class="section-head">
-                <span class="section-kicker">Local trust</span>
-                <h2 class="section-title">This feels like a better Westside site, not a generic redesign stunt.</h2>
-              </div>
-              <div class="proof-grid">
-                  <article class="proof-card">
-                    <strong>Urgency as navigation</strong>
-                    <p>This site behaves more like a triage surface than a generic homepage.</p>
-                  </article>
-                  <article class="proof-card">
-                    <strong>Good fit for mobile search</strong>
-                    <p>A customer can identify their timing need quickly and move to the right action.</p>
-                  </article>
-                  <article class="proof-card">
-                    <strong>Better than a flat list of services</strong>
-                    <p>The page starts with the decision the customer is already making.</p>
-                  </article>
-              </div>
-            </div>
-          </div>
-        </section>
+    <div class="u-panel" id="u-plan">
+      <p class="u-headline">You're thinking ahead.</p>
+      <p class="u-body">Good time to ask about upkeep, upcoming maintenance, or seasonal service. Low-pressure conversation welcome.</p>
+      <div class="u-items">
+        <div class="u-item"><span class="u-dot"></span>Tires before winter or summer</div>
+        <div class="u-item"><span class="u-dot"></span>Planning a high-mileage checkpoint</div>
+        <div class="u-item"><span class="u-dot"></span>General health check before a trip</div>
+        <div class="u-item"><span class="u-dot"></span>Asking about a vehicle you're considering buying</div>
+      </div>
+      <a href="tel:+18652125524" class="u-cta">📞 Call anytime</a>
+    </div>
+  </div>
+</section>
 
-      <section class="section" id="contact">
-        <div class="shell contact-grid">
-          <div class="contact-stack">
-            <div class="panel contact-panel">
-              <span class="section-kicker">Contact and location</span>
-              <h2>Westside Automotive Center</h2>
-              <p>4401 Papermill Dr NW, Knoxville, TN 37909; primary focus remains Knoxville, Tennessee.</p>
-              <div class="action-row">
-<a class="btn btn-primary" href="tel:+18652125524">Call (865) 212-5524</a>                <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Westside+Automotive+Center+4401+Papermill+Dr+NW%2C+Knoxville%2C+TN+37909" target="_blank" rel="noopener noreferrer">Get directions</a>
-<a class="btn btn-secondary" href="https://westsideauto.weebly.com/" target="_blank" rel="noopener noreferrer">Open current site</a>              </div>
-              <ul class="list-clean" style="margin-top: 1rem;">
-                  <li>Strong local review profile and good quote quality.</li>
-                  <li>Public mentions confirm tires and U-Haul as useful service cues.</li>
-              </ul>
-            </div>
-            <div class="owner-note">
-              <span class="section-kicker">Owner note</span>
-              <h3>Claim the redesign or request revisions.</h3>
-              <p>The customer-facing hierarchy stays focused on calls, directions, and service clarity. Owner-only actions stay here at the bottom.</p>
-              <div class="action-row">
-                <a class="btn btn-primary" href="mailto:[REPLACE_ME]_contact@westsideautomotive.com?subject=I%20want%20the%20Westside%20Automotive%20Center%20website%20demo">Claim redesign</a>
-                <a class="btn btn-secondary" href="mailto:[REPLACE_ME]_contact@westsideautomotive.com?subject=Questions%20about%20the%20Westside%20Automotive%20Center%20demo">Ask questions</a>
-              </div>
-            </div>
-          </div>
-          <div class="stack">
-            <div class="panel contact-panel" id="proof">
-              <span class="section-kicker">Trust signals</span>
-              <ul class="list-clean">
-                  <li>4.6 rating from 93 Google reviews</li>
-                  <li>4401 Papermill Dr NW, Knoxville, TN 37909</li>
-                  <li>(865) 212-5524</li>
-                  <li>Closed · Opens 10 AM</li>
-                  <li>Existing site title: Home</li>
-              </ul>
-            </div>
-            <iframe class="map-frame" src="https://www.google.com/maps?q=Westside+Automotive+Center+4401+Papermill+Dr+NW%2C+Knoxville%2C+TN+37909&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map for Westside Automotive Center"></iframe>
-          </div>
-        </div>
-      </section>
-    </main>
+<section class="section section-bottom-pad">
+  <p class="section-eyebrow">What We Do</p>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-icon">🔧</div>
+      <p class="svc-title">Routine maintenance</p>
+      <p class="svc-body">Oil, filters, fluids, and scheduled upkeep for all makes.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🛑</div>
+      <p class="svc-title">Brakes &amp; steering</p>
+      <p class="svc-body">Pads, rotors, fluid flush, and steering system service.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🔍</div>
+      <p class="svc-title">Diagnostics</p>
+      <p class="svc-body">Warning lights, drivability issues, and inspection service.</p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🚐</div>
+      <p class="svc-title">Tires &amp; U-Haul</p>
+      <p class="svc-body">Tire service and U-Haul rentals available on site.</p>
+    </div>
+  </div>
+</section>
 
-    <script>
-      const callHref = "tel:+18652125524";
-      const callLabel = Call (865) 212-5524;
-      const directionsHref = "https://www.google.com/maps/search/?api=1\u0026query=Westside+Automotive+Center+4401+Papermill+Dr+NW%2C+Knoxville%2C+TN+37909";
-      const currentSiteUrl = "https://westsideauto.weebly.com/";
+<section class="section section-bottom-pad">
+  <p class="section-eyebrow">Trusted by Knoxville</p>
+  <div class="proof-card">
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-num">4.6★</div>
+        <div class="stat-lbl">Rating</div>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <div class="stat-num">93</div>
+        <div class="stat-lbl">Reviews</div>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <div class="stat-num">Local</div>
+        <div class="stat-lbl">Papermill Dr</div>
+      </div>
+    </div>
+    <p class="proof-quote">"Best repair shop in Knoxville."</p>
+  </div>
+</section>
 
-      function escapeHtml(value) {
-        return String(value)
-          .replaceAll("&", "&amp;")
-          .replaceAll("<", "&lt;")
-          .replaceAll(">", "&gt;")
-          .replaceAll('"', "&quot;")
-          .replaceAll("'", "&#39;");
-      }
+<section class="section section-bottom-pad">
+  <p class="section-eyebrow">Find Us</p>
+  <div class="contact-card">
+    <div class="contact-hdr">
+      <p class="contact-hdr-name">Westside Automotive Center</p>
+    </div>
+    <div class="contact-body">
+      <div class="c-row">
+        <span class="c-icon">📍</span>
+        <p class="c-text">4401 Papermill Dr NW<br>Knoxville, TN 37909</p>
+      </div>
+      <div class="c-row">
+        <span class="c-icon">📞</span>
+        <p class="c-text">
+          <a href="tel:+18652125524">(865) 212-5524</a>
+          <small>Opens 10 AM · Mon–Sat · Call for hours</small>
+        </p>
+      </div>
+      <div class="c-row">
+        <span class="c-icon">✉️</span>
+        <p class="c-text">
+          <a href="mailto:contact@westside-automotive-center.com">contact@westside-automotive-center.com</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      function responseMarkup(summary) {
-        const actions = [];
-        if (callHref) {
-          actions.push(`<a class="btn btn-primary" href="${callHref}">${escapeHtml(callLabel)}</a>`);
-        }
-        actions.push(`<a class="btn btn-secondary" href="${escapeHtml(directionsHref)}" target="_blank" rel="noopener noreferrer">Get directions</a>`);
-        if (currentSiteUrl) {
-          actions.push(`<a class="btn btn-secondary" href="${escapeHtml(currentSiteUrl)}" target="_blank" rel="noopener noreferrer">Open current site</a>`);
-        }
-        return `
-          <strong>Preview next step</strong>
-          <p class="response-text">${summary}</p>
-          <div class="response-actions">${actions.join("")}</div>
-        `;
-      }
+<div class="sticky-bar">
+  <a href="tel:+18652125524" class="sb-btn sb-call">📞 Call Now</a>
+  <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW+Knoxville+TN+37909"
+     target="_blank" rel="noopener" class="sb-btn sb-dir">🗺 Directions</a>
+</div>
 
-      document.querySelectorAll("[data-demo-form]").forEach((form) => {
-        const response = form.parentElement.querySelector("[data-form-response]");
-        form.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const values = Array.from(new FormData(form).entries())
-            .filter(([, value]) => value && String(value).trim())
-            .map(([key, value]) => `${escapeHtml(key)}: ${escapeHtml(value)}`);
-          const summary = values.length
-            ? `This preview would hand the shop a clearer intake: ${values.join(" · ")}.`
-            : "This preview turns the first click into a clearer service request instead of a dead-end brochure.";
-          response.hidden = false;
-          response.innerHTML = responseMarkup(summary);
-        });
-      });
-
-      document.querySelectorAll("[data-option-panel]").forEach((panel) => {
-        const output = panel.parentElement.querySelector("[data-panel-output]");
-        panel.querySelectorAll("button").forEach((button) => {
-          button.addEventListener("click", () => {
-            panel.querySelectorAll("button").forEach((candidate) => candidate.classList.remove("is-active"));
-            button.classList.add("is-active");
-            output.innerHTML = `<strong>${escapeHtml(button.dataset.panelTitle)}</strong><span class="response-text">${escapeHtml(button.dataset.panelBody)}</span>`;
-          });
-        });
-      });
-
-      document.querySelectorAll("[data-translate-buttons]").forEach((panel) => {
-        const textarea = panel.parentElement.querySelector("textarea");
-        panel.querySelectorAll("button").forEach((button) => {
-          button.addEventListener("click", () => {
-            panel.querySelectorAll("button").forEach((candidate) => candidate.classList.remove("is-active"));
-            button.classList.add("is-active");
-            textarea.placeholder = button.dataset.translation === "es" ? textarea.dataset.es : textarea.dataset.en;
-          });
-        });
-      });
-    </script>
-  </body>
+<script>
+  function showUrgency(id, el) {
+    document.querySelectorAll('.u-panel').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelectorAll('.u-tab').forEach(function(t){ t.classList.remove('active'); });
+    document.getElementById('u-' + id).classList.add('active');
+    el.classList.add('active');
+  }
+</script>
+</body>
 </html>

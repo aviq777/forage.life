@@ -1,947 +1,319 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>S.H.A. Automotive | Auto repair in Knoxville, TN</title>
-    <meta name="description" content="S.H.A. Automotive in Knoxville, Tennessee. Pick the problem. See the path. Call with confidence. Call, directions, and the main service paths stay obvious." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <style>
-      :root {
-        --bg: #f2ece6;
-        --surface: #fffaf5;
-        --surface-2: #f7f1ea;
-        --ink: #1f1b18;
-        --muted: #6f655d;
-        --line: #d9cec3;
-        --accent: #d06a39;
-        --accent-soft: #f2d8ca;
-        --header: rgba(255, 250, 245, 0.92);
-        --max: 1180px;
-        --shadow: 0 18px 48px rgba(20, 16, 12, 0.06);
-      }
-
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--ink);
-        font-family: "Manrope", sans-serif;
-      }
-
-      a { color: inherit; }
-
-      .preview-note {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        padding: 0.55rem 1rem;
-        background: #17120f;
-        color: #f4ede7;
-        font-size: 0.8rem;
-      }
-
-      .preview-note a {
-        text-decoration: none;
-        opacity: 0.86;
-      }
-
-      .shell {
-        width: min(var(--max), calc(100% - 2rem));
-        margin: 0 auto;
-      }
-
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 30;
-        border-bottom: 1px solid var(--line);
-        backdrop-filter: blur(14px);
-        background: var(--header);
-      }
-
-      .site-header .shell {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        min-height: 4.9rem;
-      }
-
-      .brand {
-        display: grid;
-        gap: 0.18rem;
-      }
-
-      .brand span,
-      .section-kicker {
-        font-size: 0.72rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-
-      .brand strong {
-        font-size: 1.04rem;
-        line-height: 1;
-      }
-
-      .top-nav,
-      .header-actions,
-      .action-row,
-      .quick-links,
-      .language-row {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-      }
-
-      .top-nav a {
-        text-decoration: none;
-        color: var(--muted);
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 3rem;
-        padding: 0 1.15rem;
-        border-radius: 999px;
-        border: 1px solid transparent;
-        text-decoration: none;
-        font-weight: 800;
-        letter-spacing: 0.01em;
-      }
-
-      .btn-primary {
-        background: var(--accent);
-        color: #fff;
-      }
-
-      .btn-secondary {
-        background: transparent;
-        color: inherit;
-        border-color: var(--line);
-      }
-
-      .hero-band {
-        padding: 3.2rem 0 2.5rem;
-      }
-
-      .hero-band--diagnostic {
-        background:
-          radial-gradient(circle at top left, rgba(208, 106, 57, 0.18), transparent 48%),
-          linear-gradient(180deg, #f4ece5 0%, rgba(244, 236, 229, 0) 100%);
-      }
-
-      .hero-band--booking {
-        background:
-          radial-gradient(circle at top right, rgba(27, 118, 156, 0.18), transparent 44%),
-          linear-gradient(180deg, #e7eef3 0%, rgba(231, 238, 243, 0) 100%);
-      }
-
-      .hero-band--specialist {
-        background:
-          linear-gradient(180deg, rgba(10, 18, 22, 0.98), rgba(13, 20, 23, 0.92)),
-          #0d1417;
-      }
-
-      .hero-band--maintenance {
-        background:
-          radial-gradient(circle at top left, rgba(115, 132, 69, 0.14), transparent 44%),
-          linear-gradient(180deg, #f0f2ea 0%, rgba(240, 242, 234, 0) 100%);
-      }
-
-      .hero-band--plainspoken {
-        background:
-          radial-gradient(circle at top left, rgba(191, 99, 53, 0.14), transparent 40%),
-          linear-gradient(180deg, #f3ece6 0%, rgba(243, 236, 230, 0) 100%);
-      }
-
-      .hero-band--legacy {
-        background:
-          linear-gradient(180deg, #f6f1eb 0%, rgba(246, 241, 235, 0) 100%);
-      }
-
-      .hero-band--bilingual {
-        background:
-          radial-gradient(circle at top right, rgba(201, 105, 57, 0.18), transparent 42%),
-          linear-gradient(180deg, #f6ede6 0%, rgba(246, 237, 230, 0) 100%);
-      }
-
-      .panel {
-        border: 1px solid var(--line);
-        border-radius: 1.8rem;
-        background: var(--surface);
-        box-shadow: var(--shadow);
-      }
-
-      .panel-body,
-      .form-panel,
-      .info-panel,
-      .contact-panel,
-      .owner-note {
-        padding: 1.55rem;
-      }
-
-      .headline {
-        margin: 0.5rem 0 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(2.6rem, 6vw, 5.7rem);
-        line-height: 0.92;
-        letter-spacing: 0.01em;
-      }
-
-      .headline--compact {
-        font-size: clamp(2.2rem, 5vw, 4.2rem);
-      }
-
-      .subhead {
-        margin: 0.95rem 0 0;
-        font-size: clamp(1.08rem, 1.8vw, 1.42rem);
-        line-height: 1.46;
-      }
-
-      .lede,
-      .muted-copy,
-      .faq-list p,
-      .service-card p,
-      .step-card p,
-      .proof-card p,
-      .contact-panel p,
-      .owner-note p,
-      .response-text {
-        color: var(--muted);
-        line-height: 1.75;
-      }
-
-      .hero-grid,
-      .split-grid,
-      .contact-grid {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .diag-grid,
-      .booking-grid,
-      .specialist-grid,
-      .maint-grid,
-      .plain-grid,
-      .legacy-grid,
-      .bilingual-grid {
-        display: grid;
-        gap: 1rem;
-        align-items: stretch;
-      }
-
-      .diag-grid { grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr); }
-      .booking-grid { grid-template-columns: minmax(340px, 0.86fr) minmax(0, 1.14fr); }
-      .specialist-grid { grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr); }
-      .maint-grid { grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.96fr); }
-      .plain-grid { grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.9fr); }
-      .legacy-grid { grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr); }
-      .bilingual-grid { grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr); }
-
-      .split-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .contact-grid {
-        grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
-        align-items: start;
-      }
-
-      .stack {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .signal-list,
-      .service-grid,
-      .step-grid,
-      .proof-grid,
-      .mini-grid,
-      .language-cards {
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .signal-list {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        margin-top: 1.35rem;
-      }
-
-      .service-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .mini-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .step-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .proof-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .language-cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin-top: 1rem;
-      }
-
-      .signal-chip,
-      .service-card,
-      .step-card,
-      .proof-card,
-      .language-card,
-      .quote-block,
-      .utility-card {
-        border: 1px solid var(--line);
-        border-radius: 1.25rem;
-        background: var(--surface-2);
-      }
-
-      .signal-chip,
-      .service-card,
-      .step-card,
-      .proof-card,
-      .utility-card,
-      .language-card {
-        padding: 1rem;
-      }
-
-      .signal-chip strong,
-      .service-card strong,
-      .step-card strong,
-      .proof-card strong,
-      .utility-card strong,
-      .language-card strong,
-      .form-response strong,
-      .faq-item strong,
-      .contact-panel strong {
-        display: block;
-        margin-bottom: 0.3rem;
-        font-size: 0.98rem;
-      }
-
-      .quote-block {
-        margin: 1.4rem 0 0;
-        padding: 1.2rem 1.2rem 1.3rem;
-        font-size: 1rem;
-        line-height: 1.72;
-      }
-
-      .quote-block cite {
-        display: block;
-        margin-top: 0.6rem;
-        font-style: normal;
-        color: var(--muted);
-      }
-
-      .utility-strip,
-      .legacy-navline {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-      }
-
-      .utility-strip a,
-      .legacy-navline a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 2.85rem;
-        padding: 0 0.95rem;
-        border-radius: 999px;
-        text-decoration: none;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.64);
-      }
-
-      .section {
-        padding: 1.15rem 0 0;
-      }
-
-      .section-head {
-        display: grid;
-        gap: 0.7rem;
-        margin-bottom: 1rem;
-      }
-
-      .section-title {
-        margin: 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(1.95rem, 4vw, 3.2rem);
-        line-height: 0.96;
-      }
-
-      .list-clean,
-      .faq-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .list-clean li,
-      .faq-item {
-        position: relative;
-        padding-left: 1rem;
-        line-height: 1.7;
-      }
-
-      .list-clean li::before,
-      .faq-item::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0.75rem;
-        width: 0.38rem;
-        height: 0.38rem;
-        border-radius: 999px;
-        background: var(--accent);
-      }
-
-      .faq-item strong {
-        margin-bottom: 0.25rem;
-      }
-
-      .option-grid,
-      .option-stack,
-      .request-form {
-        display: grid;
-        gap: 0.8rem;
-      }
-
-      .option-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .request-form input,
-      .request-form select,
-      .request-form textarea,
-      .option-grid button,
-      .option-stack button {
-        width: 100%;
-        min-height: 3.15rem;
-        padding: 0.9rem 1rem;
-        border-radius: 1rem;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.82);
-        color: var(--ink);
-        font: inherit;
-      }
-
-      .request-form textarea {
-        min-height: 7rem;
-        resize: vertical;
-      }
-
-      .request-form button,
-      .option-grid button,
-      .option-stack button {
-        cursor: pointer;
-      }
-
-      .request-form button {
-        border: 0;
-        background: var(--accent);
-        color: #fff;
-        font-weight: 800;
-      }
-
-      .option-grid button.is-active,
-      .option-stack button.is-active {
-        background: var(--accent-soft);
-      }
-
-      .option-output,
-      .form-response {
-        margin-top: 0.9rem;
-        padding: 1rem;
-        border-radius: 1rem;
-        border: 1px solid var(--line);
-        background: var(--surface-2);
-      }
-
-      .form-response[hidden] {
-        display: none;
-      }
-
-      .response-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-        margin-top: 0.85rem;
-      }
-
-      .legacy-service-list {
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .legacy-service {
-        display: grid;
-        gap: 0.3rem;
-        padding: 0.95rem 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .legacy-service:first-child {
-        border-top: 0;
-        padding-top: 0;
-      }
-
-      .contact-stack {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .contact-panel h2,
-      .owner-note h3 {
-        margin: 0.45rem 0 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(2rem, 4vw, 3rem);
-        line-height: 0.98;
-      }
-
-      .map-frame {
-        width: 100%;
-        min-height: 27rem;
-        border: 0;
-        border-radius: 1.75rem;
-      }
-
-      .owner-note {
-        background: linear-gradient(180deg, rgba(26, 20, 16, 0.96), rgba(26, 20, 16, 0.9));
-        color: #f3ece6;
-        box-shadow: none;
-        border-radius: 1.4rem;
-        padding: 1.2rem 1.25rem;
-      }
-
-      .owner-note .section-kicker,
-      .owner-note p {
-        color: rgba(243, 236, 230, 0.8);
-      }
-
-      .owner-note h3 {
-        font-size: clamp(1.45rem, 2.6vw, 2.05rem);
-      }
-
-      .owner-note .btn-secondary {
-        color: #f3ece6;
-        border-color: rgba(243, 236, 230, 0.24);
-      }
-
-      .site--booking {
-        --bg: #e8eef2;
-        --surface: #ffffff;
-        --surface-2: #f3f7fa;
-        --ink: #15252d;
-        --muted: #61727b;
-        --line: #cad6dd;
-        --accent: #1b769c;
-        --accent-soft: #dcecf3;
-        --header: rgba(255, 255, 255, 0.94);
-      }
-
-      .site--specialist {
-        --bg: #0d1417;
-        --surface: #141f23;
-        --surface-2: #1b292e;
-        --ink: #edf4f5;
-        --muted: #b7c6cb;
-        --line: #2c4248;
-        --accent: #4e9ab8;
-        --accent-soft: #224250;
-        --header: rgba(13, 20, 23, 0.92);
-        --shadow: none;
-      }
-
-      .site--maintenance {
-        --bg: #eef1e8;
-        --surface: #fbfcf8;
-        --surface-2: #f2f5eb;
-        --ink: #273019;
-        --muted: #667154;
-        --line: #d9decb;
-        --accent: #718243;
-        --accent-soft: #dde5ca;
-        --header: rgba(251, 252, 248, 0.93);
-      }
-
-      .site--plainspoken {
-        --bg: #f5eee8;
-        --surface: #fffaf7;
-        --surface-2: #f7eee8;
-        --ink: #241a15;
-        --muted: #6f6258;
-        --line: #dbcabe;
-        --accent: #c26437;
-        --accent-soft: #f0d6ca;
-      }
-
-      .site--legacy-simple {
-        --bg: #f4f0eb;
-        --surface: #fffdfa;
-        --surface-2: #f6f1eb;
-        --ink: #2b221b;
-        --muted: #72665b;
-        --line: #ddd1c5;
-        --accent: #a4683f;
-        --accent-soft: #f0dfd0;
-      }
-
-      .site--bilingual {
-        --bg: #f5ede7;
-        --surface: #fff8f3;
-        --surface-2: #f8ece4;
-        --ink: #261a14;
-        --muted: #75655b;
-        --line: #e0cbbd;
-        --accent: #c86a39;
-        --accent-soft: #f3d8ca;
-      }
-
-      .site--specialist .top-nav a,
-      .site--specialist .brand span,
-      .site--specialist .section-kicker,
-      .site--specialist .lede,
-      .site--specialist .muted-copy,
-      .site--specialist .faq-list p,
-      .site--specialist .service-card p,
-      .site--specialist .step-card p,
-      .site--specialist .proof-card p,
-      .site--specialist .contact-panel p,
-      .site--specialist .response-text,
-      .site--specialist .quote-block cite {
-        color: var(--muted);
-      }
-
-      .site--specialist .btn-secondary,
-      .site--specialist .utility-strip a,
-      .site--specialist .legacy-navline a {
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .site--specialist .map-frame {
-        box-shadow: 0 0 0 1px var(--line);
-      }
-
-      .site--legacy-simple .headline,
-      .site--plainspoken .headline {
-        letter-spacing: 0;
-      }
-
-      .site--legacy-simple .panel,
-      .site--plainspoken .panel,
-      .site--maintenance .panel,
-      .site--diagnostic .panel,
-      .site--booking .panel,
-      .site--bilingual .panel {
-        background: var(--surface);
-      }
-
-      .fade-up {
-        opacity: 0;
-        transform: translateY(16px);
-        animation: fade-up 0.55s ease forwards;
-      }
-
-      .delay-1 { animation-delay: 0.08s; }
-      .delay-2 { animation-delay: 0.16s; }
-
-      @keyframes fade-up {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @media (max-width: 1080px) {
-        .signal-list,
-        .step-grid,
-        .proof-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 980px) {
-        .diag-grid,
-        .booking-grid,
-        .specialist-grid,
-        .maint-grid,
-        .plain-grid,
-        .legacy-grid,
-        .bilingual-grid,
-        .split-grid,
-        .contact-grid,
-        .service-grid,
-        .mini-grid,
-        .language-cards {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 760px) {
-        .site-header .shell {
-          min-height: auto;
-          padding: 0.9rem 0;
-          align-items: start;
-          flex-direction: column;
-        }
-
-        .top-nav {
-          display: none;
-        }
-
-        .option-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .preview-note {
-          align-items: flex-start;
-          flex-direction: column;
-        }
-
-        .headline {
-          font-size: clamp(2.3rem, 14vw, 4rem);
-        }
-      }
-    </style>
-  </head>
-  <body class="site site--plainspoken">
-    <div class="preview-note">
-      <span>Private preview for S.H.A. Automotive owner review</span>
-      <div>
-        <a href="mailto:[REPLACE_ME]_contact@shaautomotive.com?subject=I%20want%20the%20S.H.A.%20Automotive%20website%20demo">Claim redesign</a>
-        <a href="mailto:[REPLACE_ME]_contact@shaautomotive.com?subject=Questions%20about%20the%20S.H.A.%20Automotive%20demo">Ask questions</a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S.H.A. Automotive — Auto Repair, Knoxville TN</title>
+  <meta name="description" content="S.H.A. Automotive in Knoxville, TN. 4.9★ from 67 Google reviews. Excellent service and fair prices. Call (865) 609-1700.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0d12;
+      --card: #131820;
+      --card2: #1a2028;
+      --red: #ef4444;
+      --red-dim: #dc2626;
+      --red-glow: rgba(239,68,68,0.1);
+      --text: #e0e6ee;
+      --muted: #637082;
+      --border: #1e2832;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      padding-bottom: 80px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .site-header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 13px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+    }
+    .logo { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: 0.5px; }
+    .hdr-phone {
+      font-size: 13px; font-weight: 600; color: var(--red);
+      text-decoration: none; background: var(--red-glow);
+      padding: 6px 12px; border-radius: 20px;
+      border: 1px solid rgba(239,68,68,0.25);
+    }
+    .hero {
+      padding: 28px 18px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.14em; color: var(--red); margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: 28px; font-weight: 700; line-height: 1.2;
+      margin-bottom: 8px; letter-spacing: -0.3px;
+    }
+    .hero-sub { font-size: 15px; color: var(--muted); margin-bottom: 18px; line-height: 1.5; }
+    .rating-block {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 13px 15px;
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 12px;
+    }
+    .rating-score {
+      font-size: 24px; font-weight: 700; color: var(--red); line-height: 1;
+    }
+    .rating-detail { font-size: 13px; }
+    .rating-detail strong { display: block; font-weight: 600; color: var(--text); }
+    .rating-detail span { color: var(--muted); font-size: 11px; }
+    .hero-quote {
+      font-size: 13px; font-style: italic; color: var(--muted);
+      border-left: 2px solid var(--red); padding-left: 10px; line-height: 1.5;
+    }
+    .section { padding: 24px 18px 0; }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.14em; color: var(--red); margin-bottom: 14px;
+    }
+    /* SERVICE MENU */
+    .service-menu { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .menu-item {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+    .menu-item:last-child { border-bottom: none; }
+    .menu-btn {
+      display: flex; align-items: center; gap: 0;
+      width: 100%; padding: 16px 16px;
+      background: none; border: none;
+      font-family: 'IBM Plex Sans', sans-serif;
+      cursor: pointer; text-align: left;
+    }
+    .menu-label-wrap { flex: 1; }
+    .menu-label { font-size: 15px; font-weight: 600; color: var(--text); }
+    .menu-hint { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .menu-arrow { color: var(--muted); font-size: 16px; margin-left: 8px; transition: transform 0.2s; }
+    .menu-item.open .menu-arrow { transform: rotate(90deg); color: var(--red); }
+    .menu-detail {
+      display: none; padding: 0 16px 16px;
+    }
+    .menu-item.open .menu-detail { display: block; }
+    .menu-detail-body {
+      font-size: 13px; color: var(--muted); line-height: 1.6;
+      margin-bottom: 14px; padding-top: 4px;
+    }
+    .menu-call {
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      background: var(--red); color: #fff;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 13px; font-weight: 700;
+      text-decoration: none; padding: 12px 16px;
+      border-radius: 8px;
+    }
+    /* PROOF */
+    .proof-row { display: flex; gap: 10px; }
+    .proof-pill {
+      flex: 1; background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 10px; text-align: center;
+    }
+    .pp-num { font-size: 20px; font-weight: 700; color: var(--red); line-height: 1.1; }
+    .pp-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
+    .proof-quote-block {
+      margin-top: 10px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 16px;
+      font-size: 13px; font-style: italic; color: var(--muted);
+      border-left: 2px solid var(--red); line-height: 1.55;
+    }
+    /* CONTACT */
+    .contact-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    .contact-hdr { background: var(--red); padding: 13px 18px; }
+    .contact-hdr-name { font-size: 14px; font-weight: 700; color: #fff; }
+    .contact-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 13px; }
+    .c-row { display: flex; align-items: flex-start; gap: 12px; }
+    .c-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+    .c-text { font-size: 14px; line-height: 1.45; }
+    .c-text a { color: var(--red); text-decoration: none; font-weight: 600; }
+    .c-text small { color: var(--muted); font-size: 12px; display: block; margin-top: 2px; }
+    .section-bottom-pad { padding-bottom: 28px; }
+    .sticky-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--card); border-top: 1px solid var(--border);
+      display: flex; gap: 10px; padding: 10px 16px;
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+      z-index: 100;
+    }
+    .sb-btn {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      gap: 7px; padding: 13px 12px; border-radius: 10px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px; font-weight: 700;
+      text-decoration: none; border: none; cursor: pointer;
+    }
+    .sb-call { background: var(--red); color: #fff; }
+    .sb-dir { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">S.H.A. Automotive</div>
+  <a href="tel:+18656091700" class="hdr-phone">(865) 609-1700</a>
+</header>
+
+<section class="hero">
+  <p class="hero-eyebrow">Neighborhood Auto Repair · Knoxville, TN</p>
+  <h1 class="hero-title">Pick the problem.<br>Get the next step.</h1>
+  <p class="hero-sub">Straightforward repair and service at honest prices. No runaround, no filler.</p>
+  <div class="rating-block">
+    <div class="rating-score">4.9★</div>
+    <div class="rating-detail">
+      <strong>67 Google reviews</strong>
+      <span>2990 Dresser Rd, Knoxville, TN</span>
+    </div>
+  </div>
+  <p class="hero-quote">"Excellent service and really good prices."</p>
+</section>
+
+<section class="section">
+  <p class="section-eyebrow">What Brings You In?</p>
+  <div class="service-menu">
+
+    <div class="menu-item" id="m-warning">
+      <button class="menu-btn" onclick="toggleMenu('warning')">
+        <div class="menu-label-wrap">
+          <div class="menu-label">⚠️ Warning light</div>
+          <div class="menu-hint">Check engine, battery, ABS, or dashboard alert</div>
+        </div>
+        <span class="menu-arrow">›</span>
+      </button>
+      <div class="menu-detail">
+        <p class="menu-detail-body">We run a diagnostic scan to pinpoint the code, then walk you through exactly what it means before recommending any work. No surprises.</p>
+        <a href="tel:+18656091700" class="menu-call">📞 Call for service advice</a>
       </div>
     </div>
 
-    <header class="site-header">
-      <div class="shell">
-        <div class="brand">
-          <span>Straightforward neighborhood shop preview</span>
-          <strong>S.H.A. Automotive</strong>
+    <div class="menu-item" id="m-brake">
+      <button class="menu-btn" onclick="toggleMenu('brake')">
+        <div class="menu-label-wrap">
+          <div class="menu-label">🛑 Brake or steering</div>
+          <div class="menu-hint">Shaking, squeal, soft pedal, or pull while driving</div>
         </div>
-        <nav class="top-nav">
-            <a href="#services">Services</a>
-            <a href="#proof">Trust</a>
-            <a href="#request">Visit plan</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <div class="header-actions">
-          <a class="btn btn-primary" href="#request">Choose the problem</a>
-          <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=S.H.A.+Automotive+2990+Dresser+Rd%2C+Knoxville%2C+TN+37920" target="_blank" rel="noopener noreferrer">Directions</a>
-        </div>
+        <span class="menu-arrow">›</span>
+      </button>
+      <div class="menu-detail">
+        <p class="menu-detail-body">Brake and steering jobs are safety-first. We inspect the full system, give you a clear picture of what needs attention now versus what can wait.</p>
+        <a href="tel:+18656091700" class="menu-call">📞 Call for service advice</a>
       </div>
-    </header>
+    </div>
 
-    <main>
-        <section class="hero-band hero-band--plainspoken">
-          <div class="shell plain-grid">
-            <div class="panel panel-body fade-up">
-              <span class="section-kicker">Straightforward neighborhood shop preview</span>
-              <h1 class="headline headline--compact">S.H.A. Automotive</h1>
-              <p class="subhead">Pick the problem. See the path. Call with confidence.</p>
-              <p class="lede">This concept is intentionally no-nonsense: fewer decorative moves, clearer service lanes, and a homepage built for the moment a customer just wants to know what to do next.</p>
-              <div class="action-row">
-<a class="btn btn-primary" href="tel:+18656091700">Call the shop</a>                <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=S.H.A.+Automotive+2990+Dresser+Rd%2C+Knoxville%2C+TN+37920" target="_blank" rel="noopener noreferrer">Get directions</a>
-              </div>
-              <ul class="list-clean" style="margin-top: 1rem;">
-                  <li>Excellent rating and healthy review count.</li>
-                  <li>Review evidence emphasizes good pricing and good service.</li>
-                  <li>Price fairness matters to the brand story.</li>
-                  <li>Review quote: &#34;Excellent service and really good prices.&#34;</li>
-              </ul>
-            </div>
-            <aside class="panel form-panel fade-up delay-1" id="request">
-              <span class="section-kicker">Problem selector</span>
-              <h2 class="section-title">What brings the car in?</h2>
-              <p class="muted-copy">A service selector that helps the homepage feel useful before the first call.</p>
-              <div class="option-stack" data-option-panel>
-                  <button type="button" class="is-active" data-panel-title="Warning light" data-panel-body="Best for check engine, battery, ABS, or unknown dashboard alerts.">Warning light</button>
-                  <button type="button"  data-panel-title="Brake or steering" data-panel-body="Best for shaking, squeal, soft pedal feel, or pull while driving.">Brake or steering</button>
-                  <button type="button"  data-panel-title="Maintenance" data-panel-body="Best for oil service, inspection, or routine drivability upkeep.">Maintenance</button>
-                  <button type="button"  data-panel-title="Noise / vibration" data-panel-body="Best when the customer cannot name the part but knows something changed.">Noise / vibration</button>
-              </div>
-              <div class="option-output" data-panel-output>
-                <strong>Warning light</strong>
-                <span>Best for check engine, battery, ABS, or unknown dashboard alerts.</span>
-              </div>
-            </aside>
-          </div>
-        </section>
-
-        <section class="section" id="services">
-          <div class="shell split-grid">
-            <div class="panel info-panel">
-              <div class="section-head">
-                <span class="section-kicker">Straightforward service lanes</span>
-                <h2 class="section-title">Minimal does not mean vague.</h2>
-              </div>
-              <div class="legacy-service-list">
-                  <article class="legacy-service">
-                    <strong>Engine and warning lights</strong>
-                    <p class="muted-copy">Clear routing for the jobs that usually begin with uncertainty.</p>
-                  </article>
-                  <article class="legacy-service">
-                    <strong>Brakes, steering, and ride concerns</strong>
-                    <p class="muted-copy">The page helps a customer name the problem quickly.</p>
-                  </article>
-                  <article class="legacy-service">
-                    <strong>Routine service</strong>
-                    <p class="muted-copy">Maintenance remains easy to find without overwhelming the first screen.</p>
-                  </article>
-                  <article class="legacy-service">
-                    <strong>Local shop credibility</strong>
-                    <p class="muted-copy">The site reads like a dependable neighborhood shop, not a thin placeholder.</p>
-                  </article>
-              </div>
-            </div>
-            <div class="panel info-panel" id="proof">
-              <div class="section-head">
-                <span class="section-kicker">Why this is stronger</span>
-                <h2 class="section-title">Simple hierarchy, immediate phone path, and no wasted chrome.</h2>
-              </div>
-              <ul class="faq-list">
-                  <li class="faq-item">
-                    <strong>Why keep this one more minimal?</strong>
-                    <p>Because the right fit here is clarity and confidence, not a high-design corporate feel.</p>
-                  </li>
-                  <li class="faq-item">
-                    <strong>What makes it better than a generic brochure?</strong>
-                    <p>The site gives the customer a real decision path instead of just stacked marketing sections.</p>
-                  </li>
-                  <li class="faq-item">
-                    <strong>Is it still mobile-first?</strong>
-                    <p>Yes. The first screen is built around quick service selection and the call action.</p>
-                  </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-      <section class="section" id="contact">
-        <div class="shell contact-grid">
-          <div class="contact-stack">
-            <div class="panel contact-panel">
-              <span class="section-kicker">Contact and location</span>
-              <h2>S.H.A. Automotive</h2>
-              <p>2990 Dresser Rd, Knoxville, TN 37920; primary focus remains Knoxville, Tennessee.</p>
-              <div class="action-row">
-<a class="btn btn-primary" href="tel:+18656091700">Call (865) 609-1700</a>                <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=S.H.A.+Automotive+2990+Dresser+Rd%2C+Knoxville%2C+TN+37920" target="_blank" rel="noopener noreferrer">Get directions</a>
-              </div>
-              <ul class="list-clean" style="margin-top: 1rem;">
-                  <li>Excellent rating and healthy review count.</li>
-                  <li>Review evidence emphasizes good pricing and good service.</li>
-              </ul>
-            </div>
-            <div class="owner-note">
-              <span class="section-kicker">Owner note</span>
-              <h3>Claim the redesign or request revisions.</h3>
-              <p>The customer-facing hierarchy stays focused on calls, directions, and service clarity. Owner-only actions stay here at the bottom.</p>
-              <div class="action-row">
-                <a class="btn btn-primary" href="mailto:[REPLACE_ME]_contact@shaautomotive.com?subject=I%20want%20the%20S.H.A.%20Automotive%20website%20demo">Claim redesign</a>
-                <a class="btn btn-secondary" href="mailto:[REPLACE_ME]_contact@shaautomotive.com?subject=Questions%20about%20the%20S.H.A.%20Automotive%20demo">Ask questions</a>
-              </div>
-            </div>
-          </div>
-          <div class="stack">
-            <div class="panel contact-panel" id="proof">
-              <span class="section-kicker">Trust signals</span>
-              <ul class="list-clean">
-                  <li>4.9 rating from 67 Google reviews</li>
-                  <li>2990 Dresser Rd, Knoxville, TN 37920</li>
-                  <li>(865) 609-1700</li>
-                  <li>Closed · Opens 8 AM Mon</li>
-              </ul>
-            </div>
-            <iframe class="map-frame" src="https://www.google.com/maps?q=S.H.A.+Automotive+2990+Dresser+Rd%2C+Knoxville%2C+TN+37920&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map for S.H.A. Automotive"></iframe>
-          </div>
+    <div class="menu-item" id="m-maint">
+      <button class="menu-btn" onclick="toggleMenu('maint')">
+        <div class="menu-label-wrap">
+          <div class="menu-label">🔧 Maintenance</div>
+          <div class="menu-hint">Oil service, inspection, or routine upkeep</div>
         </div>
-      </section>
-    </main>
+        <span class="menu-arrow">›</span>
+      </button>
+      <div class="menu-detail">
+        <p class="menu-detail-body">We keep it simple — tell us your mileage and what's been done lately. We'll tell you what your car actually needs without padding the invoice.</p>
+        <a href="tel:+18656091700" class="menu-call">📞 Call for service advice</a>
+      </div>
+    </div>
 
-    <script>
-      const callHref = "tel:+18656091700";
-      const callLabel = Call (865) 609-1700;
-      const directionsHref = "https://www.google.com/maps/search/?api=1\u0026query=S.H.A.+Automotive+2990+Dresser+Rd%2C+Knoxville%2C+TN+37920";
-      const currentSiteUrl = null;
+    <div class="menu-item" id="m-noise">
+      <button class="menu-btn" onclick="toggleMenu('noise')">
+        <div class="menu-label-wrap">
+          <div class="menu-label">🔊 Noise or vibration</div>
+          <div class="menu-hint">Something changed — you know it, but can't name it</div>
+        </div>
+        <span class="menu-arrow">›</span>
+      </button>
+      <div class="menu-detail">
+        <p class="menu-detail-body">Just describe what you hear or feel and when it happens. We hear these descriptions every day and can usually narrow it down on the phone before you even drive over.</p>
+        <a href="tel:+18656091700" class="menu-call">📞 Call for service advice</a>
+      </div>
+    </div>
 
-      function escapeHtml(value) {
-        return String(value)
-          .replaceAll("&", "&amp;")
-          .replaceAll("<", "&lt;")
-          .replaceAll(">", "&gt;")
-          .replaceAll('"', "&quot;")
-          .replaceAll("'", "&#39;");
-      }
+  </div>
+</section>
 
-      function responseMarkup(summary) {
-        const actions = [];
-        if (callHref) {
-          actions.push(`<a class="btn btn-primary" href="${callHref}">${escapeHtml(callLabel)}</a>`);
-        }
-        actions.push(`<a class="btn btn-secondary" href="${escapeHtml(directionsHref)}" target="_blank" rel="noopener noreferrer">Get directions</a>`);
-        if (currentSiteUrl) {
-          actions.push(`<a class="btn btn-secondary" href="${escapeHtml(currentSiteUrl)}" target="_blank" rel="noopener noreferrer">Open current site</a>`);
-        }
-        return `
-          <strong>Preview next step</strong>
-          <p class="response-text">${summary}</p>
-          <div class="response-actions">${actions.join("")}</div>
-        `;
-      }
+<section class="section section-bottom-pad">
+  <p class="section-eyebrow">What Customers Say</p>
+  <div class="proof-row">
+    <div class="proof-pill">
+      <div class="pp-num">4.9★</div>
+      <div class="pp-lbl">Rating</div>
+    </div>
+    <div class="proof-pill">
+      <div class="pp-num">67</div>
+      <div class="pp-lbl">Reviews</div>
+    </div>
+    <div class="proof-pill">
+      <div class="pp-num">Fair</div>
+      <div class="pp-lbl">Prices</div>
+    </div>
+  </div>
+  <div class="proof-quote-block">"Excellent service and really good prices."</div>
+</section>
 
-      document.querySelectorAll("[data-demo-form]").forEach((form) => {
-        const response = form.parentElement.querySelector("[data-form-response]");
-        form.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const values = Array.from(new FormData(form).entries())
-            .filter(([, value]) => value && String(value).trim())
-            .map(([key, value]) => `${escapeHtml(key)}: ${escapeHtml(value)}`);
-          const summary = values.length
-            ? `This preview would hand the shop a clearer intake: ${values.join(" · ")}.`
-            : "This preview turns the first click into a clearer service request instead of a dead-end brochure.";
-          response.hidden = false;
-          response.innerHTML = responseMarkup(summary);
-        });
-      });
+<section class="section section-bottom-pad">
+  <p class="section-eyebrow">Find Us</p>
+  <div class="contact-card">
+    <div class="contact-hdr">
+      <p class="contact-hdr-name">S.H.A. Automotive</p>
+    </div>
+    <div class="contact-body">
+      <div class="c-row">
+        <span class="c-icon">📍</span>
+        <p class="c-text">2990 Dresser Rd<br>Knoxville, TN 37920</p>
+      </div>
+      <div class="c-row">
+        <span class="c-icon">📞</span>
+        <p class="c-text">
+          <a href="tel:+18656091700">(865) 609-1700</a>
+          <small>Opens 8 AM Mon · Call for current hours</small>
+        </p>
+      </div>
+      <div class="c-row">
+        <span class="c-icon">✉️</span>
+        <p class="c-text">
+          <a href="mailto:contact@sha-automotive.com">contact@sha-automotive.com</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      document.querySelectorAll("[data-option-panel]").forEach((panel) => {
-        const output = panel.parentElement.querySelector("[data-panel-output]");
-        panel.querySelectorAll("button").forEach((button) => {
-          button.addEventListener("click", () => {
-            panel.querySelectorAll("button").forEach((candidate) => candidate.classList.remove("is-active"));
-            button.classList.add("is-active");
-            output.innerHTML = `<strong>${escapeHtml(button.dataset.panelTitle)}</strong><span class="response-text">${escapeHtml(button.dataset.panelBody)}</span>`;
-          });
-        });
-      });
+<div class="sticky-bar">
+  <a href="tel:+18656091700" class="sb-btn sb-call">📞 Call Now</a>
+  <a href="https://maps.google.com/?q=2990+Dresser+Rd+Knoxville+TN+37920"
+     target="_blank" rel="noopener" class="sb-btn sb-dir">🗺 Directions</a>
+</div>
 
-      document.querySelectorAll("[data-translate-buttons]").forEach((panel) => {
-        const textarea = panel.parentElement.querySelector("textarea");
-        panel.querySelectorAll("button").forEach((button) => {
-          button.addEventListener("click", () => {
-            panel.querySelectorAll("button").forEach((candidate) => candidate.classList.remove("is-active"));
-            button.classList.add("is-active");
-            textarea.placeholder = button.dataset.translation === "es" ? textarea.dataset.es : textarea.dataset.en;
-          });
-        });
-      });
-    </script>
-  </body>
+<script>
+  var openMenu = null;
+  function toggleMenu(id) {
+    var el = document.getElementById('m-' + id);
+    if (openMenu && openMenu !== id) {
+      document.getElementById('m-' + openMenu).classList.remove('open');
+    }
+    if (openMenu === id) {
+      el.classList.remove('open');
+      openMenu = null;
+    } else {
+      el.classList.add('open');
+      openMenu = id;
+    }
+  }
+</script>
+</body>
 </html>

@@ -1,974 +1,237 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Asian Auto Specialists | Auto repair in Knoxville, TN</title>
-    <meta name="description" content="Asian Auto Specialists in Knoxville, Tennessee. Make the specialty obvious in the first ten seconds. Call, directions, and the main service paths stay obvious." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <style>
-      :root {
-        --bg: #f2ece6;
-        --surface: #fffaf5;
-        --surface-2: #f7f1ea;
-        --ink: #1f1b18;
-        --muted: #6f655d;
-        --line: #d9cec3;
-        --accent: #d06a39;
-        --accent-soft: #f2d8ca;
-        --header: rgba(255, 250, 245, 0.92);
-        --max: 1180px;
-        --shadow: 0 18px 48px rgba(20, 16, 12, 0.06);
-      }
-
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--ink);
-        font-family: "Manrope", sans-serif;
-      }
-
-      a { color: inherit; }
-
-      .preview-note {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        padding: 0.55rem 1rem;
-        background: #17120f;
-        color: #f4ede7;
-        font-size: 0.8rem;
-      }
-
-      .preview-note a {
-        text-decoration: none;
-        opacity: 0.86;
-      }
-
-      .shell {
-        width: min(var(--max), calc(100% - 2rem));
-        margin: 0 auto;
-      }
-
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 30;
-        border-bottom: 1px solid var(--line);
-        backdrop-filter: blur(14px);
-        background: var(--header);
-      }
-
-      .site-header .shell {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        min-height: 4.9rem;
-      }
-
-      .brand {
-        display: grid;
-        gap: 0.18rem;
-      }
-
-      .brand span,
-      .section-kicker {
-        font-size: 0.72rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-
-      .brand strong {
-        font-size: 1.04rem;
-        line-height: 1;
-      }
-
-      .top-nav,
-      .header-actions,
-      .action-row,
-      .quick-links,
-      .language-row {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-      }
-
-      .top-nav a {
-        text-decoration: none;
-        color: var(--muted);
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 3rem;
-        padding: 0 1.15rem;
-        border-radius: 999px;
-        border: 1px solid transparent;
-        text-decoration: none;
-        font-weight: 800;
-        letter-spacing: 0.01em;
-      }
-
-      .btn-primary {
-        background: var(--accent);
-        color: #fff;
-      }
-
-      .btn-secondary {
-        background: transparent;
-        color: inherit;
-        border-color: var(--line);
-      }
-
-      .hero-band {
-        padding: 3.2rem 0 2.5rem;
-      }
-
-      .hero-band--diagnostic {
-        background:
-          radial-gradient(circle at top left, rgba(208, 106, 57, 0.18), transparent 48%),
-          linear-gradient(180deg, #f4ece5 0%, rgba(244, 236, 229, 0) 100%);
-      }
-
-      .hero-band--booking {
-        background:
-          radial-gradient(circle at top right, rgba(27, 118, 156, 0.18), transparent 44%),
-          linear-gradient(180deg, #e7eef3 0%, rgba(231, 238, 243, 0) 100%);
-      }
-
-      .hero-band--specialist {
-        background:
-          linear-gradient(180deg, rgba(10, 18, 22, 0.98), rgba(13, 20, 23, 0.92)),
-          #0d1417;
-      }
-
-      .hero-band--maintenance {
-        background:
-          radial-gradient(circle at top left, rgba(115, 132, 69, 0.14), transparent 44%),
-          linear-gradient(180deg, #f0f2ea 0%, rgba(240, 242, 234, 0) 100%);
-      }
-
-      .hero-band--plainspoken {
-        background:
-          radial-gradient(circle at top left, rgba(191, 99, 53, 0.14), transparent 40%),
-          linear-gradient(180deg, #f3ece6 0%, rgba(243, 236, 230, 0) 100%);
-      }
-
-      .hero-band--legacy {
-        background:
-          linear-gradient(180deg, #f6f1eb 0%, rgba(246, 241, 235, 0) 100%);
-      }
-
-      .hero-band--bilingual {
-        background:
-          radial-gradient(circle at top right, rgba(201, 105, 57, 0.18), transparent 42%),
-          linear-gradient(180deg, #f6ede6 0%, rgba(246, 237, 230, 0) 100%);
-      }
-
-      .panel {
-        border: 1px solid var(--line);
-        border-radius: 1.8rem;
-        background: var(--surface);
-        box-shadow: var(--shadow);
-      }
-
-      .panel-body,
-      .form-panel,
-      .info-panel,
-      .contact-panel,
-      .owner-note {
-        padding: 1.55rem;
-      }
-
-      .headline {
-        margin: 0.5rem 0 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(2.6rem, 6vw, 5.7rem);
-        line-height: 0.92;
-        letter-spacing: 0.01em;
-      }
-
-      .headline--compact {
-        font-size: clamp(2.2rem, 5vw, 4.2rem);
-      }
-
-      .subhead {
-        margin: 0.95rem 0 0;
-        font-size: clamp(1.08rem, 1.8vw, 1.42rem);
-        line-height: 1.46;
-      }
-
-      .lede,
-      .muted-copy,
-      .faq-list p,
-      .service-card p,
-      .step-card p,
-      .proof-card p,
-      .contact-panel p,
-      .owner-note p,
-      .response-text {
-        color: var(--muted);
-        line-height: 1.75;
-      }
-
-      .hero-grid,
-      .split-grid,
-      .contact-grid {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .diag-grid,
-      .booking-grid,
-      .specialist-grid,
-      .maint-grid,
-      .plain-grid,
-      .legacy-grid,
-      .bilingual-grid {
-        display: grid;
-        gap: 1rem;
-        align-items: stretch;
-      }
-
-      .diag-grid { grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr); }
-      .booking-grid { grid-template-columns: minmax(340px, 0.86fr) minmax(0, 1.14fr); }
-      .specialist-grid { grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr); }
-      .maint-grid { grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.96fr); }
-      .plain-grid { grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.9fr); }
-      .legacy-grid { grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr); }
-      .bilingual-grid { grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr); }
-
-      .split-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .contact-grid {
-        grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
-        align-items: start;
-      }
-
-      .stack {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .signal-list,
-      .service-grid,
-      .step-grid,
-      .proof-grid,
-      .mini-grid,
-      .language-cards {
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .signal-list {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        margin-top: 1.35rem;
-      }
-
-      .service-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .mini-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .step-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .proof-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .language-cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin-top: 1rem;
-      }
-
-      .signal-chip,
-      .service-card,
-      .step-card,
-      .proof-card,
-      .language-card,
-      .quote-block,
-      .utility-card {
-        border: 1px solid var(--line);
-        border-radius: 1.25rem;
-        background: var(--surface-2);
-      }
-
-      .signal-chip,
-      .service-card,
-      .step-card,
-      .proof-card,
-      .utility-card,
-      .language-card {
-        padding: 1rem;
-      }
-
-      .signal-chip strong,
-      .service-card strong,
-      .step-card strong,
-      .proof-card strong,
-      .utility-card strong,
-      .language-card strong,
-      .form-response strong,
-      .faq-item strong,
-      .contact-panel strong {
-        display: block;
-        margin-bottom: 0.3rem;
-        font-size: 0.98rem;
-      }
-
-      .quote-block {
-        margin: 1.4rem 0 0;
-        padding: 1.2rem 1.2rem 1.3rem;
-        font-size: 1rem;
-        line-height: 1.72;
-      }
-
-      .quote-block cite {
-        display: block;
-        margin-top: 0.6rem;
-        font-style: normal;
-        color: var(--muted);
-      }
-
-      .utility-strip,
-      .legacy-navline {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-      }
-
-      .utility-strip a,
-      .legacy-navline a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 2.85rem;
-        padding: 0 0.95rem;
-        border-radius: 999px;
-        text-decoration: none;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.64);
-      }
-
-      .section {
-        padding: 1.15rem 0 0;
-      }
-
-      .section-head {
-        display: grid;
-        gap: 0.7rem;
-        margin-bottom: 1rem;
-      }
-
-      .section-title {
-        margin: 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(1.95rem, 4vw, 3.2rem);
-        line-height: 0.96;
-      }
-
-      .list-clean,
-      .faq-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .list-clean li,
-      .faq-item {
-        position: relative;
-        padding-left: 1rem;
-        line-height: 1.7;
-      }
-
-      .list-clean li::before,
-      .faq-item::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0.75rem;
-        width: 0.38rem;
-        height: 0.38rem;
-        border-radius: 999px;
-        background: var(--accent);
-      }
-
-      .faq-item strong {
-        margin-bottom: 0.25rem;
-      }
-
-      .option-grid,
-      .option-stack,
-      .request-form {
-        display: grid;
-        gap: 0.8rem;
-      }
-
-      .option-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .request-form input,
-      .request-form select,
-      .request-form textarea,
-      .option-grid button,
-      .option-stack button {
-        width: 100%;
-        min-height: 3.15rem;
-        padding: 0.9rem 1rem;
-        border-radius: 1rem;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.82);
-        color: var(--ink);
-        font: inherit;
-      }
-
-      .request-form textarea {
-        min-height: 7rem;
-        resize: vertical;
-      }
-
-      .request-form button,
-      .option-grid button,
-      .option-stack button {
-        cursor: pointer;
-      }
-
-      .request-form button {
-        border: 0;
-        background: var(--accent);
-        color: #fff;
-        font-weight: 800;
-      }
-
-      .option-grid button.is-active,
-      .option-stack button.is-active {
-        background: var(--accent-soft);
-      }
-
-      .option-output,
-      .form-response {
-        margin-top: 0.9rem;
-        padding: 1rem;
-        border-radius: 1rem;
-        border: 1px solid var(--line);
-        background: var(--surface-2);
-      }
-
-      .form-response[hidden] {
-        display: none;
-      }
-
-      .response-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-        margin-top: 0.85rem;
-      }
-
-      .legacy-service-list {
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .legacy-service {
-        display: grid;
-        gap: 0.3rem;
-        padding: 0.95rem 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .legacy-service:first-child {
-        border-top: 0;
-        padding-top: 0;
-      }
-
-      .contact-stack {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .contact-panel h2,
-      .owner-note h3 {
-        margin: 0.45rem 0 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(2rem, 4vw, 3rem);
-        line-height: 0.98;
-      }
-
-      .map-frame {
-        width: 100%;
-        min-height: 27rem;
-        border: 0;
-        border-radius: 1.75rem;
-      }
-
-      .owner-note {
-        background: linear-gradient(180deg, rgba(26, 20, 16, 0.96), rgba(26, 20, 16, 0.9));
-        color: #f3ece6;
-        box-shadow: none;
-        border-radius: 1.4rem;
-        padding: 1.2rem 1.25rem;
-      }
-
-      .owner-note .section-kicker,
-      .owner-note p {
-        color: rgba(243, 236, 230, 0.8);
-      }
-
-      .owner-note h3 {
-        font-size: clamp(1.45rem, 2.6vw, 2.05rem);
-      }
-
-      .owner-note .btn-secondary {
-        color: #f3ece6;
-        border-color: rgba(243, 236, 230, 0.24);
-      }
-
-      .site--booking {
-        --bg: #e8eef2;
-        --surface: #ffffff;
-        --surface-2: #f3f7fa;
-        --ink: #15252d;
-        --muted: #61727b;
-        --line: #cad6dd;
-        --accent: #1b769c;
-        --accent-soft: #dcecf3;
-        --header: rgba(255, 255, 255, 0.94);
-      }
-
-      .site--specialist {
-        --bg: #0d1417;
-        --surface: #141f23;
-        --surface-2: #1b292e;
-        --ink: #edf4f5;
-        --muted: #b7c6cb;
-        --line: #2c4248;
-        --accent: #4e9ab8;
-        --accent-soft: #224250;
-        --header: rgba(13, 20, 23, 0.92);
-        --shadow: none;
-      }
-
-      .site--maintenance {
-        --bg: #eef1e8;
-        --surface: #fbfcf8;
-        --surface-2: #f2f5eb;
-        --ink: #273019;
-        --muted: #667154;
-        --line: #d9decb;
-        --accent: #718243;
-        --accent-soft: #dde5ca;
-        --header: rgba(251, 252, 248, 0.93);
-      }
-
-      .site--plainspoken {
-        --bg: #f5eee8;
-        --surface: #fffaf7;
-        --surface-2: #f7eee8;
-        --ink: #241a15;
-        --muted: #6f6258;
-        --line: #dbcabe;
-        --accent: #c26437;
-        --accent-soft: #f0d6ca;
-      }
-
-      .site--legacy-simple {
-        --bg: #f4f0eb;
-        --surface: #fffdfa;
-        --surface-2: #f6f1eb;
-        --ink: #2b221b;
-        --muted: #72665b;
-        --line: #ddd1c5;
-        --accent: #a4683f;
-        --accent-soft: #f0dfd0;
-      }
-
-      .site--bilingual {
-        --bg: #f5ede7;
-        --surface: #fff8f3;
-        --surface-2: #f8ece4;
-        --ink: #261a14;
-        --muted: #75655b;
-        --line: #e0cbbd;
-        --accent: #c86a39;
-        --accent-soft: #f3d8ca;
-      }
-
-      .site--specialist .top-nav a,
-      .site--specialist .brand span,
-      .site--specialist .section-kicker,
-      .site--specialist .lede,
-      .site--specialist .muted-copy,
-      .site--specialist .faq-list p,
-      .site--specialist .service-card p,
-      .site--specialist .step-card p,
-      .site--specialist .proof-card p,
-      .site--specialist .contact-panel p,
-      .site--specialist .response-text,
-      .site--specialist .quote-block cite {
-        color: var(--muted);
-      }
-
-      .site--specialist .btn-secondary,
-      .site--specialist .utility-strip a,
-      .site--specialist .legacy-navline a {
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .site--specialist .map-frame {
-        box-shadow: 0 0 0 1px var(--line);
-      }
-
-      .site--legacy-simple .headline,
-      .site--plainspoken .headline {
-        letter-spacing: 0;
-      }
-
-      .site--legacy-simple .panel,
-      .site--plainspoken .panel,
-      .site--maintenance .panel,
-      .site--diagnostic .panel,
-      .site--booking .panel,
-      .site--bilingual .panel {
-        background: var(--surface);
-      }
-
-      .fade-up {
-        opacity: 0;
-        transform: translateY(16px);
-        animation: fade-up 0.55s ease forwards;
-      }
-
-      .delay-1 { animation-delay: 0.08s; }
-      .delay-2 { animation-delay: 0.16s; }
-
-      @keyframes fade-up {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @media (max-width: 1080px) {
-        .signal-list,
-        .step-grid,
-        .proof-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 980px) {
-        .diag-grid,
-        .booking-grid,
-        .specialist-grid,
-        .maint-grid,
-        .plain-grid,
-        .legacy-grid,
-        .bilingual-grid,
-        .split-grid,
-        .contact-grid,
-        .service-grid,
-        .mini-grid,
-        .language-cards {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 760px) {
-        .site-header .shell {
-          min-height: auto;
-          padding: 0.9rem 0;
-          align-items: start;
-          flex-direction: column;
-        }
-
-        .top-nav {
-          display: none;
-        }
-
-        .option-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .preview-note {
-          align-items: flex-start;
-          flex-direction: column;
-        }
-
-        .headline {
-          font-size: clamp(2.3rem, 14vw, 4rem);
-        }
-      }
-    </style>
-  </head>
-  <body class="site site--specialist">
-    <div class="preview-note">
-      <span>Private preview for Asian Auto Specialists owner review</span>
-      <div>
-        <a href="mailto:[REPLACE_ME]_contact@asianautospecialists.com?subject=I%20want%20the%20Asian%20Auto%20Specialists%20website%20demo">Claim redesign</a>
-        <a href="mailto:[REPLACE_ME]_contact@asianautospecialists.com?subject=Questions%20about%20the%20Asian%20Auto%20Specialists%20demo">Ask questions</a>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asian Auto Specialists | Import Repair Knoxville, TN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;
+  --bg2:#161b22;
+  --bg3:#21262d;
+  --blue:#3b82f6;
+  --blue2:#60a5fa;
+  --text:#e6edf3;
+  --muted:#8b949e;
+  --border:#30363d;
+}
+html{font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;min-height:100dvh;padding-bottom:72px}
+a{color:inherit;text-decoration:none}
+
+header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:.5px;color:var(--text)}
+.logo span{color:var(--blue2)}
+.logo-sub{font-size:10px;color:var(--muted);font-family:'IBM Plex Mono',monospace;letter-spacing:.8px;display:block;margin-top:2px}
+.header-cta{background:var(--blue);color:#fff;font-weight:600;font-size:12px;padding:7px 12px;border-radius:5px;font-family:'IBM Plex Mono',monospace;letter-spacing:.3px}
+
+.hero{padding:28px 20px;border-bottom:1px solid var(--border)}
+.tag-line{display:inline-flex;align-items:center;gap:6px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);padding:5px 10px;border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue2);margin-bottom:18px;letter-spacing:.5px}
+.hero h1{font-family:'IBM Plex Mono',monospace;font-size:26px;font-weight:600;line-height:1.2;margin-bottom:8px}
+.hero h1 .accent{color:var(--blue2)}
+.hero-sub{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.rating-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border)}
+.stars-blue{color:var(--blue2);font-size:15px;letter-spacing:2px}
+.rating-text{font-size:13px;color:var(--muted)}
+.rating-text strong{color:var(--text)}
+.review-pill{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:10px 12px;font-size:12px;font-style:italic;color:#a0aab4;margin-top:12px;border-left:3px solid var(--blue)}
+
+.brands-section{padding:28px 20px;border-bottom:1px solid var(--border)}
+.section-mono{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--blue2);text-transform:uppercase;margin-bottom:10px}
+.brands-title{font-size:19px;font-weight:700;margin-bottom:6px}
+.brands-sub{font-size:13px;color:var(--muted);margin-bottom:20px}
+.brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.brand-card{background:var(--bg2);border:2px solid var(--border);border-radius:8px;padding:16px;cursor:pointer;transition:.15s}
+.brand-card:active,.brand-card.selected{border-color:var(--blue);background:rgba(59,130,246,.08)}
+.brand-logo{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.brand-detail{font-size:12px;color:var(--muted);line-height:1.5}
+.brand-cta-wrap{margin-top:16px}
+.brand-cta{display:block;width:100%;background:var(--blue);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;padding:14px;border:none;border-radius:6px;cursor:pointer;text-align:center;letter-spacing:.3px}
+.other-brand{margin-top:10px;display:block;width:100%;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:13px;padding:11px;border-radius:6px;cursor:pointer;text-align:center}
+
+.services-section{padding:28px 20px;border-bottom:1px solid var(--border)}
+.service-list{margin-top:16px;display:grid;gap:10px}
+.service-row{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;display:flex;align-items:flex-start;gap:12px}
+.service-dot{width:8px;height:8px;background:var(--blue);border-radius:50%;margin-top:5px;flex-shrink:0}
+.service-text h3{font-size:14px;font-weight:600;margin-bottom:4px}
+.service-text p{font-size:12px;color:var(--muted);line-height:1.5}
+
+.proof-section{padding:28px 20px;border-bottom:1px solid var(--border)}
+.metrics-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;margin-bottom:16px}
+.metric-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
+.metric-val{font-family:'IBM Plex Mono',monospace;font-size:28px;font-weight:600;color:var(--blue2)}
+.metric-label{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.5px}
+
+.contact-section{padding:28px 20px}
+.contact-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.contact-item{display:flex;align-items:center;gap:14px;padding:15px 16px;border-bottom:1px solid var(--border)}
+.contact-item:last-child{border-bottom:none}
+.ci-icon{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue2);width:28px;text-align:center;flex-shrink:0;font-weight:600}
+.ci-content{flex:1}
+.ci-label{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-family:'IBM Plex Mono',monospace}
+.ci-val{font-size:14px;font-weight:500;margin-top:2px}
+
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--blue);padding:12px 16px;display:flex;gap:10px;z-index:100}
+.sticky-btn{flex:1;padding:13px;border-radius:6px;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;text-align:center;cursor:pointer;border:none;letter-spacing:.3px}
+.s-call{background:var(--blue);color:#fff}
+.s-dir{background:var(--bg3);color:var(--text);border:1px solid var(--border)}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">Asian <span>Auto</span> Specialists</div>
+    <div class="logo-sub">Import repair &middot; Knoxville, TN</div>
+  </div>
+  <a class="header-cta" href="tel:+18652403004">Call</a>
+</header>
+
+<section class="hero">
+  <div class="tag-line">Import-focused repair</div>
+  <h1>Your import.<br>Our <span class="accent">specialty</span>.</h1>
+  <p class="hero-sub">Toyota, Honda, Nissan, Hyundai &mdash; we know the vehicles most shops treat as just another car. 6404 Maynardville Pike, Knoxville.</p>
+  <div class="rating-row">
+    <span class="stars-blue">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    <span class="rating-text"><strong>4.9</strong> &middot; 118 Google reviews</span>
+  </div>
+  <div class="review-pill">"These guys listened, troubleshot, and solved it, even faster than promised!"</div>
+</section>
+
+<section class="brands-section">
+  <div class="section-mono">// select vehicle</div>
+  <div class="brands-title">What are you driving?</div>
+  <p class="brands-sub">Pick your make &mdash; we'll tell you what to expect.</p>
+  <div class="brand-grid">
+    <div class="brand-card" onclick="selectBrand(this)">
+      <div class="brand-logo">Toyota / Lexus</div>
+      <div class="brand-detail">Maintenance, warning lights, cooling issues, everyday drivability.</div>
+    </div>
+    <div class="brand-card" onclick="selectBrand(this)">
+      <div class="brand-logo">Honda / Acura</div>
+      <div class="brand-detail">Routine service, brake work, diagnostics, noise investigation.</div>
+    </div>
+    <div class="brand-card" onclick="selectBrand(this)">
+      <div class="brand-logo">Nissan / Infiniti</div>
+      <div class="brand-detail">Inspection-led service with a clear explanation path.</div>
+    </div>
+    <div class="brand-card" onclick="selectBrand(this)">
+      <div class="brand-logo">Hyundai / Kia</div>
+      <div class="brand-detail">Maintenance and repair routing without generic filler.</div>
+    </div>
+  </div>
+  <div class="brand-cta-wrap">
+    <a href="tel:+18652403004">
+      <button class="brand-cta">Call for import diagnostics &rarr;</button>
+    </a>
+    <button class="other-brand">Different make? Call us anyway</button>
+  </div>
+</section>
+
+<section class="services-section">
+  <div class="section-mono">// services</div>
+  <h2 style="font-size:19px;font-weight:700;margin-bottom:6px">Specialist repair lanes</h2>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:4px">Built around import vehicles, not a generic service menu.</p>
+  <div class="service-list">
+    <div class="service-row">
+      <div class="service-dot"></div>
+      <div class="service-text">
+        <h3>Import diagnostics</h3>
+        <p>Specialist-level troubleshooting for Asian-manufactured vehicles.</p>
       </div>
     </div>
-
-    <header class="site-header">
-      <div class="shell">
-        <div class="brand">
-          <span>Import-focused repair preview</span>
-          <strong>Asian Auto Specialists</strong>
-        </div>
-        <nav class="top-nav">
-            <a href="#services">Services</a>
-            <a href="#proof">Trust</a>
-            <a href="#request">Visit plan</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <div class="header-actions">
-          <a class="btn btn-primary" href="#request">Choose a brand</a>
-          <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Asian+Auto+Specialists+6404+Maynardville+Pike%2C+Knoxville%2C+TN+37918" target="_blank" rel="noopener noreferrer">Directions</a>
-        </div>
+    <div class="service-row">
+      <div class="service-dot"></div>
+      <div class="service-text">
+        <h3>Maintenance by make</h3>
+        <p>Oil service, scheduled maintenance, and fluid care matched to your vehicle.</p>
       </div>
-    </header>
+    </div>
+    <div class="service-row">
+      <div class="service-dot"></div>
+      <div class="service-text">
+        <h3>Brake, cooling &amp; drivability</h3>
+        <p>Core repair work with parts and techniques matched to import specs.</p>
+      </div>
+    </div>
+    <div class="service-row">
+      <div class="service-dot"></div>
+      <div class="service-text">
+        <h3>Tires</h3>
+        <p>Selection and installation for import vehicles of every size and class.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <main>
-        <section class="hero-band hero-band--specialist">
-          <div class="shell specialist-grid">
-            <div class="panel panel-body fade-up">
-              <span class="section-kicker">Import-focused repair preview</span>
-              <h1 class="headline">Asian Auto Specialists</h1>
-              <p class="subhead">Make the specialty obvious in the first ten seconds.</p>
-              <p class="lede">This site leans into what the name already suggests: import-focused credibility, clearer service specialization, and a homepage that feels more precise than generic repair copy.</p>
-              <div class="action-row">
-<a class="btn btn-primary" href="tel:+18652403004">Call for diagnostics</a>                <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Asian+Auto+Specialists+6404+Maynardville+Pike%2C+Knoxville%2C+TN+37918" target="_blank" rel="noopener noreferrer">Get directions</a>
-              </div>
-              <div class="option-stack" data-option-panel style="margin-top: 1.2rem;" id="request">
-                  <button type="button" class="is-active" data-panel-title="Toyota / Lexus" data-panel-body="Maintenance, warning lights, cooling issues, and everyday drivability concerns.">Toyota / Lexus</button>
-                  <button type="button"  data-panel-title="Honda / Acura" data-panel-body="Routine service, brake work, diagnostics, and noise investigation.">Honda / Acura</button>
-                  <button type="button"  data-panel-title="Nissan / Infiniti" data-panel-body="Inspection-led service flow with a simpler explanation path.">Nissan / Infiniti</button>
-                  <button type="button"  data-panel-title="Hyundai / Kia" data-panel-body="Clear maintenance and repair routing without generic filler copy.">Hyundai / Kia</button>
-              </div>
-              <div class="option-output" data-panel-output>
-                <strong>Toyota / Lexus</strong>
-                <span>Maintenance, warning lights, cooling issues, and everyday drivability concerns.</span>
-              </div>
-            </div>
-            <aside class="panel info-panel fade-up delay-1">
-              <span class="section-kicker">Specialist confidence</span>
-              <blockquote class="quote-block">
-                Review quote: &#34;These guys listened, troubleshot, and solved it, even faster than promised!&#34;
-                <cite>Make the site feel precise, not generic.</cite>
-              </blockquote>
-              <div class="mini-grid" style="margin-top: 1rem;">
-                  <article class="utility-card">
-                    <strong>Import diagnostics</strong>
-                    <p class="muted-copy">The page should immediately signal that the shop is built for drivers who want specialist confidence.</p>
-                  </article>
-                  <article class="utility-card">
-                    <strong>Maintenance by make</strong>
-                    <p class="muted-copy">Service paths can be organized around the vehicles customers actually drive.</p>
-                  </article>
-                  <article class="utility-card">
-                    <strong>Brake, cooling, and drivability</strong>
-                    <p class="muted-copy">Core repair work still needs to be easy to scan and easy to call about.</p>
-                  </article>
-                  <article class="utility-card">
-                    <strong>Clear intake for repeat customers</strong>
-                    <p class="muted-copy">A specialist shop benefits from a cleaner repeat-service path.</p>
-                  </article>
-              </div>
-            </aside>
-          </div>
-        </section>
+<section class="proof-section">
+  <div class="section-mono">// reputation</div>
+  <h2 style="font-size:19px;font-weight:700">Track record</h2>
+  <div class="metrics-row">
+    <div class="metric-box">
+      <div class="metric-val">4.9&#9733;</div>
+      <div class="metric-label">Rating</div>
+    </div>
+    <div class="metric-box">
+      <div class="metric-val">118</div>
+      <div class="metric-label">Reviews</div>
+    </div>
+  </div>
+  <div class="review-pill">"Even faster than promised" &mdash; a phrase that shows up in multiple reviews.</div>
+</section>
 
-        <section class="section" id="services">
-          <div class="shell split-grid">
-            <div class="panel info-panel">
-              <div class="section-head">
-                <span class="section-kicker">Import-repair structure</span>
-                <h2 class="section-title">The business should look like it understands the customer’s vehicle.</h2>
-              </div>
-              <div class="step-grid">
-                  <article class="step-card">
-                    <strong>Choose a vehicle brand</strong>
-                    <p>The interaction should feel like a specialist shop, not a catch-all garage.</p>
-                  </article>
-                  <article class="step-card">
-                    <strong>See the likely service lane</strong>
-                    <p>Customers get immediate orientation instead of generic copy blocks.</p>
-                  </article>
-                  <article class="step-card">
-                    <strong>Call or request follow-up</strong>
-                    <p>The contact path stays obvious after the brand-specific context is set.</p>
-                  </article>
-              </div>
-              <ul class="list-clean" style="margin-top: 1rem;">
-                  <li>Speed and turnaround show up in review language.</li>
-                  <li>Review quote: &#34;These guys listened, troubleshot, and solved it, even faster than promised!&#34;</li>
-              </ul>
-            </div>
-            <div class="panel info-panel" id="proof">
-              <div class="section-head">
-                <span class="section-kicker">What changes most</span>
-                <h2 class="section-title">A directory listing becomes a real specialist front door.</h2>
-              </div>
-              <div class="proof-grid">
-                  <article class="proof-card">
-                    <strong>Specialist positioning</strong>
-                    <p>The homepage should tell the right customer they are in the right place immediately.</p>
-                  </article>
-                  <article class="proof-card">
-                    <strong>Technical but readable</strong>
-                    <p>Confidence matters, but the page still needs to feel easy on a phone.</p>
-                  </article>
-                  <article class="proof-card">
-                    <strong>Structured service discovery</strong>
-                    <p>A brand selector helps the site feel purposeful instead of generic.</p>
-                  </article>
-              </div>
-                <div class="quick-links" style="margin-top: 1rem;">
-                    <a class="btn btn-secondary" href="https://www.cityof.com/" target="_blank" rel="noopener noreferrer">Knoxville and surrounding areas</a>
-                    <a class="btn btn-secondary" href="https://www.cityof.com/tn/knoxville/categories" target="_blank" rel="noopener noreferrer">Business Directory</a>
-                    <a class="btn btn-secondary" href="https://www.cityofagape.org/liturgical-readings" target="_blank" rel="noopener noreferrer">Good News</a>
-                    <a class="btn btn-secondary" href="https://videos.cityof.com" target="_blank" rel="noopener noreferrer">Videos</a>
-                </div>
-            </div>
-          </div>
-        </section>
+<section class="contact-section">
+  <div class="section-mono">// find us</div>
+  <h2 style="font-size:19px;font-weight:700;margin-bottom:14px">Asian Auto Specialists</h2>
+  <div class="contact-card">
+    <a href="tel:+18652403004" class="contact-item">
+      <span class="ci-icon">TEL</span>
+      <div class="ci-content">
+        <div class="ci-label">Phone</div>
+        <div class="ci-val">(865) 240-3004</div>
+      </div>
+    </a>
+    <a href="https://maps.google.com/?q=6404+Maynardville+Pike+Knoxville+TN+37918" target="_blank" class="contact-item">
+      <span class="ci-icon">MAP</span>
+      <div class="ci-content">
+        <div class="ci-label">Address</div>
+        <div class="ci-val">6404 Maynardville Pike, Knoxville, TN 37918</div>
+      </div>
+    </a>
+    <div class="contact-item">
+      <span class="ci-icon">HRS</span>
+      <div class="ci-content">
+        <div class="ci-label">Hours</div>
+        <div class="ci-val">Mon&ndash;Fri &middot; Opens 8 AM</div>
+      </div>
+    </div>
+    <a href="mailto:contact@asianautospecialists.com" class="contact-item">
+      <span class="ci-icon">MSG</span>
+      <div class="ci-content">
+        <div class="ci-label">Email</div>
+        <div class="ci-val">contact@asianautospecialists.com</div>
+      </div>
+    </a>
+  </div>
+</section>
 
-      <section class="section" id="contact">
-        <div class="shell contact-grid">
-          <div class="contact-stack">
-            <div class="panel contact-panel">
-              <span class="section-kicker">Contact and location</span>
-              <h2>Asian Auto Specialists</h2>
-              <p>6404 Maynardville Pike, Knoxville, TN 37918; primary focus remains Knoxville, Tennessee.</p>
-              <div class="action-row">
-<a class="btn btn-primary" href="tel:+18652403004">Call (865) 240-3004</a>                <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Asian+Auto+Specialists+6404+Maynardville+Pike%2C+Knoxville%2C+TN+37918" target="_blank" rel="noopener noreferrer">Get directions</a>
-<a class="btn btn-secondary" href="https://www.cityof.com/tn/knoxville/asian-auto-specialists-6338006" target="_blank" rel="noopener noreferrer">Open current site</a>              </div>
-              <ul class="list-clean" style="margin-top: 1rem;">
-                  <li>Very high rating with strong review count.</li>
-                  <li>Customers describe the shop as fast, attentive, and effective at troubleshooting.</li>
-              </ul>
-                <div class="quick-links" style="margin-top: 1rem;">
-                    <a class="btn btn-secondary" href="https://www.cityof.com/" target="_blank" rel="noopener noreferrer">Knoxville and surrounding areas</a>
-                    <a class="btn btn-secondary" href="https://www.cityof.com/tn/knoxville/categories" target="_blank" rel="noopener noreferrer">Business Directory</a>
-                    <a class="btn btn-secondary" href="https://www.cityofagape.org/liturgical-readings" target="_blank" rel="noopener noreferrer">Good News</a>
-                    <a class="btn btn-secondary" href="https://videos.cityof.com" target="_blank" rel="noopener noreferrer">Videos</a>
-                </div>
-            </div>
-            <div class="owner-note">
-              <span class="section-kicker">Owner note</span>
-              <h3>Claim the redesign or request revisions.</h3>
-              <p>The customer-facing hierarchy stays focused on calls, directions, and service clarity. Owner-only actions stay here at the bottom.</p>
-              <div class="action-row">
-                <a class="btn btn-primary" href="mailto:[REPLACE_ME]_contact@asianautospecialists.com?subject=I%20want%20the%20Asian%20Auto%20Specialists%20website%20demo">Claim redesign</a>
-                <a class="btn btn-secondary" href="mailto:[REPLACE_ME]_contact@asianautospecialists.com?subject=Questions%20about%20the%20Asian%20Auto%20Specialists%20demo">Ask questions</a>
-              </div>
-            </div>
-          </div>
-          <div class="stack">
-            <div class="panel contact-panel" id="proof">
-              <span class="section-kicker">Trust signals</span>
-              <ul class="list-clean">
-                  <li>4.9 rating from 118 Google reviews</li>
-                  <li>6404 Maynardville Pike, Knoxville, TN 37918</li>
-                  <li>(865) 240-3004</li>
-                  <li>Closed · Opens 8 AM Mon</li>
-                  <li>Existing site title: Auto Repair in Knoxville, TN | Asian Auto Specialists</li>
-              </ul>
-            </div>
-            <iframe class="map-frame" src="https://www.google.com/maps?q=Asian+Auto+Specialists+6404+Maynardville+Pike%2C+Knoxville%2C+TN+37918&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map for Asian Auto Specialists"></iframe>
-          </div>
-        </div>
-      </section>
-    </main>
+<div class="sticky-bar">
+  <a href="tel:+18652403004" style="flex:1;display:block">
+    <button class="sticky-btn s-call" style="width:100%">Call now</button>
+  </a>
+  <a href="https://maps.google.com/?q=6404+Maynardville+Pike+Knoxville+TN+37918" target="_blank" style="flex:1;display:block">
+    <button class="sticky-btn s-dir" style="width:100%">Directions</button>
+  </a>
+</div>
 
-    <script>
-      const callHref = "tel:+18652403004";
-      const callLabel = Call (865) 240-3004;
-      const directionsHref = "https://www.google.com/maps/search/?api=1\u0026query=Asian+Auto+Specialists+6404+Maynardville+Pike%2C+Knoxville%2C+TN+37918";
-      const currentSiteUrl = "https://www.cityof.com/tn/knoxville/asian-auto-specialists-6338006";
-
-      function escapeHtml(value) {
-        return String(value)
-          .replaceAll("&", "&amp;")
-          .replaceAll("<", "&lt;")
-          .replaceAll(">", "&gt;")
-          .replaceAll('"', "&quot;")
-          .replaceAll("'", "&#39;");
-      }
-
-      function responseMarkup(summary) {
-        const actions = [];
-        if (callHref) {
-          actions.push(`<a class="btn btn-primary" href="${callHref}">${escapeHtml(callLabel)}</a>`);
-        }
-        actions.push(`<a class="btn btn-secondary" href="${escapeHtml(directionsHref)}" target="_blank" rel="noopener noreferrer">Get directions</a>`);
-        if (currentSiteUrl) {
-          actions.push(`<a class="btn btn-secondary" href="${escapeHtml(currentSiteUrl)}" target="_blank" rel="noopener noreferrer">Open current site</a>`);
-        }
-        return `
-          <strong>Preview next step</strong>
-          <p class="response-text">${summary}</p>
-          <div class="response-actions">${actions.join("")}</div>
-        `;
-      }
-
-      document.querySelectorAll("[data-demo-form]").forEach((form) => {
-        const response = form.parentElement.querySelector("[data-form-response]");
-        form.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const values = Array.from(new FormData(form).entries())
-            .filter(([, value]) => value && String(value).trim())
-            .map(([key, value]) => `${escapeHtml(key)}: ${escapeHtml(value)}`);
-          const summary = values.length
-            ? `This preview would hand the shop a clearer intake: ${values.join(" · ")}.`
-            : "This preview turns the first click into a clearer service request instead of a dead-end brochure.";
-          response.hidden = false;
-          response.innerHTML = responseMarkup(summary);
-        });
-      });
-
-      document.querySelectorAll("[data-option-panel]").forEach((panel) => {
-        const output = panel.parentElement.querySelector("[data-panel-output]");
-        panel.querySelectorAll("button").forEach((button) => {
-          button.addEventListener("click", () => {
-            panel.querySelectorAll("button").forEach((candidate) => candidate.classList.remove("is-active"));
-            button.classList.add("is-active");
-            output.innerHTML = `<strong>${escapeHtml(button.dataset.panelTitle)}</strong><span class="response-text">${escapeHtml(button.dataset.panelBody)}</span>`;
-          });
-        });
-      });
-
-      document.querySelectorAll("[data-translate-buttons]").forEach((panel) => {
-        const textarea = panel.parentElement.querySelector("textarea");
-        panel.querySelectorAll("button").forEach((button) => {
-          button.addEventListener("click", () => {
-            panel.querySelectorAll("button").forEach((candidate) => candidate.classList.remove("is-active"));
-            button.classList.add("is-active");
-            textarea.placeholder = button.dataset.translation === "es" ? textarea.dataset.es : textarea.dataset.en;
-          });
-        });
-      });
-    </script>
-  </body>
+<script>
+function selectBrand(el){
+  document.querySelectorAll('.brand-card').forEach(function(c){c.classList.remove('selected')});
+  el.classList.add('selected');
+}
+</script>
+</body>
 </html>

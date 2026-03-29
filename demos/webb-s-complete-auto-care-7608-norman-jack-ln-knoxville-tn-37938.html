@@ -1,965 +1,252 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Webb&#39;s Complete Auto Care | Auto repair in Knoxville, TN</title>
-    <meta name="description" content="Webb&#39;s Complete Auto Care in Knoxville, Tennessee. Turn routine maintenance into a page people actually use. Call, directions, and the main service paths stay obvious." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <style>
-      :root {
-        --bg: #f2ece6;
-        --surface: #fffaf5;
-        --surface-2: #f7f1ea;
-        --ink: #1f1b18;
-        --muted: #6f655d;
-        --line: #d9cec3;
-        --accent: #d06a39;
-        --accent-soft: #f2d8ca;
-        --header: rgba(255, 250, 245, 0.92);
-        --max: 1180px;
-        --shadow: 0 18px 48px rgba(20, 16, 12, 0.06);
-      }
-
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--ink);
-        font-family: "Manrope", sans-serif;
-      }
-
-      a { color: inherit; }
-
-      .preview-note {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        padding: 0.55rem 1rem;
-        background: #17120f;
-        color: #f4ede7;
-        font-size: 0.8rem;
-      }
-
-      .preview-note a {
-        text-decoration: none;
-        opacity: 0.86;
-      }
-
-      .shell {
-        width: min(var(--max), calc(100% - 2rem));
-        margin: 0 auto;
-      }
-
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 30;
-        border-bottom: 1px solid var(--line);
-        backdrop-filter: blur(14px);
-        background: var(--header);
-      }
-
-      .site-header .shell {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        min-height: 4.9rem;
-      }
-
-      .brand {
-        display: grid;
-        gap: 0.18rem;
-      }
-
-      .brand span,
-      .section-kicker {
-        font-size: 0.72rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-
-      .brand strong {
-        font-size: 1.04rem;
-        line-height: 1;
-      }
-
-      .top-nav,
-      .header-actions,
-      .action-row,
-      .quick-links,
-      .language-row {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-      }
-
-      .top-nav a {
-        text-decoration: none;
-        color: var(--muted);
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 3rem;
-        padding: 0 1.15rem;
-        border-radius: 999px;
-        border: 1px solid transparent;
-        text-decoration: none;
-        font-weight: 800;
-        letter-spacing: 0.01em;
-      }
-
-      .btn-primary {
-        background: var(--accent);
-        color: #fff;
-      }
-
-      .btn-secondary {
-        background: transparent;
-        color: inherit;
-        border-color: var(--line);
-      }
-
-      .hero-band {
-        padding: 3.2rem 0 2.5rem;
-      }
-
-      .hero-band--diagnostic {
-        background:
-          radial-gradient(circle at top left, rgba(208, 106, 57, 0.18), transparent 48%),
-          linear-gradient(180deg, #f4ece5 0%, rgba(244, 236, 229, 0) 100%);
-      }
-
-      .hero-band--booking {
-        background:
-          radial-gradient(circle at top right, rgba(27, 118, 156, 0.18), transparent 44%),
-          linear-gradient(180deg, #e7eef3 0%, rgba(231, 238, 243, 0) 100%);
-      }
-
-      .hero-band--specialist {
-        background:
-          linear-gradient(180deg, rgba(10, 18, 22, 0.98), rgba(13, 20, 23, 0.92)),
-          #0d1417;
-      }
-
-      .hero-band--maintenance {
-        background:
-          radial-gradient(circle at top left, rgba(115, 132, 69, 0.14), transparent 44%),
-          linear-gradient(180deg, #f0f2ea 0%, rgba(240, 242, 234, 0) 100%);
-      }
-
-      .hero-band--plainspoken {
-        background:
-          radial-gradient(circle at top left, rgba(191, 99, 53, 0.14), transparent 40%),
-          linear-gradient(180deg, #f3ece6 0%, rgba(243, 236, 230, 0) 100%);
-      }
-
-      .hero-band--legacy {
-        background:
-          linear-gradient(180deg, #f6f1eb 0%, rgba(246, 241, 235, 0) 100%);
-      }
-
-      .hero-band--bilingual {
-        background:
-          radial-gradient(circle at top right, rgba(201, 105, 57, 0.18), transparent 42%),
-          linear-gradient(180deg, #f6ede6 0%, rgba(246, 237, 230, 0) 100%);
-      }
-
-      .panel {
-        border: 1px solid var(--line);
-        border-radius: 1.8rem;
-        background: var(--surface);
-        box-shadow: var(--shadow);
-      }
-
-      .panel-body,
-      .form-panel,
-      .info-panel,
-      .contact-panel,
-      .owner-note {
-        padding: 1.55rem;
-      }
-
-      .headline {
-        margin: 0.5rem 0 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(2.6rem, 6vw, 5.7rem);
-        line-height: 0.92;
-        letter-spacing: 0.01em;
-      }
-
-      .headline--compact {
-        font-size: clamp(2.2rem, 5vw, 4.2rem);
-      }
-
-      .subhead {
-        margin: 0.95rem 0 0;
-        font-size: clamp(1.08rem, 1.8vw, 1.42rem);
-        line-height: 1.46;
-      }
-
-      .lede,
-      .muted-copy,
-      .faq-list p,
-      .service-card p,
-      .step-card p,
-      .proof-card p,
-      .contact-panel p,
-      .owner-note p,
-      .response-text {
-        color: var(--muted);
-        line-height: 1.75;
-      }
-
-      .hero-grid,
-      .split-grid,
-      .contact-grid {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .diag-grid,
-      .booking-grid,
-      .specialist-grid,
-      .maint-grid,
-      .plain-grid,
-      .legacy-grid,
-      .bilingual-grid {
-        display: grid;
-        gap: 1rem;
-        align-items: stretch;
-      }
-
-      .diag-grid { grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr); }
-      .booking-grid { grid-template-columns: minmax(340px, 0.86fr) minmax(0, 1.14fr); }
-      .specialist-grid { grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr); }
-      .maint-grid { grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.96fr); }
-      .plain-grid { grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.9fr); }
-      .legacy-grid { grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr); }
-      .bilingual-grid { grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr); }
-
-      .split-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .contact-grid {
-        grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
-        align-items: start;
-      }
-
-      .stack {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .signal-list,
-      .service-grid,
-      .step-grid,
-      .proof-grid,
-      .mini-grid,
-      .language-cards {
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .signal-list {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        margin-top: 1.35rem;
-      }
-
-      .service-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .mini-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .step-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .proof-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .language-cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin-top: 1rem;
-      }
-
-      .signal-chip,
-      .service-card,
-      .step-card,
-      .proof-card,
-      .language-card,
-      .quote-block,
-      .utility-card {
-        border: 1px solid var(--line);
-        border-radius: 1.25rem;
-        background: var(--surface-2);
-      }
-
-      .signal-chip,
-      .service-card,
-      .step-card,
-      .proof-card,
-      .utility-card,
-      .language-card {
-        padding: 1rem;
-      }
-
-      .signal-chip strong,
-      .service-card strong,
-      .step-card strong,
-      .proof-card strong,
-      .utility-card strong,
-      .language-card strong,
-      .form-response strong,
-      .faq-item strong,
-      .contact-panel strong {
-        display: block;
-        margin-bottom: 0.3rem;
-        font-size: 0.98rem;
-      }
-
-      .quote-block {
-        margin: 1.4rem 0 0;
-        padding: 1.2rem 1.2rem 1.3rem;
-        font-size: 1rem;
-        line-height: 1.72;
-      }
-
-      .quote-block cite {
-        display: block;
-        margin-top: 0.6rem;
-        font-style: normal;
-        color: var(--muted);
-      }
-
-      .utility-strip,
-      .legacy-navline {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-      }
-
-      .utility-strip a,
-      .legacy-navline a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 2.85rem;
-        padding: 0 0.95rem;
-        border-radius: 999px;
-        text-decoration: none;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.64);
-      }
-
-      .section {
-        padding: 1.15rem 0 0;
-      }
-
-      .section-head {
-        display: grid;
-        gap: 0.7rem;
-        margin-bottom: 1rem;
-      }
-
-      .section-title {
-        margin: 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(1.95rem, 4vw, 3.2rem);
-        line-height: 0.96;
-      }
-
-      .list-clean,
-      .faq-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .list-clean li,
-      .faq-item {
-        position: relative;
-        padding-left: 1rem;
-        line-height: 1.7;
-      }
-
-      .list-clean li::before,
-      .faq-item::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0.75rem;
-        width: 0.38rem;
-        height: 0.38rem;
-        border-radius: 999px;
-        background: var(--accent);
-      }
-
-      .faq-item strong {
-        margin-bottom: 0.25rem;
-      }
-
-      .option-grid,
-      .option-stack,
-      .request-form {
-        display: grid;
-        gap: 0.8rem;
-      }
-
-      .option-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .request-form input,
-      .request-form select,
-      .request-form textarea,
-      .option-grid button,
-      .option-stack button {
-        width: 100%;
-        min-height: 3.15rem;
-        padding: 0.9rem 1rem;
-        border-radius: 1rem;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.82);
-        color: var(--ink);
-        font: inherit;
-      }
-
-      .request-form textarea {
-        min-height: 7rem;
-        resize: vertical;
-      }
-
-      .request-form button,
-      .option-grid button,
-      .option-stack button {
-        cursor: pointer;
-      }
-
-      .request-form button {
-        border: 0;
-        background: var(--accent);
-        color: #fff;
-        font-weight: 800;
-      }
-
-      .option-grid button.is-active,
-      .option-stack button.is-active {
-        background: var(--accent-soft);
-      }
-
-      .option-output,
-      .form-response {
-        margin-top: 0.9rem;
-        padding: 1rem;
-        border-radius: 1rem;
-        border: 1px solid var(--line);
-        background: var(--surface-2);
-      }
-
-      .form-response[hidden] {
-        display: none;
-      }
-
-      .response-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-        margin-top: 0.85rem;
-      }
-
-      .legacy-service-list {
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .legacy-service {
-        display: grid;
-        gap: 0.3rem;
-        padding: 0.95rem 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .legacy-service:first-child {
-        border-top: 0;
-        padding-top: 0;
-      }
-
-      .contact-stack {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .contact-panel h2,
-      .owner-note h3 {
-        margin: 0.45rem 0 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(2rem, 4vw, 3rem);
-        line-height: 0.98;
-      }
-
-      .map-frame {
-        width: 100%;
-        min-height: 27rem;
-        border: 0;
-        border-radius: 1.75rem;
-      }
-
-      .owner-note {
-        background: linear-gradient(180deg, rgba(26, 20, 16, 0.96), rgba(26, 20, 16, 0.9));
-        color: #f3ece6;
-        box-shadow: none;
-        border-radius: 1.4rem;
-        padding: 1.2rem 1.25rem;
-      }
-
-      .owner-note .section-kicker,
-      .owner-note p {
-        color: rgba(243, 236, 230, 0.8);
-      }
-
-      .owner-note h3 {
-        font-size: clamp(1.45rem, 2.6vw, 2.05rem);
-      }
-
-      .owner-note .btn-secondary {
-        color: #f3ece6;
-        border-color: rgba(243, 236, 230, 0.24);
-      }
-
-      .site--booking {
-        --bg: #e8eef2;
-        --surface: #ffffff;
-        --surface-2: #f3f7fa;
-        --ink: #15252d;
-        --muted: #61727b;
-        --line: #cad6dd;
-        --accent: #1b769c;
-        --accent-soft: #dcecf3;
-        --header: rgba(255, 255, 255, 0.94);
-      }
-
-      .site--specialist {
-        --bg: #0d1417;
-        --surface: #141f23;
-        --surface-2: #1b292e;
-        --ink: #edf4f5;
-        --muted: #b7c6cb;
-        --line: #2c4248;
-        --accent: #4e9ab8;
-        --accent-soft: #224250;
-        --header: rgba(13, 20, 23, 0.92);
-        --shadow: none;
-      }
-
-      .site--maintenance {
-        --bg: #eef1e8;
-        --surface: #fbfcf8;
-        --surface-2: #f2f5eb;
-        --ink: #273019;
-        --muted: #667154;
-        --line: #d9decb;
-        --accent: #718243;
-        --accent-soft: #dde5ca;
-        --header: rgba(251, 252, 248, 0.93);
-      }
-
-      .site--plainspoken {
-        --bg: #f5eee8;
-        --surface: #fffaf7;
-        --surface-2: #f7eee8;
-        --ink: #241a15;
-        --muted: #6f6258;
-        --line: #dbcabe;
-        --accent: #c26437;
-        --accent-soft: #f0d6ca;
-      }
-
-      .site--legacy-simple {
-        --bg: #f4f0eb;
-        --surface: #fffdfa;
-        --surface-2: #f6f1eb;
-        --ink: #2b221b;
-        --muted: #72665b;
-        --line: #ddd1c5;
-        --accent: #a4683f;
-        --accent-soft: #f0dfd0;
-      }
-
-      .site--bilingual {
-        --bg: #f5ede7;
-        --surface: #fff8f3;
-        --surface-2: #f8ece4;
-        --ink: #261a14;
-        --muted: #75655b;
-        --line: #e0cbbd;
-        --accent: #c86a39;
-        --accent-soft: #f3d8ca;
-      }
-
-      .site--specialist .top-nav a,
-      .site--specialist .brand span,
-      .site--specialist .section-kicker,
-      .site--specialist .lede,
-      .site--specialist .muted-copy,
-      .site--specialist .faq-list p,
-      .site--specialist .service-card p,
-      .site--specialist .step-card p,
-      .site--specialist .proof-card p,
-      .site--specialist .contact-panel p,
-      .site--specialist .response-text,
-      .site--specialist .quote-block cite {
-        color: var(--muted);
-      }
-
-      .site--specialist .btn-secondary,
-      .site--specialist .utility-strip a,
-      .site--specialist .legacy-navline a {
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .site--specialist .map-frame {
-        box-shadow: 0 0 0 1px var(--line);
-      }
-
-      .site--legacy-simple .headline,
-      .site--plainspoken .headline {
-        letter-spacing: 0;
-      }
-
-      .site--legacy-simple .panel,
-      .site--plainspoken .panel,
-      .site--maintenance .panel,
-      .site--diagnostic .panel,
-      .site--booking .panel,
-      .site--bilingual .panel {
-        background: var(--surface);
-      }
-
-      .fade-up {
-        opacity: 0;
-        transform: translateY(16px);
-        animation: fade-up 0.55s ease forwards;
-      }
-
-      .delay-1 { animation-delay: 0.08s; }
-      .delay-2 { animation-delay: 0.16s; }
-
-      @keyframes fade-up {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @media (max-width: 1080px) {
-        .signal-list,
-        .step-grid,
-        .proof-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 980px) {
-        .diag-grid,
-        .booking-grid,
-        .specialist-grid,
-        .maint-grid,
-        .plain-grid,
-        .legacy-grid,
-        .bilingual-grid,
-        .split-grid,
-        .contact-grid,
-        .service-grid,
-        .mini-grid,
-        .language-cards {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 760px) {
-        .site-header .shell {
-          min-height: auto;
-          padding: 0.9rem 0;
-          align-items: start;
-          flex-direction: column;
-        }
-
-        .top-nav {
-          display: none;
-        }
-
-        .option-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .preview-note {
-          align-items: flex-start;
-          flex-direction: column;
-        }
-
-        .headline {
-          font-size: clamp(2.3rem, 14vw, 4rem);
-        }
-      }
-    </style>
-  </head>
-  <body class="site site--maintenance">
-    <div class="preview-note">
-      <span>Private preview for Webb&#39;s Complete Auto Care owner review</span>
-      <div>
-        <a href="mailto:[REPLACE_ME]_contact@webbscompleteautocare.com?subject=I%20want%20the%20Webb%27s%20Complete%20Auto%20Care%20website%20demo">Claim redesign</a>
-        <a href="mailto:[REPLACE_ME]_contact@webbscompleteautocare.com?subject=Questions%20about%20the%20Webb%27s%20Complete%20Auto%20Care%20demo">Ask questions</a>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webb's Complete Auto Care | Knoxville, TN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#fafaf8;
+  --card:#fff;
+  --green:#2d6a4f;
+  --green2:#40916c;
+  --green3:#74c69d;
+  --accent:#1b4332;
+  --text:#1a1a2e;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --light:#f0faf4;
+}
+html{font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:'Nunito Sans',sans-serif;min-height:100dvh;padding-bottom:72px}
+a{color:inherit;text-decoration:none}
+
+header{background:var(--accent);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo-wrap{display:flex;flex-direction:column}
+.logo-main{font-size:17px;font-weight:800;color:#fff;letter-spacing:-.2px}
+.logo-sub{font-size:11px;color:var(--green3);font-weight:600;letter-spacing:.5px;margin-top:2px}
+.header-call{background:var(--green3);color:var(--accent);font-weight:800;font-size:13px;padding:8px 14px;border-radius:20px}
+
+.hero{background:var(--accent);padding:24px 20px 32px;color:#fff}
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--green3);margin-bottom:12px}
+.hero h1{font-size:34px;font-weight:800;line-height:1.1;margin-bottom:12px}
+.hero h1 em{font-style:normal;color:var(--green3)}
+.hero-sub{font-size:14px;color:#a7d4b5;line-height:1.6;margin-bottom:20px}
+.hero-review{background:rgba(255,255,255,.08);border-radius:10px;padding:14px;border-left:3px solid var(--green3);font-size:13px;font-style:italic;color:#d4ede2}
+.hero-meta{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.12)}
+.stars-g{color:var(--green3);font-size:16px;letter-spacing:1px}
+.meta-text{font-size:13px;color:#a7d4b5}
+.meta-text strong{color:#fff}
+
+.planner-section{padding:28px 20px;border-bottom:1px solid var(--border)}
+.section-chip{display:inline-block;background:var(--light);color:var(--green);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:10px}
+.planner-title{font-size:22px;font-weight:800;margin-bottom:6px}
+.planner-sub{font-size:13px;color:var(--muted);margin-bottom:20px}
+
+.mile-tabs{display:flex;background:var(--border);border-radius:10px;padding:4px;gap:4px;margin-bottom:20px}
+.mile-tab{flex:1;text-align:center;padding:10px 4px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);transition:.15s;border:none;background:transparent}
+.mile-tab.active{background:#fff;color:var(--green);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+
+.checklist{display:grid;gap:8px}
+.check-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:flex;align-items:center;gap:12px}
+.check-icon{width:28px;height:28px;background:var(--light);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.check-text{font-size:13px;font-weight:600;color:var(--text)}
+.check-note{font-size:11px;color:var(--muted);margin-top:2px}
+
+.planner-cta{display:block;width:100%;background:var(--green);color:#fff;font-weight:800;font-size:15px;padding:15px;border:none;border-radius:10px;cursor:pointer;text-align:center;margin-top:16px}
+
+.services-section{padding:28px 20px;border-bottom:1px solid var(--border)}
+.services-grid{display:grid;gap:12px;margin-top:16px}
+.service-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+.service-num{font-size:18px;font-weight:800;color:var(--green3);min-width:28px}
+.service-body h3{font-size:14px;font-weight:700;margin-bottom:4px}
+.service-body p{font-size:12px;color:var(--muted);line-height:1.5}
+
+.proof-section{padding:28px 20px;border-bottom:1px solid var(--border);background:var(--light)}
+.stats-row{display:flex;gap:12px;margin-top:16px}
+.stat-block{flex:1;background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.stat-num{font-size:28px;font-weight:800;color:var(--green)}
+.stat-label{font-size:11px;color:var(--muted);margin-top:4px}
+
+.contact-section{padding:28px 20px}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.c-row{display:flex;align-items:center;gap:14px;padding:15px 16px;border-bottom:1px solid var(--border)}
+.c-row:last-child{border-bottom:none}
+.c-dot{width:36px;height:36px;background:var(--light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.c-info .c-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+.c-info .c-val{font-size:14px;font-weight:700;color:var(--text);margin-top:2px}
+
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid var(--green);padding:12px 16px;display:flex;gap:10px;z-index:100;box-shadow:0 -2px 12px rgba(0,0,0,.08)}
+.s-btn{flex:1;padding:13px 8px;border-radius:10px;font-size:14px;font-weight:800;text-align:center;cursor:pointer;border:none}
+.s-call{background:var(--green);color:#fff}
+.s-dir{background:var(--light);color:var(--green);border:2px solid var(--green)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <span class="logo-main">Webb's Complete Auto Care</span>
+    <span class="logo-sub">Knoxville, TN &middot; 37938</span>
+  </div>
+  <a class="header-call" href="tel:+18653394950">(865) 339-4950</a>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Neighborhood Auto Care</div>
+  <h1>The shop that keeps<br><em>your car</em> on the road.</h1>
+  <p class="hero-sub">Routine maintenance, repairs, and honest advice from a shop at 7608 Norman Jack Ln that Knoxville families count on.</p>
+  <div class="hero-review">"Great service and my car was fixed in a timely matter."</div>
+  <div class="hero-meta">
+    <span class="stars-g">&#9733;&#9733;&#9733;&#9733;&#189;</span>
+    <span class="meta-text"><strong>4.7</strong> &middot; 156 Google reviews</span>
+  </div>
+</section>
+
+<section class="planner-section">
+  <span class="section-chip">Maintenance Planner</span>
+  <div class="planner-title">What's your mileage range?</div>
+  <p class="planner-sub">See what your car likely needs before you call.</p>
+
+  <div class="mile-tabs">
+    <button class="mile-tab active" onclick="showMile(0,this)">30k</button>
+    <button class="mile-tab" onclick="showMile(1,this)">60k</button>
+    <button class="mile-tab" onclick="showMile(2,this)">90k+</button>
+    <button class="mile-tab" onclick="showMile(3,this)">Not sure</button>
+  </div>
+
+  <div id="mile0" class="checklist">
+    <div class="check-item"><div class="check-icon">&#128749;</div><div><div class="check-text">Oil &amp; filter</div><div class="check-note">Synthetic or conventional per spec</div></div></div>
+    <div class="check-item"><div class="check-icon">&#128168;</div><div><div class="check-text">Air filter check</div><div class="check-note">Cabin and engine filters</div></div></div>
+    <div class="check-item"><div class="check-icon">&#128167;</div><div><div class="check-text">Fluid top-off</div><div class="check-note">Coolant, brake, power steering</div></div></div>
+    <div class="check-item"><div class="check-icon">&#128260;</div><div><div class="check-text">Tire inspection</div><div class="check-note">Pressure, tread, and wear pattern</div></div></div>
+  </div>
+  <div id="mile1" class="checklist" style="display:none">
+    <div class="check-item"><div class="check-icon">&#128749;</div><div><div class="check-text">Oil &amp; filter</div><div class="check-note">Full service</div></div></div>
+    <div class="check-item"><div class="check-icon">&#9881;</div><div><div class="check-text">Spark plugs</div><div class="check-note">Inspect or replace depending on type</div></div></div>
+    <div class="check-item"><div class="check-icon">&#128721;</div><div><div class="check-text">Brake inspection</div><div class="check-note">Pads, rotors, and fluid</div></div></div>
+    <div class="check-item"><div class="check-icon">&#128295;</div><div><div class="check-text">Belt &amp; hose check</div><div class="check-note">Serpentine, timing belt if applicable</div></div></div>
+    <div class="check-item"><div class="check-icon">&#128167;</div><div><div class="check-text">Coolant flush</div><div class="check-note">Often due around 60k</div></div></div>
+  </div>
+  <div id="mile2" class="checklist" style="display:none">
+    <div class="check-item"><div class="check-icon">&#128749;</div><div><div class="check-text">Full fluid service</div><div class="check-note">Oil, transmission, brake, and coolant</div></div></div>
+    <div class="check-item"><div class="check-icon">&#9881;</div><div><div class="check-text">Spark plugs &amp; ignition</div><div class="check-note">High-mileage replacement</div></div></div>
+    <div class="check-item"><div class="check-icon">&#128663;</div><div><div class="check-text">Drivability check</div><div class="check-note">Steering, suspension, ride quality</div></div></div>
+    <div class="check-item"><div class="check-icon">&#9889;</div><div><div class="check-text">Battery test</div><div class="check-note">CCA and charge health</div></div></div>
+    <div class="check-item"><div class="check-icon">&#128721;</div><div><div class="check-text">Brake system</div><div class="check-note">Full inspection and pad measurement</div></div></div>
+  </div>
+  <div id="mile3" class="checklist" style="display:none">
+    <div class="check-item"><div class="check-icon">&#128222;</div><div><div class="check-text">Call us first</div><div class="check-note">Describe what the car has been doing lately</div></div></div>
+    <div class="check-item"><div class="check-icon">&#128295;</div><div><div class="check-text">We'll figure it out</div><div class="check-note">No mileage needed &mdash; just describe the symptoms</div></div></div>
+  </div>
+
+  <a href="tel:+18653394950"><button class="planner-cta">Call about service</button></a>
+</section>
+
+<section class="services-section">
+  <span class="section-chip">Services</span>
+  <h2 class="planner-title">What we handle</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-body">
+        <h3>Routine maintenance</h3>
+        <p>Oil changes, filters, fluids, and scheduled care to keep your car out of the shop longer.</p>
       </div>
     </div>
-
-    <header class="site-header">
-      <div class="shell">
-        <div class="brand">
-          <span>Neighborhood auto care preview</span>
-          <strong>Webb&#39;s Complete Auto Care</strong>
-        </div>
-        <nav class="top-nav">
-            <a href="#services">Services</a>
-            <a href="#proof">Trust</a>
-            <a href="#request">Visit plan</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <div class="header-actions">
-          <a class="btn btn-primary" href="#request">See maintenance plan</a>
-          <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Webb%27s+Complete+Auto+Care+7608+Norman+Jack+Ln%2C+Knoxville%2C+TN+37938" target="_blank" rel="noopener noreferrer">Directions</a>
-        </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-body">
+        <h3>Brakes &amp; drivability</h3>
+        <p>Squealing, pulling, or soft pedal &mdash; we diagnose it and explain what needs to happen.</p>
       </div>
-    </header>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-body">
+        <h3>Family &amp; commuter vehicles</h3>
+        <p>The cars Knoxville families depend on every day get honest care and clear timelines.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-body">
+        <h3>Diagnostics</h3>
+        <p>Warning lights, strange noises, or something that just changed &mdash; we start with answers.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <main>
-        <section class="hero-band hero-band--maintenance">
-          <div class="shell maint-grid">
-            <div class="panel panel-body fade-up">
-              <span class="section-kicker">Neighborhood auto care preview</span>
-              <h1 class="headline">Webb&#39;s Complete Auto Care</h1>
-              <p class="subhead">Turn routine maintenance into a page people actually use.</p>
-              <p class="lede">This concept pushes Webb&#39;s Complete Auto Care toward a practical, repeat-visit homepage with mileage-based maintenance help instead of a static brochure feel.</p>
-              <div class="action-row">
-<a class="btn btn-primary" href="tel:+18653394950">Call about service</a>                <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Webb%27s+Complete+Auto+Care+7608+Norman+Jack+Ln%2C+Knoxville%2C+TN+37938" target="_blank" rel="noopener noreferrer">Get directions</a>
-              </div>
-              <div class="signal-list">
-                  <div class="signal-chip">
-                    <strong>4.7 rating from 156 Google reviews</strong>
-                    <span class="muted-copy">Repeat-customer trust needs useful structure.</span>
-                  </div>
-                  <div class="signal-chip">
-                    <strong>7608 Norman Jack Ln, Knoxville, TN 37938</strong>
-                    <span class="muted-copy">Repeat-customer trust needs useful structure.</span>
-                  </div>
-                  <div class="signal-chip">
-                    <strong>(865) 339-4950</strong>
-                    <span class="muted-copy">Repeat-customer trust needs useful structure.</span>
-                  </div>
-              </div>
-            </div>
-            <aside class="panel form-panel fade-up delay-1" id="request">
-              <span class="section-kicker">Maintenance planner</span>
-              <h2 class="section-title">Maintenance snapshot</h2>
-              <p class="muted-copy">A quick-use tool that makes the homepage feel helpful, not static.</p>
-              <div class="option-stack" data-option-panel>
-                  <button type="button" class="is-active" data-panel-title="30k miles" data-panel-body="Oil service, filters, fluid check, tire inspection, and a quick under-hood review.">30k miles</button>
-                  <button type="button"  data-panel-title="60k miles" data-panel-body="Expanded maintenance with deeper inspection and wear-item review.">60k miles</button>
-                  <button type="button"  data-panel-title="90k+ miles" data-panel-body="A heavier maintenance checkpoint with drivability questions near the top.">90k+ miles</button>
-                  <button type="button"  data-panel-title="Not sure" data-panel-body="Call-first path with a simple explanation of what the car has been doing lately.">Not sure</button>
-              </div>
-              <div class="option-output" data-panel-output>
-                <strong>30k miles</strong>
-                <span>Oil service, filters, fluid check, tire inspection, and a quick under-hood review.</span>
-              </div>
-            </aside>
-          </div>
-        </section>
+<section class="proof-section">
+  <span class="section-chip">Reputation</span>
+  <h2 class="planner-title">Knoxville trusts Webb's</h2>
+  <div class="stats-row">
+    <div class="stat-block">
+      <div class="stat-num">4.7&#9733;</div>
+      <div class="stat-label">Google rating</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">156</div>
+      <div class="stat-label">Reviews</div>
+    </div>
+  </div>
+</section>
 
-        <section class="section" id="services">
-          <div class="shell split-grid">
-            <div class="panel info-panel">
-              <div class="section-head">
-                <span class="section-kicker">Useful between major repairs</span>
-                <h2 class="section-title">A maintenance-centered homepage gives people a reason to come back.</h2>
-              </div>
-              <div class="service-grid">
-                  <article class="service-card">
-                    <strong>Mileage-based maintenance</strong>
-                    <p>The homepage can guide routine care instead of forcing people to call blind.</p>
-                  </article>
-                  <article class="service-card">
-                    <strong>Brake and drivability service</strong>
-                    <p>Everyday high-intent repair categories still stay prominent.</p>
-                  </article>
-                  <article class="service-card">
-                    <strong>Family and commuter vehicles</strong>
-                    <p>The site should feel helpful for the real traffic this shop likely serves.</p>
-                  </article>
-                  <article class="service-card">
-                    <strong>Local trust and convenience</strong>
-                    <p>A review-rich neighborhood shop should feel dependable, not generic.</p>
-                  </article>
-              </div>
-            </div>
-            <div class="panel info-panel" id="proof">
-              <div class="section-head">
-                <span class="section-kicker">Calmer trust story</span>
-                <h2 class="section-title">The page should feel dependable, not high-pressure.</h2>
-              </div>
-              <blockquote class="quote-block">
-                Review quote: &#34;Great service and my car was fixed in a timely matter.&#34;
-                <cite>Timely service matters as much as the headline.</cite>
-              </blockquote>
-              <div class="proof-grid" style="margin-top: 1rem;">
-                  <article class="proof-card">
-                    <strong>Maintenance planner</strong>
-                    <p>This site does something useful immediately instead of just talking about service.</p>
-                  </article>
-                  <article class="proof-card">
-                    <strong>Good fit for repeat traffic</strong>
-                    <p>The layout supports ongoing customer use, not only first-time discovery.</p>
-                  </article>
-                  <article class="proof-card">
-                    <strong>Trust kept calm</strong>
-                    <p>Reviews and location support the site without cluttering it.</p>
-                  </article>
-              </div>
-            </div>
-          </div>
-        </section>
+<section class="contact-section">
+  <span class="section-chip">Find Us</span>
+  <h2 class="planner-title" style="margin-bottom:14px">Webb's Complete Auto Care</h2>
+  <div class="contact-card">
+    <a href="tel:+18653394950" class="c-row">
+      <div class="c-dot">&#128222;</div>
+      <div class="c-info">
+        <div class="c-label">Call</div>
+        <div class="c-val">(865) 339-4950</div>
+      </div>
+    </a>
+    <a href="https://maps.google.com/?q=7608+Norman+Jack+Ln+Knoxville+TN+37938" target="_blank" class="c-row">
+      <div class="c-dot">&#128205;</div>
+      <div class="c-info">
+        <div class="c-label">Address</div>
+        <div class="c-val">7608 Norman Jack Ln, Knoxville, TN 37938</div>
+      </div>
+    </a>
+    <div class="c-row">
+      <div class="c-dot">&#128336;</div>
+      <div class="c-info">
+        <div class="c-label">Hours</div>
+        <div class="c-val">Mon&ndash;Fri &middot; Opens 7:30 AM</div>
+      </div>
+    </div>
+    <a href="mailto:contact@webbsautocare.com" class="c-row">
+      <div class="c-dot">&#9993;</div>
+      <div class="c-info">
+        <div class="c-label">Email</div>
+        <div class="c-val">contact@webbsautocare.com</div>
+      </div>
+    </a>
+  </div>
+</section>
 
-      <section class="section" id="contact">
-        <div class="shell contact-grid">
-          <div class="contact-stack">
-            <div class="panel contact-panel">
-              <span class="section-kicker">Contact and location</span>
-              <h2>Webb&#39;s Complete Auto Care</h2>
-              <p>7608 Norman Jack Ln, Knoxville, TN 37938; primary focus remains Knoxville, Tennessee.</p>
-              <div class="action-row">
-<a class="btn btn-primary" href="tel:+18653394950">Call (865) 339-4950</a>                <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Webb%27s+Complete+Auto+Care+7608+Norman+Jack+Ln%2C+Knoxville%2C+TN+37938" target="_blank" rel="noopener noreferrer">Get directions</a>
-              </div>
-              <ul class="list-clean" style="margin-top: 1rem;">
-                  <li>Strong rating and high review count.</li>
-                  <li>Public evidence points to a solid maintenance-and-repair reputation.</li>
-              </ul>
-                <div class="quick-links" style="margin-top: 1rem;">
-                    <a class="btn btn-secondary" href="https://www.facebook.com/p/Webbs-Complete-Auto-Care-100066721774055" target="_blank" rel="noopener noreferrer">Webb&#39;s Complete Auto Care | Knoxville TN - Faceboo</a>
-                    <a class="btn btn-secondary" href="https://www.yelp.com/biz/webbs-complete-auto-care-knoxville" target="_blank" rel="noopener noreferrer">WEBB&#39;S COMPLETE AUTO CARE - Updated March 2026 - Y</a>
-                    <a class="btn btn-secondary" href="https://www.facebook.com/757555641070764" target="_blank" rel="noopener noreferrer">Webb&#39;s Complete Auto Care | Knoxville TN - Faceboo</a>
-                </div>
-            </div>
-            <div class="owner-note">
-              <span class="section-kicker">Owner note</span>
-              <h3>Claim the redesign or request revisions.</h3>
-              <p>The customer-facing hierarchy stays focused on calls, directions, and service clarity. Owner-only actions stay here at the bottom.</p>
-              <div class="action-row">
-                <a class="btn btn-primary" href="mailto:[REPLACE_ME]_contact@webbscompleteautocare.com?subject=I%20want%20the%20Webb%27s%20Complete%20Auto%20Care%20website%20demo">Claim redesign</a>
-                <a class="btn btn-secondary" href="mailto:[REPLACE_ME]_contact@webbscompleteautocare.com?subject=Questions%20about%20the%20Webb%27s%20Complete%20Auto%20Care%20demo">Ask questions</a>
-              </div>
-            </div>
-          </div>
-          <div class="stack">
-            <div class="panel contact-panel" id="proof">
-              <span class="section-kicker">Trust signals</span>
-              <ul class="list-clean">
-                  <li>4.7 rating from 156 Google reviews</li>
-                  <li>7608 Norman Jack Ln, Knoxville, TN 37938</li>
-                  <li>(865) 339-4950</li>
-                  <li>Closed · Opens 7:30 AM Mon</li>
-                  <li>Additional public citations exist beyond Google Maps.</li>
-              </ul>
-            </div>
-            <iframe class="map-frame" src="https://www.google.com/maps?q=Webb%27s+Complete+Auto+Care+7608+Norman+Jack+Ln%2C+Knoxville%2C+TN+37938&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map for Webb&#39;s Complete Auto Care"></iframe>
-          </div>
-        </div>
-      </section>
-    </main>
+<div class="sticky-bar">
+  <a href="tel:+18653394950" style="flex:1;display:block">
+    <button class="s-btn s-call" style="width:100%">Call</button>
+  </a>
+  <a href="https://maps.google.com/?q=7608+Norman+Jack+Ln+Knoxville+TN+37938" target="_blank" style="flex:1;display:block">
+    <button class="s-btn s-dir" style="width:100%">Directions</button>
+  </a>
+</div>
 
-    <script>
-      const callHref = "tel:+18653394950";
-      const callLabel = Call (865) 339-4950;
-      const directionsHref = "https://www.google.com/maps/search/?api=1\u0026query=Webb%27s+Complete+Auto+Care+7608+Norman+Jack+Ln%2C+Knoxville%2C+TN+37938";
-      const currentSiteUrl = null;
-
-      function escapeHtml(value) {
-        return String(value)
-          .replaceAll("&", "&amp;")
-          .replaceAll("<", "&lt;")
-          .replaceAll(">", "&gt;")
-          .replaceAll('"', "&quot;")
-          .replaceAll("'", "&#39;");
-      }
-
-      function responseMarkup(summary) {
-        const actions = [];
-        if (callHref) {
-          actions.push(`<a class="btn btn-primary" href="${callHref}">${escapeHtml(callLabel)}</a>`);
-        }
-        actions.push(`<a class="btn btn-secondary" href="${escapeHtml(directionsHref)}" target="_blank" rel="noopener noreferrer">Get directions</a>`);
-        if (currentSiteUrl) {
-          actions.push(`<a class="btn btn-secondary" href="${escapeHtml(currentSiteUrl)}" target="_blank" rel="noopener noreferrer">Open current site</a>`);
-        }
-        return `
-          <strong>Preview next step</strong>
-          <p class="response-text">${summary}</p>
-          <div class="response-actions">${actions.join("")}</div>
-        `;
-      }
-
-      document.querySelectorAll("[data-demo-form]").forEach((form) => {
-        const response = form.parentElement.querySelector("[data-form-response]");
-        form.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const values = Array.from(new FormData(form).entries())
-            .filter(([, value]) => value && String(value).trim())
-            .map(([key, value]) => `${escapeHtml(key)}: ${escapeHtml(value)}`);
-          const summary = values.length
-            ? `This preview would hand the shop a clearer intake: ${values.join(" · ")}.`
-            : "This preview turns the first click into a clearer service request instead of a dead-end brochure.";
-          response.hidden = false;
-          response.innerHTML = responseMarkup(summary);
-        });
-      });
-
-      document.querySelectorAll("[data-option-panel]").forEach((panel) => {
-        const output = panel.parentElement.querySelector("[data-panel-output]");
-        panel.querySelectorAll("button").forEach((button) => {
-          button.addEventListener("click", () => {
-            panel.querySelectorAll("button").forEach((candidate) => candidate.classList.remove("is-active"));
-            button.classList.add("is-active");
-            output.innerHTML = `<strong>${escapeHtml(button.dataset.panelTitle)}</strong><span class="response-text">${escapeHtml(button.dataset.panelBody)}</span>`;
-          });
-        });
-      });
-
-      document.querySelectorAll("[data-translate-buttons]").forEach((panel) => {
-        const textarea = panel.parentElement.querySelector("textarea");
-        panel.querySelectorAll("button").forEach((button) => {
-          button.addEventListener("click", () => {
-            panel.querySelectorAll("button").forEach((candidate) => candidate.classList.remove("is-active"));
-            button.classList.add("is-active");
-            textarea.placeholder = button.dataset.translation === "es" ? textarea.dataset.es : textarea.dataset.en;
-          });
-        });
-      });
-    </script>
-  </body>
+<script>
+function showMile(idx,el){
+  for(var i=0;i<4;i++) document.getElementById('mile'+i).style.display='none';
+  document.getElementById('mile'+idx).style.display='grid';
+  document.querySelectorAll('.mile-tab').forEach(function(t){t.classList.remove('active')});
+  el.classList.add('active');
+}
+</script>
+</body>
 </html>

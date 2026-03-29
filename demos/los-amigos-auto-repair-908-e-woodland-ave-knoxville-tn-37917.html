@@ -1,956 +1,430 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Los Amigos Auto Repair | Auto repair in Knoxville, TN</title>
-    <meta name="description" content="Los Amigos Auto Repair in Knoxville, Tennessee. A site that feels welcoming in English and Spanish. Call, directions, and the main service paths stay obvious." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <style>
-      :root {
-        --bg: #f2ece6;
-        --surface: #fffaf5;
-        --surface-2: #f7f1ea;
-        --ink: #1f1b18;
-        --muted: #6f655d;
-        --line: #d9cec3;
-        --accent: #d06a39;
-        --accent-soft: #f2d8ca;
-        --header: rgba(255, 250, 245, 0.92);
-        --max: 1180px;
-        --shadow: 0 18px 48px rgba(20, 16, 12, 0.06);
-      }
-
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--ink);
-        font-family: "Manrope", sans-serif;
-      }
-
-      a { color: inherit; }
-
-      .preview-note {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        padding: 0.55rem 1rem;
-        background: #17120f;
-        color: #f4ede7;
-        font-size: 0.8rem;
-      }
-
-      .preview-note a {
-        text-decoration: none;
-        opacity: 0.86;
-      }
-
-      .shell {
-        width: min(var(--max), calc(100% - 2rem));
-        margin: 0 auto;
-      }
-
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 30;
-        border-bottom: 1px solid var(--line);
-        backdrop-filter: blur(14px);
-        background: var(--header);
-      }
-
-      .site-header .shell {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        min-height: 4.9rem;
-      }
-
-      .brand {
-        display: grid;
-        gap: 0.18rem;
-      }
-
-      .brand span,
-      .section-kicker {
-        font-size: 0.72rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-
-      .brand strong {
-        font-size: 1.04rem;
-        line-height: 1;
-      }
-
-      .top-nav,
-      .header-actions,
-      .action-row,
-      .quick-links,
-      .language-row {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-      }
-
-      .top-nav a {
-        text-decoration: none;
-        color: var(--muted);
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 3rem;
-        padding: 0 1.15rem;
-        border-radius: 999px;
-        border: 1px solid transparent;
-        text-decoration: none;
-        font-weight: 800;
-        letter-spacing: 0.01em;
-      }
-
-      .btn-primary {
-        background: var(--accent);
-        color: #fff;
-      }
-
-      .btn-secondary {
-        background: transparent;
-        color: inherit;
-        border-color: var(--line);
-      }
-
-      .hero-band {
-        padding: 3.2rem 0 2.5rem;
-      }
-
-      .hero-band--diagnostic {
-        background:
-          radial-gradient(circle at top left, rgba(208, 106, 57, 0.18), transparent 48%),
-          linear-gradient(180deg, #f4ece5 0%, rgba(244, 236, 229, 0) 100%);
-      }
-
-      .hero-band--booking {
-        background:
-          radial-gradient(circle at top right, rgba(27, 118, 156, 0.18), transparent 44%),
-          linear-gradient(180deg, #e7eef3 0%, rgba(231, 238, 243, 0) 100%);
-      }
-
-      .hero-band--specialist {
-        background:
-          linear-gradient(180deg, rgba(10, 18, 22, 0.98), rgba(13, 20, 23, 0.92)),
-          #0d1417;
-      }
-
-      .hero-band--maintenance {
-        background:
-          radial-gradient(circle at top left, rgba(115, 132, 69, 0.14), transparent 44%),
-          linear-gradient(180deg, #f0f2ea 0%, rgba(240, 242, 234, 0) 100%);
-      }
-
-      .hero-band--plainspoken {
-        background:
-          radial-gradient(circle at top left, rgba(191, 99, 53, 0.14), transparent 40%),
-          linear-gradient(180deg, #f3ece6 0%, rgba(243, 236, 230, 0) 100%);
-      }
-
-      .hero-band--legacy {
-        background:
-          linear-gradient(180deg, #f6f1eb 0%, rgba(246, 241, 235, 0) 100%);
-      }
-
-      .hero-band--bilingual {
-        background:
-          radial-gradient(circle at top right, rgba(201, 105, 57, 0.18), transparent 42%),
-          linear-gradient(180deg, #f6ede6 0%, rgba(246, 237, 230, 0) 100%);
-      }
-
-      .panel {
-        border: 1px solid var(--line);
-        border-radius: 1.8rem;
-        background: var(--surface);
-        box-shadow: var(--shadow);
-      }
-
-      .panel-body,
-      .form-panel,
-      .info-panel,
-      .contact-panel,
-      .owner-note {
-        padding: 1.55rem;
-      }
-
-      .headline {
-        margin: 0.5rem 0 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(2.6rem, 6vw, 5.7rem);
-        line-height: 0.92;
-        letter-spacing: 0.01em;
-      }
-
-      .headline--compact {
-        font-size: clamp(2.2rem, 5vw, 4.2rem);
-      }
-
-      .subhead {
-        margin: 0.95rem 0 0;
-        font-size: clamp(1.08rem, 1.8vw, 1.42rem);
-        line-height: 1.46;
-      }
-
-      .lede,
-      .muted-copy,
-      .faq-list p,
-      .service-card p,
-      .step-card p,
-      .proof-card p,
-      .contact-panel p,
-      .owner-note p,
-      .response-text {
-        color: var(--muted);
-        line-height: 1.75;
-      }
-
-      .hero-grid,
-      .split-grid,
-      .contact-grid {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .diag-grid,
-      .booking-grid,
-      .specialist-grid,
-      .maint-grid,
-      .plain-grid,
-      .legacy-grid,
-      .bilingual-grid {
-        display: grid;
-        gap: 1rem;
-        align-items: stretch;
-      }
-
-      .diag-grid { grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr); }
-      .booking-grid { grid-template-columns: minmax(340px, 0.86fr) minmax(0, 1.14fr); }
-      .specialist-grid { grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr); }
-      .maint-grid { grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.96fr); }
-      .plain-grid { grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.9fr); }
-      .legacy-grid { grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr); }
-      .bilingual-grid { grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr); }
-
-      .split-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .contact-grid {
-        grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
-        align-items: start;
-      }
-
-      .stack {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .signal-list,
-      .service-grid,
-      .step-grid,
-      .proof-grid,
-      .mini-grid,
-      .language-cards {
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .signal-list {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        margin-top: 1.35rem;
-      }
-
-      .service-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .mini-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .step-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .proof-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .language-cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin-top: 1rem;
-      }
-
-      .signal-chip,
-      .service-card,
-      .step-card,
-      .proof-card,
-      .language-card,
-      .quote-block,
-      .utility-card {
-        border: 1px solid var(--line);
-        border-radius: 1.25rem;
-        background: var(--surface-2);
-      }
-
-      .signal-chip,
-      .service-card,
-      .step-card,
-      .proof-card,
-      .utility-card,
-      .language-card {
-        padding: 1rem;
-      }
-
-      .signal-chip strong,
-      .service-card strong,
-      .step-card strong,
-      .proof-card strong,
-      .utility-card strong,
-      .language-card strong,
-      .form-response strong,
-      .faq-item strong,
-      .contact-panel strong {
-        display: block;
-        margin-bottom: 0.3rem;
-        font-size: 0.98rem;
-      }
-
-      .quote-block {
-        margin: 1.4rem 0 0;
-        padding: 1.2rem 1.2rem 1.3rem;
-        font-size: 1rem;
-        line-height: 1.72;
-      }
-
-      .quote-block cite {
-        display: block;
-        margin-top: 0.6rem;
-        font-style: normal;
-        color: var(--muted);
-      }
-
-      .utility-strip,
-      .legacy-navline {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-      }
-
-      .utility-strip a,
-      .legacy-navline a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 2.85rem;
-        padding: 0 0.95rem;
-        border-radius: 999px;
-        text-decoration: none;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.64);
-      }
-
-      .section {
-        padding: 1.15rem 0 0;
-      }
-
-      .section-head {
-        display: grid;
-        gap: 0.7rem;
-        margin-bottom: 1rem;
-      }
-
-      .section-title {
-        margin: 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(1.95rem, 4vw, 3.2rem);
-        line-height: 0.96;
-      }
-
-      .list-clean,
-      .faq-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .list-clean li,
-      .faq-item {
-        position: relative;
-        padding-left: 1rem;
-        line-height: 1.7;
-      }
-
-      .list-clean li::before,
-      .faq-item::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0.75rem;
-        width: 0.38rem;
-        height: 0.38rem;
-        border-radius: 999px;
-        background: var(--accent);
-      }
-
-      .faq-item strong {
-        margin-bottom: 0.25rem;
-      }
-
-      .option-grid,
-      .option-stack,
-      .request-form {
-        display: grid;
-        gap: 0.8rem;
-      }
-
-      .option-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .request-form input,
-      .request-form select,
-      .request-form textarea,
-      .option-grid button,
-      .option-stack button {
-        width: 100%;
-        min-height: 3.15rem;
-        padding: 0.9rem 1rem;
-        border-radius: 1rem;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.82);
-        color: var(--ink);
-        font: inherit;
-      }
-
-      .request-form textarea {
-        min-height: 7rem;
-        resize: vertical;
-      }
-
-      .request-form button,
-      .option-grid button,
-      .option-stack button {
-        cursor: pointer;
-      }
-
-      .request-form button {
-        border: 0;
-        background: var(--accent);
-        color: #fff;
-        font-weight: 800;
-      }
-
-      .option-grid button.is-active,
-      .option-stack button.is-active {
-        background: var(--accent-soft);
-      }
-
-      .option-output,
-      .form-response {
-        margin-top: 0.9rem;
-        padding: 1rem;
-        border-radius: 1rem;
-        border: 1px solid var(--line);
-        background: var(--surface-2);
-      }
-
-      .form-response[hidden] {
-        display: none;
-      }
-
-      .response-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-        margin-top: 0.85rem;
-      }
-
-      .legacy-service-list {
-        display: grid;
-        gap: 0.85rem;
-      }
-
-      .legacy-service {
-        display: grid;
-        gap: 0.3rem;
-        padding: 0.95rem 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .legacy-service:first-child {
-        border-top: 0;
-        padding-top: 0;
-      }
-
-      .contact-stack {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .contact-panel h2,
-      .owner-note h3 {
-        margin: 0.45rem 0 0;
-        font-family: "Barlow Condensed", sans-serif;
-        font-size: clamp(2rem, 4vw, 3rem);
-        line-height: 0.98;
-      }
-
-      .map-frame {
-        width: 100%;
-        min-height: 27rem;
-        border: 0;
-        border-radius: 1.75rem;
-      }
-
-      .owner-note {
-        background: linear-gradient(180deg, rgba(26, 20, 16, 0.96), rgba(26, 20, 16, 0.9));
-        color: #f3ece6;
-        box-shadow: none;
-        border-radius: 1.4rem;
-        padding: 1.2rem 1.25rem;
-      }
-
-      .owner-note .section-kicker,
-      .owner-note p {
-        color: rgba(243, 236, 230, 0.8);
-      }
-
-      .owner-note h3 {
-        font-size: clamp(1.45rem, 2.6vw, 2.05rem);
-      }
-
-      .owner-note .btn-secondary {
-        color: #f3ece6;
-        border-color: rgba(243, 236, 230, 0.24);
-      }
-
-      .site--booking {
-        --bg: #e8eef2;
-        --surface: #ffffff;
-        --surface-2: #f3f7fa;
-        --ink: #15252d;
-        --muted: #61727b;
-        --line: #cad6dd;
-        --accent: #1b769c;
-        --accent-soft: #dcecf3;
-        --header: rgba(255, 255, 255, 0.94);
-      }
-
-      .site--specialist {
-        --bg: #0d1417;
-        --surface: #141f23;
-        --surface-2: #1b292e;
-        --ink: #edf4f5;
-        --muted: #b7c6cb;
-        --line: #2c4248;
-        --accent: #4e9ab8;
-        --accent-soft: #224250;
-        --header: rgba(13, 20, 23, 0.92);
-        --shadow: none;
-      }
-
-      .site--maintenance {
-        --bg: #eef1e8;
-        --surface: #fbfcf8;
-        --surface-2: #f2f5eb;
-        --ink: #273019;
-        --muted: #667154;
-        --line: #d9decb;
-        --accent: #718243;
-        --accent-soft: #dde5ca;
-        --header: rgba(251, 252, 248, 0.93);
-      }
-
-      .site--plainspoken {
-        --bg: #f5eee8;
-        --surface: #fffaf7;
-        --surface-2: #f7eee8;
-        --ink: #241a15;
-        --muted: #6f6258;
-        --line: #dbcabe;
-        --accent: #c26437;
-        --accent-soft: #f0d6ca;
-      }
-
-      .site--legacy-simple {
-        --bg: #f4f0eb;
-        --surface: #fffdfa;
-        --surface-2: #f6f1eb;
-        --ink: #2b221b;
-        --muted: #72665b;
-        --line: #ddd1c5;
-        --accent: #a4683f;
-        --accent-soft: #f0dfd0;
-      }
-
-      .site--bilingual {
-        --bg: #f5ede7;
-        --surface: #fff8f3;
-        --surface-2: #f8ece4;
-        --ink: #261a14;
-        --muted: #75655b;
-        --line: #e0cbbd;
-        --accent: #c86a39;
-        --accent-soft: #f3d8ca;
-      }
-
-      .site--specialist .top-nav a,
-      .site--specialist .brand span,
-      .site--specialist .section-kicker,
-      .site--specialist .lede,
-      .site--specialist .muted-copy,
-      .site--specialist .faq-list p,
-      .site--specialist .service-card p,
-      .site--specialist .step-card p,
-      .site--specialist .proof-card p,
-      .site--specialist .contact-panel p,
-      .site--specialist .response-text,
-      .site--specialist .quote-block cite {
-        color: var(--muted);
-      }
-
-      .site--specialist .btn-secondary,
-      .site--specialist .utility-strip a,
-      .site--specialist .legacy-navline a {
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .site--specialist .map-frame {
-        box-shadow: 0 0 0 1px var(--line);
-      }
-
-      .site--legacy-simple .headline,
-      .site--plainspoken .headline {
-        letter-spacing: 0;
-      }
-
-      .site--legacy-simple .panel,
-      .site--plainspoken .panel,
-      .site--maintenance .panel,
-      .site--diagnostic .panel,
-      .site--booking .panel,
-      .site--bilingual .panel {
-        background: var(--surface);
-      }
-
-      .fade-up {
-        opacity: 0;
-        transform: translateY(16px);
-        animation: fade-up 0.55s ease forwards;
-      }
-
-      .delay-1 { animation-delay: 0.08s; }
-      .delay-2 { animation-delay: 0.16s; }
-
-      @keyframes fade-up {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @media (max-width: 1080px) {
-        .signal-list,
-        .step-grid,
-        .proof-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 980px) {
-        .diag-grid,
-        .booking-grid,
-        .specialist-grid,
-        .maint-grid,
-        .plain-grid,
-        .legacy-grid,
-        .bilingual-grid,
-        .split-grid,
-        .contact-grid,
-        .service-grid,
-        .mini-grid,
-        .language-cards {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 760px) {
-        .site-header .shell {
-          min-height: auto;
-          padding: 0.9rem 0;
-          align-items: start;
-          flex-direction: column;
-        }
-
-        .top-nav {
-          display: none;
-        }
-
-        .option-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .preview-note {
-          align-items: flex-start;
-          flex-direction: column;
-        }
-
-        .headline {
-          font-size: clamp(2.3rem, 14vw, 4rem);
-        }
-      }
-    </style>
-  </head>
-  <body class="site site--bilingual">
-    <div class="preview-note">
-      <span>Private preview for Los Amigos Auto Repair owner review</span>
-      <div>
-        <a href="mailto:[REPLACE_ME]_contact@losamigosautorepair.com?subject=I%20want%20the%20Los%20Amigos%20Auto%20Repair%20website%20demo">Claim redesign</a>
-        <a href="mailto:[REPLACE_ME]_contact@losamigosautorepair.com?subject=Questions%20about%20the%20Los%20Amigos%20Auto%20Repair%20demo">Ask questions</a>
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Los Amigos Auto Repair — Knoxville TN</title>
+  <meta name="description" content="Los Amigos Auto Repair in Knoxville, TN. 4.9★ from 33 Google reviews. Honest prices, great service — in English and Spanish. Call (865) 227-6508.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #130e08;
+      --card: #1e1609;
+      --card2: #281d0e;
+      --orange: #f97316;
+      --orange-dim: #ea6000;
+      --orange-glow: rgba(249,115,22,0.12);
+      --text: #f5ede0;
+      --muted: #8c7055;
+      --border: #2e200e;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      padding-bottom: 80px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    /* HEADER */
+    .site-header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+    }
+    .logo { font-size: 16px; font-weight: 800; color: var(--text); letter-spacing: -0.2px; }
+    .logo span { color: var(--orange); }
+    .hdr-right { display: flex; align-items: center; gap: 8px; }
+    .lang-toggle {
+      font-size: 11px; font-weight: 700;
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 20px; padding: 5px 10px;
+      cursor: pointer; color: var(--muted);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .lang-toggle.es-active { color: var(--orange); border-color: rgba(249,115,22,0.4); }
+    .hdr-phone {
+      font-size: 13px; font-weight: 700; color: var(--orange);
+      text-decoration: none; background: var(--orange-glow);
+      padding: 6px 12px; border-radius: 20px;
+      border: 1px solid rgba(249,115,22,0.3);
+    }
+    /* HERO */
+    .hero {
+      padding: 28px 18px 24px;
+      background: linear-gradient(165deg, var(--card) 0%, var(--bg) 60%);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--orange); margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: 28px; font-weight: 800; line-height: 1.18;
+      margin-bottom: 8px; letter-spacing: -0.3px;
+    }
+    .hero-sub { font-size: 15px; color: var(--muted); margin-bottom: 18px; line-height: 1.5; }
+    .hero-trust {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 14px;
+      display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+    }
+    .trust-stars { color: #f59e0b; font-size: 15px; letter-spacing: 2px; }
+    .trust-info { font-size: 13px; }
+    .trust-info strong { font-weight: 700; color: var(--text); }
+    .trust-info span { color: var(--muted); font-size: 11px; display: block; margin-top: 1px; }
+    .hero-quote {
+      font-size: 13px; font-style: italic; color: var(--muted);
+      border-left: 2px solid var(--orange); padding-left: 10px; line-height: 1.5;
+    }
+    /* SECTION */
+    .section { padding: 24px 18px 0; }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--orange); margin-bottom: 14px;
+    }
+    /* BILINGUAL INTAKE */
+    .intake-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+    }
+    .intake-lang-bar {
+      display: flex; background: var(--card2);
+      border-bottom: 1px solid var(--border);
+    }
+    .il-tab {
+      flex: 1; padding: 12px 8px; text-align: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px; font-weight: 700; color: var(--muted);
+      background: none; border: none; cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .il-tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+    .intake-body { padding: 18px; }
+    .intake-q {
+      font-size: 15px; font-weight: 700; margin-bottom: 14px; line-height: 1.3;
+    }
+    .chips { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+    .chip {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 13px 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px; font-weight: 600; color: var(--text);
+      cursor: pointer; text-align: left;
+      transition: border-color 0.15s, background 0.15s;
+      border: none;
+    }
+    .chip:active { border: 1px solid var(--orange); background: var(--orange-glow); }
+    .chip-en { display: block; }
+    .chip-es { display: none; }
+    .lang-es .chip-en { display: none; }
+    .lang-es .chip-es { display: block; }
+    .intake-cta {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--orange); color: #000;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px; font-weight: 800;
+      text-decoration: none; padding: 15px 20px;
+      border-radius: 10px;
+    }
+    /* SERVICES */
+    .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .svc-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px;
+    }
+    .svc-icon { font-size: 22px; margin-bottom: 8px; }
+    .svc-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
+    .svc-body { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .svc-title .es { display: none; }
+    .lang-es .svc-title .en { display: none; }
+    .lang-es .svc-title .es { display: inline; }
+    /* PROOF */
+    .proof-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 18px;
+    }
+    .stat-row { display: flex; margin-bottom: 16px; }
+    .stat { flex: 1; text-align: center; }
+    .stat-div { width: 1px; background: var(--border); flex-shrink: 0; }
+    .stat-num { font-size: 22px; font-weight: 800; color: var(--orange); line-height: 1.1; }
+    .stat-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
+    .proof-quote {
+      font-size: 13px; font-style: italic; color: var(--muted);
+      border-left: 2px solid var(--orange); padding-left: 12px; line-height: 1.55;
+    }
+    /* CONTACT */
+    .contact-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+    }
+    .contact-hdr { background: var(--orange); padding: 13px 18px; }
+    .contact-hdr-name { font-size: 14px; font-weight: 800; color: #000; }
+    .contact-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 13px; }
+    .c-row { display: flex; align-items: flex-start; gap: 12px; }
+    .c-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+    .c-text { font-size: 14px; line-height: 1.45; }
+    .c-text a { color: var(--orange); text-decoration: none; font-weight: 700; }
+    .c-text small { color: var(--muted); font-size: 12px; display: block; margin-top: 2px; }
+    .section-bottom-pad { padding-bottom: 28px; }
+    /* STICKY BAR */
+    .sticky-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--card); border-top: 1px solid var(--border);
+      display: flex; gap: 10px; padding: 10px 16px;
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+      z-index: 100;
+    }
+    .sb-btn {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      gap: 7px; padding: 13px 12px; border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px; font-weight: 800;
+      text-decoration: none; border: none; cursor: pointer;
+    }
+    .sb-call { background: var(--orange); color: #000; }
+    .sb-dir { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    /* lang state on body */
+    body.lang-es .text-en { display: none; }
+    body.lang-es .text-es { display: inline; }
+    .text-es { display: none; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">Los <span>Amigos</span> Auto</div>
+  <div class="hdr-right">
+    <button class="lang-toggle" id="lang-btn" onclick="toggleLang()">ES / EN</button>
+    <a href="tel:+18652276508" class="hdr-phone">(865) 227-6508</a>
+  </div>
+</header>
+
+<section class="hero">
+  <p class="hero-eyebrow">
+    <span class="text-en">Neighborhood Auto Repair · Knoxville, TN</span>
+    <span class="text-es">Reparación de Autos · Knoxville, TN</span>
+  </p>
+  <h1 class="hero-title">
+    <span class="text-en">Honest work.<br>Fair prices.<br>Your neighbors.</span>
+    <span class="text-es">Trabajo honesto.<br>Precios justos.<br>Sus vecinos.</span>
+  </h1>
+  <p class="hero-sub">
+    <span class="text-en">Local repair you can count on — polite, honest, and good quality every time.</span>
+    <span class="text-es">Servicio de confianza — atento, honesto y de buena calidad en cada visita.</span>
+  </p>
+  <div class="hero-trust">
+    <span class="trust-stars">★★★★★</span>
+    <div class="trust-info">
+      <strong>4.9 · 33 Google reviews</strong>
+      <span>908 E Woodland Ave, Knoxville, TN</span>
+    </div>
+  </div>
+  <p class="hero-quote">"Very polite and caring, honest price and great quality service."</p>
+</section>
+
+<section class="section">
+  <p class="section-eyebrow">
+    <span class="text-en">Tell Us What's Going On</span>
+    <span class="text-es">Cuéntenos el Problema</span>
+  </p>
+  <div class="intake-card" id="intake-card">
+    <div class="intake-lang-bar">
+      <button class="il-tab active" id="tab-en" onclick="setLang('en')">English</button>
+      <button class="il-tab" id="tab-es" onclick="setLang('es')">Español</button>
+    </div>
+    <div class="intake-body">
+      <p class="intake-q" id="intake-q">What's happening with the car?</p>
+      <div class="chips" id="chips-en">
+        <button class="chip" onclick="chipCall()">🛑 Brakes</button>
+        <button class="chip" onclick="chipCall()">⚠️ Warning light</button>
+        <button class="chip" onclick="chipCall()">🔧 Maintenance</button>
+        <button class="chip" onclick="chipCall()">🔊 Noise / vibration</button>
+        <button class="chip" onclick="chipCall()">❄️ AC or heat</button>
+        <button class="chip" onclick="chipCall()">🔍 Not sure</button>
+      </div>
+      <div class="chips" id="chips-es" style="display:none;">
+        <button class="chip" onclick="chipCall()">🛑 Frenos</button>
+        <button class="chip" onclick="chipCall()">⚠️ Luz del tablero</button>
+        <button class="chip" onclick="chipCall()">🔧 Mantenimiento</button>
+        <button class="chip" onclick="chipCall()">🔊 Ruido / vibración</button>
+        <button class="chip" onclick="chipCall()">❄️ Calefacción / AC</button>
+        <button class="chip" onclick="chipCall()">🔍 No estoy seguro</button>
+      </div>
+      <a href="tel:+18652276508" class="intake-cta" id="intake-cta">
+        📞 <span class="text-en">Call / Llama ahora — (865) 227-6508</span>
+        <span class="text-es" style="display:none;">Llama ahora — (865) 227-6508</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-bottom-pad">
+  <p class="section-eyebrow">
+    <span class="text-en">What We Handle</span>
+    <span class="text-es">Lo Que Hacemos</span>
+  </p>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-icon">🔍</div>
+      <p class="svc-title">
+        <span class="text-en">Repair &amp; diagnostics</span>
+        <span class="text-es">Reparación y diagnóstico</span>
+      </p>
+      <p class="svc-body">
+        <span class="text-en">Warning lights, drivability, and engine issues.</span>
+        <span class="text-es">Luces, motor y problemas de manejo.</span>
+      </p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🔧</div>
+      <p class="svc-title">
+        <span class="text-en">Maintenance</span>
+        <span class="text-es">Mantenimiento</span>
+      </p>
+      <p class="svc-body">
+        <span class="text-en">Oil service, inspections, and routine upkeep.</span>
+        <span class="text-es">Aceite, inspecciones y cuidado rutinario.</span>
+      </p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🛑</div>
+      <p class="svc-title">
+        <span class="text-en">Brakes &amp; steering</span>
+        <span class="text-es">Frenos y dirección</span>
+      </p>
+      <p class="svc-body">
+        <span class="text-en">Pads, rotors, fluid, and steering feel.</span>
+        <span class="text-es">Pastillas, rotores, fluido y dirección.</span>
+      </p>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🤝</div>
+      <p class="svc-title">
+        <span class="text-en">Honest advice</span>
+        <span class="text-es">Asesoría honesta</span>
+      </p>
+      <p class="svc-body">
+        <span class="text-en">We tell you what's needed and what can wait.</span>
+        <span class="text-es">Le decimos qué necesita y qué puede esperar.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-bottom-pad">
+  <p class="section-eyebrow">
+    <span class="text-en">Why Customers Return</span>
+    <span class="text-es">Por Qué Regresan</span>
+  </p>
+  <div class="proof-card">
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-num">4.9★</div>
+        <div class="stat-lbl">Rating</div>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <div class="stat-num">33</div>
+        <div class="stat-lbl">Reviews</div>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <div class="stat-num">Fair</div>
+        <div class="stat-lbl">Prices</div>
       </div>
     </div>
+    <p class="proof-quote">"Very polite and caring, honest price and great quality service."</p>
+  </div>
+</section>
 
-    <header class="site-header">
-      <div class="shell">
-        <div class="brand">
-          <span>Bilingual neighborhood repair preview</span>
-          <strong>Los Amigos Auto Repair</strong>
-        </div>
-        <nav class="top-nav">
-            <a href="#services">Services</a>
-            <a href="#proof">Trust</a>
-            <a href="#request">Visit plan</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <div class="header-actions">
-          <a class="btn btn-primary" href="#request">Start bilingual intake</a>
-          <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Los+Amigos+Auto+Repair+908+E+Woodland+Ave%2C+Knoxville%2C+TN+37917" target="_blank" rel="noopener noreferrer">Directions</a>
-        </div>
+<section class="section section-bottom-pad">
+  <p class="section-eyebrow">
+    <span class="text-en">Find Us</span>
+    <span class="text-es">Encuéntrenos</span>
+  </p>
+  <div class="contact-card">
+    <div class="contact-hdr">
+      <p class="contact-hdr-name">Los Amigos Auto Repair</p>
+    </div>
+    <div class="contact-body">
+      <div class="c-row">
+        <span class="c-icon">📍</span>
+        <p class="c-text">908 E Woodland Ave<br>Knoxville, TN 37917</p>
       </div>
-    </header>
+      <div class="c-row">
+        <span class="c-icon">📞</span>
+        <p class="c-text">
+          <a href="tel:+18652276508">(865) 227-6508</a>
+          <small>
+            <span class="text-en">Opens 8 AM · Call for current hours</span>
+            <span class="text-es">Abre a las 8 AM · Llame para horario</span>
+          </small>
+        </p>
+      </div>
+      <div class="c-row">
+        <span class="c-icon">✉️</span>
+        <p class="c-text">
+          <a href="mailto:contact@los-amigos-auto-repair.com">contact@los-amigos-auto-repair.com</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <main>
-        <section class="hero-band hero-band--bilingual">
-          <div class="shell bilingual-grid">
-            <div class="panel panel-body fade-up">
-              <span class="section-kicker">Bilingual neighborhood repair preview</span>
-              <h1 class="headline">Los Amigos Auto Repair</h1>
-              <p class="subhead">A site that feels welcoming in English and Spanish.</p>
-              <p class="lede">This concept gives Los Amigos Auto Repair a warmer, more neighborhood-driven presence with a simple bilingual interaction, clear call and map actions, and fewer generic shop tropes.</p>
-              <div class="language-cards">
-                <div class="language-card">
-                  <strong>English</strong>
-                  <span class="muted-copy">Clear call-first help for nearby drivers.</span>
-                </div>
-                <div class="language-card">
-                  <strong>Español</strong>
-                  <span class="muted-copy">Una entrada más cálida y fácil para clientes locales.</span>
-                </div>
-              </div>
-              <div class="action-row" style="margin-top: 1rem;">
-<a class="btn btn-primary" href="tel:+18652276508">Call / Llama</a>                <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Los+Amigos+Auto+Repair+908+E+Woodland+Ave%2C+Knoxville%2C+TN+37917" target="_blank" rel="noopener noreferrer">Directions / Cómo llegar</a>
-              </div>
-              <blockquote class="quote-block">
-                Review quote: &#34;Very polite and caring, honest price and great quality service.&#34;
-                <cite>Warm, direct, and neighborhood-first.</cite>
-              </blockquote>
-            </div>
-            <aside class="panel form-panel fade-up delay-1" id="request">
-              <span class="section-kicker">Bilingual intake</span>
-              <h2 class="section-title">Choose your language / Elige tu idioma</h2>
-              <p class="muted-copy">A preview of a friendlier intake path for Los Amigos Auto Repair.</p>
-              <form class="request-form" data-demo-form>
-                <div class="option-grid" data-translate-buttons>
-                  <button type="button" class="is-active" data-translation="en">English</button>
-                  <button type="button" data-translation="es">Español</button>
-                </div>
-                <select name="Issue">
-                    <option>Brake / frenos</option>
-                    <option>Warning light / luz del tablero</option>
-                    <option>Maintenance / mantenimiento</option>
-                    <option>Noise / ruido</option>
-                </select>
-                <input type="text" name="Phone" placeholder="Best callback number" />
-                <textarea name="Notes" data-en="Tell us what the car is doing" data-es="Cuéntanos qué está haciendo el carro" placeholder="Tell us what the car is doing"></textarea>
-                <button type="submit">Call / Llama ahora</button>
-              </form>
-              <div class="form-response" data-form-response hidden></div>
-            </aside>
-          </div>
-        </section>
+<div class="sticky-bar">
+  <a href="tel:+18652276508" class="sb-btn sb-call">
+    📞 <span class="text-en">Call Now</span><span class="text-es">Llama</span>
+  </a>
+  <a href="https://maps.google.com/?q=908+E+Woodland+Ave+Knoxville+TN+37917"
+     target="_blank" rel="noopener" class="sb-btn sb-dir">
+    🗺 <span class="text-en">Directions</span><span class="text-es">Cómo llegar</span>
+  </a>
+</div>
 
-        <section class="section" id="services">
-          <div class="shell split-grid">
-            <div class="panel info-panel">
-              <div class="section-head">
-                <span class="section-kicker">Welcoming service structure</span>
-                <h2 class="section-title">The site should feel human before it feels corporate.</h2>
-              </div>
-              <div class="service-grid">
-                  <article class="service-card">
-                    <strong>General repair and diagnostics</strong>
-                    <p>Clear entry points for the everyday issues people need help with first.</p>
-                  </article>
-                  <article class="service-card">
-                    <strong>Maintenance and inspections</strong>
-                    <p>Routine service stays easy to request without clutter.</p>
-                  </article>
-                  <article class="service-card">
-                    <strong>Phone-first local trust</strong>
-                    <p>The site behaves like a nearby shop, not a faceless template.</p>
-                  </article>
-                  <article class="service-card">
-                    <strong>Bilingual welcome</strong>
-                    <p>The page can feel more open and comfortable for a wider set of local customers.</p>
-                  </article>
-              </div>
-            </div>
-            <div class="panel info-panel" id="proof">
-              <div class="section-head">
-                <span class="section-kicker">Trust and tone</span>
-                <h2 class="section-title">Honest pricing and friendliness should shape the experience.</h2>
-              </div>
-              <ul class="list-clean">
-                  <li>Customers call out honesty and fair dealing.</li>
-                  <li>Price fairness matters to the brand story.</li>
-                  <li>Work quality is part of the trust equation.</li>
-                  <li>Personal treatment and friendliness are part of the appeal.</li>
-                  <li>Review quote: &#34;Very polite and caring, honest price and great quality service.&#34;</li>
-                  <li>Very high rating.</li>
-                  <li>Review evidence emphasizes polite service, honest pricing, and quality work.</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-      <section class="section" id="contact">
-        <div class="shell contact-grid">
-          <div class="contact-stack">
-            <div class="panel contact-panel">
-              <span class="section-kicker">Contact and location</span>
-              <h2>Los Amigos Auto Repair</h2>
-              <p>908 E Woodland Ave, Knoxville, TN 37917; primary focus remains Knoxville, Tennessee.</p>
-              <div class="action-row">
-<a class="btn btn-primary" href="tel:+18652276508">Call (865) 227-6508</a>                <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Los+Amigos+Auto+Repair+908+E+Woodland+Ave%2C+Knoxville%2C+TN+37917" target="_blank" rel="noopener noreferrer">Get directions</a>
-              </div>
-              <ul class="list-clean" style="margin-top: 1rem;">
-                  <li>Very high rating.</li>
-                  <li>Review evidence emphasizes polite service, honest pricing, and quality work.</li>
-              </ul>
-            </div>
-            <div class="owner-note">
-              <span class="section-kicker">Owner note</span>
-              <h3>Claim the redesign or request revisions.</h3>
-              <p>The customer-facing hierarchy stays focused on calls, directions, and service clarity. Owner-only actions stay here at the bottom.</p>
-              <div class="action-row">
-                <a class="btn btn-primary" href="mailto:[REPLACE_ME]_contact@losamigosautorepair.com?subject=I%20want%20the%20Los%20Amigos%20Auto%20Repair%20website%20demo">Claim redesign</a>
-                <a class="btn btn-secondary" href="mailto:[REPLACE_ME]_contact@losamigosautorepair.com?subject=Questions%20about%20the%20Los%20Amigos%20Auto%20Repair%20demo">Ask questions</a>
-              </div>
-            </div>
-          </div>
-          <div class="stack">
-            <div class="panel contact-panel" id="proof">
-              <span class="section-kicker">Trust signals</span>
-              <ul class="list-clean">
-                  <li>4.9 rating from 33 Google reviews</li>
-                  <li>908 E Woodland Ave, Knoxville, TN 37917</li>
-                  <li>(865) 227-6508</li>
-                  <li>Closed · Opens 8 AM</li>
-              </ul>
-            </div>
-            <iframe class="map-frame" src="https://www.google.com/maps?q=Los+Amigos+Auto+Repair+908+E+Woodland+Ave%2C+Knoxville%2C+TN+37917&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map for Los Amigos Auto Repair"></iframe>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <script>
-      const callHref = "tel:+18652276508";
-      const callLabel = Call (865) 227-6508;
-      const directionsHref = "https://www.google.com/maps/search/?api=1\u0026query=Los+Amigos+Auto+Repair+908+E+Woodland+Ave%2C+Knoxville%2C+TN+37917";
-      const currentSiteUrl = null;
-
-      function escapeHtml(value) {
-        return String(value)
-          .replaceAll("&", "&amp;")
-          .replaceAll("<", "&lt;")
-          .replaceAll(">", "&gt;")
-          .replaceAll('"', "&quot;")
-          .replaceAll("'", "&#39;");
-      }
-
-      function responseMarkup(summary) {
-        const actions = [];
-        if (callHref) {
-          actions.push(`<a class="btn btn-primary" href="${callHref}">${escapeHtml(callLabel)}</a>`);
-        }
-        actions.push(`<a class="btn btn-secondary" href="${escapeHtml(directionsHref)}" target="_blank" rel="noopener noreferrer">Get directions</a>`);
-        if (currentSiteUrl) {
-          actions.push(`<a class="btn btn-secondary" href="${escapeHtml(currentSiteUrl)}" target="_blank" rel="noopener noreferrer">Open current site</a>`);
-        }
-        return `
-          <strong>Preview next step</strong>
-          <p class="response-text">${summary}</p>
-          <div class="response-actions">${actions.join("")}</div>
-        `;
-      }
-
-      document.querySelectorAll("[data-demo-form]").forEach((form) => {
-        const response = form.parentElement.querySelector("[data-form-response]");
-        form.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const values = Array.from(new FormData(form).entries())
-            .filter(([, value]) => value && String(value).trim())
-            .map(([key, value]) => `${escapeHtml(key)}: ${escapeHtml(value)}`);
-          const summary = values.length
-            ? `This preview would hand the shop a clearer intake: ${values.join(" · ")}.`
-            : "This preview turns the first click into a clearer service request instead of a dead-end brochure.";
-          response.hidden = false;
-          response.innerHTML = responseMarkup(summary);
-        });
-      });
-
-      document.querySelectorAll("[data-option-panel]").forEach((panel) => {
-        const output = panel.parentElement.querySelector("[data-panel-output]");
-        panel.querySelectorAll("button").forEach((button) => {
-          button.addEventListener("click", () => {
-            panel.querySelectorAll("button").forEach((candidate) => candidate.classList.remove("is-active"));
-            button.classList.add("is-active");
-            output.innerHTML = `<strong>${escapeHtml(button.dataset.panelTitle)}</strong><span class="response-text">${escapeHtml(button.dataset.panelBody)}</span>`;
-          });
-        });
-      });
-
-      document.querySelectorAll("[data-translate-buttons]").forEach((panel) => {
-        const textarea = panel.parentElement.querySelector("textarea");
-        panel.querySelectorAll("button").forEach((button) => {
-          button.addEventListener("click", () => {
-            panel.querySelectorAll("button").forEach((candidate) => candidate.classList.remove("is-active"));
-            button.classList.add("is-active");
-            textarea.placeholder = button.dataset.translation === "es" ? textarea.dataset.es : textarea.dataset.en;
-          });
-        });
-      });
-    </script>
-  </body>
+<script>
+  var lang = 'en';
+  function setLang(l) {
+    lang = l;
+    var body = document.body;
+    if (l === 'es') {
+      body.classList.add('lang-es');
+      document.getElementById('tab-en').classList.remove('active');
+      document.getElementById('tab-es').classList.add('active');
+      document.getElementById('intake-q').textContent = '¿Qué le pasa al carro?';
+      document.getElementById('chips-en').style.display = 'none';
+      document.getElementById('chips-es').style.display = 'grid';
+    } else {
+      body.classList.remove('lang-es');
+      document.getElementById('tab-en').classList.add('active');
+      document.getElementById('tab-es').classList.remove('active');
+      document.getElementById('intake-q').textContent = 'What\'s happening with the car?';
+      document.getElementById('chips-en').style.display = 'grid';
+      document.getElementById('chips-es').style.display = 'none';
+    }
+    // toggle all .text-en / .text-es
+    document.querySelectorAll('.text-en').forEach(function(el){
+      el.style.display = l === 'es' ? 'none' : '';
+    });
+    document.querySelectorAll('.text-es').forEach(function(el){
+      el.style.display = l === 'es' ? '' : 'none';
+    });
+  }
+  function toggleLang() {
+    setLang(lang === 'en' ? 'es' : 'en');
+  }
+  function chipCall() {
+    window.location.href = 'tel:+18652276508';
+  }
+</script>
+</body>
 </html>
