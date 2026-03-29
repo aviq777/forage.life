@@ -4,23 +4,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Westside Automotive Center | Knoxville</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #ffffff; --surface: #f8fafc; --primary: #dc2626; --text: #0f172a; --muted: #475569; --border: #e2e8f0; }
+    :root { --bg: #ffffff; --surface: #F8FAFC; --primary: #DC2626; --primary-hover: #B91C1C; --text: #0F172A; --muted: #64748B; --border: #E2E8F0; }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 100px; }
-    .container { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
-    header { padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
-    h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; color: #000; }
-    p { color: var(--muted); margin-bottom: 2rem; font-size: 1.125rem; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; text-align: center; }
-    .card h3 { font-size: 1.125rem; margin-bottom: 0.5rem; color: #000; }
-    .section { border-top: 1px solid var(--border); padding: 2rem 0; }
-    h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #000; }
-    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); border-top: 1px solid var(--border); padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 1rem; z-index: 100; }
-    .nav-btn { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 600; text-decoration: none; }
+    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 90px; }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 1.25rem; }
+    
+    header { padding: 1.25rem 0; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.25rem; font-weight: 800; color: var(--primary); letter-spacing: -0.02em; }
+    
+    .rating-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; font-weight: 600; color: #000; margin-bottom: 1rem; }
+    .rating-badge .stars { color: var(--primary); font-size: 1rem; letter-spacing: 1px; }
+
+    h1 { font-size: 2.25rem; font-weight: 800; color: #000; margin-bottom: 0.75rem; line-height: 1.1; letter-spacing: -0.03em; }
+    p.lead { color: var(--muted); margin-bottom: 2.5rem; font-size: 1.05rem; }
+
+    /* Urgency Switcher */
+    .urgency-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    .u-title { font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: #000; }
+    
+    .u-grid { display: grid; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .u-btn { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 1rem; border-radius: 8px; font-weight: 600; text-align: left; cursor: pointer; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center; }
+    .u-btn.active { background: var(--text); color: #fff; border-color: var(--text); }
+
+    .u-panel { display: none; padding-top: 1rem; border-top: 1px solid var(--border); animation: fade 0.2s ease-in; }
+    .u-panel.active { display: block; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+    .btn-action { display: block; width: 100%; text-align: center; padding: 1rem; border-radius: 8px; font-weight: 700; text-decoration: none; cursor: pointer; margin-top: 1rem; }
+    .btn-solid { background: var(--primary); color: #fff; border: 1px solid var(--primary); }
+    .btn-outline { background: var(--bg); color: var(--text); border: 2px solid var(--text); }
+
+    /* Services Grid */
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .s-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: center; }
+    .s-card h3 { font-size: 1rem; font-weight: 700; color: #000; margin-bottom: 0.25rem; }
+    .s-card p { font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.3; }
+
+    /* Sections */
+    .section { border-top: 1px solid var(--border); padding: 2.5rem 0; }
+    h2 { font-size: 1.5rem; color: #000; margin-bottom: 1.25rem; font-weight: 800; letter-spacing: -0.02em; }
+    
+    .review-quote { font-size: 1.125rem; font-weight: 600; font-style: italic; color: #000; line-height: 1.4; border-left: 4px solid var(--primary); padding-left: 1rem; margin-bottom: 1rem; }
+
+    /* Bottom Nav */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); border-top: 1px solid var(--border); padding: 1rem 1.25rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 0.75rem; z-index: 100; backdrop-filter: blur(10px); }
+    .nav-btn { flex: 1; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; }
     .nav-primary { background: var(--primary); color: #fff; }
     .nav-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
   </style>
@@ -29,23 +59,78 @@
   <div class="container">
     <header>
       <div class="logo">Westside Auto</div>
-      <div style="font-weight:600; color:var(--muted);">(865) 212-5524</div>
+      <div style="font-weight: 600; font-size: 0.9rem; color: var(--muted);">(865) 212-5524</div>
     </header>
+
+    <div class="rating-badge">
+      <span class="stars">★★★★★</span> 4.6 &middot; 93 Reviews
+    </div>
     <h1>Trusted local repair & U-Haul rental.</h1>
-    <p>Simple, reliable service on Papermill Dr.</p>
-    <div class="grid">
-      <div class="card"><h3>Auto Repair</h3><p style="font-size:0.875rem;margin:0;">Brakes, engine, routine service.</p></div>
-      <div class="card"><h3>Tires</h3><p style="font-size:0.875rem;margin:0;">Sales, mounting, and balancing.</p></div>
-      <div class="card" style="grid-column: span 2;"><h3>U-Haul Rentals</h3><p style="font-size:0.875rem;margin:0;">Authorized neighborhood dealer.</p></div>
+    <p class="lead">Simple, reliable service on Papermill Dr.</p>
+
+    <!-- Urgency Switcher -->
+    <div class="urgency-card">
+      <div class="u-title">How soon do you need help?</div>
+      <div class="u-grid">
+        <button class="u-btn" onclick="showPanel(this, 'today')" id="btn-today">Needs attention today <span>→</span></button>
+        <button class="u-btn" onclick="showPanel(this, 'week')" id="btn-week">Schedule this week <span>→</span></button>
+        <button class="u-btn" onclick="showPanel(this, 'plan')" id="btn-plan">Planning ahead <span>→</span></button>
+      </div>
+
+      <div id="panel-today" class="u-panel">
+        <p style="color: #000; font-weight: 600; margin-bottom: 0.5rem;">Immediate Need</p>
+        <p style="font-size: 0.95rem; color: var(--muted);">For noises, lights, brake feel, or anything that just changed suddenly. The fastest path is a phone call.</p>
+        <a href="tel:8652125524" class="btn-action btn-solid">Call the Shop Now</a>
+      </div>
+      
+      <div id="panel-week" class="u-panel">
+        <p style="color: #000; font-weight: 600; margin-bottom: 0.5rem;">Routine & Repair</p>
+        <p style="font-size: 0.95rem; color: var(--muted);">For recurring concerns, maintenance, or known follow-up service. Call to hold a spot.</p>
+        <a href="tel:8652125524" class="btn-action btn-outline">Call to Schedule</a>
+      </div>
+      
+      <div id="panel-plan" class="u-panel">
+        <p style="color: #000; font-weight: 600; margin-bottom: 0.5rem;">Upkeep & Prep</p>
+        <p style="font-size: 0.95rem; color: var(--muted);">For tires, seasonal care, U-Haul reservations, and general upkeep when there is time to decide.</p>
+        <a href="tel:8652125524" class="btn-action btn-outline">Call Shop</a>
+      </div>
     </div>
-    <div class="section" style="border-bottom: none;">
-      <h2>Location & Hours</h2>
-      <p>4401 Papermill Dr NW<br>Knoxville, TN 37909<br><br>Mon-Fri &middot; Opens 8 AM</p>
+
+    <!-- Legacy Preservation Grid -->
+    <div class="services-grid">
+      <div class="s-card"><h3>Auto Repair</h3><p>Brakes, engine, & diagnostics.</p></div>
+      <div class="s-card"><h3>Tires</h3><p>Sales, mounting, & balancing.</p></div>
+      <div class="s-card" style="grid-column: span 2;"><h3>U-Haul Rentals</h3><p>Authorized neighborhood dealer.</p></div>
     </div>
+
+    <!-- Proof & Location -->
+    <div class="section">
+      <div class="review-quote">"Best repair shop in Knoxville."</div>
+      <p style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; margin-bottom: 2rem;">— Verified Customer</p>
+      
+      <h2 style="margin-bottom: 0.5rem;">Visit the shop</h2>
+      <p style="font-size: 1rem; color: #000; margin-bottom: 0.25rem;">4401 Papermill Dr NW, Knoxville, TN 37909</p>
+      <p style="font-size: 0.9rem; font-weight: 500;">Mon-Fri &middot; Opens 8 AM</p>
+    </div>
+
   </div>
+
+  <!-- Sticky Nav -->
   <div class="bottom-nav">
     <a href="tel:8652125524" class="nav-btn nav-primary">Call Shop</a>
     <a href="https://maps.google.com/?q=4401+Papermill+Dr+NW,+Knoxville,+TN" target="_blank" class="nav-btn nav-secondary">Directions</a>
   </div>
+
+  <script>
+    function showPanel(btn, id) {
+      document.querySelectorAll('.u-btn').forEach(el => el.classList.remove('active'));
+      btn.classList.add('active');
+      
+      document.querySelectorAll('.u-panel').forEach(el => el.classList.remove('active'));
+      document.getElementById('panel-' + id).classList.add('active');
+    }
+    // Set default
+    document.getElementById('btn-today').click();
+  </script>
 </body>
 </html>
