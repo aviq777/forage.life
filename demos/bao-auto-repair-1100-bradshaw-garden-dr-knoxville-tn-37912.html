@@ -4,24 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Bao Auto Repair | Knoxville</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root { --bg: #111315; --surface: #1A1D20; --green: #10B981; --yellow: #F59E0B; --text: #E2E8F0; --muted: #94A3B8; --border: #334155; }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 100px; }
-    .container { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
-    header { padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    body { background: var(--bg); color: var(--text); line-height: 1.4; padding-bottom: 90px; }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 1.25rem; }
+    
+    header { padding: 1.25rem 0; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
     .logo { font-size: 1.25rem; font-weight: 700; color: #fff; }
     .logo span { color: var(--green); }
-    h1 { font-size: 2.25rem; font-weight: 700; color: #fff; margin-bottom: 1rem; line-height: 1.1; }
-    p { color: var(--muted); margin-bottom: 2rem; font-size: 1.125rem; }
-    .btn { display: block; width: 100%; padding: 1.25rem; border-radius: 12px; font-weight: 600; text-align: left; background: var(--surface); border: 1px solid var(--border); color: var(--text); margin-bottom: 0.75rem; text-decoration: none; cursor: pointer; display: flex; justify-content: space-between;}
-    .btn:active { border-color: var(--green); }
-    .badge { display: inline-block; background: var(--surface); border: 1px solid var(--border); color: var(--yellow); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.875rem; font-weight: 600; margin-bottom: 1.5rem; }
-    .section { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 1rem; }
-    h2 { font-size: 1.5rem; color: #fff; margin-bottom: 1rem; }
-    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(17,19,21,0.95); border-top: 1px solid var(--border); padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 1rem; z-index: 100; }
-    .nav-btn { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: 600; text-decoration: none; }
+    
+    .badge { display: inline-block; background: var(--surface); border: 1px solid var(--border); color: var(--yellow); padding: 0.35rem 0.75rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 700; margin-bottom: 1rem; }
+    h1 { font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem; line-height: 1.1; }
+    p.lead { color: var(--muted); margin-bottom: 1.5rem; font-size: 1rem; }
+
+    /* Wizard */
+    .wizard-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; margin-bottom: 2rem; }
+    .step { display: none; }
+    .step.active { display: block; animation: fade 0.2s ease-in; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    
+    .w-title { font-size: 1.125rem; font-weight: 700; color: #fff; margin-bottom: 1rem; display: flex; justify-content: space-between; }
+    .w-title span { font-size: 0.75rem; color: var(--yellow); }
+    
+    .opt-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 1rem; background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 8px; font-weight: 500; font-size: 0.95rem; margin-bottom: 0.5rem; cursor: pointer; text-align: left; }
+    .opt-btn:active { border-color: var(--green); background: #1c2226; }
+    .opt-btn span:last-child { color: var(--muted); }
+
+    .back-btn { background: none; border: none; color: var(--muted); font-size: 0.8rem; font-weight: 500; margin-bottom: 0.75rem; cursor: pointer; display: flex; align-items: center; gap: 0.25rem; padding: 0.5rem 0; }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-label { display: block; font-size: 0.8rem; font-weight: 500; margin-bottom: 0.25rem; color: var(--muted); }
+    .form-input { width: 100%; padding: 0.875rem; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: #fff; font-size: 1rem; }
+    .submit-btn { width: 100%; padding: 1rem; background: var(--green); color: #000; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 0.5rem; }
+
+    /* Sections */
+    .section { border-top: 1px solid var(--border); padding: 2rem 0; }
+    h2 { font-size: 1.25rem; color: #fff; margin-bottom: 1rem; font-weight: 700; }
+    .review-box { background: var(--surface); border-left: 3px solid var(--yellow); padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; }
+    .review-box p { font-style: italic; color: #fff; margin-bottom: 0; font-size: 0.95rem; }
+
+    /* Bottom Nav */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(17,19,21,0.95); border-top: 1px solid var(--border); padding: 1rem 1.25rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 0.75rem; z-index: 100; backdrop-filter: blur(10px); }
+    .nav-btn { flex: 1; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; }
     .nav-primary { background: var(--green); color: #000; }
     .nav-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
   </style>
@@ -30,29 +56,108 @@
   <div class="container">
     <header>
       <div class="logo">Bao <span>Auto</span> Repair</div>
-      <div style="color:var(--muted); font-weight:600;">(865) 688-8695</div>
+      <div style="font-weight: 600; font-size: 0.9rem; color: var(--muted);">(865) 688-8695</div>
     </header>
+
     <div class="badge">★ 4.5 (596 Reviews)</div>
     <h1>Honest repair.<br>Fast answers.</h1>
-    <p>Knoxville's trusted independent shop. What's the car doing?</p>
-    
-    <a href="tel:8656888695" class="btn"><span>Warning light came on</span> <span>&rarr;</span></a>
-    <a href="tel:8656888695" class="btn"><span>Making a strange noise</span> <span>&rarr;</span></a>
-    <a href="tel:8656888695" class="btn"><span>Handling or drivability issue</span> <span>&rarr;</span></a>
-    <a href="tel:8656888695" class="btn"><span>Routine maintenance</span> <span>&rarr;</span></a>
+    <p class="lead">Knoxville's trusted independent shop.</p>
 
+    <!-- Intake Wizard -->
+    <div class="wizard-card">
+      
+      <!-- Step 1 -->
+      <div id="step-1" class="step active">
+        <div class="w-title">What's the car doing? <span>1/3</span></div>
+        <button class="opt-btn" onclick="nextStep(1, 'Warning Light')">Warning light came on <span>→</span></button>
+        <button class="opt-btn" onclick="nextStep(1, 'Noise')">Strange noise <span>→</span></button>
+        <button class="opt-btn" onclick="nextStep(1, 'Handling')">Handling / Brakes <span>→</span></button>
+        <button class="opt-btn" onclick="nextStep(1, 'Routine')">Routine service <span>→</span></button>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="step-2" class="step">
+        <button class="back-btn" onclick="prevStep(2)">← Back</button>
+        <div class="w-title">How long has it happened? <span>2/3</span></div>
+        <button class="opt-btn" onclick="nextStep(2, 'Started today')">Just started today <span>→</span></button>
+        <button class="opt-btn" onclick="nextStep(2, 'Few days')">A few days <span>→</span></button>
+        <button class="opt-btn" onclick="nextStep(2, 'Few weeks')">A few weeks <span>→</span></button>
+        <button class="opt-btn" onclick="nextStep(2, 'Comes and goes')">Comes and goes <span>→</span></button>
+      </div>
+
+      <!-- Step 3 -->
+      <div id="step-3" class="step">
+        <button class="back-btn" onclick="prevStep(3)">← Back</button>
+        <div class="w-title">Request Diagnostic <span>3/3</span></div>
+        <div style="font-size: 0.85rem; color: var(--green); margin-bottom: 1rem;" id="summary-text"></div>
+        <form onsubmit="event.preventDefault(); window.location.href='tel:8656888695';">
+          <div class="form-group">
+            <label class="form-label">Vehicle (Year/Make/Model)</label>
+            <input type="text" class="form-input" required>
+          </div>
+          <button type="submit" class="submit-btn">Call Shop Now</button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Proof -->
     <div class="section">
-      <h2>The neighborhood hidden gem.</h2>
-      <p style="margin-bottom:0;">"A real hidden gem in Knoxville auto repair scene!"</p>
+      <h2>The Neighborhood Hidden Gem</h2>
+      <p style="font-size: 0.95rem; margin-bottom: 1rem;">We fix cars and tell the truth. No high-pressure sales.</p>
+      <div class="review-box">
+        <p>"A real hidden gem in Knoxville auto repair scene!"</p>
+      </div>
     </div>
-    <div class="section" style="border-bottom:none;">
-      <h2>Contact & Hours</h2>
-      <p>1100 Bradshaw Garden Dr<br>Knoxville, TN 37912<br><br>Mon-Fri &middot; Opens 8 AM</p>
+
+    <!-- Services -->
+    <div class="section">
+      <h2>Core Services</h2>
+      <div style="display: grid; gap: 1rem;">
+        <div>
+          <div style="font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Diagnostics & Drivability</div>
+          <p style="font-size: 0.9rem; margin: 0;">Warning lights, rough idle, or sudden noises.</p>
+        </div>
+        <div>
+          <div style="font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Brakes & Suspension</div>
+          <p style="font-size: 0.9rem; margin: 0;">Squeals, pulls, or vibrations handled safely.</p>
+        </div>
+        <div>
+          <div style="font-weight: 700; color: #fff; margin-bottom: 0.25rem;">Routine Maintenance</div>
+          <p style="font-size: 0.9rem; margin: 0;">Oil and fluids without the upsell runaround.</p>
+        </div>
+      </div>
     </div>
+
+    <!-- Location -->
+    <div class="section" style="border-bottom: none;">
+      <h2>Location</h2>
+      <p style="font-size: 0.95rem; color: #fff; font-weight: 500;">1100 Bradshaw Garden Dr<br>Knoxville, TN 37912</p>
+      <p style="font-size: 0.9rem;">Mon-Fri &middot; Opens 8 AM</p>
+    </div>
+
   </div>
+
+  <!-- Sticky Nav -->
   <div class="bottom-nav">
     <a href="tel:8656888695" class="nav-btn nav-primary">Call Shop</a>
     <a href="https://maps.google.com/?q=1100+Bradshaw+Garden+Dr,+Knoxville,+TN" target="_blank" class="nav-btn nav-secondary">Directions</a>
   </div>
+
+  <script>
+    let flowData = [];
+    function nextStep(current, val) {
+      flowData[current-1] = val;
+      document.getElementById('step-'+current).classList.remove('active');
+      document.getElementById('step-'+(current+1)).classList.add('active');
+      if(current === 2) {
+        document.getElementById('summary-text').innerText = flowData[0] + " > " + flowData[1];
+      }
+    }
+    function prevStep(current) {
+      document.getElementById('step-'+current).classList.remove('active');
+      document.getElementById('step-'+(current-1)).classList.add('active');
+    }
+  </script>
 </body>
 </html>
