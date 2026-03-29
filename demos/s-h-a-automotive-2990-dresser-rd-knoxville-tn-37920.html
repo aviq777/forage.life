@@ -4,48 +4,159 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>S.H.A. Automotive | Knoxville</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #f4f4f5; --surface: #ffffff; --primary: #eab308; --text: #27272a; --muted: #52525b; --border: #d4d4d8; }
+    :root { --bg: #F4F4F5; --surface: #FFFFFF; --primary: #EAB308; --text: #27272A; --muted: #52525B; --border: #D4D4D8; }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Roboto Mono', monospace; }
-    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 100px; }
-    .container { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
+    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 90px; }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 1.25rem; }
+    
     header { padding: 1.5rem 0; border-bottom: 2px solid var(--text); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.25rem; font-weight: 700; background: var(--text); color: var(--primary); padding: 0.25rem 0.5rem; }
-    h1 { font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; color: #000; text-transform: uppercase; }
-    p { color: var(--muted); margin-bottom: 2rem; font-size: 1rem; }
-    .btn { display: block; width: 100%; padding: 1.25rem; background: var(--surface); border: 2px solid var(--text); color: var(--text); font-weight: 700; text-align: center; text-decoration: none; margin-bottom: 1rem; box-shadow: 4px 4px 0 var(--text); transition: transform 0.1s, box-shadow 0.1s; }
-    .btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--text); }
-    .section { border-top: 2px dashed var(--border); padding: 2rem 0; }
-    h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: #000; text-transform: uppercase; }
-    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface); border-top: 2px solid var(--text); padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 1rem; z-index: 100; }
-    .nav-btn { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; font-weight: 700; text-decoration: none; border: 2px solid var(--text); color: var(--text); }
-    .nav-primary { background: var(--primary); }
-    .nav-secondary { background: var(--bg); }
+    .logo { font-size: 1.25rem; font-weight: 700; background: var(--text); color: var(--primary); padding: 0.25rem 0.5rem; text-transform: uppercase; }
+    
+    .rating-block { font-weight: 700; font-size: 0.875rem; margin-bottom: 1rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+    .rating-block .stars { color: var(--primary); letter-spacing: 2px; }
+
+    h1 { font-size: 2rem; font-weight: 700; color: #000; margin-bottom: 0.75rem; line-height: 1.1; text-transform: uppercase; }
+    p.lead { color: var(--muted); margin-bottom: 2.5rem; font-size: 1rem; font-weight: 600; }
+
+    /* Problem Selector (Brutalist Buttons) */
+    .problem-label { font-size: 0.875rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.75rem; color: var(--text); border-bottom: 2px dashed var(--border); padding-bottom: 0.5rem; }
+    .grid { display: grid; gap: 0.75rem; margin-bottom: 2.5rem; }
+    
+    .btn-brutal { 
+      display: flex; flex-direction: column; width: 100%; padding: 1.25rem; 
+      background: var(--surface); border: 2px solid var(--text); color: var(--text); 
+      text-align: left; text-decoration: none; cursor: pointer;
+      box-shadow: 4px 4px 0 var(--text); transition: transform 0.1s, box-shadow 0.1s; 
+    }
+    .btn-brutal:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--text); }
+    .btn-brutal .title { font-weight: 700; font-size: 1.125rem; margin-bottom: 0.25rem; text-transform: uppercase; }
+    .btn-brutal .desc { font-weight: 400; font-size: 0.875rem; color: var(--muted); }
+
+    /* Panel logic */
+    .detail-panel { display: none; background: var(--surface); border: 2px solid var(--text); padding: 1.5rem; margin-bottom: 2.5rem; animation: pop 0.2s ease-out; }
+    .detail-panel.active { display: block; }
+    @keyframes pop { 0% { transform: scale(0.98); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+    .btn-close { font-weight: 700; color: var(--muted); background: none; border: none; cursor: pointer; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.8rem; }
+    .call-btn { display: block; width: 100%; padding: 1rem; background: var(--primary); border: 2px solid var(--text); color: var(--text); font-weight: 700; text-align: center; text-decoration: none; text-transform: uppercase; margin-top: 1rem; }
+    .call-btn:active { background: #000; color: var(--primary); }
+
+    /* Sections */
+    .section { border-top: 2px dashed var(--border); padding: 2.5rem 0; }
+    h2 { font-size: 1.25rem; color: #000; margin-bottom: 1rem; font-weight: 700; text-transform: uppercase; }
+    
+    .review-quote { font-size: 1rem; font-weight: 600; font-style: italic; color: #000; line-height: 1.5; background: var(--primary); padding: 1rem; border: 2px solid var(--text); margin-bottom: 1rem; }
+
+    /* Bottom Nav */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface); border-top: 2px solid var(--text); padding: 1rem 1.25rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 0.75rem; z-index: 100; }
+    .nav-btn { flex: 1; height: 48px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.95rem; text-decoration: none; border: 2px solid var(--text); text-transform: uppercase; }
+    .nav-primary { background: var(--primary); color: var(--text); }
+    .nav-secondary { background: var(--bg); color: var(--text); }
+    
+    @media (min-width: 768px) {
+      .bottom-nav { max-width: 600px; margin: 0 auto; border-left: 2px solid var(--text); border-right: 2px solid var(--text); }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
       <div class="logo">S.H.A. AUTO</div>
-      <div style="font-weight:700;">(865) 609-1700</div>
+      <div style="font-weight: 700; font-size: 0.9rem; color: var(--text);">(865) 609-1700</div>
     </header>
+
+    <div class="rating-block">
+      <span class="stars">★★★★★</span> 4.9 &middot; 67 Google Reviews
+    </div>
+    
     <h1>No gimmicks.<br>Just honest mechanics.</h1>
-    <p>Straightforward auto repair in Knoxville.</p>
-    <a href="tel:8656091700" class="btn">Call to talk to a mechanic</a>
+    <p class="lead">Straightforward auto repair in Knoxville.</p>
+
+    <!-- Problem Selector -->
+    <div id="selector">
+      <div class="problem-label">What brings the car in?</div>
+      <div class="grid">
+        <button class="btn-brutal" onclick="showPanel('warning')">
+          <span class="title">Warning Light</span>
+          <span class="desc">Check engine, battery, ABS, or dashboard alerts.</span>
+        </button>
+        <button class="btn-brutal" onclick="showPanel('brakes')">
+          <span class="title">Brake / Steering</span>
+          <span class="desc">Shaking, squeal, soft pedal, or pulling.</span>
+        </button>
+        <button class="btn-brutal" onclick="showPanel('noise')">
+          <span class="title">Noise / Vibration</span>
+          <span class="desc">Something changed, but you aren't sure what.</span>
+        </button>
+        <button class="btn-brutal" onclick="showPanel('maint')">
+          <span class="title">Maintenance</span>
+          <span class="desc">Oil service, inspection, or routine upkeep.</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Detail Panels -->
+    <div id="panel-warning" class="detail-panel">
+      <button class="btn-close" onclick="hidePanels()">[X] Close</button>
+      <h2 style="font-size: 1.125rem; margin-bottom: 0.5rem;">Warning Light</h2>
+      <p style="font-size: 0.875rem;">We'll pull the code, test the system, and tell you exactly what's failing without throwing parts at it.</p>
+      <a href="tel:8656091700" class="call-btn">Call for Diagnostics</a>
+    </div>
+
+    <div id="panel-brakes" class="detail-panel">
+      <button class="btn-close" onclick="hidePanels()">[X] Close</button>
+      <h2 style="font-size: 1.125rem; margin-bottom: 0.5rem;">Brakes / Steering</h2>
+      <p style="font-size: 0.875rem;">Safety first. We inspect pads, rotors, calipers, and suspension links to find the exact source of the shake or pull.</p>
+      <a href="tel:8656091700" class="call-btn">Call the Shop</a>
+    </div>
+
+    <div id="panel-noise" class="detail-panel">
+      <button class="btn-close" onclick="hidePanels()">[X] Close</button>
+      <h2 style="font-size: 1.125rem; margin-bottom: 0.5rem;">Noise / Vibration</h2>
+      <p style="font-size: 0.875rem;">Tell us when it happens (turning, stopping, accelerating) and we'll track down the source.</p>
+      <a href="tel:8656091700" class="call-btn">Call to Describe Issue</a>
+    </div>
+
+    <div id="panel-maint" class="detail-panel">
+      <button class="btn-close" onclick="hidePanels()">[X] Close</button>
+      <h2 style="font-size: 1.125rem; margin-bottom: 0.5rem;">Maintenance</h2>
+      <p style="font-size: 0.875rem;">Honest oil changes and fluid flushes. No upsells for things your car doesn't actually need.</p>
+      <a href="tel:8656091700" class="call-btn">Call to Schedule</a>
+    </div>
+
+    <!-- Proof & Location -->
     <div class="section">
       <h2>The Bottom Line</h2>
-      <p style="color: #000; font-weight: 700; margin-bottom: 0.5rem;">4.8★ Reviews</p>
-      <p>"They fixed it right the first time and didn't charge me an arm and a leg."</p>
+      <div class="review-quote">"Excellent service and really good prices."</div>
+      <p style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">— Verified Customer Review</p>
     </div>
+
     <div class="section" style="border-bottom: none;">
-      <h2>Location & Hours</h2>
-      <p>2990 Dresser Rd<br>Knoxville, TN 37920<br><br>Mon-Fri &middot; Opens 8 AM</p>
+      <h2>Location</h2>
+      <p style="font-weight: 700; margin-bottom: 0.25rem; color: #000;">2990 Dresser Rd<br>Knoxville, TN 37920</p>
+      <p style="font-size: 0.875rem;">Mon-Fri &middot; Opens 8 AM</p>
     </div>
+
   </div>
+
+  <!-- Sticky Nav -->
   <div class="bottom-nav">
     <a href="tel:8656091700" class="nav-btn nav-primary">Call Shop</a>
     <a href="https://maps.google.com/?q=2990+Dresser+Rd,+Knoxville,+TN" target="_blank" class="nav-btn nav-secondary">Directions</a>
   </div>
+
+  <script>
+    function hidePanels() {
+      document.querySelectorAll('.detail-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('selector').style.display = 'block';
+    }
+    
+    function showPanel(id) {
+      document.getElementById('selector').style.display = 'none';
+      document.getElementById('panel-' + id).classList.add('active');
+    }
+  </script>
 </body>
 </html>
