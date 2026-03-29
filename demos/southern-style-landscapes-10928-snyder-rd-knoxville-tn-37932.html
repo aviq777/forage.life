@@ -4,55 +4,195 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Southern Style Landscapes | Knoxville</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #f8fafc; --surface: #ffffff; --primary: #166534; --text: #0f172a; --muted: #475569; --border: #e2e8f0; }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 100px; }
-    .container { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
-    header { padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.25rem; font-weight: 700; color: #000; }
-    .logo span { color: var(--primary); }
-    h1 { font-size: 2.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; color: #000; letter-spacing: -0.02em; }
-    p { color: var(--muted); margin-bottom: 2rem; font-size: 1.125rem; }
-    .btn { display: block; width: 100%; padding: 1rem; border-radius: 8px; font-weight: 600; text-align: center; text-decoration: none; margin-bottom: 1rem; }
-    .btn-solid { background: var(--primary); color: #fff; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
-    .card h3 { font-size: 1.125rem; margin-bottom: 0.5rem; color: var(--primary); }
-    .section { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 1rem; }
-    h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #000; }
-    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); border-top: 1px solid var(--border); padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 1rem; z-index: 100; }
-    .nav-btn { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 600; text-decoration: none; }
-    .nav-primary { background: var(--primary); color: #fff; }
-    .nav-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    :root {
+      --bg: #f7f4ef;
+      --surface: #fff;
+      --green: #2d5a27;
+      --green-light: #4a7c42;
+      --accent: #c8a94a;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --border: #e0dbd0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); line-height: 1.5; font-family: 'Inter', sans-serif; padding-bottom: 90px; }
+
+    /* Header */
+    header { background: var(--green); padding: 1.25rem 1.25rem 1rem; }
+    .header-inner { max-width: 600px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #fff; line-height: 1.2; }
+    .logo-sub { font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 600; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.1em; }
+    .phone-tag { font-size: 0.8rem; font-weight: 600; color: var(--accent); }
+
+    /* Hero */
+    .hero { background: var(--green); padding: 0 1.25rem 2rem; }
+    .hero-inner { max-width: 600px; margin: 0 auto; }
+    .season-badge { display: inline-block; background: var(--accent); color: #000; font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; }
+    h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; line-height: 1.2; margin-bottom: 0.75rem; }
+    .hero-sub { font-size: 0.9375rem; color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; }
+
+    /* Project planner */
+    .planner { background: var(--surface); border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .planner-label { font-size: 0.75rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+    .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; }
+    .project-card { padding: 0.875rem; border: 1.5px solid var(--border); border-radius: 8px; cursor: pointer; background: var(--bg); }
+    .project-card.selected { border-color: var(--green); background: #f0f7ee; }
+    .project-card:active { border-color: var(--green); }
+    .project-icon { font-size: 1.25rem; margin-bottom: 0.375rem; }
+    .project-name { font-size: 0.875rem; font-weight: 700; color: var(--text); }
+    .project-detail { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+    .estimate-cta { display: none; margin-top: 1rem; }
+    .estimate-cta.visible { display: block; }
+    .estimate-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 0.875rem; background: var(--green); color: #fff; font-weight: 700; font-size: 0.9375rem; border-radius: 8px; text-decoration: none; border: none; cursor: pointer; }
+    .estimate-note { font-size: 0.75rem; color: var(--muted); text-align: center; margin-top: 0.5rem; }
+
+    /* Sections */
+    .section { padding: 1.5rem 1.25rem; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+    .section-label { font-size: 0.75rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+    h2 { font-family: 'Playfair Display', serif; font-size: 1.375rem; color: var(--text); margin-bottom: 0.875rem; }
+
+    /* Services */
+    .service-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .service-item { display: flex; gap: 0.875rem; align-items: flex-start; }
+    .service-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-top: 6px; flex-shrink: 0; }
+    .service-body { }
+    .service-name { font-weight: 700; font-size: 0.9375rem; color: var(--text); }
+    .service-desc { font-size: 0.875rem; color: var(--muted); margin-top: 2px; }
+
+    /* Review */
+    .review-card { background: var(--green); border-radius: 10px; padding: 1.25rem; }
+    .review-stars { color: var(--accent); font-size: 1rem; margin-bottom: 0.625rem; }
+    .review-quote { font-size: 0.9375rem; color: rgba(255,255,255,0.9); font-style: italic; line-height: 1.6; margin-bottom: 0.625rem; }
+    .review-attr { font-size: 0.75rem; color: rgba(255,255,255,0.55); font-weight: 600; }
+
+    /* Info */
+    .info-rows { display: flex; flex-direction: column; gap: 0.625rem; }
+    .info-row { font-size: 0.9375rem; color: var(--muted); }
+    .info-row strong { color: var(--text); }
+
+    /* Bottom nav */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(247,244,239,0.97); border-top: 1px solid var(--border); padding: 0.875rem 1.25rem calc(0.875rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 0.75rem; z-index: 100; }
+    .nav-btn { flex: 1; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-weight: 700; font-size: 0.9375rem; text-decoration: none; }
+    .nav-primary { background: var(--green); color: #fff; }
+    .nav-secondary { background: var(--surface); color: var(--text); border: 1.5px solid var(--border); }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">Southern Style <span>Landscapes</span></div>
-      <div style="font-weight:600; color:var(--muted);">(865) 200-3273</div>
-    </header>
-    <h1>Curb appeal.<br>Done right.</h1>
-    <p>Professional landscaping, hardscaping, and maintenance for Knoxville homeowners.</p>
-    
-    <a href="tel:8652003273" class="btn btn-solid">Call for an Estimate</a>
 
-    <div class="section">
-      <h2>Our Services</h2>
-      <div class="card"><h3>Lawn Maintenance</h3><p style="margin:0;font-size:0.95rem;">Mowing, trimming, and seasonal cleanups to keep your property sharp.</p></div>
-      <div class="card"><h3>Hardscaping</h3><p style="margin:0;font-size:0.95rem;">Patios, retaining walls, and structured outdoor living spaces.</p></div>
-      <div class="card"><h3>Installations</h3><p style="margin:0;font-size:0.95rem;">New sod, plants, mulch, and complete landscape redesigns.</p></div>
+  <header>
+    <div class="header-inner">
+      <div>
+        <div class="logo">Southern Style Landscapes</div>
+        <div class="logo-sub">Knoxville, TN · 10928 Snyder Rd</div>
+      </div>
+      <div class="phone-tag">(865) 200-3273</div>
     </div>
-    
-    <div class="section" style="border-bottom: none;">
-      <h2>Contact</h2>
-      <p>10928 Snyder Rd<br>Knoxville, TN 37932</p>
+  </header>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div style="height:1.25rem"></div>
+      <div class="season-badge">🌱 Spring 2026</div>
+      <h1>What project are you planning this season?</h1>
+      <p class="hero-sub">Knoxville's residential landscaping team. We handle the yard work — you enjoy the results.</p>
+      <div class="planner">
+        <div class="planner-label">Pick your project</div>
+        <div class="project-grid">
+          <div class="project-card" onclick="selectProject(this, 'cleanup')">
+            <div class="project-icon">🧹</div>
+            <div class="project-name">Spring Cleanup</div>
+            <div class="project-detail">Beds, debris, trim</div>
+          </div>
+          <div class="project-card" onclick="selectProject(this, 'mowing')">
+            <div class="project-icon">✂️</div>
+            <div class="project-name">Lawn Mowing</div>
+            <div class="project-detail">Weekly or one-time</div>
+          </div>
+          <div class="project-card" onclick="selectProject(this, 'planting')">
+            <div class="project-icon">🌿</div>
+            <div class="project-name">Planting & Beds</div>
+            <div class="project-detail">New plants, mulch</div>
+          </div>
+          <div class="project-card" onclick="selectProject(this, 'other')">
+            <div class="project-icon">🏡</div>
+            <div class="project-name">Something else</div>
+            <div class="project-detail">Drainage, hardscape…</div>
+          </div>
+        </div>
+        <div class="estimate-cta" id="estimate-cta">
+          <a href="tel:8652003273" class="estimate-btn">📞 Call for a Free Estimate</a>
+          <div class="estimate-note">Usually responds same day · No pressure</div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="section">
+    <div class="section-label">Services</div>
+    <h2>Full-service residential landscaping</h2>
+    <div class="service-list">
+      <div class="service-item">
+        <div class="service-dot"></div>
+        <div class="service-body">
+          <div class="service-name">Lawn mowing & maintenance</div>
+          <div class="service-desc">Regular cuts, edging, and cleanup on your schedule.</div>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-dot"></div>
+        <div class="service-body">
+          <div class="service-name">Planting & bed care</div>
+          <div class="service-desc">New plants, mulching, trimming, and seasonal refresh.</div>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-dot"></div>
+        <div class="service-body">
+          <div class="service-name">Spring & fall cleanup</div>
+          <div class="service-desc">Debris removal, leaf cleanup, and bed prep.</div>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-dot"></div>
+        <div class="service-body">
+          <div class="service-name">Drainage & hardscape</div>
+          <div class="service-desc">Water management, walkways, and larger yard projects.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">What customers say</div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-quote">"They showed up when they said they would, did exactly what was agreed, and the yard looked great. Really reliable local team."</div>
+      <div class="review-attr">— Verified Google Review · Knoxville</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Find us</div>
+    <div class="info-rows">
+      <div class="info-row"><strong>10928 Snyder Rd</strong> · Knoxville, TN 37932</div>
+      <div class="info-row"><strong>Phone:</strong> (865) 200-3273</div>
+      <div class="info-row"><strong>Service area:</strong> Knoxville & surrounding counties</div>
+    </div>
+  </div>
+
   <div class="bottom-nav">
     <a href="tel:8652003273" class="nav-btn nav-primary">Call Now</a>
-    <a href="https://www.facebook.com/p/Southern-Style-Landscapes-100063644706584" target="_blank" class="nav-btn nav-secondary">View Work</a>
+    <a href="https://maps.google.com/?q=10928+Snyder+Rd,+Knoxville,+TN" target="_blank" class="nav-btn nav-secondary">Directions</a>
   </div>
+
+  <script>
+    function selectProject(card, type) {
+      document.querySelectorAll('.project-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      document.getElementById('estimate-cta').classList.add('visible');
+    }
+  </script>
 </body>
 </html>

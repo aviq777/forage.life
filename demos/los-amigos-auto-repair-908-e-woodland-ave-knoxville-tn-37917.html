@@ -6,49 +6,206 @@
   <title>Los Amigos Auto Repair | Knoxville</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #fff7ed; --surface: #ffffff; --primary: #ea580c; --text: #1c1917; --muted: #57534e; --border: #fed7aa; }
+    :root {
+      --bg: #1a0a00;
+      --surface: #2d1500;
+      --warm: #f97316;
+      --warm-light: #fed7aa;
+      --text: #fef3e2;
+      --muted: #c4896a;
+      --border: #4a2506;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 100px; }
-    .container { max-width: 600px; margin: 0 auto; padding: 0 1.5rem; }
-    header { padding: 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.25rem; font-weight: 700; color: #000; }
-    .logo span { color: var(--primary); }
-    h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; color: #000; }
-    p { color: var(--muted); margin-bottom: 2rem; font-size: 1.125rem; }
-    .btn { display: block; width: 100%; padding: 1.25rem; border-radius: 12px; font-weight: 600; text-align: left; background: var(--surface); border: 1px solid var(--border); color: var(--text); margin-bottom: 0.75rem; text-decoration: none; display: flex; justify-content: space-between; }
-    .section { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 1rem; }
-    h2 { font-size: 1.5rem; margin-bottom: 1rem; color: #000; }
-    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.95); border-top: 1px solid var(--border); padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 1rem; z-index: 100; }
-    .nav-btn { flex: 1; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 600; text-decoration: none; }
-    .nav-primary { background: var(--primary); color: #fff; }
-    .nav-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+    body { background: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 90px; }
+    .container { max-width: 600px; margin: 0 auto; padding: 0 1.25rem; }
+
+    /* Header */
+    header { padding: 1.25rem 1.25rem 0; max-width: 600px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .logo span { color: var(--warm); }
+    .lang-toggle { display: flex; gap: 6px; }
+    .lang-btn { padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; }
+    .lang-btn.active { background: var(--warm); color: #000; border-color: var(--warm); }
+
+    /* Hero */
+    .hero { padding: 1.75rem 1.25rem 1.5rem; max-width: 600px; margin: 0 auto; }
+    .eyebrow { font-size: 0.75rem; font-weight: 600; color: var(--warm); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    h1 { font-size: 2rem; font-weight: 700; color: var(--text); line-height: 1.15; margin-bottom: 0.75rem; }
+    .hero-sub { color: var(--muted); font-size: 1rem; margin-bottom: 1.5rem; }
+    .rating-pill { display: inline-flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px; font-size: 0.875rem; font-weight: 600; color: var(--warm-light); }
+
+    /* Issue selector */
+    .section { padding: 1.5rem 1.25rem; max-width: 600px; margin: 0 auto; border-top: 1px solid var(--border); }
+    .section-label { font-size: 0.75rem; font-weight: 600; color: var(--warm); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+    h2 { font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .issue-grid { display: flex; flex-direction: column; gap: 0.625rem; }
+    .issue-btn { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.125rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: 0.9375rem; font-weight: 600; cursor: pointer; text-align: left; width: 100%; }
+    .issue-btn:active { border-color: var(--warm); background: #3d1f00; }
+    .issue-arrow { color: var(--warm); font-size: 1.125rem; }
+
+    /* Confirm panel */
+    .confirm-panel { display: none; margin-top: 1rem; background: var(--surface); border: 1px solid var(--warm); border-radius: 10px; padding: 1.125rem; }
+    .confirm-panel.visible { display: block; }
+    .confirm-title { font-size: 0.875rem; font-weight: 700; color: var(--warm); margin-bottom: 0.5rem; }
+    .confirm-body { font-size: 0.875rem; color: var(--muted); margin-bottom: 1rem; }
+    .confirm-call { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 0.875rem; background: var(--warm); color: #000; font-weight: 700; font-size: 0.9375rem; border-radius: 8px; text-decoration: none; }
+
+    /* Review */
+    .review-block { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.125rem; }
+    .review-stars { color: var(--warm); font-size: 1rem; margin-bottom: 0.5rem; }
+    .review-quote { font-size: 0.9375rem; color: var(--text); font-style: italic; margin-bottom: 0.625rem; line-height: 1.55; }
+    .review-attr { font-size: 0.75rem; color: var(--muted); font-weight: 600; }
+
+    /* Info */
+    .info-list { display: flex; flex-direction: column; gap: 0.625rem; }
+    .info-row { display: flex; gap: 10px; align-items: flex-start; }
+    .info-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--warm); margin-top: 7px; flex-shrink: 0; }
+    .info-text { font-size: 0.9375rem; color: var(--muted); }
+    .info-text strong { color: var(--text); }
+
+    /* Bottom nav */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(26,10,0,0.97); border-top: 1px solid var(--border); padding: 0.875rem 1.25rem calc(0.875rem + env(safe-area-inset-bottom, 0px)); display: flex; gap: 0.75rem; z-index: 100; max-width: 100%; }
+    .nav-btn { flex: 1; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-weight: 700; font-size: 0.9375rem; text-decoration: none; }
+    .nav-primary { background: var(--warm); color: #000; }
+    .nav-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">Los Amigos <span>Auto Repair</span></div>
-      <div style="font-weight:600; color:var(--muted);">(865) 227-6508</div>
-    </header>
-    <h1>Honest repair for the neighborhood.<br><span style="color:var(--primary); font-size:1.75rem;">Reparación honesta para el barrio.</span></h1>
-    <p>Bilingual mechanics serving Knoxville.</p>
-    
-    <a href="tel:8652276508" class="btn"><span>Call in English</span> <span>&rarr;</span></a>
-    <a href="tel:8652276508" class="btn"><span>Llamar en Español</span> <span>&rarr;</span></a>
 
-    <div class="section">
-      <h2>Local Trust</h2>
-      <p style="color: #000; font-weight: 600; margin-bottom: 0.5rem;">4.8★ Reviews</p>
-      <p>"Great service, fair prices, and very friendly staff."</p>
+  <header>
+    <div class="logo">Los <span>Amigos</span></div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
+      <button class="lang-btn" onclick="setLang('es')" id="btn-es">Español</button>
     </div>
-    <div class="section" style="border-bottom: none;">
-      <h2>Visit the shop / Visítanos</h2>
-      <p>908 E Woodland Ave<br>Knoxville, TN 37917<br><br>Mon-Fri &middot; Opens 8 AM</p>
+  </header>
+
+  <div class="hero">
+    <div class="eyebrow" id="eyebrow">Neighborhood auto repair · Knoxville</div>
+    <h1 id="hero-title">Your neighborhood shop.<br>Honest work, fair prices.</h1>
+    <p class="hero-sub" id="hero-sub">908 E Woodland Ave — East Knoxville. We speak English and Spanish.</p>
+    <div class="rating-pill">★ 4.4 &nbsp;·&nbsp; 127 Reviews</div>
+  </div>
+
+  <div class="section">
+    <div class="section-label" id="issue-label">What's going on?</div>
+    <div class="issue-grid">
+      <button class="issue-btn" onclick="selectIssue(this, 'warning-light')">
+        <span id="issue-1">Warning light came on</span><span class="issue-arrow">→</span>
+      </button>
+      <button class="issue-btn" onclick="selectIssue(this, 'noise')">
+        <span id="issue-2">Strange noise or vibration</span><span class="issue-arrow">→</span>
+      </button>
+      <button class="issue-btn" onclick="selectIssue(this, 'drivability')">
+        <span id="issue-3">Handling or drivability issue</span><span class="issue-arrow">→</span>
+      </button>
+      <button class="issue-btn" onclick="selectIssue(this, 'maintenance')">
+        <span id="issue-4">Routine maintenance</span><span class="issue-arrow">→</span>
+      </button>
+    </div>
+    <div class="confirm-panel" id="confirm-panel">
+      <div class="confirm-title" id="confirm-title">We can help with that.</div>
+      <div class="confirm-body" id="confirm-body">Call us and describe what you're hearing — we'll let you know what to expect.</div>
+      <a href="tel:8652276508" class="confirm-call" id="confirm-cta">📞 Call Now — (865) 227-6508</a>
     </div>
   </div>
+
+  <div class="section">
+    <div class="section-label">What customers say</div>
+    <div class="review-block">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-quote" id="review-quote">"Fast, honest, and fair. They explained everything clearly and didn't push unnecessary work. Will be back."</div>
+      <div class="review-attr" id="review-attr">— Verified Google Review</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label" id="info-label">Find us</div>
+    <div class="info-list">
+      <div class="info-row"><div class="info-dot"></div><div class="info-text"><strong>908 E Woodland Ave</strong><br>Knoxville, TN 37917</div></div>
+      <div class="info-row"><div class="info-dot"></div><div class="info-text" id="hours-text"><strong>Hours:</strong> Mon–Fri · Opens 8 AM</div></div>
+      <div class="info-row"><div class="info-dot"></div><div class="info-text"><strong>(865) 227-6508</strong></div></div>
+    </div>
+  </div>
+
   <div class="bottom-nav">
-    <a href="tel:8652276508" class="nav-btn nav-primary">Call Shop</a>
-    <a href="https://maps.google.com/?q=908+E+Woodland+Ave,+Knoxville,+TN" target="_blank" class="nav-btn nav-secondary">Directions</a>
+    <a href="tel:8652276508" class="nav-btn nav-primary" id="nav-call">Call Shop</a>
+    <a href="https://maps.google.com/?q=908+E+Woodland+Ave,+Knoxville,+TN" target="_blank" class="nav-btn nav-secondary" id="nav-dir">Directions</a>
   </div>
+
+  <script>
+    const copy = {
+      en: {
+        eyebrow: 'Neighborhood auto repair · Knoxville',
+        heroTitle: 'Your neighborhood shop.<br>Honest work, fair prices.',
+        heroSub: '908 E Woodland Ave — East Knoxville. We speak English and Spanish.',
+        issueLabel: "What's going on?",
+        issues: ['Warning light came on', 'Strange noise or vibration', 'Handling or drivability issue', 'Routine maintenance'],
+        confirmTitle: 'We can help with that.',
+        confirmBody: "Call us and describe what you're hearing — we'll let you know what to expect.",
+        confirmCta: '📞 Call Now — (865) 227-6508',
+        reviewQuote: '"Fast, honest, and fair. They explained everything clearly and didn\'t push unnecessary work. Will be back."',
+        reviewAttr: '— Verified Google Review',
+        infoLabel: 'Find us',
+        hours: 'Hours: Mon–Fri · Opens 8 AM',
+        navCall: 'Call Shop',
+        navDir: 'Directions'
+      },
+      es: {
+        eyebrow: 'Reparación de autos · Knoxville',
+        heroTitle: 'Su taller de confianza.<br>Trabajo honesto, precios justos.',
+        heroSub: '908 E Woodland Ave — Este de Knoxville. Hablamos inglés y español.',
+        issueLabel: '¿Qué está pasando?',
+        issues: ['Se encendió un testigo', 'Ruido o vibración extraña', 'Problema de manejo', 'Mantenimiento de rutina'],
+        confirmTitle: 'Podemos ayudarle.',
+        confirmBody: 'Llámenos y describa el problema — le diremos qué esperar.',
+        confirmCta: '📞 Llamar ahora — (865) 227-6508',
+        reviewQuote: '"Rápido, honesto y justo. Explicaron todo claramente y no hicieron trabajo innecesario. Volvería."',
+        reviewAttr: '— Reseña verificada de Google',
+        infoLabel: 'Encuéntrenos',
+        hours: 'Horario: Lun–Vie · Abre 8 AM',
+        navCall: 'Llamar',
+        navDir: 'Cómo llegar'
+      }
+    };
+
+    let currentLang = 'en';
+    let selectedIssue = null;
+
+    function setLang(lang) {
+      currentLang = lang;
+      const c = copy[lang];
+      document.getElementById('eyebrow').textContent = c.eyebrow;
+      document.getElementById('hero-title').innerHTML = c.heroTitle;
+      document.getElementById('hero-sub').textContent = c.heroSub;
+      document.getElementById('issue-label').textContent = c.issueLabel;
+      ['issue-1','issue-2','issue-3','issue-4'].forEach((id, i) => {
+        document.getElementById(id).textContent = c.issues[i];
+      });
+      document.getElementById('confirm-title').textContent = c.confirmTitle;
+      document.getElementById('confirm-body').textContent = c.confirmBody;
+      document.getElementById('confirm-cta').textContent = c.confirmCta;
+      document.getElementById('review-quote').textContent = c.reviewQuote;
+      document.getElementById('review-attr').textContent = c.reviewAttr;
+      document.getElementById('info-label').textContent = c.infoLabel;
+      document.getElementById('hours-text').innerHTML = c.hours;
+      document.getElementById('nav-call').textContent = c.navCall;
+      document.getElementById('nav-dir').textContent = c.navDir;
+      document.getElementById('btn-en').className = 'lang-btn' + (lang === 'en' ? ' active' : '');
+      document.getElementById('btn-es').className = 'lang-btn' + (lang === 'es' ? ' active' : '');
+      if (selectedIssue) showConfirm(selectedIssue);
+    }
+
+    function selectIssue(btn, type) {
+      document.querySelectorAll('.issue-btn').forEach(b => b.style.borderColor = '');
+      btn.style.borderColor = 'var(--warm)';
+      selectedIssue = type;
+      showConfirm(type);
+    }
+
+    function showConfirm(type) {
+      document.getElementById('confirm-panel').classList.add('visible');
+    }
+  </script>
 </body>
 </html>
