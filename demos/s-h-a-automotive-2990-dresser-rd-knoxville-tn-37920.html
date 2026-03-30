@@ -325,17 +325,15 @@
   </div>
 
   <script>
-    // Lazy-load: swap quickstart (8s) for full cinematic reel (24s) once cached
+    // Lazy-load: swap quickstart (8s) for full 30s cinematic loop once cached
     (function() {
       var full = new XMLHttpRequest();
-      full.open('GET', 'test-images/sha-cinematic-reel.mp4', true);
+      full.open('GET', 'test-images/sha-cinematic-30s.mp4', true);
       full.responseType = 'blob';
       full.onload = function() {
         if (full.status === 200) {
           var video = document.getElementById('hero-video');
-          var blobUrl = URL.createObjectURL(full.response);
-          var currentTime = video.currentTime;
-          video.src = blobUrl;
+          video.src = URL.createObjectURL(full.response);
           video.currentTime = 0;
           video.play();
         }
