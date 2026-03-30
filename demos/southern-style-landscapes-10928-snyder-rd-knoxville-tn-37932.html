@@ -30,7 +30,9 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: url('test-images/landscape-hero-mowing-stripes.jpg') center/cover no-repeat;
+    }
+    .hero-bg video {
+      width: 100%; height: 100%; object-fit: cover;
     }
     .hero-overlay {
       position: absolute; inset: 0;
@@ -84,7 +86,7 @@
     .planner-section {
       position: relative;
       padding: 3rem 1.5rem;
-      background: url('test-images/landscape-hero-mowing-stripes.jpg') center 70%/cover no-repeat fixed;
+      background: url('test-images/southern-garden-hero.jpg') center 70%/cover no-repeat fixed;
     }
     .planner-section::before {
       content: '';
@@ -148,7 +150,7 @@
     /* ── Image break between sections ── */
     .image-break {
       width: 100%; height: 35vh; min-height: 200px;
-      background: url('test-images/landscape-hero-mowing-stripes.jpg') center 40%/cover no-repeat;
+      background: url('test-images/southern-path-hero.jpg') center 40%/cover no-repeat;
       position: relative;
     }
     .image-break::after {
@@ -161,7 +163,7 @@
     .review-section {
       position: relative;
       padding: 3rem 1.5rem;
-      background: url('test-images/landscape-hero-mowing-stripes.jpg') center 55%/cover no-repeat fixed;
+      background: url('test-images/southern-lawn-hero.jpg') center 55%/cover no-repeat fixed;
     }
     .review-section::before {
       content: '';
@@ -215,7 +217,11 @@
 
   <!-- Full-screen hero -->
   <div class="hero">
-    <div class="hero-bg"></div>
+    <div class="hero-bg">
+      <video id="hero-video" autoplay muted loop playsinline poster="test-images/southern-lawn-hero.jpg">
+        <source src="test-images/southern-quickstart.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-logo">Southern Style Landscapes · Knoxville, TN</div>
@@ -334,6 +340,22 @@
       card.classList.add('selected');
       document.getElementById('estimate-cta').classList.add('visible');
     }
+
+    // Lazy-load: swap quickstart (8s) for full 24s cinematic reel once cached
+    (function() {
+      var full = new XMLHttpRequest();
+      full.open('GET', 'test-images/southern-cinematic-reel.mp4', true);
+      full.responseType = 'blob';
+      full.onload = function() {
+        if (full.status === 200) {
+          var video = document.getElementById('hero-video');
+          video.src = URL.createObjectURL(full.response);
+          video.currentTime = 0;
+          video.play();
+        }
+      };
+      full.send();
+    })();
   </script>
 </body>
 </html>
