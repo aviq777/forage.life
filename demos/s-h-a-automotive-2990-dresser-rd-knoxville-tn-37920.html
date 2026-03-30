@@ -227,8 +227,8 @@
   <!-- Full-screen hero -->
   <div class="hero">
     <div class="hero-bg">
-      <video autoplay muted loop playsinline poster="test-images/auto-hero-sportscar-closeup.jpg">
-        <source src="test-images/sportscar-living-photo.mp4" type="video/mp4">
+      <video id="hero-video" autoplay muted loop playsinline poster="test-images/auto-hero-sportscar-closeup.jpg">
+        <source src="test-images/sha-quickstart.mp4" type="video/mp4">
       </video>
     </div>
     <div class="hero-overlay"></div>
@@ -325,6 +325,24 @@
   </div>
 
   <script>
+    // Lazy-load: swap quickstart (8s) for full cinematic reel (24s) once cached
+    (function() {
+      var full = new XMLHttpRequest();
+      full.open('GET', 'test-images/sha-cinematic-reel.mp4', true);
+      full.responseType = 'blob';
+      full.onload = function() {
+        if (full.status === 200) {
+          var video = document.getElementById('hero-video');
+          var blobUrl = URL.createObjectURL(full.response);
+          var currentTime = video.currentTime;
+          video.src = blobUrl;
+          video.currentTime = 0;
+          video.play();
+        }
+      };
+      full.send();
+    })();
+
     function hidePanels() {
       document.querySelectorAll('.detail-panel').forEach(p => p.classList.remove('active'));
       document.getElementById('selector').style.display = 'block';
