@@ -29,6 +29,11 @@
       position: absolute; inset: 0;
       background: url('test-images/auto-hero-sportscar-closeup.jpg') center/cover no-repeat;
     }
+    .hero-bg video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
     .hero-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(
@@ -221,7 +226,11 @@
 
   <!-- Full-screen hero -->
   <div class="hero">
-    <div class="hero-bg"></div>
+    <div class="hero-bg">
+      <video autoplay muted loop playsinline poster="test-images/auto-hero-sportscar-closeup.jpg">
+        <source src="test-images/sportscar-living-photo.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-badge">
