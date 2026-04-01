@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Big Springs Lawn Care | Landscaping and outdoor services in Knoxville, TN</title>
-    <meta name="description" content="Big Springs Lawn Care in Knoxville, Tennessee. A sharper local-service homepage with better actions. Call, directions, and the main service paths stay obvious." />
+    <title>Big Springs Lawn Care | Outdoor services in Maryville, TN</title>
+    <meta name="description" content="Big Springs Lawn Care in Maryville, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow. Call, directions, and the main service paths stay obvious." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -117,10 +117,42 @@
       .btn-secondary { border: 1px solid var(--line); background: var(--surface); }
 
       .hero {
-        padding: 4rem 0 2.5rem;
+        position: relative;
+        overflow: hidden;
+        margin-top: 1.25rem;
+        padding: 1.2rem;
+        border-radius: 2.2rem;
+        background:
+          radial-gradient(circle at top right, rgba(255,255,255,0.16), transparent 28%),
+          linear-gradient(135deg, #23341d, #456534 54%, #7b9a56);
+      }
+
+      .hero-media,
+      .section-divider-media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      .hero-video,
+      .hero-poster,
+      .section-divider-video,
+      .section-divider-poster {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-overlay,
+      .section-divider-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(13, 21, 14, 0.2), rgba(13, 21, 14, 0.46));
       }
 
       .hero-grid {
+        position: relative;
+        z-index: 1;
         display: grid;
         grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr);
         gap: 1.25rem;
@@ -142,8 +174,9 @@
       .hero-copy {
         padding: 2.5rem;
         background:
-          linear-gradient(180deg, rgba(220,231,206,0.8), rgba(252,251,247,0.7)),
+          linear-gradient(180deg, rgba(250,247,240,0.92), rgba(252,251,247,0.78)),
           var(--surface);
+        backdrop-filter: blur(14px);
       }
 
       .eyebrow,
@@ -225,7 +258,8 @@
 
       .planner-panel {
         padding: 1.8rem;
-        background: #e9efdf;
+        background: rgba(233, 239, 223, 0.88);
+        backdrop-filter: blur(14px);
       }
 
       .planner-panel h2,
@@ -294,6 +328,44 @@
         padding: 1.4rem;
       }
 
+      .service-card {
+        overflow: hidden;
+      }
+
+      .service-media {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 4 / 3;
+        margin-bottom: 1rem;
+        border-radius: 1.15rem;
+        background: linear-gradient(135deg, rgba(88, 125, 58, 0.3), rgba(184, 130, 59, 0.32));
+      }
+
+      .service-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .service-media--fallback {
+        display: flex;
+        align-items: flex-end;
+        padding: 1rem;
+        color: #fffdf8;
+      }
+
+      .service-media--fallback span {
+        display: inline-flex;
+        align-items: center;
+        min-height: 2rem;
+        padding: 0.4rem 0.7rem;
+        border-radius: 999px;
+        background: rgba(29, 36, 27, 0.66);
+        font-size: 0.82rem;
+        letter-spacing: 0.04em;
+      }
+
       .service-card strong,
       .season-card strong,
       .proof-panel strong {
@@ -310,6 +382,35 @@
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
         gap: 1rem;
+      }
+
+      .section-divider {
+        position: relative;
+        overflow: hidden;
+        min-height: 14rem;
+        margin-top: 1.25rem;
+        border-radius: 2rem;
+        background:
+          radial-gradient(circle at top right, rgba(255,255,255,0.14), transparent 26%),
+          linear-gradient(135deg, #2c3d22, #5c7b46);
+      }
+
+      .section-divider-shell {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        align-content: end;
+        gap: 0.7rem;
+        min-height: 14rem;
+        padding: 1.5rem;
+        color: #fffaf4;
+      }
+
+      .section-divider-shell strong {
+        max-width: 34rem;
+        font-family: "Fraunces", serif;
+        font-size: clamp(1.3rem, 2.3vw, 2rem);
+        line-height: 1.15;
       }
 
       .resource-links { margin-top: 1rem; }
@@ -373,7 +474,7 @@
     <header class="site-header">
       <div class="shell">
         <div class="brand">
-          <span>Knoxville service preview</span>
+          <span>Maryville lawn care preview</span>
           <strong>Big Springs Lawn Care</strong>
         </div>
         <nav class="nav-links">
@@ -391,21 +492,24 @@
 
     <main class="shell">
       <section class="hero">
+        <div class="hero-media" aria-hidden="true">
+          <div class="hero-overlay"></div>
+        </div>
         <div class="hero-grid">
           <div class="hero-copy fade-up">
-            <span class="eyebrow">Knoxville service preview</span>
+            <span class="eyebrow">Maryville lawn care preview</span>
             <h1 class="hero-title">Big Springs Lawn Care</h1>
-            <p class="hero-subtitle">A sharper local-service homepage with better actions.</p>
-            <p class="hero-body">This demo emphasizes call clarity, trust, and a better next step from a phone.</p>
+            <p class="hero-subtitle">A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+            <p class="hero-body">This version gives the business a more polished local-service presence: clear residential service lanes, stronger review proof, and a request path built for homeowners ready to book help.</p>
             <div class="hero-actions">
                 <a class="btn-primary" href="tel:+18656171322">Call (865) 617-1322</a>
                 <a class="btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Big+Springs+Lawn+Care+3214+Morganton+Rd%2C+Maryville%2C+TN+37801">Get directions</a>
                 <a class="btn-secondary" href="#request">Request estimate</a>
             </div>
             <ul class="hero-points">
-                <li>Stronger trust</li>
-                <li>Clearer actions</li>
-                <li>Better mobile flow</li>
+                <li>Residential lawn services framed clearly</li>
+                <li>Review proof and service area visible early</li>
+                <li>Estimate request built for a quick homeowner decision</li>
             </ul>
             <div class="trust-ribbon">
                 <div>
@@ -425,11 +529,15 @@
 
           <aside class="planner-panel fade-up delay-1" id="request">
             <span class="section-kicker">Seasonal offer</span>
-            <h2>Tell us what you need</h2>
-            <p>Preview a better request flow.</p>
+            <h2>Request the yard plan</h2>
+            <p>Preview a cleaner estimate flow for routine service or a seasonal yard refresh.</p>
             <form class="planner-form" data-demo-form data-subject="Big Springs Lawn Care preview inquiry">
               <select name="Project focus">
-                  <option>General help</option>
+                  <option>Weekly mowing</option>
+                  <option>Seasonal cleanup</option>
+                  <option>Mulch and beds</option>
+                  <option>General curb appeal</option>
+                  <option>Not sure yet</option>
               </select>
               <select name="Timing">
                 <option>As soon as possible</option>
@@ -449,9 +557,30 @@
         <div class="section-head">
           <span class="section-kicker">Service-led structure</span>
           <h2>Lead with the outdoor work homeowners actually ask about.</h2>
-          <p>This demo emphasizes call clarity, trust, and a better next step from a phone.</p>
+          <p>This version gives the business a more polished local-service presence: clear residential service lanes, stronger review proof, and a request path built for homeowners ready to book help.</p>
         </div>
         <div class="services-grid">
+            <article class="service-card fade-up ">
+                <div class="service-media service-media--fallback">
+                  <span>Weekly mowing and edging</span>
+                </div>
+              <strong>Weekly mowing and edging</strong>
+              <p>Make the routine route work feel premium and easy to request from a phone.</p>
+            </article>
+            <article class="service-card fade-up delay-1">
+                <div class="service-media service-media--fallback">
+                  <span>Seasonal cleanup and trimming</span>
+                </div>
+              <strong>Seasonal cleanup and trimming</strong>
+              <p>Give cleanup, leaf work, and curb-appeal resets a clearer place in the first scroll.</p>
+            </article>
+            <article class="service-card fade-up delay-2">
+                <div class="service-media service-media--fallback">
+                  <span>Mulch, beds, and yard refresh work</span>
+                </div>
+              <strong>Mulch, beds, and yard refresh work</strong>
+              <p>Show the higher-value residential jobs alongside the recurring lawn service.</p>
+            </article>
         </div>
       </section>
 
@@ -477,6 +606,16 @@
         </div>
       </section>
 
+      <section class="section-divider">
+        <div class="section-divider-media" aria-hidden="true">
+          <div class="section-divider-overlay"></div>
+        </div>
+        <div class="section-divider-shell">
+          <span class="section-kicker">Visual direction</span>
+          <strong>Residential-first lawn service design with seasonal offers, restrained layout, and visual service clarity.</strong>
+        </div>
+      </section>
+
       <section class="section" id="process">
         <div class="section-head">
           <span class="section-kicker">Proof and process</span>
@@ -485,6 +624,12 @@
         </div>
         <div class="proof-layout">
           <div class="proof-panel">
+              <strong>Local trust above the fold</strong>
+              <p>Reviews, address, and phone should do conversion work immediately.</p>
+              <strong>Residential-first service framing</strong>
+              <p>The page should read like a premium neighborhood lawn company, not a generic brochure.</p>
+              <strong>Estimate path with useful context</strong>
+              <p>The request flow should make it easier for homeowners to explain the property need quickly.</p>
           </div>
           <div class="proof-panel">
             <strong>Review themes</strong>
