@@ -238,7 +238,6 @@
       </div>
       <h1>No gimmicks.<br>Just honest<br>mechanics.</h1>
       <p class="hero-sub">S.H.A. Automotive · Knoxville, TN</p>
-      <a href="tel:8656091700" class="hero-cta">Call the Shop</a>
     </div>
   </div>
 
@@ -339,6 +338,31 @@
         }
       };
       full.send();
+    })();
+
+    /* Video: play only when visible, crossfade at loop point */
+    (function() {
+      var videos = document.querySelectorAll('video[autoplay]');
+      if (!videos.length) return;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) entry.target.play().catch(function(){});
+          else entry.target.pause();
+        });
+      }, { threshold: 0.25 });
+      videos.forEach(function(video) {
+        observer.observe(video);
+        video.addEventListener('timeupdate', function() {
+          if (this.duration && this.currentTime > this.duration - 0.4) {
+            this.style.opacity = '0';
+            this.style.transition = 'opacity 0.4s ease';
+          }
+        });
+        video.addEventListener('seeking', function() {
+          this.style.opacity = '1';
+          this.style.transition = 'opacity 0.3s ease';
+        });
+      });
     })();
 
     function hidePanels() {
