@@ -186,16 +186,46 @@
       <div id="selector">
         <div class="grid">
             <button class="btn-brutal" onclick="showPanel('panel-1')">
-              <span class="title">&lt;built-in method title of str object at 0x7d17328d10f0&gt;</span>
-              <span class="desc">Preview a better request flow.</span>
+              <span class="title">Warning light</span>
+              <span class="desc">Check engine, battery, ABS, or another dashboard alert that needs a next step.</span>
+            </button>
+            <button class="btn-brutal" onclick="showPanel('panel-2')">
+              <span class="title">Brakes or steering</span>
+              <span class="desc">Pulling, squeal, shake, soft pedal feel, or something changing in the way the car handles.</span>
+            </button>
+            <button class="btn-brutal" onclick="showPanel('panel-3')">
+              <span class="title">Maintenance</span>
+              <span class="desc">Oil service, inspection, tire concerns, fluid checks, or the routine work that keeps the week moving.</span>
+            </button>
+            <button class="btn-brutal" onclick="showPanel('panel-4')">
+              <span class="title">Noise or vibration</span>
+              <span class="desc">You can hear it or feel it, but you do not know the part name yet. Start there.</span>
             </button>
         </div>
       </div>
 
         <div id="panel-1" class="detail-panel">
           <button class="btn-close" onclick="hidePanels()">[X] Back</button>
-          <h2 style="font-size: 1rem; margin-bottom: 0.5rem; color: #fff;">&lt;built-in method title of str object at 0x7d17328d10f0&gt;</h2>
-          <p style="font-size: 0.8rem; color: var(--muted);">Preview a better request flow.</p>
+          <h2 style="font-size: 1rem; margin-bottom: 0.5rem; color: #fff;">Warning light</h2>
+          <p style="font-size: 0.8rem; color: var(--muted);">Check engine, battery, ABS, or another dashboard alert that needs a next step.</p>
+            <a href="tel:+18656913400" class="call-btn">Call the Shop</a>
+        </div>
+        <div id="panel-2" class="detail-panel">
+          <button class="btn-close" onclick="hidePanels()">[X] Back</button>
+          <h2 style="font-size: 1rem; margin-bottom: 0.5rem; color: #fff;">Brakes or steering</h2>
+          <p style="font-size: 0.8rem; color: var(--muted);">Pulling, squeal, shake, soft pedal feel, or something changing in the way the car handles.</p>
+            <a href="tel:+18656913400" class="call-btn">Call the Shop</a>
+        </div>
+        <div id="panel-3" class="detail-panel">
+          <button class="btn-close" onclick="hidePanels()">[X] Back</button>
+          <h2 style="font-size: 1rem; margin-bottom: 0.5rem; color: #fff;">Maintenance</h2>
+          <p style="font-size: 0.8rem; color: var(--muted);">Oil service, inspection, tire concerns, fluid checks, or the routine work that keeps the week moving.</p>
+            <a href="tel:+18656913400" class="call-btn">Call the Shop</a>
+        </div>
+        <div id="panel-4" class="detail-panel">
+          <button class="btn-close" onclick="hidePanels()">[X] Back</button>
+          <h2 style="font-size: 1rem; margin-bottom: 0.5rem; color: #fff;">Noise or vibration</h2>
+          <p style="font-size: 0.8rem; color: var(--muted);">You can hear it or feel it, but you do not know the part name yet. Start there.</p>
             <a href="tel:+18656913400" class="call-btn">Call the Shop</a>
         </div>
     </div>
