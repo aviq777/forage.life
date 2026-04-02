@@ -1,4 +1,17 @@
 {
+  "redirects": [
+    {
+      "source": "/demo",
+      "destination": "/demos",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/demos",
+      "destination": "/demos.html"
+    }
+  ],
   "cleanUrls": true,
   "trailingSlash": false
 }
