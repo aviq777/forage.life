@@ -1,12 +1,9 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/demo",
-      "destination": "/demos",
-      "permanent": false
-    }
-  ],
-  "rewrites": [
+      "destination": "/demos.html"
+    },
     {
       "source": "/demos",
       "destination": "/demos.html"
