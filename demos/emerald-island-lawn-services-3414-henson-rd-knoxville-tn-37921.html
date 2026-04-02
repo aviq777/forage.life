@@ -54,6 +54,7 @@
       margin-bottom: 1.5rem;
       text-shadow: 0 1px 8px rgba(0,0,0,0.3);
     }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
     .hero-scroll { text-align: center; padding: 1rem 0 0; color: rgba(255,255,255,0.35); font-size: 0.75rem; }
 
     .section-label {
@@ -126,6 +127,56 @@
     .info-row { font-size: 0.9375rem; color: rgba(255,255,255,0.55); margin-bottom: 0.5rem; }
     .info-row strong { color: #fff; }
 
+    .connect-panel {
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.03) 100%);
+      backdrop-filter: blur(10px);
+    }
+    .connect-intro {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.58);
+      margin-bottom: 1rem;
+    }
+    /* Social links */
+    .social-bar { display: flex; gap: 0.75rem; margin-top: 0.2rem; flex-wrap: wrap; align-items: center; }
+    .social-link {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      min-height: 42px; padding: 0.65rem 0.85rem;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.92); text-decoration: none;
+      text-transform: uppercase; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .social-link:hover, .social-link:active { background: rgba(255,255,255,0.12); color: var(--accent); border-color: var(--accent); }
+    .social-mark {
+      width: 24px; height: 24px; border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(200,169,74,0.16); color: var(--accent);
+      font-size: 0.64rem; font-weight: 700;
+    }
+    .team-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 0.2rem; font-size: 0.8rem; font-weight: 700;
+      color: var(--accent); text-decoration: none;
+      padding: 0.65rem 0.85rem; border-radius: 8px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      text-transform: uppercase; letter-spacing: 0.04em;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .team-link:hover { background: rgba(255,255,255,0.1); border-color: var(--accent); }
+
+    /* ASE badge */
+    .cert-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 0.875rem; border-radius: 8px;
+      background: rgba(200,169,74,0.14); border: 1px solid rgba(200,169,74,0.32);
+      font-size: 0.74rem; font-weight: 700; color: #f1d490;
+      margin-top: 0;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
     /* Bottom nav */
     .bottom-nav {
       position: fixed; bottom: 0; left: 0; right: 0;
@@ -142,6 +193,14 @@
     }
     .nav-primary { background: var(--accent); color: #000; }
     .nav-secondary { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.12); }
+    @media (max-width: 640px) {
+      .hero-content { padding: 0 1.1rem 2rem; }
+      .hero h1 { font-size: 2.25rem; }
+      .connect-panel { padding: 1rem; }
+      .social-bar { display: grid; grid-template-columns: 1fr; }
+      .social-link, .team-link { width: 100%; justify-content: flex-start; }
+      .bottom-nav { padding-left: 0.85rem; padding-right: 0.85rem; }
+    }
   </style>
 </head>
 <body>
@@ -222,6 +281,17 @@
       <div class="section-label">Find us</div>
       <h2>Emerald Island Lawn Services</h2>
 <div class="info-row"><strong>3414 Henson Rd, Knoxville, TN 37921</strong></div><div class="info-row"><strong>Phone:</strong> <a href="tel:+18655884497" style="color: var(--accent); text-decoration: none;">(865) 588-4497</a></div>      <div class="info-row"><strong>Service area:</strong> 3414 Henson Rd, Knoxville, TN 37921</div>
+
+      <div class="connect-panel">
+        <div class="section-label">Trust & Connect</div>
+        <p class="connect-intro">When the current site exposes socials, a team page, or credentials, they should be easy to reach here without crowding the hero.</p>
+        <div class="social-bar">
+          <a href="https://emeraldislandlawnservice.com/about-us" target="_blank" rel="noopener" class="team-link">
+            <span class="social-mark">TM</span>
+            <span>Meet the Team</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -237,7 +307,7 @@
       document.getElementById('estimate-cta').classList.add('visible');
     }
 
-    /* Video: play only when visible, crossfade at loop point */
+    /* Video: play only when visible */
     (function() {
       var videos = document.querySelectorAll('video[autoplay]');
       if (!videos.length) return;
@@ -249,16 +319,6 @@
       }, { threshold: 0.25 });
       videos.forEach(function(video) {
         observer.observe(video);
-        video.addEventListener('timeupdate', function() {
-          if (this.duration && this.currentTime > this.duration - 0.4) {
-            this.style.opacity = '0';
-            this.style.transition = 'opacity 0.4s ease';
-          }
-        });
-        video.addEventListener('seeking', function() {
-          this.style.opacity = '1';
-          this.style.transition = 'opacity 0.3s ease';
-        });
       });
     })();
   </script>

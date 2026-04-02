@@ -53,6 +53,7 @@
       font-size: 0.875rem; color: var(--muted);
       font-weight: 600; margin-bottom: 1.75rem;
     }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
 
     .section-label {
       font-size: 0.7rem; font-weight: 700;
@@ -142,6 +143,57 @@
     .info-row { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.5rem; font-weight: 600; }
     .info-row strong { color: #fff; }
 
+    .connect-panel {
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+      backdrop-filter: blur(10px);
+    }
+    .connect-intro {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    /* Social links */
+    .social-bar { display: flex; gap: 0.7rem; margin-top: 0.2rem; flex-wrap: wrap; align-items: center; }
+    .social-link {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      min-height: 42px; padding: 0.65rem 0.85rem;
+      background: var(--surface); border: 1px solid var(--border);
+      color: #fff; text-decoration: none;
+      text-transform: uppercase; font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .social-link:hover, .social-link:active { background: var(--amber-dim); color: var(--amber); border-color: var(--amber); }
+    .social-mark {
+      width: 24px; height: 24px; border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(234,179,8,0.18); color: var(--amber);
+      font-size: 0.66rem; font-weight: 700;
+    }
+    .team-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 0.2rem; font-size: 0.8rem; font-weight: 700;
+      color: var(--amber); text-decoration: none; text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.65rem 0.85rem;
+      background: var(--surface); border: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .team-link:hover { background: var(--amber-dim); }
+
+    /* ASE badge */
+    .cert-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.625rem 1rem;
+      background: rgba(234,179,8,0.12); border: 1px solid rgba(234,179,8,0.3);
+      font-size: 0.74rem; font-weight: 700; color: #f6d67a;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin-top: 0;
+    }
+
     /* Bottom nav */
     .bottom-nav {
       position: fixed; bottom: 0; left: 0; right: 0;
@@ -159,6 +211,14 @@
     }
     .nav-primary { background: var(--amber); color: #000; }
     .nav-secondary { background: var(--surface); color: #fff; border: 1px solid var(--border); }
+    @media (max-width: 640px) {
+      .hero-content { padding: 0 1.1rem 2.1rem; }
+      .hero h1 { font-size: 1.95rem; }
+      .connect-panel { padding: 1rem; }
+      .social-bar { display: grid; grid-template-columns: 1fr; }
+      .social-link, .team-link { width: 100%; justify-content: flex-start; }
+      .bottom-nav { padding-left: 0.85rem; padding-right: 0.85rem; }
+    }
   </style>
 </head>
 <body>
@@ -173,6 +233,9 @@
       </div>
       <h1>Matlock Tire Service &amp; Auto Repair of Hardin Valley</h1>
       <p class="hero-sub">Matlock Tire Service &amp; Auto Repair of Hardin Valley · Knoxville, TN</p>
+      <div class="hero-meta">
+        <div class="cert-badge">ASE Certified Shop</div>
+      </div>
     </div>
   </div>
 
@@ -183,16 +246,46 @@
       <div id="selector">
         <div class="grid">
             <button class="btn-brutal" onclick="showPanel('panel-1')">
-              <span class="title">&lt;built-in method title of str object at 0x7d17328d10f0&gt;</span>
-              <span class="desc">Preview a better request flow.</span>
+              <span class="title">Warning light</span>
+              <span class="desc">Check engine, battery, ABS, or another dashboard alert that needs a next step.</span>
+            </button>
+            <button class="btn-brutal" onclick="showPanel('panel-2')">
+              <span class="title">Brakes or steering</span>
+              <span class="desc">Pulling, squeal, shake, soft pedal feel, or something changing in the way the car handles.</span>
+            </button>
+            <button class="btn-brutal" onclick="showPanel('panel-3')">
+              <span class="title">Maintenance</span>
+              <span class="desc">Oil service, inspection, tire concerns, fluid checks, or the routine work that keeps the week moving.</span>
+            </button>
+            <button class="btn-brutal" onclick="showPanel('panel-4')">
+              <span class="title">Noise or vibration</span>
+              <span class="desc">You can hear it or feel it, but you do not know the part name yet. Start there.</span>
             </button>
         </div>
       </div>
 
         <div id="panel-1" class="detail-panel">
           <button class="btn-close" onclick="hidePanels()">[X] Back</button>
-          <h2 style="font-size: 1rem; margin-bottom: 0.5rem; color: #fff;">&lt;built-in method title of str object at 0x7d17328d10f0&gt;</h2>
-          <p style="font-size: 0.8rem; color: var(--muted);">Preview a better request flow.</p>
+          <h2 style="font-size: 1rem; margin-bottom: 0.5rem; color: #fff;">Warning light</h2>
+          <p style="font-size: 0.8rem; color: var(--muted);">Check engine, battery, ABS, or another dashboard alert that needs a next step.</p>
+            <a href="tel:+18652482340" class="call-btn">Call the Shop</a>
+        </div>
+        <div id="panel-2" class="detail-panel">
+          <button class="btn-close" onclick="hidePanels()">[X] Back</button>
+          <h2 style="font-size: 1rem; margin-bottom: 0.5rem; color: #fff;">Brakes or steering</h2>
+          <p style="font-size: 0.8rem; color: var(--muted);">Pulling, squeal, shake, soft pedal feel, or something changing in the way the car handles.</p>
+            <a href="tel:+18652482340" class="call-btn">Call the Shop</a>
+        </div>
+        <div id="panel-3" class="detail-panel">
+          <button class="btn-close" onclick="hidePanels()">[X] Back</button>
+          <h2 style="font-size: 1rem; margin-bottom: 0.5rem; color: #fff;">Maintenance</h2>
+          <p style="font-size: 0.8rem; color: var(--muted);">Oil service, inspection, tire concerns, fluid checks, or the routine work that keeps the week moving.</p>
+            <a href="tel:+18652482340" class="call-btn">Call the Shop</a>
+        </div>
+        <div id="panel-4" class="detail-panel">
+          <button class="btn-close" onclick="hidePanels()">[X] Back</button>
+          <h2 style="font-size: 1rem; margin-bottom: 0.5rem; color: #fff;">Noise or vibration</h2>
+          <p style="font-size: 0.8rem; color: var(--muted);">You can hear it or feel it, but you do not know the part name yet. Start there.</p>
             <a href="tel:+18652482340" class="call-btn">Call the Shop</a>
         </div>
     </div>
@@ -204,7 +297,26 @@
     <div class="info-inner">
       <div class="section-label">Location</div>
       <h2>Matlock Tire Service &amp; Auto Repair of Hardin Valley</h2>
-<div class="info-row"><strong>10838 Hardin Valley Rd, Knoxville, TN 37932</strong></div><div class="info-row"><strong>Phone:</strong> <a href="tel:+18652482340" style="color: var(--amber); text-decoration: none;">(865) 248-2340</a></div>    </div>
+<div class="info-row"><strong>10838 Hardin Valley Rd, Knoxville, TN 37932</strong></div><div class="info-row"><strong>Phone:</strong> <a href="tel:+18652482340" style="color: var(--amber); text-decoration: none;">(865) 248-2340</a></div>
+      <div class="connect-panel">
+        <div class="section-label">Trust & Connect</div>
+        <p class="connect-intro">When the current site exposes socials, a team page, or ASE credentials, those trust signals belong in one clean spot that still reads well on mobile.</p>
+        <div class="social-bar">
+          <a href="https://www.facebook.com/matlocktireservice" target="_blank" rel="noopener" class="social-link">
+            <span class="social-mark">FB</span>
+            <span>Facebook</span>
+          </a>
+          <a href="https://www.youtube.com/channel/UC3O3VZ1OghF3x_17fU7MnTg" target="_blank" rel="noopener" class="social-link">
+            <span class="social-mark">YT</span>
+            <span>YouTube</span>
+          </a>
+          <a href="https://www.matlocktireservice.com/about" target="_blank" rel="noopener" class="team-link">
+            <span class="social-mark">TM</span>
+            <span>Meet the Team</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="bottom-nav">
@@ -222,7 +334,7 @@
       document.getElementById(id).classList.add('active');
     }
 
-    /* Video: play only when visible, crossfade at loop point */
+    /* Video: play only when visible */
     (function() {
       var videos = document.querySelectorAll('video[autoplay]');
       if (!videos.length) return;
@@ -234,16 +346,6 @@
       }, { threshold: 0.25 });
       videos.forEach(function(video) {
         observer.observe(video);
-        video.addEventListener('timeupdate', function() {
-          if (this.duration && this.currentTime > this.duration - 0.4) {
-            this.style.opacity = '0';
-            this.style.transition = 'opacity 0.4s ease';
-          }
-        });
-        video.addEventListener('seeking', function() {
-          this.style.opacity = '1';
-          this.style.transition = 'opacity 0.3s ease';
-        });
       });
     })();
   </script>
