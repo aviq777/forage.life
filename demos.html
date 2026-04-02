@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>forage.life — Demo Sites</title>
+    <meta name="description" content="Published local-service demo sites built by the Local Growth Engine and served at forage.life." />
+    <meta name="theme-color" content="#05060a" />
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      .page {
+        margin-top: 18px;
+        padding: 30px;
+        border-radius: var(--radius);
+        border: 1px solid rgba(255,255,255,.08);
+        background: linear-gradient(180deg, rgba(11,13,20,.74), rgba(11,13,20,.48));
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(12px);
+      }
+      .page__eyebrow {
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        color: rgba(232,236,255,.82);
+        font-size:13px;
+        letter-spacing:.14em;
+        text-transform:uppercase;
+      }
+      .page__eyebrow::before {
+        content:"";
+        width:10px;
+        height:10px;
+        border-radius:99px;
+        background: linear-gradient(90deg, var(--aqua), var(--blue), var(--orange));
+        box-shadow: 0 0 16px rgba(18,233,255,.25);
+      }
+      .page__headline {
+        margin: 12px 0 10px;
+        font-size: clamp(32px, 4.2vw, 56px);
+        line-height: 1.04;
+        letter-spacing: -.02em;
+      }
+      .page__headlineAccent {
+        display:block;
+        margin-top:6px;
+        background: linear-gradient(90deg, var(--aqua), var(--blue) 55%, var(--orange));
+        -webkit-background-clip:text;
+        background-clip:text;
+        color:transparent;
+      }
+      .page__subhead {
+        margin: 0;
+        max-width: 58ch;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.65;
+      }
+      .page__stats {
+        display:grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 22px;
+      }
+      .statCard {
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,.08);
+        background: rgba(0,0,0,.18);
+        padding: 16px;
+      }
+      .statCard__label {
+        color: var(--muted);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+      }
+      .statCard__value {
+        margin-top: 8px;
+        font-size: 28px;
+        font-weight: 700;
+      }
+      .controls {
+        display:flex;
+        flex-wrap:wrap;
+        gap:12px;
+        align-items:center;
+        justify-content:space-between;
+        margin-top: 22px;
+      }
+      .searchBox {
+        flex: 1 1 300px;
+        min-width: 0;
+      }
+      .searchBox input {
+        width:100%;
+        border-radius: 14px;
+        border:1px solid rgba(255,255,255,.12);
+        background: rgba(255,255,255,.04);
+        color: var(--text);
+        padding: 14px 16px;
+        font: inherit;
+      }
+      .searchBox input::placeholder {
+        color: rgba(232,236,255,.42);
+      }
+      .filterRow {
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+      }
+      .filterChip {
+        border:1px solid rgba(255,255,255,.10);
+        background: rgba(255,255,255,.03);
+        color: rgba(232,236,255,.82);
+        border-radius:999px;
+        padding:10px 14px;
+        font: inherit;
+        cursor:pointer;
+      }
+      .filterChip span {
+        color: var(--muted);
+      }
+      .filterChip.is-active {
+        border-color: rgba(18,233,255,.35);
+        background: linear-gradient(180deg, rgba(18,233,255,.12), rgba(47,102,255,.10));
+        box-shadow: 0 10px 30px rgba(18,233,255,.10);
+      }
+      .resultsMeta {
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .demoGrid {
+        display:grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 18px;
+      }
+      .demoCard {
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        min-height: 220px;
+        padding: 18px;
+        border-radius: 18px;
+        border:1px solid rgba(255,255,255,.08);
+        background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+        transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      }
+      .demoCard:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255,255,255,.16);
+        background: linear-gradient(180deg, rgba(18,233,255,.08), rgba(255,255,255,.03));
+      }
+      .demoCard[hidden] {
+        display:none;
+      }
+      .demoCard__top {
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+      }
+      .demoCard__tag {
+        display:inline-flex;
+        align-items:center;
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid rgba(18,233,255,.20);
+        background: rgba(18,233,255,.08);
+        color: rgba(232,236,255,.90);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+      }
+      .demoCard__arrow {
+        color: rgba(232,236,255,.62);
+        font-size: 13px;
+      }
+      .demoCard__title {
+        margin: 0;
+        font-size: 20px;
+        line-height: 1.2;
+      }
+      .demoCard__meta {
+        color: rgba(18,233,255,.82);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+      }
+      .demoCard__body {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 14px;
+      }
+      .demoCard__slug {
+        margin-top: auto;
+        color: rgba(232,236,255,.42);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12px;
+      }
+      .emptyState {
+        display:none;
+        margin-top: 18px;
+        padding: 18px;
+        border-radius: 16px;
+        border:1px solid rgba(255,255,255,.08);
+        background: rgba(0,0,0,.18);
+        color: var(--muted);
+      }
+      .emptyState.is-visible {
+        display:block;
+      }
+      @media (max-width: 920px) {
+        .page { padding: 22px; }
+        .page__stats { grid-template-columns: 1fr; }
+        .demoGrid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg" aria-hidden="true">
+      <div class="bg__grid"></div>
+      <div class="bg__glow"></div>
+      <div class="bg__noise"></div>
+    </div>
+
+    <main class="wrap">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="forage.life home">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">forage<span class="brand__dot">.</span>life</span>
+        </a>
+        <nav class="nav">
+          <a class="nav__link" href="/">Home</a>
+          <a class="nav__link" href="/demos">Demos</a>
+          <a class="nav__link" href="mailto:jclem07@protonmail.com">Contact</a>
+        </nav>
+      </header>
+
+      <section class="page">
+        <div class="page__eyebrow">Demo Directory</div>
+        <h1 class="page__headline">
+          Published demo sites.
+          <span class="page__headlineAccent">Browse the live build pipeline.</span>
+        </h1>
+        <p class="page__subhead">
+          This page tracks the public local-service demos currently published at forage.life. Open any card to review the live page on its clean URL.
+        </p>
+
+        <div class="page__stats">
+          <div class="statCard">
+            <div class="statCard__label">Live demos</div>
+            <div class="statCard__value">62</div>
+          </div>
+          <div class="statCard">
+            <div class="statCard__label">Categories</div>
+            <div class="statCard__value">6</div>
+          </div>
+          <div class="statCard">
+            <div class="statCard__label">Primary path</div>
+            <div class="statCard__value">/demos</div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <label class="searchBox">
+            <input id="demo-search" type="search" placeholder="Search by business, city, category, or slug" autocomplete="off" />
+          </label>
+          <div class="filterRow">
+            <button class="filterChip is-active" type="button" data-filter="all">All demos</button><button class="filterChip" type="button" data-filter="Auto Repair">Auto Repair <span>16</span></button><button class="filterChip" type="button" data-filter="General">General <span>1</span></button><button class="filterChip" type="button" data-filter="Knoxville">Knoxville <span>5</span></button><button class="filterChip" type="button" data-filter="Landscaping">Landscaping <span>17</span></button><button class="filterChip" type="button" data-filter="Lawn Care">Lawn Care <span>19</span></button><button class="filterChip" type="button" data-filter="Outdoor Services">Outdoor Services <span>4</span></button>
+          </div>
+        </div>
+
+        <div class="resultsMeta"><span id="results-count">62</span> results</div>
+        <div class="demoGrid" id="demo-grid">
+          <a class="demoCard" href="/demos/Clinton-Lawn-Pros-Clinton" data-category="General" data-search="clinton lawn pros — free website demo general  local-service demo page published at forage.life. clinton lawn pros clinton">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">General</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Clinton Lawn Pros — Free Website Demo</h2>
+              
+              <p class="demoCard__body">Local-service demo page published at forage.life.</p>
+              <div class="demoCard__slug">/Clinton-Lawn-Pros-Clinton</div>
+            </a><a class="demoCard" href="/demos/all-terrain-auto-care-2335-piney-grove-church-rd-knoxville-tn-37909" data-category="Auto Repair" data-search="all terrain auto care auto repair knoxville, tn all terrain auto care in knoxville, tn. a sharper local-service homepage with better actions. all terrain auto care 2335 piney grove church rd knoxville tn 37909">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">All Terrain Auto Care</h2>
+              <div class="demoCard__meta">Knoxville, TN</div>
+              <p class="demoCard__body">All Terrain Auto Care in Knoxville, TN. A sharper local-service homepage with better actions.</p>
+              <div class="demoCard__slug">/all-terrain-auto-care-2335-piney-grove-church-rd-knoxville-tn-37909</div>
+            </a><a class="demoCard" href="/demos/archer-mower-services-llc-4043-e-morris-blvd-building-c-morristown-tn-37814-lawn-care" data-category="Lawn Care" data-search="archer mower services, llc lawn care morristown, tn archer mower services, llc in morristown, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. archer mower services llc 4043 e morris blvd building c morristown tn 37814 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Archer Mower Services, LLC</h2>
+              <div class="demoCard__meta">Morristown, TN</div>
+              <p class="demoCard__body">Archer Mower Services, LLC in Morristown, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/archer-mower-services-llc-4043-e-morris-blvd-building-c-morristown-tn-37814-lawn-care</div>
+            </a><a class="demoCard" href="/demos/asian-auto-specialists-6404-maynardville-pike-knoxville-tn-37918" data-category="Knoxville" data-search="asian auto specialists knoxville  local-service demo page published at forage.life. asian auto specialists 6404 maynardville pike knoxville tn 37918">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Knoxville</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Asian Auto Specialists</h2>
+              
+              <p class="demoCard__body">Local-service demo page published at forage.life.</p>
+              <div class="demoCard__slug">/asian-auto-specialists-6404-maynardville-pike-knoxville-tn-37918</div>
+            </a><a class="demoCard" href="/demos/atkins-precision-lawn-care-and-landscaping-1528-lincoln-ave-morristown-tn-37813-lawn-care" data-category="Lawn Care" data-search="atkins precision lawn care and landscaping lawn care morristown, tn atkins precision lawn care and landscaping in morristown, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. atkins precision lawn care and landscaping 1528 lincoln ave morristown tn 37813 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Atkins Precision Lawn Care And Landscaping</h2>
+              <div class="demoCard__meta">Morristown, TN</div>
+              <p class="demoCard__body">Atkins Precision Lawn Care And Landscaping in Morristown, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/atkins-precision-lawn-care-and-landscaping-1528-lincoln-ave-morristown-tn-37813-lawn-care</div>
+            </a><a class="demoCard" href="/demos/bao-auto-repair-1100-bradshaw-garden-dr-knoxville-tn-37912" data-category="Auto Repair" data-search="bao auto repair auto repair  local-service demo page published at forage.life. bao auto repair 1100 bradshaw garden dr knoxville tn 37912">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Bao Auto Repair</h2>
+              
+              <p class="demoCard__body">Local-service demo page published at forage.life.</p>
+              <div class="demoCard__slug">/bao-auto-repair-1100-bradshaw-garden-dr-knoxville-tn-37912</div>
+            </a><a class="demoCard" href="/demos/big-springs-lawn-care-3214-morganton-rd-maryville-tn-37801-lawn-care" data-category="Lawn Care" data-search="big springs lawn care lawn care maryville, tn big springs lawn care in maryville, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. call, directions, and the main service paths stay obvious. big springs lawn care 3214 morganton rd maryville tn 37801 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Big Springs Lawn Care</h2>
+              <div class="demoCard__meta">Maryville, TN</div>
+              <p class="demoCard__body">Big Springs Lawn Care in Maryville, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow. Call, directions, and the main service paths stay obvious.</p>
+              <div class="demoCard__slug">/big-springs-lawn-care-3214-morganton-rd-maryville-tn-37801-lawn-care</div>
+            </a><a class="demoCard" href="/demos/boyds-creek-lawn-care-1509-double-d-dr-sevierville-tn-37876-lawn-care" data-category="Lawn Care" data-search="boyds creek lawn care lawn care sevierville, tn boyds creek lawn care in sevierville, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. boyds creek lawn care 1509 double d dr sevierville tn 37876 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Boyds Creek Lawn Care</h2>
+              <div class="demoCard__meta">Sevierville, TN</div>
+              <p class="demoCard__body">Boyds Creek Lawn Care in Sevierville, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/boyds-creek-lawn-care-1509-double-d-dr-sevierville-tn-37876-lawn-care</div>
+            </a><a class="demoCard" href="/demos/bradley-tree-service-excavating-1646-van-davis-rd-charleston-tn-37310-landscaping" data-category="Landscaping" data-search="bradley tree service &amp; excavating landscaping charleston, tn bradley tree service &amp; excavating in charleston, tn. your property, done right. bradley tree service excavating 1646 van davis rd charleston tn 37310 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Bradley Tree Service &amp; Excavating</h2>
+              <div class="demoCard__meta">Charleston, TN</div>
+              <p class="demoCard__body">Bradley Tree Service &amp; Excavating in Charleston, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/bradley-tree-service-excavating-1646-van-davis-rd-charleston-tn-37310-landscaping</div>
+            </a><a class="demoCard" href="/demos/brandon-s-mobile-auto-service-1615-snapp-rd-10-sevierville-tn-37862-auto-repair" data-category="Auto Repair" data-search="brandon&#x27;s mobile auto service auto repair sevierville, tn brandon&#x27;s mobile auto service in sevierville, tn. a sharper local-service homepage with better actions. brandon s mobile auto service 1615 snapp rd 10 sevierville tn 37862 auto repair">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Brandon&#x27;s Mobile Auto Service</h2>
+              <div class="demoCard__meta">Sevierville, TN</div>
+              <p class="demoCard__body">Brandon&#x27;s Mobile Auto Service in Sevierville, TN. A sharper local-service homepage with better actions.</p>
+              <div class="demoCard__slug">/brandon-s-mobile-auto-service-1615-snapp-rd-10-sevierville-tn-37862-auto-repair</div>
+            </a><a class="demoCard" href="/demos/car-fix-campbell-station-150-n-campbell-station-rd-knoxville-tn-37934" data-category="Auto Repair" data-search="car fix - campbell station auto repair knoxville, tn car fix - campbell station in knoxville, tennessee. book the right service without hunting for the right button. call, directions, and the main service paths stay obvious. car fix campbell station 150 n campbell station rd knoxville tn 37934">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">CAR FIX - Campbell Station</h2>
+              <div class="demoCard__meta">Knoxville, TN</div>
+              <p class="demoCard__body">CAR FIX - Campbell Station in Knoxville, Tennessee. Book the right service without hunting for the right button. Call, directions, and the main service paths stay obvious.</p>
+              <div class="demoCard__slug">/car-fix-campbell-station-150-n-campbell-station-rd-knoxville-tn-37934</div>
+            </a><a class="demoCard" href="/demos/christian-brothers-automotive-knoxville-10406-kingston-pike-knoxville-tn-37922" data-category="Auto Repair" data-search="christian brothers automotive knoxville auto repair knoxville, tn christian brothers automotive knoxville in knoxville, tn. a sharper local-service homepage with better actions. christian brothers automotive knoxville 10406 kingston pike knoxville tn 37922">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Christian Brothers Automotive Knoxville</h2>
+              <div class="demoCard__meta">Knoxville, TN</div>
+              <p class="demoCard__body">Christian Brothers Automotive Knoxville in Knoxville, TN. A sharper local-service homepage with better actions.</p>
+              <div class="demoCard__slug">/christian-brothers-automotive-knoxville-10406-kingston-pike-knoxville-tn-37922</div>
+            </a><a class="demoCard" href="/demos/d-r-automotive-repair-2029-roberts-ct-sevierville-tn-37862-auto-repair" data-category="Auto Repair" data-search="d&amp;r automotive repair auto repair sevierville, tn d&amp;r automotive repair in sevierville, tn. a sharper local-service homepage with better actions. d r automotive repair 2029 roberts ct sevierville tn 37862 auto repair">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">D&amp;R Automotive Repair</h2>
+              <div class="demoCard__meta">Sevierville, TN</div>
+              <p class="demoCard__body">D&amp;R Automotive Repair in Sevierville, TN. A sharper local-service homepage with better actions.</p>
+              <div class="demoCard__slug">/d-r-automotive-repair-2029-roberts-ct-sevierville-tn-37862-auto-repair</div>
+            </a><a class="demoCard" href="/demos/dalton-tree-services-1839-hinkle-dr-morristown-tn-37814-landscaping" data-category="Landscaping" data-search="dalton tree services landscaping morristown, tn dalton tree services in morristown, tn. your property, done right. dalton tree services 1839 hinkle dr morristown tn 37814 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Dalton Tree Services</h2>
+              <div class="demoCard__meta">Morristown, TN</div>
+              <p class="demoCard__body">Dalton Tree Services in Morristown, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/dalton-tree-services-1839-hinkle-dr-morristown-tn-37814-landscaping</div>
+            </a><a class="demoCard" href="/demos/dave-s-mobile-mechanic-llc-4045-kingston-pike-knoxville-tn-37919" data-category="Auto Repair" data-search="dave&#x27;s mobile mechanic llc auto repair knoxville, tn dave&#x27;s mobile mechanic llc in knoxville, tn. a sharper local-service homepage with better actions. dave s mobile mechanic llc 4045 kingston pike knoxville tn 37919">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Dave&#x27;s mobile mechanic llc</h2>
+              <div class="demoCard__meta">Knoxville, TN</div>
+              <p class="demoCard__body">Dave&#x27;s mobile mechanic llc in Knoxville, TN. A sharper local-service homepage with better actions.</p>
+              <div class="demoCard__slug">/dave-s-mobile-mechanic-llc-4045-kingston-pike-knoxville-tn-37919</div>
+            </a><a class="demoCard" href="/demos/ellenburg-landscaping-nursery-722-vanosdale-rd-knoxville-tn-37909" data-category="Outdoor Services" data-search="ellenburg landscaping &amp; nursery outdoor services knoxville, tn ellenburg landscaping &amp; nursery in knoxville, tn. your property, done right. ellenburg landscaping nursery 722 vanosdale rd knoxville tn 37909">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Outdoor Services</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Ellenburg Landscaping &amp; Nursery</h2>
+              <div class="demoCard__meta">Knoxville, TN</div>
+              <p class="demoCard__body">Ellenburg Landscaping &amp; Nursery in Knoxville, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/ellenburg-landscaping-nursery-722-vanosdale-rd-knoxville-tn-37909</div>
+            </a><a class="demoCard" href="/demos/emerald-island-lawn-services-3414-henson-rd-knoxville-tn-37921" data-category="Outdoor Services" data-search="emerald island lawn services outdoor services knoxville, tn emerald island lawn services in knoxville, tn. your property, done right. emerald island lawn services 3414 henson rd knoxville tn 37921">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Outdoor Services</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Emerald Island Lawn Services</h2>
+              <div class="demoCard__meta">Knoxville, TN</div>
+              <p class="demoCard__body">Emerald Island Lawn Services in Knoxville, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/emerald-island-lawn-services-3414-henson-rd-knoxville-tn-37921</div>
+            </a><a class="demoCard" href="/demos/evergreen-of-colonial-heights-1876-moreland-dr-kingsport-tn-37663-landscaping" data-category="Landscaping" data-search="evergreen of colonial heights landscaping kingsport, tn evergreen of colonial heights in kingsport, tn. your property, done right. evergreen of colonial heights 1876 moreland dr kingsport tn 37663 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Evergreen of Colonial Heights</h2>
+              <div class="demoCard__meta">Kingsport, TN</div>
+              <p class="demoCard__body">Evergreen of Colonial Heights in Kingsport, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/evergreen-of-colonial-heights-1876-moreland-dr-kingsport-tn-37663-landscaping</div>
+            </a><a class="demoCard" href="/demos/farley-s-lawn-landscape-389-heritage-hills-cir-ne-cleveland-tn-37323-lawn-care" data-category="Lawn Care" data-search="farley’s lawn &amp; landscape lawn care cleveland, tn farley’s lawn &amp; landscape in cleveland, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. farley s lawn landscape 389 heritage hills cir ne cleveland tn 37323 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Farley’s Lawn &amp; Landscape</h2>
+              <div class="demoCard__meta">Cleveland, TN</div>
+              <p class="demoCard__body">Farley’s Lawn &amp; Landscape in Cleveland, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/farley-s-lawn-landscape-389-heritage-hills-cir-ne-cleveland-tn-37323-lawn-care</div>
+            </a><a class="demoCard" href="/demos/fast-tires-llc-4182-w-andrew-johnson-hwy-morristown-tn-37814-auto-repair" data-category="Auto Repair" data-search="fast tires llc auto repair morristown, tn fast tires llc in morristown, tn. a sharper local-service homepage with better actions. fast tires llc 4182 w andrew johnson hwy morristown tn 37814 auto repair">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Fast Tires LLC</h2>
+              <div class="demoCard__meta">Morristown, TN</div>
+              <p class="demoCard__body">Fast Tires LLC in Morristown, TN. A sharper local-service homepage with better actions.</p>
+              <div class="demoCard__slug">/fast-tires-llc-4182-w-andrew-johnson-hwy-morristown-tn-37814-auto-repair</div>
+            </a><a class="demoCard" href="/demos/first-choice-lawn-tree-service-5607-washington-pike-knoxville-tn-37918" data-category="Outdoor Services" data-search="first choice lawn &amp; tree service outdoor services knoxville, tn first choice lawn &amp; tree service in knoxville, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. first choice lawn tree service 5607 washington pike knoxville tn 37918">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Outdoor Services</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">First Choice Lawn &amp; Tree Service</h2>
+              <div class="demoCard__meta">Knoxville, TN</div>
+              <p class="demoCard__body">First Choice Lawn &amp; Tree Service in Knoxville, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/first-choice-lawn-tree-service-5607-washington-pike-knoxville-tn-37918</div>
+            </a><a class="demoCard" href="/demos/francisco-tomas-landscaping-8231-brickyard-rd-powell-tn-37849-landscaping" data-category="Landscaping" data-search="francisco tomas landscaping landscaping powell, tn francisco tomas landscaping in powell, tn. your property, done right. francisco tomas landscaping 8231 brickyard rd powell tn 37849 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Francisco Tomas Landscaping</h2>
+              <div class="demoCard__meta">Powell, TN</div>
+              <p class="demoCard__body">Francisco Tomas Landscaping in Powell, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/francisco-tomas-landscaping-8231-brickyard-rd-powell-tn-37849-landscaping</div>
+            </a><a class="demoCard" href="/demos/glendale-gardens-1614-bob-young-ln-lenoir-city-tn-37772-landscaping" data-category="Landscaping" data-search="glendale gardens landscaping lenoir city, tn glendale gardens in lenoir city, tn. your property, done right. glendale gardens 1614 bob young ln lenoir city tn 37772 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Glendale Gardens</h2>
+              <div class="demoCard__meta">Lenoir City, TN</div>
+              <p class="demoCard__body">Glendale Gardens in Lenoir City, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/glendale-gardens-1614-bob-young-ln-lenoir-city-tn-37772-landscaping</div>
+            </a><a class="demoCard" href="/demos/green-acres-rock-garden-4406-airport-hwy-louisville-tn-37777-landscaping" data-category="Landscaping" data-search="green acres rock garden landscaping louisville, tn green acres rock garden in louisville, tn. your property, done right. green acres rock garden 4406 airport hwy louisville tn 37777 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Green Acres Rock Garden</h2>
+              <div class="demoCard__meta">Louisville, TN</div>
+              <p class="demoCard__body">Green Acres Rock Garden in Louisville, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/green-acres-rock-garden-4406-airport-hwy-louisville-tn-37777-landscaping</div>
+            </a><a class="demoCard" href="/demos/green-landscapes-lawn-service-wayside-rd-knoxville-tn-37931-lawn-care" data-category="Lawn Care" data-search="green landscapes lawn service lawn care knoxville, tn green landscapes lawn service in knoxville, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. green landscapes lawn service wayside rd knoxville tn 37931 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Green Landscapes Lawn Service</h2>
+              <div class="demoCard__meta">Knoxville, TN</div>
+              <p class="demoCard__body">Green Landscapes Lawn Service in Knoxville, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/green-landscapes-lawn-service-wayside-rd-knoxville-tn-37931-lawn-care</div>
+            </a><a class="demoCard" href="/demos/ground-control-lawn-care-service-801-green-st-church-hill-tn-37642-lawn-care" data-category="Lawn Care" data-search="ground control lawn care service lawn care church hill, tn ground control lawn care service in church hill, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. ground control lawn care service 801 green st church hill tn 37642 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">GROUND CONTROL LAWN CARE SERVICE</h2>
+              <div class="demoCard__meta">Church Hill, TN</div>
+              <p class="demoCard__body">GROUND CONTROL LAWN CARE SERVICE in Church Hill, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/ground-control-lawn-care-service-801-green-st-church-hill-tn-37642-lawn-care</div>
+            </a><a class="demoCard" href="/demos/hayes-alignment-tire-service-2709-n-wright-rd-alcoa-tn-37701-auto-repair" data-category="Auto Repair" data-search="hayes alignment &amp; tire service auto repair alcoa, tn hayes alignment &amp; tire service in alcoa, tn. a sharper local-service homepage with better actions. hayes alignment tire service 2709 n wright rd alcoa tn 37701 auto repair">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Hayes Alignment &amp; Tire Service</h2>
+              <div class="demoCard__meta">Alcoa, TN</div>
+              <p class="demoCard__body">Hayes Alignment &amp; Tire Service in Alcoa, TN. A sharper local-service homepage with better actions.</p>
+              <div class="demoCard__slug">/hayes-alignment-tire-service-2709-n-wright-rd-alcoa-tn-37701-auto-repair</div>
+            </a><a class="demoCard" href="/demos/hillbilly-landscaping-garden-2001-newport-hwy-sevierville-tn-37876-lawn-care" data-category="Lawn Care" data-search="hillbilly landscaping &amp; garden lawn care sevierville, tn hillbilly landscaping &amp; garden in sevierville, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. hillbilly landscaping garden 2001 newport hwy sevierville tn 37876 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Hillbilly Landscaping &amp; Garden</h2>
+              <div class="demoCard__meta">Sevierville, TN</div>
+              <p class="demoCard__body">Hillbilly Landscaping &amp; Garden in Sevierville, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/hillbilly-landscaping-garden-2001-newport-hwy-sevierville-tn-37876-lawn-care</div>
+            </a><a class="demoCard" href="/demos/hillside-landscape-management-llc-257-sloat-cir-whitesburg-tn-37891-landscaping" data-category="Landscaping" data-search="hillside landscape management, llc landscaping whitesburg, tn hillside landscape management, llc in whitesburg, tn. your property, done right. hillside landscape management llc 257 sloat cir whitesburg tn 37891 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Hillside Landscape Management, LLC</h2>
+              <div class="demoCard__meta">Whitesburg, TN</div>
+              <p class="demoCard__body">Hillside Landscape Management, LLC in Whitesburg, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/hillside-landscape-management-llc-257-sloat-cir-whitesburg-tn-37891-landscaping</div>
+            </a><a class="demoCard" href="/demos/jake-s-excavating-llc-675-bear-hollow-rd-greeneville-tn-37745-landscaping" data-category="Landscaping" data-search="jake&#x27;s excavating llc landscaping greeneville, tn jake&#x27;s excavating llc in greeneville, tn. your property, done right. jake s excavating llc 675 bear hollow rd greeneville tn 37745 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Jake&#x27;s Excavating LLC</h2>
+              <div class="demoCard__meta">Greeneville, TN</div>
+              <p class="demoCard__body">Jake&#x27;s Excavating LLC in Greeneville, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/jake-s-excavating-llc-675-bear-hollow-rd-greeneville-tn-37745-landscaping</div>
+            </a><a class="demoCard" href="/demos/jim-s-automotive-420-donovans-ln-kodak-tn-37764-auto-repair" data-category="Auto Repair" data-search="jim&#x27;s automotive auto repair kodak, tn jim&#x27;s automotive in kodak, tn. a sharper local-service homepage with better actions. jim s automotive 420 donovans ln kodak tn 37764 auto repair">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Jim&#x27;s Automotive</h2>
+              <div class="demoCard__meta">Kodak, TN</div>
+              <p class="demoCard__body">Jim&#x27;s Automotive in Kodak, TN. A sharper local-service homepage with better actions.</p>
+              <div class="demoCard__slug">/jim-s-automotive-420-donovans-ln-kodak-tn-37764-auto-repair</div>
+            </a><a class="demoCard" href="/demos/jim-s-lawn-center-inc-640-e-sullivan-st-kingsport-tn-37660-lawn-care" data-category="Lawn Care" data-search="jim&#x27;s lawn center inc. lawn care kingsport, tn jim&#x27;s lawn center inc. in kingsport, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. jim s lawn center inc 640 e sullivan st kingsport tn 37660 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Jim&#x27;s Lawn Center Inc.</h2>
+              <div class="demoCard__meta">Kingsport, TN</div>
+              <p class="demoCard__body">Jim&#x27;s Lawn Center Inc. in Kingsport, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/jim-s-lawn-center-inc-640-e-sullivan-st-kingsport-tn-37660-lawn-care</div>
+            </a><a class="demoCard" href="/demos/kiser-blvd-auto-repair-1381-kiser-blvd-greeneville-tn-37745-auto-repair" data-category="Auto Repair" data-search="kiser blvd. auto repair auto repair greeneville, tn kiser blvd. auto repair in greeneville, tn. a sharper local-service homepage with better actions. kiser blvd auto repair 1381 kiser blvd greeneville tn 37745 auto repair">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Kiser Blvd. Auto Repair</h2>
+              <div class="demoCard__meta">Greeneville, TN</div>
+              <p class="demoCard__body">Kiser Blvd. Auto Repair in Greeneville, TN. A sharper local-service homepage with better actions.</p>
+              <div class="demoCard__slug">/kiser-blvd-auto-repair-1381-kiser-blvd-greeneville-tn-37745-auto-repair</div>
+            </a><a class="demoCard" href="/demos/l-m-landscape-materials-llc-3309-mill-rd-knoxville-tn-37924" data-category="Outdoor Services" data-search="l &amp; m landscape materials, llc outdoor services knoxville, tn l &amp; m landscape materials, llc in knoxville, tn. your property, done right. l m landscape materials llc 3309 mill rd knoxville tn 37924">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Outdoor Services</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">L &amp; M Landscape Materials, LLC</h2>
+              <div class="demoCard__meta">Knoxville, TN</div>
+              <p class="demoCard__body">L &amp; M Landscape Materials, LLC in Knoxville, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/l-m-landscape-materials-llc-3309-mill-rd-knoxville-tn-37924</div>
+            </a><a class="demoCard" href="/demos/lawn-and-garden-equipment-repair-205-orlando-dr-cleveland-tn-37323-lawn-care" data-category="Lawn Care" data-search="lawn and garden equipment repair lawn care cleveland, tn lawn and garden equipment repair in cleveland, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. lawn and garden equipment repair 205 orlando dr cleveland tn 37323 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Lawn and garden equipment repair</h2>
+              <div class="demoCard__meta">Cleveland, TN</div>
+              <p class="demoCard__body">Lawn and garden equipment repair in Cleveland, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/lawn-and-garden-equipment-repair-205-orlando-dr-cleveland-tn-37323-lawn-care</div>
+            </a><a class="demoCard" href="/demos/los-amigos-auto-repair-908-e-woodland-ave-knoxville-tn-37917" data-category="Auto Repair" data-search="los amigos auto repair auto repair  local-service demo page published at forage.life. los amigos auto repair 908 e woodland ave knoxville tn 37917">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Los Amigos Auto Repair</h2>
+              
+              <p class="demoCard__body">Local-service demo page published at forage.life.</p>
+              <div class="demoCard__slug">/los-amigos-auto-repair-908-e-woodland-ave-knoxville-tn-37917</div>
+            </a><a class="demoCard" href="/demos/martin-s-greenhouse-nursery-301-dodge-dr-rogersville-tn-37857-landscaping" data-category="Landscaping" data-search="martin&#x27;s greenhouse &amp; nursery landscaping rogersville, tn martin&#x27;s greenhouse &amp; nursery in rogersville, tn. your property, done right. martin s greenhouse nursery 301 dodge dr rogersville tn 37857 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Martin&#x27;s Greenhouse &amp; Nursery</h2>
+              <div class="demoCard__meta">Rogersville, TN</div>
+              <p class="demoCard__body">Martin&#x27;s Greenhouse &amp; Nursery in Rogersville, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/martin-s-greenhouse-nursery-301-dodge-dr-rogersville-tn-37857-landscaping</div>
+            </a><a class="demoCard" href="/demos/matlock-tire-service-auto-repair-of-hardin-valley-10838-hardin-valley-rd-knoxville-tn-37932-auto-repair" data-category="Auto Repair" data-search="matlock tire service &amp; auto repair of hardin valley auto repair knoxville, tn matlock tire service &amp; auto repair of hardin valley in knoxville, tn. a sharper local-service homepage with better actions. matlock tire service auto repair of hardin valley 10838 hardin valley rd knoxville tn 37932 auto repair">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Matlock Tire Service &amp; Auto Repair of Hardin Valley</h2>
+              <div class="demoCard__meta">Knoxville, TN</div>
+              <p class="demoCard__body">Matlock Tire Service &amp; Auto Repair of Hardin Valley in Knoxville, TN. A sharper local-service homepage with better actions.</p>
+              <div class="demoCard__slug">/matlock-tire-service-auto-repair-of-hardin-valley-10838-hardin-valley-rd-knoxville-tn-37932-auto-repair</div>
+            </a><a class="demoCard" href="/demos/mclean-tire-and-auto-service-1209-snapps-ferry-rd-greeneville-tn-37745-auto-repair" data-category="Auto Repair" data-search="mclean tire and auto service auto repair greeneville, tn mclean tire and auto service in greeneville, tn. a sharper local-service homepage with better actions. mclean tire and auto service 1209 snapps ferry rd greeneville tn 37745 auto repair">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Mclean Tire and Auto Service</h2>
+              <div class="demoCard__meta">Greeneville, TN</div>
+              <p class="demoCard__body">Mclean Tire and Auto Service in Greeneville, TN. A sharper local-service homepage with better actions.</p>
+              <div class="demoCard__slug">/mclean-tire-and-auto-service-1209-snapps-ferry-rd-greeneville-tn-37745-auto-repair</div>
+            </a><a class="demoCard" href="/demos/morales-lawn-care-landscaping-358-berry-ridge-rd-jonesborough-tn-37659-landscaping" data-category="Landscaping" data-search="morales lawn care &amp; landscaping landscaping jonesborough, tn morales lawn care &amp; landscaping in jonesborough, tn. your property, done right. morales lawn care landscaping 358 berry ridge rd jonesborough tn 37659 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Morales Lawn Care &amp; Landscaping</h2>
+              <div class="demoCard__meta">Jonesborough, TN</div>
+              <p class="demoCard__body">Morales Lawn Care &amp; Landscaping in Jonesborough, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/morales-lawn-care-landscaping-358-berry-ridge-rd-jonesborough-tn-37659-landscaping</div>
+            </a><a class="demoCard" href="/demos/mulch-more-310-douglas-dam-rd-kodak-tn-37764-landscaping" data-category="Landscaping" data-search="mulch &amp; more landscaping kodak, tn mulch &amp; more in kodak, tn. your property, done right. mulch more 310 douglas dam rd kodak tn 37764 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Mulch &amp; More</h2>
+              <div class="demoCard__meta">Kodak, TN</div>
+              <p class="demoCard__body">Mulch &amp; More in Kodak, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/mulch-more-310-douglas-dam-rd-kodak-tn-37764-landscaping</div>
+            </a><a class="demoCard" href="/demos/one-man-and-mower-lawncare-services-1084-tn-91-elizabethton-tn-37643-lawn-care" data-category="Lawn Care" data-search="one 🦵 man and mower lawncare services lawn care elizabethton, tn one 🦵 man and mower lawncare services in elizabethton, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. one man and mower lawncare services 1084 tn 91 elizabethton tn 37643 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">one 🦵 man and mower lawncare services</h2>
+              <div class="demoCard__meta">Elizabethton, TN</div>
+              <p class="demoCard__body">one 🦵 man and mower lawncare services in Elizabethton, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/one-man-and-mower-lawncare-services-1084-tn-91-elizabethton-tn-37643-lawn-care</div>
+            </a><a class="demoCard" href="/demos/p-h-lawn-care-1105-meadow-ln-kingsport-tn-37663-lawn-care" data-category="Lawn Care" data-search="p &amp; h lawn care lawn care kingsport, tn p &amp; h lawn care in kingsport, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. p h lawn care 1105 meadow ln kingsport tn 37663 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">P &amp; H Lawn Care</h2>
+              <div class="demoCard__meta">Kingsport, TN</div>
+              <p class="demoCard__body">P &amp; H Lawn Care in Kingsport, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/p-h-lawn-care-1105-meadow-ln-kingsport-tn-37663-lawn-care</div>
+            </a><a class="demoCard" href="/demos/peachey-landscape-company-1765-stone-dam-rd-chuckey-tn-37641-landscaping" data-category="Landscaping" data-search="peachey landscape company landscaping chuckey, tn peachey landscape company in chuckey, tn. your property, done right. peachey landscape company 1765 stone dam rd chuckey tn 37641 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Peachey Landscape Company</h2>
+              <div class="demoCard__meta">Chuckey, TN</div>
+              <p class="demoCard__body">Peachey Landscape Company in Chuckey, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/peachey-landscape-company-1765-stone-dam-rd-chuckey-tn-37641-landscaping</div>
+            </a><a class="demoCard" href="/demos/pope-s-at-meadow-view-9885-us-11-lenoir-city-tn-37772-landscaping" data-category="Landscaping" data-search="pope’s at meadow view landscaping lenoir city, tn pope’s at meadow view in lenoir city, tn. your property, done right. pope s at meadow view 9885 us 11 lenoir city tn 37772 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Pope’s at Meadow View</h2>
+              <div class="demoCard__meta">Lenoir City, TN</div>
+              <p class="demoCard__body">Pope’s at Meadow View in Lenoir City, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/pope-s-at-meadow-view-9885-us-11-lenoir-city-tn-37772-landscaping</div>
+            </a><a class="demoCard" href="/demos/pro-cut-lawn-care-and-landscaping-122-maydawn-ln-mooresburg-tn-37811-lawn-care" data-category="Lawn Care" data-search="pro cut lawn care and landscaping lawn care mooresburg, tn pro cut lawn care and landscaping in mooresburg, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. pro cut lawn care and landscaping 122 maydawn ln mooresburg tn 37811 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Pro Cut Lawn Care and Landscaping</h2>
+              <div class="demoCard__meta">Mooresburg, TN</div>
+              <p class="demoCard__body">Pro Cut Lawn Care and Landscaping in Mooresburg, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/pro-cut-lawn-care-and-landscaping-122-maydawn-ln-mooresburg-tn-37811-lawn-care</div>
+            </a><a class="demoCard" href="/demos/s-h-a-automotive-2990-dresser-rd-knoxville-tn-37920" data-category="Knoxville" data-search="s.h.a. automotive knoxville  local-service demo page published at forage.life. s h a automotive 2990 dresser rd knoxville tn 37920">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Knoxville</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">S.H.A. Automotive</h2>
+              
+              <p class="demoCard__body">Local-service demo page published at forage.life.</p>
+              <div class="demoCard__slug">/s-h-a-automotive-2990-dresser-rd-knoxville-tn-37920</div>
+            </a><a class="demoCard" href="/demos/smurf-s-property-management-633-collinson-ford-rd-morristown-tn-37814-lawn-care" data-category="Lawn Care" data-search="smurf&#x27;s property management lawn care morristown, tn smurf&#x27;s property management in morristown, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. smurf s property management 633 collinson ford rd morristown tn 37814 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">SMURF&#x27;S PROPERTY MANAGEMENT</h2>
+              <div class="demoCard__meta">Morristown, TN</div>
+              <p class="demoCard__body">SMURF&#x27;S PROPERTY MANAGEMENT in Morristown, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/smurf-s-property-management-633-collinson-ford-rd-morristown-tn-37814-lawn-care</div>
+            </a><a class="demoCard" href="/demos/southeast-landscape-supply-6021-w-andrew-johnson-hwy-talbott-tn-37877-landscaping" data-category="Landscaping" data-search="southeast landscape supply landscaping talbott, tn southeast landscape supply in talbott, tn. your property, done right. southeast landscape supply 6021 w andrew johnson hwy talbott tn 37877 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Southeast Landscape Supply</h2>
+              <div class="demoCard__meta">Talbott, TN</div>
+              <p class="demoCard__body">Southeast Landscape Supply in Talbott, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/southeast-landscape-supply-6021-w-andrew-johnson-hwy-talbott-tn-37877-landscaping</div>
+            </a><a class="demoCard" href="/demos/southern-designs-landscapes-3621-neal-dr-knoxville-tn-37918-landscaping" data-category="Landscaping" data-search="southern designs landscapes landscaping knoxville, tn southern designs landscapes in knoxville, tn. your property, done right. southern designs landscapes 3621 neal dr knoxville tn 37918 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Southern Designs Landscapes</h2>
+              <div class="demoCard__meta">Knoxville, TN</div>
+              <p class="demoCard__body">Southern Designs Landscapes in Knoxville, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/southern-designs-landscapes-3621-neal-dr-knoxville-tn-37918-landscaping</div>
+            </a><a class="demoCard" href="/demos/southern-pros-lawn-care-and-landscaping-440-okolona-rd-johnson-city-tn-37601-lawn-care" data-category="Lawn Care" data-search="southern pros lawn care and landscaping lawn care johnson city, tn southern pros lawn care and landscaping in johnson city, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. southern pros lawn care and landscaping 440 okolona rd johnson city tn 37601 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Southern Pros Lawn Care and Landscaping</h2>
+              <div class="demoCard__meta">Johnson City, TN</div>
+              <p class="demoCard__body">Southern Pros Lawn Care and Landscaping in Johnson City, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/southern-pros-lawn-care-and-landscaping-440-okolona-rd-johnson-city-tn-37601-lawn-care</div>
+            </a><a class="demoCard" href="/demos/southern-style-landscapes-10928-snyder-rd-knoxville-tn-37932" data-category="Knoxville" data-search="southern style landscapes knoxville  local-service demo page published at forage.life. southern style landscapes 10928 snyder rd knoxville tn 37932">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Knoxville</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Southern Style Landscapes</h2>
+              
+              <p class="demoCard__body">Local-service demo page published at forage.life.</p>
+              <div class="demoCard__slug">/southern-style-landscapes-10928-snyder-rd-knoxville-tn-37932</div>
+            </a><a class="demoCard" href="/demos/southwinds-group-2754-britt-ln-morristown-tn-37814-lawn-care" data-category="Lawn Care" data-search="southwinds group lawn care morristown, tn southwinds group in morristown, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. southwinds group 2754 britt ln morristown tn 37814 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Southwinds Group</h2>
+              <div class="demoCard__meta">Morristown, TN</div>
+              <p class="demoCard__body">Southwinds Group in Morristown, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/southwinds-group-2754-britt-ln-morristown-tn-37814-lawn-care</div>
+            </a><a class="demoCard" href="/demos/spare-tire-no-3-1212-w-state-st-bristol-tn-37620-auto-repair" data-category="Auto Repair" data-search="spare tire no.3 auto repair bristol, tn spare tire no.3 in bristol, tn. a sharper local-service homepage with better actions. spare tire no 3 1212 w state st bristol tn 37620 auto repair">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Spare Tire No.3</h2>
+              <div class="demoCard__meta">Bristol, TN</div>
+              <p class="demoCard__body">Spare Tire No.3 in Bristol, TN. A sharper local-service homepage with better actions.</p>
+              <div class="demoCard__slug">/spare-tire-no-3-1212-w-state-st-bristol-tn-37620-auto-repair</div>
+            </a><a class="demoCard" href="/demos/stick-s-landscape-yard-2815-dalton-pike-se-cleveland-tn-37323-lawn-care" data-category="Lawn Care" data-search="stick&#x27;s landscape yard lawn care cleveland, tn stick&#x27;s landscape yard in cleveland, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. stick s landscape yard 2815 dalton pike se cleveland tn 37323 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Stick&#x27;s Landscape Yard</h2>
+              <div class="demoCard__meta">Cleveland, TN</div>
+              <p class="demoCard__body">Stick&#x27;s Landscape Yard in Cleveland, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/stick-s-landscape-yard-2815-dalton-pike-se-cleveland-tn-37323-lawn-care</div>
+            </a><a class="demoCard" href="/demos/superior-tree-and-landscape-311-e-morris-blvd-morristown-tn-37813-lawn-care" data-category="Lawn Care" data-search="superior tree and landscape lawn care morristown, tn superior tree and landscape in morristown, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. superior tree and landscape 311 e morris blvd morristown tn 37813 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Superior Tree And Landscape</h2>
+              <div class="demoCard__meta">Morristown, TN</div>
+              <p class="demoCard__body">Superior Tree And Landscape in Morristown, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/superior-tree-and-landscape-311-e-morris-blvd-morristown-tn-37813-lawn-care</div>
+            </a><a class="demoCard" href="/demos/the-garden-basket-nursery-produce-market-1008-tusculum-blvd-greeneville-tn-37745-landscaping" data-category="Landscaping" data-search="the garden basket nursery &amp; produce market landscaping greeneville, tn the garden basket nursery &amp; produce market in greeneville, tn. your property, done right. the garden basket nursery produce market 1008 tusculum blvd greeneville tn 37745 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">The Garden Basket Nursery &amp; Produce Market</h2>
+              <div class="demoCard__meta">Greeneville, TN</div>
+              <p class="demoCard__body">The Garden Basket Nursery &amp; Produce Market in Greeneville, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/the-garden-basket-nursery-produce-market-1008-tusculum-blvd-greeneville-tn-37745-landscaping</div>
+            </a><a class="demoCard" href="/demos/thomas-auto-service-and-repair-325-w-main-st-sevierville-tn-37862-auto-repair" data-category="Auto Repair" data-search="thomas auto service and repair auto repair sevierville, tn thomas auto service and repair in sevierville, tn. a sharper local-service homepage with better actions. thomas auto service and repair 325 w main st sevierville tn 37862 auto repair">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Auto Repair</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Thomas Auto Service and Repair</h2>
+              <div class="demoCard__meta">Sevierville, TN</div>
+              <p class="demoCard__body">Thomas Auto Service and Repair in Sevierville, TN. A sharper local-service homepage with better actions.</p>
+              <div class="demoCard__slug">/thomas-auto-service-and-repair-325-w-main-st-sevierville-tn-37862-auto-repair</div>
+            </a><a class="demoCard" href="/demos/tri-star-lawn-service-3409-bluff-view-dr-louisville-tn-37777-lawn-care" data-category="Lawn Care" data-search="tri-star lawn service lawn care louisville, tn tri-star lawn service in louisville, tn. a sharper lawn-care homepage with cleaner service proof and faster estimate flow. tri star lawn service 3409 bluff view dr louisville tn 37777 lawn care">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Lawn Care</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Tri-Star Lawn Service</h2>
+              <div class="demoCard__meta">Louisville, TN</div>
+              <p class="demoCard__body">Tri-Star Lawn Service in Louisville, TN. A sharper lawn-care homepage with cleaner service proof and faster estimate flow.</p>
+              <div class="demoCard__slug">/tri-star-lawn-service-3409-bluff-view-dr-louisville-tn-37777-lawn-care</div>
+            </a><a class="demoCard" href="/demos/twin-lake-material-inc-15707-us-70-lenoir-city-tn-37772-landscaping" data-category="Landscaping" data-search="twin lake material, inc. landscaping lenoir city, tn twin lake material, inc. in lenoir city, tn. your property, done right. twin lake material inc 15707 us 70 lenoir city tn 37772 landscaping">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Landscaping</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Twin Lake Material, Inc.</h2>
+              <div class="demoCard__meta">Lenoir City, TN</div>
+              <p class="demoCard__body">Twin Lake Material, Inc. in Lenoir City, TN. Your property, done right.</p>
+              <div class="demoCard__slug">/twin-lake-material-inc-15707-us-70-lenoir-city-tn-37772-landscaping</div>
+            </a><a class="demoCard" href="/demos/webb-s-complete-auto-care-7608-norman-jack-ln-knoxville-tn-37938" data-category="Knoxville" data-search="webb&#x27;s complete auto care knoxville  local-service demo page published at forage.life. webb s complete auto care 7608 norman jack ln knoxville tn 37938">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Knoxville</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Webb&#x27;s Complete Auto Care</h2>
+              
+              <p class="demoCard__body">Local-service demo page published at forage.life.</p>
+              <div class="demoCard__slug">/webb-s-complete-auto-care-7608-norman-jack-ln-knoxville-tn-37938</div>
+            </a><a class="demoCard" href="/demos/westside-automotive-center-4401-papermill-dr-nw-knoxville-tn-37909" data-category="Knoxville" data-search="westside automotive center knoxville  local-service demo page published at forage.life. westside automotive center 4401 papermill dr nw knoxville tn 37909">
+              <div class="demoCard__top">
+                <span class="demoCard__tag">Knoxville</span>
+                <span class="demoCard__arrow">Open</span>
+              </div>
+              <h2 class="demoCard__title">Westside Automotive Center</h2>
+              
+              <p class="demoCard__body">Local-service demo page published at forage.life.</p>
+              <div class="demoCard__slug">/westside-automotive-center-4401-papermill-dr-nw-knoxville-tn-37909</div>
+            </a>
+        </div>
+        <div class="emptyState" id="empty-state">No demos match the current search and filter.</div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer__left">
+          <span class="footer__muted">© <span id="y"></span> forage.life</span>
+        </div>
+        <div class="footer__right">
+          <a class="footer__link" href="/">Home</a>
+          <a class="footer__link" href="mailto:jclem07@protonmail.com">Contact</a>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+      const searchInput = document.getElementById("demo-search");
+      const chips = [...document.querySelectorAll(".filterChip")];
+      const cards = [...document.querySelectorAll(".demoCard")];
+      const emptyState = document.getElementById("empty-state");
+      const resultsCount = document.getElementById("results-count");
+      let activeFilter = "all";
+
+      function applyFilters() {
+        const query = searchInput.value.trim().toLowerCase();
+        let visible = 0;
+        cards.forEach((card) => {
+          const matchesFilter = activeFilter === "all" || card.dataset.category === activeFilter;
+          const matchesSearch = !query || card.dataset.search.includes(query);
+          const show = matchesFilter && matchesSearch;
+          card.hidden = !show;
+          if (show) visible += 1;
+        });
+        resultsCount.textContent = visible;
+        emptyState.classList.toggle("is-visible", visible === 0);
+      }
+
+      chips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+          activeFilter = chip.dataset.filter;
+          chips.forEach((item) => item.classList.toggle("is-active", item === chip));
+          applyFilters();
+        });
+      });
+
+      searchInput.addEventListener("input", applyFilters);
+      applyFilters();
+    </script>
+  </body>
+</html>
