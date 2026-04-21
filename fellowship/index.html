@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sermon Library — Fellowship Church Knoxville</title>
+  <meta name="description" content="Every Sunday sermon from Fellowship Church Knoxville, analyzed for passage, themes, and theological depth.">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#070b14;--surface:#0d1220;--surface-r:#111829;
+      --border:#1a2035;--border-h:#2a3555;
+      --text:#e2e8f0;--muted:#64748b;--dim:#94a3b8;
+      --accent:#6366f1;--purple:#8b5cf6;
+      --tag-bg:rgba(99,102,241,.12);--tag-text:#a5b4fc;
+      --r:10px;
+    }
+    html{font-size:16px}
+    body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;min-height:100vh}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+    /* topbar */
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:48px}
+    .topbar__back{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;transition:color .15s}
+    .topbar__back:hover{color:var(--text)}
+    .topbar__back svg{width:16px;height:16px}
+    .topbar__label{font-size:13px;color:var(--muted)}
+    .topbar__label span{color:var(--accent)}
+
+    /* hero */
+    .hero{margin-bottom:40px}
+    .hero__kicker{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .hero__title{font-size:clamp(28px,5vw,48px);font-weight:700;line-height:1.1;margin-bottom:12px;background:linear-gradient(135deg,#fff 0%,#a5b4fc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero__sub{font-size:16px;color:var(--dim);max-width:560px;line-height:1.6}
+
+    /* controls */
+    .controls{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;align-items:center}
+    .search-wrap{flex:1;min-width:240px;position:relative}
+    .search-wrap svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);width:15px;height:15px;pointer-events:none}
+    #search{width:100%;padding:10px 14px 10px 38px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-size:14px;outline:none;transition:border-color .15s}
+    #search:focus{border-color:var(--accent)}
+    #search::placeholder{color:var(--muted)}
+    .sort-btn{padding:10px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--muted);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+    .sort-btn:hover,.sort-btn.active{color:var(--text);border-color:var(--border-h);background:var(--surface-r)}
+
+    /* tag filters */
+    .filter-section{margin-bottom:24px}
+    .filter-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+    .tags{display:flex;flex-wrap:wrap;gap:7px}
+    .tag-pill{padding:5px 12px;background:var(--surface);border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--dim);cursor:pointer;transition:all .15s}
+    .tag-pill:hover{border-color:var(--border-h);color:var(--text)}
+    .tag-pill.active{background:var(--tag-bg);border-color:var(--accent);color:var(--tag-text)}
+
+    /* stats */
+    .stats{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:8px}
+    .stats__count{font-size:14px;color:var(--muted)}
+    .stats__count strong{color:var(--text)}
+    .sync-badge{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);padding:4px 10px;background:var(--surface);border:1px solid var(--border);border-radius:20px}
+    .sync-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px #22c55e;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+    /* grid */
+    .sermon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+    .sermon-card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;cursor:pointer;transition:all .2s;text-decoration:none}
+    .sermon-card:hover{border-color:var(--border-h);background:var(--surface-r);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+    .sermon-card__date{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+    .sermon-card__passage{font-size:17px;font-weight:700;color:var(--tag-text);margin-bottom:5px;line-height:1.2}
+    .sermon-card__title{font-size:14px;color:var(--text);margin-bottom:8px;line-height:1.4}
+    .sermon-card__meta{font-size:12px;color:var(--muted);margin-bottom:10px}
+    .sermon-card__summary{font-size:13px;color:var(--dim);line-height:1.5;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+    .sermon-card__tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}
+    .sermon-card__tag{padding:3px 8px;background:var(--tag-bg);border:1px solid rgba(99,102,241,.2);border-radius:12px;font-size:11px;color:var(--tag-text)}
+    .sermon-card__arrow{margin-top:12px;text-align:right;color:var(--muted);font-size:16px;transition:transform .15s}
+    .sermon-card:hover .sermon-card__arrow{transform:translate(2px,-2px)}
+
+    /* states */
+    .loading{display:flex;align-items:center;justify-content:center;padding:80px 0;color:var(--muted);grid-column:1/-1}
+    .spinner{width:28px;height:28px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin-right:12px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .empty{text-align:center;padding:80px 0;color:var(--muted);grid-column:1/-1}
+    .empty h3{font-size:18px;color:var(--dim);margin-bottom:8px}
+
+    /* footer */
+    .footer{margin-top:60px;padding:24px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;flex-wrap:wrap;gap:12px}
+    .footer a{color:var(--muted);transition:color .15s}
+    .footer a:hover{color:var(--text)}
+    .footer__links{display:flex;gap:20px}
+
+    @media(max-width:600px){
+      .sermon-grid{grid-template-columns:1fr}
+      .controls{flex-direction:column}
+      .search-wrap{min-width:0;width:100%}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topbar">
+    <a href="/" class="topbar__back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      forage.life
+    </a>
+    <span class="topbar__label">Fellowship <span>Sermon Library</span></span>
+  </nav>
+
+  <section class="hero">
+    <p class="hero__kicker">Fellowship Church Knoxville</p>
+    <h1 class="hero__title">Sermon Library</h1>
+    <p class="hero__sub">Every Sunday sermon analyzed for passage, themes, and theological depth. Search, filter by topic, and study.</p>
+  </section>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="search" id="search" placeholder="Search sermons, passages, topics, preachers...">
+    </div>
+    <button class="sort-btn active" id="sort-newest">↓ Newest</button>
+    <button class="sort-btn" id="sort-oldest">↑ Oldest</button>
+  </div>
+
+  <div class="filter-section" id="filter-section" style="display:none">
+    <div class="filter-label">Filter by topic</div>
+    <div class="tags" id="tag-filters"></div>
+  </div>
+
+  <div class="stats">
+    <span class="stats__count" id="count-label">Loading...</span>
+    <span class="sync-badge">
+      <span class="sync-dot"></span>
+      <span id="sync-text">syncing...</span>
+    </span>
+  </div>
+
+  <div id="sermon-grid" class="sermon-grid">
+    <div class="loading"><div class="spinner"></div>Loading sermons...</div>
+  </div>
+
+  <footer class="footer">
+    <span>© 2025 forage.life &mdash; Personal study project</span>
+    <div class="footer__links">
+      <a href="/">Home</a>
+      <a href="https://fellowshipknox.com" target="_blank" rel="noopener">Fellowship Church</a>
+    </div>
+  </footer>
+
+</div>
+<script>
+let allSermons=[], activeTag=null, sortDir='desc', query='';
+
+async function load(){
+  try{
+    const r=await fetch('/api/sermons');
+    const d=await r.json();
+    allSermons=d.sermons||[];
+    const ts=new Date(d.lastSync);
+    document.getElementById('sync-text').textContent='Last synced: '+ts.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    buildTags();
+    render();
+  }catch(e){
+    document.getElementById('sermon-grid').innerHTML='<div class="empty"><h3>Could not load sermons</h3><p>'+e.message+'</p></div>';
+  }
+}
+
+function buildTags(){
+  const counts={};
+  allSermons.forEach(s=>(s.topics||[]).forEach(t=>{counts[t]=(counts[t]||0)+1}));
+  const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,35);
+  if(!sorted.length)return;
+  const wrap=document.getElementById('tag-filters');
+  wrap.innerHTML='';
+  const all=document.createElement('button');
+  all.className='tag-pill active';
+  all.textContent='All topics';
+  all.onclick=()=>{activeTag=null;wrap.querySelectorAll('.tag-pill').forEach(p=>p.classList.remove('active'));all.classList.add('active');render()};
+  wrap.appendChild(all);
+  sorted.forEach(([tag,count])=>{
+    const btn=document.createElement('button');
+    btn.className='tag-pill';
+    btn.textContent=tag+' ('+count+')';
+    btn.onclick=()=>{activeTag=tag;wrap.querySelectorAll('.tag-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');render()};
+    wrap.appendChild(btn);
+  });
+  document.getElementById('filter-section').style.display='';
+}
+
+function filtered(){
+  let s=allSermons.slice();
+  if(activeTag) s=s.filter(x=>(x.topics||[]).includes(activeTag));
+  if(query){
+    const q=query.toLowerCase();
+    s=s.filter(x=>(x.title||'').toLowerCase().includes(q)||(x.passage||'').toLowerCase().includes(q)||(x.preacher||'').toLowerCase().includes(q)||(x.series||'').toLowerCase().includes(q)||(x.summary||'').toLowerCase().includes(q)||(x.topics||[]).some(t=>t.toLowerCase().includes(q)));
+  }
+  s.sort((a,b)=>sortDir==='desc'?b.date.localeCompare(a.date):a.date.localeCompare(b.date));
+  return s;
+}
+
+function fmt(d){
+  if(!d)return'';
+  const[y,m,dd]=d.split('-');
+  return new Date(+y,+m-1,+dd).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+}
+
+function card(s){
+  const tags=(s.topics||[]).slice(0,4).map(t=>'<span class="sermon-card__tag">'+esc(t)+'</span>').join('');
+  return '<a class="sermon-card" href="/fellowship/sermon?id='+s.id+'">'+
+    '<div class="sermon-card__date">'+fmt(s.date)+'</div>'+
+    '<div class="sermon-card__passage">'+esc(s.passage||'')+'</div>'+
+    '<div class="sermon-card__title">'+esc(s.title)+'</div>'+
+    '<div class="sermon-card__meta">'+esc(s.preacher||'')+(s.series?' &middot; '+esc(s.series):'')+'</div>'+
+    '<div class="sermon-card__summary">'+esc(s.summary||'')+'</div>'+
+    '<div class="sermon-card__tags">'+tags+'</div>'+
+    '<div class="sermon-card__arrow">&#8599;</div>'+
+  '</a>';
+}
+
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function render(){
+  const list=filtered();
+  document.getElementById('count-label').innerHTML='<strong>'+list.length+'</strong> of '+allSermons.length+' sermons';
+  document.getElementById('sermon-grid').innerHTML=list.length?list.map(card).join(''):'<div class="empty"><h3>No sermons found</h3><p>Try a different search or filter.</p></div>';
+}
+
+document.getElementById('search').addEventListener('input',e=>{query=e.target.value;render()});
+document.getElementById('sort-newest').addEventListener('click',()=>{sortDir='desc';document.getElementById('sort-newest').classList.add('active');document.getElementById('sort-oldest').classList.remove('active');render()});
+document.getElementById('sort-oldest').addEventListener('click',()=>{sortDir='asc';document.getElementById('sort-oldest').classList.add('active');document.getElementById('sort-newest').classList.remove('active');render()});
+
+load();
+</script>
+</body>
+</html>
