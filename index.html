@@ -3,27 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>forage.life — Chrome Extensions</title>
-    <meta name="description" content="forage.life builds focused, privacy-respecting Chrome extensions. CleanSearch Pro is our first." />
+    <title>forage.life — Projects by Jordan Clemons</title>
+    <meta name="description" content="Software, AI tools, and digital products built by Jordan Clemons." />
     <meta name="theme-color" content="#05060a" />
-
-    <meta property="og:title" content="forage.life — Chrome Extensions" />
-    <meta property="og:description" content="Focused, privacy-respecting Chrome extensions." />
+    <meta property="og:title" content="forage.life" />
+    <meta property="og:description" content="Software, AI tools, and digital products." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/assets/cleansearch-pro-logo.png" />
-
     <link rel="icon" href="/assets/cleansearch-pro-logo.png" />
-    <link rel="preload" href="/assets/cleansearch-pro-logo.png" as="image" />
     <link rel="stylesheet" href="/styles.css" />
-
-    <!-- Simple install tracking (privacy-first, no cookies) -->
-    <script>
-      function trackInstall(source) {
-        try {
-          fetch("/install-track?source=" + source + "&t=" + Date.now(), { keepalive: true });
-        } catch (e) {}
-      }
-    </script>
   </head>
 
   <body>
@@ -34,139 +21,173 @@
     </div>
 
     <main class="wrap">
+
+      <!-- ── NAV ── -->
       <header class="topbar">
         <a class="brand" href="/" aria-label="forage.life home">
           <span class="brand__mark" aria-hidden="true"></span>
           <span class="brand__text">forage<span class="brand__dot">.</span>life</span>
         </a>
-
-        <!-- TOP NAV LINK → CHROME STORE -->
         <nav class="nav">
-          <a
-            href="https://chromewebstore.google.com/detail/cleansearch-pro-google-ai/bnoneaegdjkifkgmlfnlnimphjcopnli"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="nav__link"
-            onclick="trackInstall('nav')"
-          >
-            Extensions
-          </a>
-
-          <a href="#contact" class="nav__link">Contact</a>
+          <a href="#projects" class="nav__link">Projects</a>
+          <a href="#agents" class="nav__link">Agents</a>
+          <a href="mailto:jclem07@protonmail.com" class="nav__link">Contact</a>
         </nav>
       </header>
 
-      <section class="hero" id="extensions">
-        <div class="hero__left">
-          <p class="kicker">Chrome Extensions</p>
-
-          <h1 class="headline">
-            Clean up your search.
-            <span class="headline__accent">Keep the signal.</span>
-          </h1>
-
-          <p class="subhead">
-            CleanSearch Pro removes AI clutter and sponsored noise from Google search —
-            fast, private, and lightweight.
-          </p>
-
-          <div class="ctaRow">
-            <!-- MAIN CTA -->
-            <a
-              class="btn btn--primary"
-              href="https://chromewebstore.google.com/detail/cleansearch-pro-google-ai/bnoneaegdjkifkgmlfnlnimphjcopnli"
-              target="_blank"
-              rel="noopener noreferrer"
-              onclick="trackInstall('hero')"
-              aria-label="Add CleanSearch Pro to Chrome"
-            >
-              <span class="btn__glow" aria-hidden="true"></span>
-
-              <!-- Chrome logo (inline SVG, no image request) -->
-              <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
-                <circle cx="24" cy="24" r="10" fill="#4285F4"/>
-                <path fill="#EA4335" d="M24 4a20 20 0 0 1 17.3 10H24z"/>
-                <path fill="#FBBC05" d="M6.7 14A20 20 0 0 0 24 44l8.7-15z"/>
-                <path fill="#34A853" d="M41.3 14A20 20 0 0 1 32.7 29H16z"/>
-              </svg>
-
-              Add to Chrome
-            </a>
-
-            <a
-              class="btn btn--ghost"
-              id="contact"
-              href="mailto:jclem07@protonmail.com?subject=forage.life%20—%20Hello"
-            >
-              Contact Email
-            </a>
-          </div>
-
-          <div class="mini">
-            <div class="mini__card">
-              <div class="mini__title">What we build</div>
-              <ul class="mini__list">
-                <li>Search cleanup & focus tools</li>
-                <li>Premium UI, zero bloat</li>
-                <li>Privacy-first by default</li>
-              </ul>
-            </div>
-
-            <div class="mini__card">
-              <div class="mini__title">CleanSearch Pro</div>
-              <div class="mini__muted">
-                <a
-                  href="https://chromewebstore.google.com/detail/cleansearch-pro-google-ai/bnoneaegdjkifkgmlfnlnimphjcopnli"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onclick="trackInstall('mini')"
-                >
-                  View on Chrome Web Store →
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- LARGE LOGO → CLICKABLE -->
-        <div class="hero__right" aria-hidden="true">
-          <div class="logoFrame">
-            <a
-              href="https://chromewebstore.google.com/detail/cleansearch-pro-google-ai/bnoneaegdjkifkgmlfnlnimphjcopnli"
-              target="_blank"
-              rel="noopener noreferrer"
-              onclick="trackInstall('logo')"
-            >
-              <img
-                class="logoFrame__img"
-                src="/assets/cleansearch-pro-logo.png"
-                alt="CleanSearch Pro Chrome Extension"
-              />
-            </a>
-            <div class="logoFrame__ring"></div>
-            <div class="logoFrame__ring logoFrame__ring--b"></div>
-            <div class="logoFrame__scan"></div>
-          </div>
+      <!-- ── HERO ── -->
+      <section class="hero-intro">
+        <p class="kicker">Builder &amp; Developer</p>
+        <h1 class="headline">
+          Jordan Clemons
+          <span class="headline__accent">Building things that work.</span>
+        </h1>
+        <p class="subhead">
+          Independent software developer. I build Chrome extensions, AI-powered web tools,
+          and automation systems for real businesses.
+        </p>
+        <div class="ctaRow">
+          <a href="mailto:jclem07@protonmail.com" class="btn btn--primary">
+            <span class="btn__glow" aria-hidden="true"></span>
+            Get in touch
+          </a>
+          <a href="https://www.youtube.com/@OlliesCrew" target="_blank" rel="noopener noreferrer" class="btn btn--ghost">
+            <!-- YouTube icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff4444" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+            Ollie's Crew
+          </a>
         </div>
       </section>
 
-      <footer class="footer">
-        <div class="footer__left">
-          <span class="footer__muted">© <span id="y"></span> forage.life</span>
-        </div>
-        <div class="footer__right">
-          <a
-            class="footer__link"
-            href="https://chromewebstore.google.com/detail/cleansearch-pro-google-ai/bnoneaegdjkifkgmlfnlnimphjcopnli"
-            target="_blank"
-            rel="noopener noreferrer"
-            onclick="trackInstall('footer')"
-          >
-            Chrome Web Store
+      <!-- ── PROJECTS ── -->
+      <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="project-grid">
+
+          <!-- CleanSearch Pro -->
+          <a class="project-card" href="https://chromewebstore.google.com/detail/cleansearch-pro-google-ai/bnoneaegdjkifkgmlfnlnimphjcopnli" target="_blank" rel="noopener noreferrer">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--aqua">Chrome Extension</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <h3 class="project-card__name">CleanSearch Pro</h3>
+            <p class="project-card__desc">Removes AI clutter and sponsored noise from Google search. Fast, private, and lightweight.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url">Chrome Web Store</span>
+            </div>
           </a>
+
+          <!-- quickstage.io -->
+          <a class="project-card" href="https://quickstage.io" target="_blank" rel="noopener noreferrer">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--blue">AI · Real Estate</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <h3 class="project-card__name">quickstage.io</h3>
+            <p class="project-card__desc">AI-powered real estate staging. Upload a photo, get a professionally staged version instantly.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url">quickstage.io</span>
+            </div>
+          </a>
+
+          <!-- Ardd & Winter -->
+          <a class="project-card" href="https://lux.forage.life" target="_blank" rel="noopener noreferrer">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--orange">AI · Enterprise</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <h3 class="project-card__name">Ardd &amp; Winter</h3>
+            <p class="project-card__desc">Lighting Intelligence Platform. AI workflow automation built for an East Tennessee lighting &amp; electrical company.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url">lux.forage.life</span>
+            </div>
+          </a>
+
+          <!-- Jeff Fitness -->
+          <div class="project-card project-card--muted">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--muted">Fitness · PWA</span>
+              <span class="project-badge">Private Beta</span>
+            </div>
+            <h3 class="project-card__name">Jeff Fitness</h3>
+            <p class="project-card__desc">A personal workout tracking progressive web app with custom plans, logging, and progress visualization.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url project-card__url--muted">Coming soon</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── OPENCLAW AGENTS ── -->
+      <section id="agents">
+        <h2 class="section-title">Agent Hub <span class="section-title__badge">Live</span></h2>
+        <p class="section-sub">A fleet of AI agents running across projects — each with a role, a home, and work to do.</p>
+
+        <div class="agent-hub">
+          <div class="agent-building agent-building--studio">
+            <div class="agent-building__icon">🎬</div>
+            <div class="agent-building__label">Video Studio</div>
+            <div class="agent-building__agents">
+              <div class="agent-dot agent-dot--active" title="Ollie's Crew pipeline"></div>
+            </div>
+          </div>
+          <div class="agent-building agent-building--office">
+            <div class="agent-building__icon">💼</div>
+            <div class="agent-building__label">Dev Office</div>
+            <div class="agent-building__agents">
+              <div class="agent-dot agent-dot--active" title="CleanSearch Pro API"></div>
+              <div class="agent-dot agent-dot--active" title="ClawSuite Dashboard"></div>
+            </div>
+          </div>
+          <div class="agent-building agent-building--gym">
+            <div class="agent-building__icon">🏋️</div>
+            <div class="agent-building__label">Fitness Lab</div>
+            <div class="agent-building__agents">
+              <div class="agent-dot agent-dot--active" title="Jeff Fitness"></div>
+            </div>
+          </div>
+          <div class="agent-building agent-building--staging">
+            <div class="agent-building__icon">🏠</div>
+            <div class="agent-building__label">Staging Co.</div>
+            <div class="agent-building__agents">
+              <div class="agent-dot agent-dot--active" title="quickstage.io"></div>
+            </div>
+          </div>
+          <div class="agent-building agent-building--lighting">
+            <div class="agent-building__icon">💡</div>
+            <div class="agent-building__label">Lux HQ</div>
+            <div class="agent-building__agents">
+              <div class="agent-dot agent-dot--active" title="Ardd & Winter platform"></div>
+              <div class="agent-dot agent-dot--idle" title="Lux Proxy"></div>
+            </div>
+          </div>
+          <div class="agent-building agent-building--infra">
+            <div class="agent-building__icon">🖥️</div>
+            <div class="agent-building__label">Infrastructure</div>
+            <div class="agent-building__agents">
+              <div class="agent-dot agent-dot--active" title="OpenClaw Gateway"></div>
+              <div class="agent-dot agent-dot--active" title="AgentMail"></div>
+              <div class="agent-dot agent-dot--idle" title="n8n pipeline"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="agent-legend">
+          <span class="legend-item"><span class="agent-dot agent-dot--active"></span> Active</span>
+          <span class="legend-item"><span class="agent-dot agent-dot--idle"></span> Idle</span>
+        </div>
+      </section>
+
+      <!-- ── FOOTER ── -->
+      <footer class="footer">
+        <span class="footer__muted">© <span id="y"></span> forage.life</span>
+        <div class="footer__right">
+          <a class="footer__link" href="https://www.youtube.com/@OlliesCrew" target="_blank" rel="noopener noreferrer">YouTube</a>
           <a class="footer__link" href="mailto:jclem07@protonmail.com">Contact</a>
         </div>
       </footer>
+
     </main>
 
     <script>
