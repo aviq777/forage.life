@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sermon — Fellowship Library</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#070b14;--surface:#0d1220;--surface-r:#111829;
+      --border:#1a2035;--border-h:#2a3555;
+      --text:#e2e8f0;--muted:#64748b;--dim:#94a3b8;
+      --accent:#6366f1;--purple:#8b5cf6;
+      --tag-bg:rgba(99,102,241,.12);--tag-text:#a5b4fc;
+      --r:10px;
+    }
+    html{font-size:16px}
+    body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;min-height:100vh}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:860px;margin:0 auto;padding:0 24px}
+
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:40px}
+    .topbar__back{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;transition:color .15s}
+    .topbar__back:hover{color:var(--text)}
+    .topbar__back svg{width:16px;height:16px}
+
+    /* hero */
+    .sermon-hero{margin-bottom:36px}
+    .sermon-hero__date{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+    .sermon-hero__passage{font-size:clamp(22px,4vw,36px);font-weight:700;color:var(--tag-text);margin-bottom:10px;line-height:1.1}
+    .sermon-hero__title{font-size:clamp(16px,2.5vw,22px);font-weight:500;color:var(--text);margin-bottom:12px;line-height:1.3}
+    .sermon-hero__meta{font-size:14px;color:var(--dim);margin-bottom:20px}
+    .yt-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:var(--r);color:#ff6b6b;font-size:14px;transition:all .15s}
+    .yt-btn:hover{background:rgba(255,68,68,.18);border-color:rgba(255,68,68,.5)}
+    .yt-btn svg{width:18px;height:18px}
+
+    /* key quote */
+    .key-quote{background:var(--surface);border-left:3px solid var(--accent);border-radius:0 var(--r) var(--r) 0;padding:20px 24px;margin:32px 0;font-size:17px;line-height:1.6;color:var(--text);font-style:italic}
+    .key-quote::before{content:'"';font-size:48px;line-height:0;vertical-align:-18px;color:var(--accent);margin-right:4px;font-style:normal}
+
+    /* summary */
+    .summary-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-bottom:28px}
+    .summary-box h2{font-size:13px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .summary-box p{font-size:15px;color:var(--dim);line-height:1.7}
+
+    /* analysis grid */
+    .analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+    .field{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px}
+    .field--full{grid-column:1/-1}
+    .field__label{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+    .field__value{font-size:14px;color:var(--dim);line-height:1.6}
+    .field__value--highlight{color:var(--text);font-size:15px;line-height:1.5}
+
+    /* topics */
+    .topics-section{margin-bottom:32px}
+    .topics-section h2{font-size:13px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{padding:5px 12px;background:var(--tag-bg);border:1px solid rgba(99,102,241,.2);border-radius:20px;font-size:13px;color:var(--tag-text)}
+
+    /* loading */
+    .loading{display:flex;align-items:center;justify-content:center;padding:100px 0;color:var(--muted)}
+    .spinner{width:28px;height:28px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin-right:12px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* footer */
+    .footer{margin-top:60px;padding:24px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;flex-wrap:wrap;gap:12px}
+    .footer a{color:var(--muted);transition:color .15s}
+    .footer a:hover{color:var(--text)}
+
+    @media(max-width:640px){
+      .analysis-grid{grid-template-columns:1fr}
+      .field--full{grid-column:1}
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topbar">
+    <a href="/fellowship" class="topbar__back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Sermon Library
+    </a>
+  </nav>
+
+  <div id="content">
+    <div class="loading"><div class="spinner"></div>Loading sermon...</div>
+  </div>
+
+  <footer class="footer">
+    <span>&copy; 2025 forage.life &mdash; Personal study project</span>
+    <a href="/fellowship">&#8592; Back to library</a>
+  </footer>
+
+</div>
+<script>
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function fmt(d){
+  if(!d)return'';
+  const[y,m,dd]=d.split('-');
+  return new Date(+y,+m-1,+dd).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+}
+
+function field(label,value,full,highlight){
+  if(!value)return'';
+  return'<div class="field'+(full?' field--full':'')+'">'+
+    '<div class="field__label">'+label+'</div>'+
+    '<div class="field__value'+(highlight?' field__value--highlight':'')+'">'+esc(value)+'</div>'+
+  '</div>';
+}
+
+function render(s){
+  const ytBtn=s.youtubeUrl?'<a class="yt-btn" href="'+esc(s.youtubeUrl)+'" target="_blank" rel="noopener">'+
+    '<svg viewBox="0 0 24 24" fill="#ff4444"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>'+
+    'Watch on YouTube</a>':'';
+
+  const quote=s.keyQuote?'<blockquote class="key-quote">'+esc(s.keyQuote)+'</blockquote>':'';
+
+  const summary=s.summary?'<div class="summary-box"><h2>Summary</h2><p>'+esc(s.summary)+'</p></div>':'';
+
+  const tags=(s.topics||[]).length?
+    '<div class="topics-section"><h2>Topics</h2><div class="tags">'+(s.topics.map(t=>'<span class="tag">'+esc(t)+'</span>').join(''))+'</div></div>':'';
+
+  document.getElementById('content').innerHTML=
+    '<section class="sermon-hero">'+
+      '<div class="sermon-hero__date">'+fmt(s.date)+'</div>'+
+      '<div class="sermon-hero__passage">'+esc(s.passage||'')+'</div>'+
+      '<div class="sermon-hero__title">'+esc(s.title)+'</div>'+
+      '<div class="sermon-hero__meta">'+esc(s.preacher||'')+(s.series?' &middot; '+esc(s.series):'')+'</div>'+
+      ytBtn+
+    '</section>'+
+    quote+
+    summary+
+    '<div class="analysis-grid">'+
+      field('Core Problem',s.coreProblem,false,true)+
+      field('Core Solution',s.coreSolution,false,true)+
+      field('Nature of God',s.natureOfGod,true)+
+      field('Sin / Fear / False Belief',s.sinFearFalseBelief,true)+
+      field('Call to Action',s.callToAction,true)+
+      field('Promise from God',s.promise,false)+
+      field('Core Tension',s.coreTension,false)+
+      field('Greek / Hebrew Words',s.greekHebrew,true)+
+      field('Series Connection',s.seriesConnection,true)+
+      field('Cross-Reference Themes',s.crossReferenceThemes,true)+
+      field('Books of Bible Referenced',s.booksOfBible,false)+
+    '</div>'+
+    tags;
+
+  document.title=s.passage+(s.preacher?' — '+s.preacher:'')+' — Fellowship Library';
+}
+
+async function load(){
+  const id=new URLSearchParams(location.search).get('id');
+  if(!id){document.getElementById('content').innerHTML='<div class="loading">No sermon ID provided.</div>';return;}
+  try{
+    const r=await fetch('/api/sermon?id='+id);
+    const s=await r.json();
+    if(s.error)throw new Error(s.error);
+    render(s);
+  }catch(e){
+    document.getElementById('content').innerHTML='<div class="loading">Could not load sermon: '+e.message+'</div>';
+  }
+}
+
+load();
+</script>
+</body>
+</html>
