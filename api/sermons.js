@@ -1,4 +1,4 @@
-const NOTION_TOKEN = process.env.NOTION_TOKEN;
+const NOTION_TOKEN = process.env.NOTION_TOKEN; // required
 const NOTION_DB = process.env.NOTION_DB || '348dc244-8617-8116-a22d-e6c70a3dbad3';
 
 function txt(p, key) {
