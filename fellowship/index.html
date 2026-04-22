@@ -258,7 +258,7 @@ function card(s){
   const header=series?(series+' &middot; '+fmt(s.date)):fmt(s.date);
   const quote=s.keyQuote?'<div class="sermon-card__quote">&ldquo;'+esc(s.keyQuote)+'&rdquo;</div>':'<div class="sermon-card__pending">Analysis pending&hellip;</div>';
   const tags=(s.topics||[]).slice(0,3).map(t=>'<span class="sermon-card__tag">'+esc(t)+'</span>').join('');
-  const play=s.youtubeUrl?'<a class="play-btn" href="'+esc(s.youtubeUrl)+'" target="_blank" rel="noopener" title="Watch on YouTube" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></a>':'';
+  const play=s.youtubeUrl?'<div class="play-btn" role="button" title="Watch on YouTube" onclick="event.preventDefault();event.stopPropagation();window.open(\''+esc(s.youtubeUrl)+'\',\'_blank\',\'noopener\')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>':'';
   return '<a class="sermon-card" href="/fellowship/sermon?id='+s.id+'">'+play+
     '<div class="sermon-card__header">'+header+'</div>'+
     '<div class="sermon-card__title">'+esc(s.title)+'</div>'+
