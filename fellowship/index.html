@@ -268,15 +268,18 @@ function card(s){
   '</a>';
 }
 
+function hasData(s){return !!(s.keyQuote||s.summary||s.passage);}
+
 function renderGrid(sermons, container, limit){
-  const shown = limit ? sermons.slice(0,limit) : sermons;
+  const analyzed=sermons.filter(hasData);
+  const shown = limit ? analyzed.slice(0,limit) : analyzed;
   if(!shown.length){container.innerHTML='<div class="empty">No sermons found. Try a different search or filter.</div>';return;}
   container.innerHTML=shown.map(card).join('');
   const sm=document.getElementById('show-more');
   const btn=document.getElementById('show-more-btn');
-  if(limit && sermons.length>limit && view==='recent'){
+  if(limit && analyzed.length>limit && view==='recent'){
     sm.style.display='';
-    btn.textContent='Show all '+sermons.length+' sermons';
+    btn.textContent='Show all '+analyzed.length+' analyzed sermons';
     btn.onclick=()=>{showAll=true;render()};
   } else {
     sm.style.display='none';
@@ -285,7 +288,7 @@ function renderGrid(sermons, container, limit){
 
 function renderByGroup(sermons, keyFn, container){
   const groups={};
-  sermons.forEach(s=>{const k=keyFn(s)||'Other';if(!groups[k])groups[k]=[];groups[k].push(s)});
+  sermons.filter(hasData).forEach(s=>{const k=keyFn(s)||'Other';if(!groups[k])groups[k]=[];groups[k].push(s)});
   const sorted=Object.entries(groups).sort((a,b)=>b[1].length-a[1].length);
   let html='';
   sorted.forEach(([name,items])=>{
@@ -310,7 +313,9 @@ function render(){
   const grid=document.getElementById('grid-inner')||document.getElementById('sermon-grid');
   const sermons=getFiltered();
   const lbl=document.getElementById('count-label');
-  lbl.textContent=sermons.length+' sermon'+(sermons.length!==1?'s':'');
+  const analyzed=sermons.filter(hasData).length;
+  const total=ALL.filter(x=>x.date).length;
+  lbl.textContent=analyzed+' analyzed'+(analyzed<total?' / '+total+' total':'');
 
   const pills=document.getElementById('topic-pills');
   pills.style.display=view==='topic'?'flex':'none';
