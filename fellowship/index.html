@@ -199,6 +199,7 @@
 let ALL=[], view='recent', activeTag=null, showAll=false;
 
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function normPreacher(n){if(!n)return'';const m={'RD McClenagan':'RD','Rd McClenagan':'RD','Greg Pinkner':'Greg','Greg Fner':'Greg','Devon Accardi':'Devon','Devin Accardi':'Devon','Devin':'Devon','Devin (Devon)':'Devon','JC Neely':'JC','Rick Dunn':'Rick','Zach Hume':'Zach','Brady Raby':'Brady'};return m[n]||n.split(' ')[0]||n;}
 function fmt(d){if(!d)return'';const[y,m,dd]=d.split('-');return new Date(+y,+m-1,+dd).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}).toUpperCase()}
 function fmtLong(d){if(!d)return'';const[y,m,dd]=d.split('-');return new Date(+y,+m-1,+dd).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
 function bookFrom(passage){if(!passage)return'';const m=passage.match(/^(\d?\s?[A-Za-z]+)/);return m?m[1].trim():'';}
@@ -218,7 +219,7 @@ async function load(){
 
 function buildSpeakers(){
   const sel=document.getElementById('speaker-select');
-  const speakers=[...new Set(ALL.map(s=>s.preacher).filter(Boolean))].sort();
+  const speakers=[...new Set(ALL.map(s=>normPreacher(s.preacher)).filter(Boolean))].sort();
   speakers.forEach(sp=>{const o=document.createElement('option');o.value=sp;o.textContent=sp;sel.appendChild(o)});
   sel.onchange=render;
   document.getElementById('sort-select').onchange=render;
@@ -246,7 +247,7 @@ function getFiltered(){
   const sp=document.getElementById('speaker-select').value;
   const sort=document.getElementById('sort-select').value;
   let s=ALL.filter(x=>x.date);
-  if(sp) s=s.filter(x=>x.preacher===sp);
+  if(sp) s=s.filter(x=>normPreacher(x.preacher)===sp);
   if(activeTag) s=s.filter(x=>(x.topics||[]).includes(activeTag));
   if(q) s=s.filter(x=>(x.title+' '+x.preacher+' '+x.series+' '+x.passage+' '+x.summary+' '+(x.topics||[]).join(' ')+(x.keyQuote||'')).toLowerCase().includes(q));
   s.sort((a,b)=>sort==='asc'?a.date.localeCompare(b.date):b.date.localeCompare(a.date));
@@ -262,7 +263,7 @@ function card(s){
   return '<a class="sermon-card" href="/fellowship/sermon?id='+s.id+'">'+play+
     '<div class="sermon-card__header">'+header+'</div>'+
     '<div class="sermon-card__title">'+esc(s.title)+'</div>'+
-    '<div class="sermon-card__meta">'+esc(s.preacher||'')+(s.passage?' &middot; '+esc(s.passage):'')+'</div>'+
+    '<div class="sermon-card__meta">'+esc(normPreacher(s.preacher)||'')+(s.passage?' &middot; '+esc(s.passage):'')+'</div>'+
     quote+
     '<div class="sermon-card__tags">'+tags+'</div>'+
   '</a>';
