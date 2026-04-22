@@ -32,6 +32,11 @@ function normalize(page) {
   };
 }
 
+function richness(s) {
+  return (s.summary ? 4 : 0) + (s.passage ? 3 : 0) + (s.keyQuote ? 3 : 0) +
+    (s.preacher ? 1 : 0) + (s.topics.length ? 1 : 0) + (s.series ? 1 : 0);
+}
+
 module.exports = async function handler(req, res) {
   try {
     let results = [];
@@ -53,7 +58,17 @@ module.exports = async function handler(req, res) {
       cursor = data.has_more ? data.next_cursor : undefined;
     } while (cursor);
 
-    const sermons = results.map(normalize).filter(s => s.date);
+    const all = results.map(normalize).filter(s => s.date);
+
+    // Deduplicate by date — keep the richest page per date
+    const byDate = {};
+    all.forEach(s => {
+      if (!byDate[s.date] || richness(s) > richness(byDate[s.date])) {
+        byDate[s.date] = s;
+      }
+    });
+    const sermons = Object.values(byDate).sort((a, b) => b.date.localeCompare(a.date));
+
     res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=600');
     res.json({ sermons, count: sermons.length, lastSync: new Date().toISOString() });
   } catch (err) {
