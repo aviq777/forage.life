@@ -5,13 +5,31 @@ function txt(p, key) {
   return (p[key] && p[key].rich_text ? p[key].rich_text.map(t => t.plain_text).join('') : '') || '';
 }
 
+const PREACHER_MAP = {
+  'RD McClenagan':'RD','Rd McClenagan':'RD','Rd':'RD',
+  'Greg Pinkner':'Greg','Greg Fner':'Greg',
+  'Greg Pinkner, Jesse Overbay (reader)':'Greg',
+  'Devon Accardi':'Devon','Devin Accardi':'Devon','Devin':'Devon','Devin (Devon)':'Devon',
+  'JC Neely':'JC','Rick Dunn':'Rick','Rick Nelson':'Rick',
+  'Rick (likely Rick Nelson)':'Rick',
+  'Not explicitly identified (colleague of Rick Dunn)':'Rick',
+  'Zach Hume':'Zach','Brady Raby':'Brady',
+  'Unknown':'','Not specified':'','Not mentioned':'',
+};
+
+function normPreacher(name) {
+  if (!name) return '';
+  if (PREACHER_MAP[name] !== undefined) return PREACHER_MAP[name];
+  return name.split(' ')[0];
+}
+
 function normalize(page) {
   const p = page.properties;
   return {
     id: page.id,
     title: p['Title'] && p['Title'].title ? p['Title'].title.map(t => t.plain_text).join('') : '',
     date: p['Date'] && p['Date'].date ? p['Date'].date.start : '',
-    preacher: txt(p, 'Preacher'),
+    preacher: normPreacher(txt(p, 'Preacher')),
     series: txt(p, 'Series'),
     passage: txt(p, 'Passage'),
     youtubeUrl: p['YouTube URL'] ? p['YouTube URL'].url || '' : '',
@@ -69,9 +87,10 @@ module.exports = async function handler(req, res) {
     });
     const sermons = Object.values(byDate).sort((a, b) => b.date.localeCompare(a.date));
 
-    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=600');
+    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
     res.json({ sermons, count: sermons.length, lastSync: new Date().toISOString() });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
