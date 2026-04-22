@@ -69,7 +69,7 @@ module.exports = async function handler(req, res) {
     });
     const sermons = Object.values(byDate).sort((a, b) => b.date.localeCompare(a.date));
 
-    res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=600');
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=600');
     res.json({ sermons, count: sermons.length, lastSync: new Date().toISOString() });
   } catch (err) {
     res.status(500).json({ error: err.message });
