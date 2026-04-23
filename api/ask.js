@@ -65,13 +65,17 @@ Question: ${question}`;
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gemini-2.0-flash-001',
+        model: 'models/gemini-2.5-flash',
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 512,
       }),
     });
     const data = await r.json();
-    const answer = data.choices?.[0]?.message?.content || 'Could not generate an answer.';
+    const answer = data.choices?.[0]?.message?.content;
+    if (!answer) {
+      const errMsg = Array.isArray(data) ? data[0]?.error?.message : data.error?.message;
+      return res.status(500).json({ error: errMsg || 'No response from AI' });
+    }
     res.json({ answer });
   } catch (err) {
     res.status(500).json({ error: err.message });
