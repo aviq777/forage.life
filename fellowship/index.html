@@ -136,7 +136,7 @@
       forage.life
     </a>
     <div class="belief-links">
-      <a href="https://fellowshipknox.org/we-believe" target="_blank" rel="noopener">What We Believe</a>
+      <a href="https://fellowshipknox.org/we-believe" target="_blank" rel="noopener">What Fellowship Believes</a>
       <a href="https://fellowshipknox.org/positionpapers" target="_blank" rel="noopener">Position Papers</a>
       <a href="#ask" class="ask-link">✦ Ask Fellowship</a>
     </div>
@@ -181,7 +181,7 @@
     </div>
     <div id="ask-answer" class="ask-answer" style="display:none"></div>
     <div class="ask-links">
-      <a href="https://fellowshipknox.org/we-believe" target="_blank" rel="noopener">Read: What We Believe &#8599;</a>
+      <a href="https://fellowshipknox.org/we-believe" target="_blank" rel="noopener">Read: What Fellowship Believes&nbsp;&#8599;</a>
       <a href="https://fellowshipknox.org/positionpapers" target="_blank" rel="noopener">Position Papers &#8599;</a>
     </div>
   </section>
@@ -199,7 +199,8 @@
 let ALL=[], view='recent', activeTag=null, showAll=false;
 
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function normPreacher(n){if(!n)return'';const m={'RD McClenagan':'RD','Rd McClenagan':'RD','Greg Pinkner':'Greg','Greg Fner':'Greg','Devon Accardi':'Devon','Devin Accardi':'Devon','Devin':'Devon','Devin (Devon)':'Devon','JC Neely':'JC','Rick Dunn':'Rick','Zach Hume':'Zach','Brady Raby':'Brady'};return m[n]||n.split(' ')[0]||n;}
+function normPreacher(n){if(!n)return'';const m={'RD McClenagan':'RD','Rd McClenagan':'RD','Rd':'RD','Greg Pinkner':'Greg','Greg Fner':'Greg','Greg P.':'Greg','Devon Accardi':'Devon','Devin Accardi':'Devon','Devin':'Devon','Devin (Devon)':'Devon','JC Neely':'JC','Rick Dunn':'Rick','Rick Nelson':'Rick','Rick (likely Rick Nelson)':'Rick','Not explicitly identified (colleague of Rick Dunn)':'Rick','Zach Hume':'Zach','Brady Raby':'Brady','Unknown':'','Not specified':'','Not mentioned':''};return m[n]!==undefined?m[n]:(n.split(' ')[0]||n);}
+function cleanTitle(t){if(!t)return'';const known=new Set(['RD','Greg','Devon','JC','Rick','Zach','Brady']);const sep=t.lastIndexOf('\u2014');if(sep>0){const suf=t.slice(sep+1).trim();if(known.has(normPreacher(suf)))return t.slice(0,sep).trim();}const sep2=t.lastIndexOf(' - ');if(sep2>0){const suf=t.slice(sep2+3).trim();if(known.has(normPreacher(suf)))return t.slice(0,sep2).trim();}return t;}
 function fmt(d){if(!d)return'';const[y,m,dd]=d.split('-');return new Date(+y,+m-1,+dd).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}).toUpperCase()}
 function fmtLong(d){if(!d)return'';const[y,m,dd]=d.split('-');return new Date(+y,+m-1,+dd).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
 function bookFrom(passage){if(!passage)return'';const m=passage.match(/^(\d?\s?[A-Za-z]+)/);return m?m[1].trim():'';}
@@ -262,7 +263,7 @@ function card(s){
   const play=s.youtubeUrl?'<div class="play-btn" role="button" title="Watch on YouTube" onclick="event.preventDefault();event.stopPropagation();window.open(\''+esc(s.youtubeUrl)+'\',\'_blank\',\'noopener\')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>':'';
   return '<a class="sermon-card" href="/fellowship/sermon?id='+s.id+'">'+play+
     '<div class="sermon-card__header">'+header+'</div>'+
-    '<div class="sermon-card__title">'+esc(s.title)+'</div>'+
+    '<div class="sermon-card__title">'+esc(cleanTitle(s.title))+'</div>'+
     '<div class="sermon-card__meta">'+esc(normPreacher(s.preacher)||'')+(s.passage?' &middot; '+esc(s.passage):'')+'</div>'+
     quote+
     '<div class="sermon-card__tags">'+tags+'</div>'+
