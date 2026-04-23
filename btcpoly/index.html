@@ -309,23 +309,27 @@ function renderTrades() {
 }
 
 async function loadTrades() {
-  const { data, error } = await supabase
-    .from('btc_trades')
-    .select('*')
-    .neq('mode', 'TEST')
-    .order('created_at', { ascending: false })
-    .limit(100);
+  try {
+    const { data, error } = await supabase
+      .from('btc_trades')
+      .select('*')
+      .neq('mode', 'TEST')
+      .order('created_at', { ascending: false })
+      .limit(100);
 
-  if (error) {
-    console.error('Load error:', error);
-    document.getElementById('tradesBody').innerHTML = '<tr><td colspan="8" class="empty-state">Supabase error: ' + error.message + '</td></tr>';
-    return;
+    if (error) {
+      document.getElementById('tradesBody').innerHTML = '<tr><td colspan="8" class="empty-state">Query error: ' + error.message + ' (code: ' + error.code + ')</td></tr>';
+      return;
+    }
+
+    allTrades = data || [];
+    renderTrades();
+    updateStats();
+    document.getElementById('statusText').textContent = 'Live';
+    document.getElementById('lastUpdate').textContent = 'Updated: ' + new Date().toLocaleTimeString();
+  } catch(e) {
+    document.getElementById('tradesBody').innerHTML = '<tr><td colspan="8" class="empty-state">Fetch error: ' + e.message + '</td></tr>';
   }
-
-  allTrades = data || [];
-  renderTrades();
-  updateStats();
-  document.getElementById('lastUpdate').textContent = `Updated: ${new Date().toLocaleTimeString()}`;
 }
 
 function subscribeRealtime() {
@@ -350,11 +354,20 @@ function subscribeRealtime() {
 }
 
 // Init
-loadTrades();
-subscribeRealtime();
-
-// Refresh stats every 60s
-setInterval(loadTrades, 60000);
+(async function init() {
+  try {
+    if (!supabase) {
+      document.getElementById('tradesBody').innerHTML = '<tr><td colspan="8" class="empty-state">Supabase client not initialized</td></tr>';
+      return;
+    }
+    await loadTrades();
+    subscribeRealtime();
+    setInterval(loadTrades, 60000);
+  } catch(e) {
+    document.getElementById('tradesBody').innerHTML = '<tr><td colspan="8" class="empty-state">Init error: ' + e.message + '</td></tr>';
+    document.getElementById('statusText').textContent = 'Error';
+  }
+})();
 </script>
 </body>
 </html>
