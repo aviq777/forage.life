@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BTC Poly Trader | forage.life</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
   :root {
     --bg: #0a0a0f;
@@ -233,7 +233,14 @@
 const SUPABASE_URL = 'https://kiwaxojzkvpwfrfdunmx.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtpd2F4b2p6a3Zwd2ZyZmR1bm14Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxMjUyODQsImV4cCI6MjA5MTcwMTI4NH0.LpQeH6B6HkA2u8xv5EvxBMr2eQTytAZeMWD1WtsCGFI';
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+let supabase;
+try {
+  supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+  document.getElementById('statusText').textContent = 'Connected';
+} catch(e) {
+  document.getElementById('statusText').textContent = 'Error: ' + e.message;
+  document.getElementById('tradesBody').innerHTML = '<tr><td colspan="8" class="empty-state">Failed to connect to Supabase: ' + e.message + '</td></tr>';
+}
 
 let allTrades = [];
 
@@ -311,6 +318,7 @@ async function loadTrades() {
 
   if (error) {
     console.error('Load error:', error);
+    document.getElementById('tradesBody').innerHTML = '<tr><td colspan="8" class="empty-state">Supabase error: ' + error.message + '</td></tr>';
     return;
   }
 
