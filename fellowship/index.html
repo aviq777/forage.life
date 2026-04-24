@@ -210,6 +210,9 @@ async function load(){
     const r=await fetch('/api/sermons');
     const d=await r.json();
     ALL=d.sermons||[];
+    // Pre-fill search from URL ?search= param
+    const urlSearch=new URLSearchParams(location.search).get('search');
+    if(urlSearch){document.getElementById('search').value=urlSearch;}
     buildSpeakers();
     buildTopics();
     render();
