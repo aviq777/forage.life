@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTC Poly Trader | forage.life</title>
+<!-- No external dependencies needed - using plain fetch -->
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #12121a;
+    --border: #1e1e2e;
+    --text: #e2e2e8;
+    --muted: #6b6b7b;
+    --green: #00e676;
+    --red: #ff5252;
+    --blue: #448aff;
+    --gold: #ffd740;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    min-height: 100vh;
+  }
+  .header {
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .header h1 span { color: var(--gold); }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    padding: 24px 32px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+  }
+  .stat-card .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .stat-card .value {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .stat-card .sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .positive { color: var(--green); }
+  .negative { color: var(--red); }
+  .trades-section {
+    padding: 0 32px 32px;
+  }
+  .trades-section h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .trades-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .trades-table th {
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+  }
+  .trades-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .trades-table tr:hover { background: rgba(255,255,255,0.02); }
+  .trades-table tr.new-row {
+    animation: fadeIn 0.5s ease-in;
+  }
+  @keyframes fadeIn {
+    from { background: rgba(0, 230, 118, 0.15); }
+    to { background: transparent; }
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .badge-win { background: rgba(0,230,118,0.15); color: var(--green); }
+  .badge-loss { background: rgba(255,82,82,0.15); color: var(--red); }
+  .badge-up { background: rgba(68,138,255,0.15); color: var(--blue); }
+  .badge-down { background: rgba(255,215,64,0.15); color: var(--gold); }
+  .footer {
+    padding: 16px 32px;
+    border-top: 1px solid var(--border);
+    font-size: 10px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+  .empty-state {
+    text-align: center;
+    padding: 48px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  @media (max-width: 600px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 16px; }
+    .stat-card .value { font-size: 18px; }
+    .trades-section { padding: 0 16px 16px; }
+    .header { padding: 16px; }
+    .trades-table { font-size: 11px; }
+    .trades-table th, .trades-table td { padding: 6px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="https://forage.life" style="text-decoration:none;color:var(--muted);font-size:13px;display:flex;align-items:center;gap:8px;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    forage.life
+  </a>
+  <h1><span>BTC</span> POLY TRADER</h1>
+  <div class="status">
+    <div class="status-dot" id="statusDot"></div>
+    <span id="statusText">Connecting...</span>
+  </div>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="label">Cumulative P&L</div>
+    <div class="value" id="totalPnl">$0.00</div>
+    <div class="sub" id="totalPnlSub">loading...</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Win Rate</div>
+    <div class="value" id="winRate">--%</div>
+    <div class="sub" id="record">0W / 0L</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Today's P&L</div>
+    <div class="value" id="todayPnl">$0.00</div>
+    <div class="sub" id="todayTrades">0 trades today</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Trade Size</div>
+    <div class="value">$3</div>
+    <div class="sub">SMA 200 + RSI 14</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Total Trades</div>
+    <div class="value" id="totalTrades">0</div>
+    <div class="sub" id="lastTrade">--</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">Balance</div>
+    <div class="value" id="balance">--</div>
+    <div class="sub">Polymarket USDC</div>
+  </div>
+</div>
+
+<div class="trades-section">
+  <h2>Recent Trades</h2>
+  <table class="trades-table">
+    <thead>
+      <tr>
+        <th>Time (ET)</th>
+        <th>Signal</th>
+        <th>BTC Price</th>
+        <th>RSI</th>
+        <th>SMA Dist</th>
+        <th>Result</th>
+        <th>P&L</th>
+        <th>Cumulative</th>
+      </tr>
+    </thead>
+    <tbody id="tradesBody">
+      <tr><td colspan="8" class="empty-state">Loading trades...</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="footer">
+  <span>forage.life/btcpoly</span>
+  <span id="lastUpdate">--</span>
+</div>
+
+<script>
+const API_URL = 'https://kiwaxojzkvpwfrfdunmx.supabase.co/rest/v1/btc_trades';
+const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtpd2F4b2p6a3Zwd2ZyZmR1bm14Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxMjUyODQsImV4cCI6MjA5MTcwMTI4NH0.LpQeH6B6HkA2u8xv5EvxBMr2eQTytAZeMWD1WtsCGFI';
+
+let allTrades = [];
+
+function formatMoney(n) {
+  const v = parseFloat(n) || 0;
+  const sign = v >= 0 ? '+' : '';
+  return `${sign}$${Math.abs(v).toFixed(2)}`;
+}
+
+function updateStats() {
+  if (!allTrades.length) return;
+
+  const wins = allTrades.filter(t => t.result === 'WIN').length;
+  const losses = allTrades.filter(t => t.result === 'LOSS').length;
+  const total = wins + losses;
+  const rate = total > 0 ? (wins / total * 100) : 0;
+
+  const latest = allTrades[0];
+  const cumPnl = parseFloat(latest.cumulative_pnl) || 0;
+
+  document.getElementById('totalPnl').textContent = formatMoney(cumPnl);
+  document.getElementById('totalPnl').className = `value ${cumPnl >= 0 ? 'positive' : 'negative'}`;
+  document.getElementById('totalPnlSub').textContent = `from ${total} trades`;
+  document.getElementById('winRate').textContent = `${rate.toFixed(1)}%`;
+  document.getElementById('record').textContent = `${wins}W / ${losses}L`;
+  document.getElementById('totalTrades').textContent = total;
+  document.getElementById('lastTrade').textContent = `Last: ${latest.timestamp_et}`;
+
+  if (latest.balance) {
+    document.getElementById('balance').textContent = `$${parseFloat(latest.balance).toFixed(0)}`;
+  }
+
+  // Today's trades
+  const today = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' });
+  const todayTrades = allTrades.filter(t => t.timestamp_et && t.timestamp_et.startsWith(today));
+  const todayPnl = todayTrades.reduce((s, t) => s + (parseFloat(t.pnl) || 0), 0);
+  document.getElementById('todayPnl').textContent = formatMoney(todayPnl);
+  document.getElementById('todayPnl').className = `value ${todayPnl >= 0 ? 'positive' : 'negative'}`;
+  document.getElementById('todayTrades').textContent = `${todayTrades.length} trades today`;
+}
+
+function renderTrades() {
+  const tbody = document.getElementById('tradesBody');
+  if (!allTrades.length) {
+    tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No trades yet. Bot is scanning...</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = allTrades.slice(0, 50).map((t, i) => {
+    const pnl = parseFloat(t.pnl) || 0;
+    const signalClass = t.signal === 'UP' ? 'badge-up' : 'badge-down';
+    const resultClass = t.result === 'WIN' ? 'badge-win' : t.result === 'LOSS' ? 'badge-loss' : '';
+    const pnlClass = pnl >= 0 ? 'positive' : 'negative';
+
+    return `<tr class="${i === 0 ? 'new-row' : ''}">
+      <td>${t.timestamp_et || '--'}</td>
+      <td><span class="badge ${signalClass}">${t.signal || '--'}</span></td>
+      <td>$${parseFloat(t.btc_price || 0).toLocaleString()}</td>
+      <td>${parseFloat(t.rsi || 0).toFixed(1)}</td>
+      <td>${parseFloat(t.sma_dist_pct || 0).toFixed(3)}%</td>
+      <td><span class="badge ${resultClass}">${t.result || '--'}</span></td>
+      <td class="${pnlClass}">${formatMoney(pnl)}</td>
+      <td>${formatMoney(t.cumulative_pnl)}</td>
+    </tr>`;
+  }).join('');
+}
+
+async function loadTrades() {
+  try {
+    const resp = await fetch(API_URL + '?select=*&mode=neq.TEST&order=created_at.desc&limit=100', {
+      headers: { 'apikey': API_KEY, 'Authorization': 'Bearer ' + API_KEY }
+    });
+    if (!resp.ok) {
+      document.getElementById('tradesBody').innerHTML = '<tr><td colspan="8" class="empty-state">API error: ' + resp.status + ' ' + resp.statusText + '</td></tr>';
+      return;
+    }
+    allTrades = await resp.json();
+    renderTrades();
+    updateStats();
+    document.getElementById('statusDot').style.background = 'var(--green)';
+    document.getElementById('statusText').textContent = 'Live';
+    document.getElementById('lastUpdate').textContent = 'Updated: ' + new Date().toLocaleTimeString();
+  } catch(e) {
+    document.getElementById('tradesBody').innerHTML = '<tr><td colspan="8" class="empty-state">Fetch error: ' + e.message + '</td></tr>';
+    document.getElementById('statusText').textContent = 'Error';
+  }
+}
+
+// Init — plain fetch, no dependencies
+loadTrades();
+setInterval(loadTrades, 30000);
+</script>
+</body>
+</html>

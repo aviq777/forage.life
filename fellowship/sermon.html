@@ -63,6 +63,11 @@
     .tags{display:flex;flex-wrap:wrap;gap:8px}
     .tag{padding:5px 12px;background:var(--tag-bg);border:1px solid var(--tag-b);border-radius:20px;font-size:13px;color:var(--tag)}
 
+    /* Cross-ref links */
+    .xref-links{display:flex;flex-wrap:wrap;gap:8px}
+    .xref-link{padding:4px 11px;background:var(--tag-bg);border:1px solid var(--tag-b);border-radius:20px;font-size:12px;color:var(--tag);transition:all .15s;white-space:nowrap}
+    .xref-link:hover{background:rgba(99,102,241,.2);border-color:var(--accent);color:#fff}
+
     /* Loading */
     .loading{display:flex;align-items:center;justify-content:center;padding:100px 0;color:var(--muted)}
     .spinner{width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin-right:10px}
@@ -104,6 +109,16 @@ function field(label,value,full,strong){
     '<div class="field__value'+(strong?' field__value--strong':'')+'">'+esc(value)+'</div>'+
   '</div>';
 }
+function fieldLinks(label,value,full){
+  if(!value||value.startsWith('Transcript unavailable'))return'';
+  const links=value.split(/[,;]+/).map(t=>t.trim()).filter(Boolean).map(t=>
+    '<a class="xref-link" href="/fellowship?search='+encodeURIComponent(t)+'">'+esc(t)+'</a>'
+  ).join('');
+  return'<div class="field field--full">'+
+    '<div class="field__label">'+label+'</div>'+
+    '<div class="field__value xref-links">'+links+'</div>'+
+  '</div>';
+}
 
 function render(s){
   const hasAnalysis=!!(s.summary&&!s.summary.startsWith('Transcript'));
@@ -116,7 +131,7 @@ function render(s){
   const quote=s.keyQuote?'<blockquote class="key-quote">'+esc(s.keyQuote)+'</blockquote>':'';
   const summary=hasAnalysis&&s.summary?'<div class="summary-box"><h2>Summary</h2><p>'+esc(s.summary)+'</p></div>':'';
   const pending=isPending?'<div class="pending"><strong>Analysis in progress</strong>This sermon is in the queue for AI analysis and will be fully annotated soon.</div>':'';
-  const topics=(s.topics||[]).length?'<div class="topics-section"><h2>Topics</h2><div class="tags">'+(s.topics.map(t=>'<span class="tag">'+esc(t)+'</span>').join(''))+'</div></div>':'';
+  const topics=(s.topics||[]).length?'<div class="topics-section"><h2>Topics</h2><div class="tags">'+(s.topics.map(t=>'<a class="tag" href="/fellowship?search='+encodeURIComponent(t)+'">'+esc(t)+'</a>').join(''))+'</div></div>':'';
 
   document.getElementById('content').innerHTML=
     '<section class="sermon-hero">'+
@@ -137,7 +152,7 @@ function render(s){
       field('Core Tension',s.coreTension)+
       field('Greek / Hebrew Words',s.greekHebrew,true)+
       field('Series Connection',s.seriesConnection,true)+
-      field('Cross-Reference Themes',s.crossReferenceThemes,true)+
+      fieldLinks('Cross-Reference Themes',s.crossReferenceThemes,true)+
       field('Books of Bible Referenced',s.booksOfBible)+
     '</div>'+topics;
 
