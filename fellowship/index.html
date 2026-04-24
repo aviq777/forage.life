@@ -20,7 +20,6 @@
     a{color:inherit;text-decoration:none}
     .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
 
-    /* ── Topbar ── */
     .topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 0 20px;border-bottom:1px solid var(--border);margin-bottom:52px;flex-wrap:wrap;gap:12px}
     .topbar__back{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:13px;transition:color .15s}
     .topbar__back:hover{color:var(--text)}
@@ -31,7 +30,6 @@
     .belief-links .ask-link{color:var(--tag);border:1px solid var(--tag-b);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:500;border-bottom:1px solid var(--tag-b)}
     .belief-links .ask-link:hover{background:var(--tag-bg);color:var(--text)}
 
-    /* ── Hero ── */
     .hero{text-align:center;margin-bottom:44px}
     .hero__title{font-size:clamp(32px,6vw,60px);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:14px;color:#fff}
     .hero__title span{background:linear-gradient(135deg,var(--accent),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -43,7 +41,6 @@
     .search-row button{padding:12px 24px;background:var(--accent);border:1px solid var(--accent);border-radius:0 var(--r) var(--r) 0;color:#fff;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s;white-space:nowrap}
     .search-row button:hover{background:#5254e0}
 
-    /* ── Tab bar ── */
     .tabbar{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);margin-bottom:24px;flex-wrap:wrap;gap:12px}
     .tabs{display:flex;gap:0}
     .tab{padding:12px 20px;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-size:14px;cursor:pointer;transition:all .15s;margin-bottom:-1px}
@@ -54,13 +51,37 @@
     #speaker-select:focus,#sort-select:focus{border-color:var(--accent)}
     .count-label{font-size:12px;color:var(--muted);white-space:nowrap}
 
-    /* ── Topic pills (topic view) ── */
+    /* ── Topic pills ── */
     .topic-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
     .topic-pill{padding:5px 13px;background:var(--card);border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--dim);cursor:pointer;transition:all .15s}
     .topic-pill:hover{border-color:var(--border-h);color:var(--text)}
     .topic-pill.active{background:var(--tag-bg);border-color:var(--accent);color:var(--tag)}
 
-    /* ── Group headers (series/bible view) ── */
+    /* ── Bible book / Series pill sections ── */
+    .pill-section{margin-bottom:28px}
+    .pill-section__header{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+    .pill-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:4px}
+    .book-pill{padding:5px 13px;background:var(--card);border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--dim);cursor:pointer;transition:all .15s;white-space:nowrap}
+    .book-pill:hover{border-color:var(--border-h);color:var(--text)}
+    .book-pill.active{background:var(--tag-bg);border-color:var(--accent);color:var(--tag);font-weight:600}
+    .book-pill.empty{opacity:.35;cursor:default}
+
+    /* ── Series cards ── */
+    .series-section{margin-bottom:12px}
+    .series-section-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+    .series-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:12px;overflow:hidden;transition:border-color .15s}
+    .series-card:hover{border-color:var(--border-h)}
+    .series-card__header{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none}
+    .series-card__icon{width:38px;height:38px;border-radius:8px;background:var(--tag-bg);border:1px solid var(--tag-b);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+    .series-card__info{flex:1;min-width:0}
+    .series-card__name{font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .series-card__sub{font-size:12px;color:var(--muted)}
+    .series-card__toggle{color:var(--muted);font-size:14px;transition:transform .2s;flex-shrink:0}
+    .series-card.collapsed .series-card__toggle{transform:rotate(-90deg)}
+    .series-card__body{display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:12px;padding:0 12px 12px}
+    .series-card.collapsed .series-card__body{display:none}
+
+    /* ── Group headers (legacy, kept for topic view) ── */
     .group-header{display:flex;align-items:center;gap:10px;margin:32px 0 16px;cursor:pointer}
     .group-header h3{font-size:16px;font-weight:700;color:var(--text)}
     .group-header .group-count{font-size:12px;color:var(--muted);background:var(--card);border:1px solid var(--border);padding:2px 8px;border-radius:10px}
@@ -82,12 +103,10 @@
     .play-btn:hover{background:rgba(99,102,241,.25);border-color:var(--accent)}
     .play-btn svg{width:12px;height:12px;margin-left:2px}
 
-    /* ── Show more ── */
     .show-more{text-align:center;margin-top:28px}
     .show-more button{padding:10px 28px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--dim);font-size:14px;cursor:pointer;transition:all .15s}
     .show-more button:hover{border-color:var(--border-h);color:var(--text)}
 
-    /* ── Ask Fellowship ── */
     .ask-section{margin:60px 0 40px;padding:36px;background:var(--card);border:1px solid var(--border);border-radius:16px}
     .ask-section h2{font-size:22px;font-weight:700;margin-bottom:8px}
     .ask-section h2 span{color:var(--accent)}
@@ -106,13 +125,11 @@
     .ask-links a{font-size:13px;color:var(--muted);transition:color .15s}
     .ask-links a:hover{color:var(--tag)}
 
-    /* ── Loading / empty ── */
     .loading{display:flex;align-items:center;justify-content:center;padding:80px 0;color:var(--muted);grid-column:1/-1}
     .spinner{width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin-right:10px}
     @keyframes spin{to{transform:rotate(360deg)}}
     .empty{text-align:center;padding:60px 0;color:var(--muted);grid-column:1/-1}
 
-    /* ── Footer ── */
     .footer{padding:28px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;flex-wrap:wrap;gap:12px}
     .footer a{color:var(--muted);transition:color .15s}
     .footer a:hover{color:var(--text)}
@@ -120,6 +137,7 @@
 
     @media(max-width:680px){
       .sermon-grid{grid-template-columns:1fr}
+      .series-card__body{grid-template-columns:1fr}
       .search-row,.ask-row{flex-direction:column}
       .search-row input,.ask-row input{border-right:1px solid var(--border);border-bottom:none;border-radius:var(--r) var(--r) 0 0}
       .search-row button,.ask-row button{border-radius:0 0 var(--r) var(--r)}
@@ -196,20 +214,127 @@
 </div>
 
 <script>
-let ALL=[], view='recent', activeTag=null, showAll=false;
+// ── Playlist-based series map: videoId → series name ──
+const PLAYLIST_SERIES={"lKZXrZ2OszA": "The Gospel of Luke", "7F19kFvt3iY": "The Gospel of Luke", "IFUAJadDb1Y": "The Gospel of Luke", "YWX6vL_Cr28": "The Gospel of Luke", "mt4SJhLYKj4": "The Gospel of Luke", "fpsF0_rPKXw": "The Gospel of Luke", "HHiZD2aQfVI": "The Gospel of Luke", "nbShQTxccyM": "The Gospel of Luke", "0qrhMXSKU4Y": "The Gospel of Luke", "W_h-k1QQaVY": "The Gospel of Luke", "Gx6K2a5QWo8": "The Gospel of Luke", "6MRK5lVtPa0": "The Gospel of Luke", "I5Jaq28PP6I": "The Gospel of Luke", "ieQh5CDBa6Y": "The Gospel of Luke", "sZKLvcMkJ8Q": "The Gospel of Luke", "gnNAvDJRQsc": "The Gospel of Luke", "c1dyBWdcMjQ": "The Gospel of Luke", "MiA3vEw8IMk": "The Gospel of Luke", "V8uKTFIQbEg": "The Christ-Centered Church: Letter to the Colossians", "EJUxjVN-aj0": "The Christ-Centered Church: Letter to the Colossians", "F4r0d0kASto": "The Christ-Centered Church: Letter to the Colossians", "W9e9Bmk7LB8": "The Christ-Centered Church: Letter to the Colossians", "eC9X9I5JZkY": "The Christ-Centered Church: Letter to the Colossians", "Dnm-SJWVxl4": "The Christ-Centered Church: Letter to the Colossians", "NsmFyoOvRYU": "The Christ-Centered Church: Letter to the Colossians", "S4uqkh44wn8": "The Christ-Centered Church: Letter to the Colossians", "7n_Zbic7qPU": "The Christ-Centered Church: Letter to the Colossians", "aC9ojDjRdos": "The Christ-Centered Church: Letter to the Colossians", "b9pNcRShUPc": "The Way: The Book of Acts", "1ryZWRSE0Kw": "The Way: The Book of Acts", "4ZT88LlpMv8": "The Way: The Book of Acts", "y23Yl7PGq8M": "The Way: The Book of Acts", "HQJW6vzYkYg": "The Way: The Book of Acts", "c_GAqM7yDVk": "The Way: The Book of Acts", "JzZgAftkhvI": "The Way: The Book of Acts", "aQKP_ZFmVmE": "The Way: The Book of Acts", "gmudP-QDu1o": "The Way: The Book of Acts", "xp_DM4-Dx5A": "The Way: The Book of Acts", "nuBiihZiOds": "The Way: The Book of Acts", "yDr7buU0B2s": "The Way: The Book of Acts", "dCHDi_KWnHc": "The Way: The Book of Acts", "aerdShU-bck": "The Way: The Book of Acts", "7w_wKi71NkQ": "The Way: The Book of Acts", "5N02eA47nI8": "The Way: The Book of Acts", "vOziuDEQxpM": "The Way: The Book of Acts", "iEW01fw20Ug": "Gospel Roots: The Book of Galatians", "WiKcTn8wUgg": "Gospel Roots: The Book of Galatians", "WXdWsBQL0Hc": "Gospel Roots: The Book of Galatians", "H2wasfup8c0": "Gospel Roots: The Book of Galatians", "zhwqwy3nYEA": "Gospel Roots: The Book of Galatians", "dATiHKbu7Co": "Gospel Roots: The Book of Galatians", "ilUtecMnld0": "Gospel Roots: The Book of Galatians", "xyBPjOtpVho": "Gospel Roots: The Book of Galatians", "WLX0CycTCFY": "Gospel Roots: The Book of Galatians", "TSW5pnjEZdE": "Gospel Roots: The Book of Galatians", "J47D8utCAEQ": "Gospel Roots: The Book of Galatians", "YB0pX1qk70g": "Gospel Roots: The Book of Galatians", "vBPxTVeGcww": "Gospel Roots: The Book of Galatians", "VPbUwDQmUrI": "Gospel Roots: The Book of Galatians", "lXFV8nDrFmQ": "Gospel Roots: The Book of Galatians", "dGfBnVRV2hY": "Gospel Roots: The Book of Galatians", "DBDWbgZ7YbM": "East of Eden: The Book of Ecclesiastes", "Mkjyfy5IPzQ": "East of Eden: The Book of Ecclesiastes", "BoR8Z7Se7Og": "East of Eden: The Book of Ecclesiastes", "jaV9omVt4j0": "East of Eden: The Book of Ecclesiastes", "W_tF6n-bvQo": "East of Eden: The Book of Ecclesiastes", "bLJe8H7feU0": "East of Eden: The Book of Ecclesiastes", "d26VCSgRf7Y": "East of Eden: The Book of Ecclesiastes", "3oH6yt4A0Uc": "East of Eden: The Book of Ecclesiastes", "J6a13qq9obQ": "East of Eden: The Book of Ecclesiastes", "b2OwptCNa2E": "East of Eden: The Book of Ecclesiastes", "P1iLrKIJkLY": "Renew: The Book of Haggai", "PmBnX3EHVIg": "Renew: The Book of Haggai", "-2fpUrUuvVM": "Renew: The Book of Haggai", "e7CCzTtp7N0": "The Book of Romans", "62HOH_VfuJk": "The Book of Romans", "_vn9iCmre-k": "The Book of Romans", "MiDmN9jHzjA": "The Book of Romans", "LAk12KlRuCk": "The Book of Romans", "3eT2IXZ6Kys": "The Book of Romans", "sE3kIWhFevs": "The Book of Romans", "sFpvNr8Z8rM": "The Book of Romans", "T_Nfsnach24": "The Book of Romans", "oD_dvFl4FWw": "The Book of Romans", "mqzPuacKCdI": "The Book of Romans", "cIAkLHvQbdY": "The Book of Romans", "rrFJhq9bVCE": "The Book of Romans", "rTi1HDKv0uk": "The Book of Romans", "cjHs3rqjmc4": "The Book of Romans", "sYHRigTB62E": "The Book of Romans", "XQyQSi2F8QQ": "The Book of Romans", "mWjogAdlnXI": "The Book of Romans", "8wzN3YgcyJA": "The Book of Romans", "FACscZgjYQg": "The Book of Romans", "ymzL7pD6Wmc": "The Book of Romans", "wGilGlwhElA": "The Book of Romans", "vIP1JYKKpqA": "The Book of Romans", "o___6NWQ2c8": "The Book of Romans", "VUgDjBeHSfE": "The Book of Romans", "0QqwAtlXj_o": "The Book of Romans", "hB-w3zz9iyE": "The Book of Romans", "6t7ad9dreEE": "The Book of Romans", "y2X4FVvsx5I": "The Book of Romans", "v7deUWV2P9I": "The Book of Romans", "dvDCxl3HEjc": "The Book of Romans", "zuLlsQ0UAbo": "The Book of Romans", "y7ehR1DWT18": "The Book of Romans", "ePVvgQNkTYc": "The Book of Romans", "8URP9JnmTIs": "The Book of Romans", "4aOFWEnpjhY": "The Book of Romans", "bQrqIH3kJuo": "The Book of Romans", "KQ6o3xDYm_M": "The Book of Romans", "l__jG3WLXoI": "The Book of Romans", "07MLV8eLGso": "The Book of Romans", "ksWWbT1CG9M": "The Book of Romans", "TPXCrrza6Y4": "The Book of Romans", "7aLO0-gptoU": "The Book of Romans", "un8VcFn9fQE": "The Book of Romans", "CJb6qoPa8Rg": "The Book of Romans", "kQfSZPE8soM": "The Book of Romans", "v_QJftbfEEU": "The Book of Romans", "x0xvtBzxFCE": "The Book of Romans", "Fh9NkoQ80TU": "The Book of Romans", "YUUdvrG9b2A": "The Book of Romans", "mnEB9u8JCTk": "The Book of Romans", "2vyzyS0-pco": "The Book of Romans", "SDuvKtkOmNs": "The Book of Romans", "qb4DQtz7LK4": "The Book of Romans", "mnWPkYvB65s": "The Book of Romans", "thnkz4YH2Q4": "The Book of Romans", "7eKbBFwHjbE": "The Book of Romans", "ph3L1XO79Hk": "The Book of Romans", "N8laavLYlfM": "The Book of Romans", "9gdI3NqW5U4": "The Book of Romans", "szCj7P66wjk": "The Gospel of Matthew", "kKlWMZqHRVY": "The Gospel of Matthew", "p8NGHxOChBQ": "The Gospel of Matthew", "6NjwtcZmlQE": "The Gospel of Matthew", "TPHCkyVjhHI": "The Gospel of Matthew", "Ygg5_LYKIc4": "The Gospel of Matthew", "bMJe0bohchQ": "The Gospel of Matthew", "0p0BfN44Cn8": "The Gospel of Matthew", "zKO4X_V7ulM": "The Gospel of Matthew", "-w8lGKw0oiQ": "The Gospel of Matthew", "WxrFmManI7w": "The Gospel of Matthew", "YTbjz35E6Do": "The Gospel of Matthew", "iyOAJAdtv3g": "The Gospel of Matthew", "3Se0OI8GCwg": "The Gospel of Matthew", "pNA-t_CRGh0": "The Gospel of Matthew", "7h8Dhspo2C0": "The Gospel of Matthew", "R3LpWy0XLs0": "The Gospel of Matthew", "i8zVI-OtxhA": "The Gospel of Matthew", "1wOhIAVEkG4": "The Gospel of Matthew", "6tn15xvDjOU": "The Gospel of Matthew", "0R_T3d5pmSs": "The Gospel of Matthew", "JMR0wV6UP9U": "The Gospel of Matthew", "ytnXw2sFgKA": "The Gospel of Matthew", "qFhB4WaL1mc": "The Gospel of Matthew", "0ll9MInAKKQ": "The Gospel of Matthew", "bVLi7JXm13o": "The Gospel of Matthew", "uPEbVFhwf44": "The Gospel of Matthew", "6TVjf9Gkip4": "The Gospel of Matthew", "5vJAFJsuaXA": "The Gospel of Matthew", "dYASrERTlrQ": "The Gospel of Matthew", "sUVMZLbNmJg": "The Gospel of Matthew", "6vKf2R3ElcA": "The Gospel of Matthew", "gvTB4MO0EqA": "The Gospel of Matthew", "p1Pc1yUjwOA": "The Gospel of Matthew", "YOQ03t-TcQo": "The Gospel of Matthew", "SR9CMretrHw": "The Gospel of Matthew", "qrbLuXKr6tc": "The Gospel of Matthew", "RiiYUI_PBQw": "The Gospel of Matthew", "9-DuXqIiwpk": "The Gospel of Matthew", "yg8G0SuEgkk": "The Gospel of Matthew", "y5GfCHUkIqU": "The Gospel of Matthew", "sFABixAUFjk": "The Gospel of Matthew", "L6Eaye5xRvE": "The Gospel of Matthew", "nePlMppL8Hc": "The Gospel of Matthew", "p4nNOMvQZSg": "The Gospel of Matthew", "8TaN2o65c-Y": "The Gospel of Matthew", "0hqGbRRzgWA": "The Gospel of Matthew", "_IfRGQwczyg": "The Gospel of Matthew", "e8KW3Ag4tas": "The Gospel of Matthew", "3ea8pQTNepM": "The Gospel of Matthew", "-PKnclfejEY": "The Gospel of Matthew", "tt-GCWjEez4": "The Gospel of Matthew", "g8fmH-GnFrk": "The Gospel of Matthew", "kYLeLUO_SiY": "The Gospel of Matthew", "7mwOKih4os4": "The Gospel of Matthew", "oKrX9KUv4NU": "The Gospel of Matthew", "RDf955ZQ7d8": "The Gospel of Matthew", "69hIAjcjnGM": "The Gospel of Matthew", "uO_TX4Iv6zU": "The Gospel of Matthew", "-8FCjeayrRQ": "The Gospel of Matthew", "hNRp5CizubY": "The Gospel of Matthew", "kkEED-mecFA": "The Gospel of Matthew", "Us1mKQO45O4": "The Gospel of Matthew", "1nF8Jp9p3D4": "The Gospel of Matthew", "5qdL7MTEMcs": "The Gospel of Matthew", "dMQv_3NdqcI": "The Gospel of Matthew", "H2VYgDceLCg": "The Gospel of Matthew", "xC8IcuJtwQ0": "The Gospel of Matthew", "q0ymUS86nC0": "The First Epistle of John", "xoYNzSg0eIc": "The First Epistle of John", "5z80NuPP4bw": "The First Epistle of John", "GBl9wuZHBwM": "The First Epistle of John", "4ZdxRyI5y4s": "The First Epistle of John", "SJK8QeudH34": "The First Epistle of John", "WMLOpcpXT_o": "The First Epistle of John", "N-IGwuBc9e0": "The First Epistle of John", "Fmmq2Wl7GAg": "The First Epistle of John", "MvanMVaP5-c": "The First Epistle of John", "osT3Tfm3Iy0": "The First Epistle of John", "6ksTKWWCfyg": "Out of Egypt", "H1Bh9U8cXvM": "Out of Egypt", "xOmqRfFX4SE": "Out of Egypt", "tQNJ4u1DXSw": "Psalm 63", "b4k3WP6zK3w": "Psalm 63", "LVGR14bFr70": "Jesus & (series)", "1zLQP5ahfXQ": "Jesus & (series)", "z_GV8Iqr6Fo": "Jesus & (series)", "GkySfnZwCzw": "Jesus & (series)", "y79aKor1FFQ": "Jesus & (series)", "cti3E9I4OGo": "Jesus & (series)", "wgzeMjf0CBI": "More Like Him", "ZGzXQJWcmDs": "More Like Him", "QVIYDHmpZbM": "More Like Him", "dvIPbEP7tzM": "More Like Him", "dVsCZ6WEAuU": "More Like Him", "ItPFCSA1f2A": "More Like Him", "WYW89yapGEc": "More Like Him", "sWg_h0eEbrM": "More Like Him", "9-6HpKUSdMo": "More Like Him", "9rvMJC6Td28": "More Like Him", "FWwrmVNyNwg": "More Like Him", "INLEnIKK8a4": "More Like Him", "958BU2In-KI": "More Like Him", "zdnx6TU-uHQ": "More Like Him", "A_gYz6KDkoo": "More Like Him", "9NYkCArBUhw": "More Like Him", "owgwqLXwniU": "Stand-Alone Sermons", "mI0xOgOHEZA": "Stand-Alone Sermons", "ZGM7CvFkgMc": "Stand-Alone Sermons", "Gyz_LYip3vc": "Stand-Alone Sermons", "8W1ITgu4mMo": "Stand-Alone Sermons", "oJiGdUWnXwE": "Stand-Alone Sermons", "96Gy6oBY1b8": "Stand-Alone Sermons", "huA_upshzPU": "Stand-Alone Sermons", "n5xb5X3PWV8": "Stand-Alone Sermons", "_Fz2MWjtR4s": "Stand-Alone Sermons", "8JRVWNh_j58": "Easter 2026", "5q2qPvnLLUM": "Easter 2026", "Mibit6VzjHI": "Easter 2025", "zkMM73iMlqc": "Easter 2025", "Zo9SI_UHpUE": "Easter 2024", "DqF3x5gNfuQ": "Easter 2024", "qJZ3OgpSkME": "Easter 2024", "aG_VEZjppZU": "Rise: Easter 2021", "Un5tL7-Amio": "Rise: Easter 2021", "zrUNJanJ7jg": "Rise: Easter 2021", "0Ljr5S9xRSE": "New Life: Easter 2022", "6RcB8G2Ya8Q": "New Life: Easter 2022", "vacWr56p2ZE": "Toward the Dawn - Easter 2023", "70Kxyr9mxoA": "Toward the Dawn - Easter 2023", "zmwGEaneqBU": "Advent: Evergreen", "MdxMdZRQfbk": "Advent: Evergreen", "3I1RKBpsliQ": "Advent: Evergreen", "cbCOMHEF_fY": "Advent: Evergreen", "yk9kgCmFEkI": "Advent: Evergreen", "hWLf99YD1Hk": "Behold: Christmas 2021", "cvpcSL2JHo8": "Behold: Christmas 2021", "_b-j3WuFlAg": "Behold: Christmas 2021", "iNFYAfAoMm8": "Behold: Christmas 2021", "S85Tm8ltIt4": "Behold: Christmas 2021", "4r-r9pZ-sCE": "Behold: Christmas 2021", "3JSh2CAHF5c": "Long Expected Jesus - Christmas 2022", "fH94HeW-wos": "Long Expected Jesus - Christmas 2022", "9CswdOOrj2E": "Long Expected Jesus - Christmas 2022", "45jLimMwmvE": "Long Expected Jesus - Christmas 2022", "5D1s89gIkAU": "Long Expected Jesus - Christmas 2022"};
+
+// ── Canonical Bible book order ──
+const OT_BOOKS=['Genesis','Exodus','Leviticus','Numbers','Deuteronomy','Joshua','Judges','Ruth','1 Samuel','2 Samuel','1 Kings','2 Kings','1 Chronicles','2 Chronicles','Ezra','Nehemiah','Esther','Job','Psalms','Proverbs','Ecclesiastes','Song of Solomon','Isaiah','Jeremiah','Lamentations','Ezekiel','Daniel','Hosea','Joel','Amos','Obadiah','Jonah','Micah','Nahum','Habakkuk','Zephaniah','Haggai','Zechariah','Malachi'];
+const NT_BOOKS=['Matthew','Mark','Luke','John','Acts','Romans','1 Corinthians','2 Corinthians','Galatians','Ephesians','Philippians','Colossians','1 Thessalonians','2 Thessalonians','1 Timothy','2 Timothy','Titus','Philemon','Hebrews','James','1 Peter','2 Peter','1 John','2 John','3 John','Jude','Revelation'];
+
+// Normalize book name from free text to canonical form
+const BOOK_ALIASES={
+  'psalm':'Psalms','psalms':'Psalms','ps':'Psalms',
+  'genesis':'Genesis','gen':'Genesis',
+  'exodus':'Exodus','ex':'Exodus',
+  'leviticus':'Leviticus','lev':'Leviticus',
+  'numbers':'Numbers','num':'Numbers',
+  'deuteronomy':'Deuteronomy','deut':'Deuteronomy','dt':'Deuteronomy',
+  'joshua':'Joshua','josh':'Joshua',
+  'judges':'Judges','judg':'Judges',
+  'ruth':'Ruth',
+  '1 samuel':'1 Samuel','1samuel':'1 Samuel','1 sam':'1 Samuel','i samuel':'1 Samuel',
+  '2 samuel':'2 Samuel','2samuel':'2 Samuel','2 sam':'2 Samuel','ii samuel':'2 Samuel',
+  '1 kings':'1 Kings','1kings':'1 Kings','i kings':'1 Kings',
+  '2 kings':'2 Kings','2kings':'2 Kings','ii kings':'2 Kings',
+  '1 chronicles':'1 Chronicles','1chronicles':'1 Chronicles','i chronicles':'1 Chronicles',
+  '2 chronicles':'2 Chronicles','2chronicles':'2 Chronicles','ii chronicles':'2 Chronicles',
+  'ezra':'Ezra','nehemiah':'Nehemiah','neh':'Nehemiah',
+  'esther':'Esther','job':'Job',
+  'proverbs':'Proverbs','prov':'Proverbs','pr':'Proverbs',
+  'ecclesiastes':'Ecclesiastes','eccl':'Ecclesiastes','ecc':'Ecclesiastes',
+  'song of solomon':'Song of Solomon','song of songs':'Song of Solomon','sos':'Song of Solomon','song':'Song of Solomon',
+  'isaiah':'Isaiah','isa':'Isaiah',
+  'jeremiah':'Jeremiah','jer':'Jeremiah',
+  'lamentations':'Lamentations','lam':'Lamentations',
+  'ezekiel':'Ezekiel','ezek':'Ezekiel','eze':'Ezekiel',
+  'daniel':'Daniel','dan':'Daniel',
+  'hosea':'Hosea','hos':'Hosea','joel':'Joel','amos':'Amos',
+  'obadiah':'Obadiah','obad':'Obadiah','jonah':'Jonah','jon':'Jonah',
+  'micah':'Micah','mic':'Micah','nahum':'Nahum','nah':'Nahum',
+  'habakkuk':'Habakkuk','hab':'Habakkuk','zephaniah':'Zephaniah','zeph':'Zephaniah',
+  'haggai':'Haggai','hag':'Haggai','zechariah':'Zechariah','zech':'Zechariah',
+  'malachi':'Malachi','mal':'Malachi',
+  'matthew':'Matthew','matt':'Matthew','mt':'Matthew',
+  'mark':'Mark','mk':'Mark',
+  'luke':'Luke','lk':'Luke',
+  'john':'John','jn':'John',
+  'acts':'Acts',
+  'romans':'Romans','rom':'Romans',
+  '1 corinthians':'1 Corinthians','1corinthians':'1 Corinthians','1 cor':'1 Corinthians','i corinthians':'1 Corinthians',
+  '2 corinthians':'2 Corinthians','2corinthians':'2 Corinthians','2 cor':'2 Corinthians','ii corinthians':'2 Corinthians',
+  'galatians':'Galatians','gal':'Galatians',
+  'ephesians':'Ephesians','eph':'Ephesians',
+  'philippians':'Philippians','phil':'Philippians','php':'Philippians',
+  'colossians':'Colossians','col':'Colossians',
+  '1 thessalonians':'1 Thessalonians','1thessalonians':'1 Thessalonians','1 thess':'1 Thessalonians',
+  '2 thessalonians':'2 Thessalonians','2thessalonians':'2 Thessalonians','2 thess':'2 Thessalonians',
+  '1 timothy':'1 Timothy','1timothy':'1 Timothy','1 tim':'1 Timothy',
+  '2 timothy':'2 Timothy','2timothy':'2 Timothy','2 tim':'2 Timothy',
+  'titus':'Titus','tit':'Titus','philemon':'Philemon','phlm':'Philemon',
+  'hebrews':'Hebrews','heb':'Hebrews',
+  'james':'James','jas':'James',
+  '1 peter':'1 Peter','1peter':'1 Peter','1 pet':'1 Peter','i peter':'1 Peter',
+  '2 peter':'2 Peter','2peter':'2 Peter','2 pet':'2 Peter','ii peter':'2 Peter',
+  '1 john':'1 John','1john':'1 John','i john':'1 John',
+  '2 john':'2 John','2john':'2 John','ii john':'2 John',
+  '3 john':'3 John','3john':'3 John','iii john':'3 John',
+  'jude':'Jude','revelation':'Revelation','rev':'Revelation','apocalypse':'Revelation'
+};
+
+// ── Series organization ──
+const BOOK_STUDIES=['The Book of Romans','The Gospel of Matthew','The Gospel of Luke','The Way: The Book of Acts','Gospel Roots: The Book of Galatians','The Christ-Centered Church: Letter to the Colossians','The First Epistle of John','East of Eden: The Book of Ecclesiastes','Renew: The Book of Haggai','Out of Egypt','Psalm 63','Jesus & (series)','More Like Him','Stand-Alone Sermons'];
+const SPECIAL_SERIES=['Easter 2026','Easter 2025','Easter 2024','Toward the Dawn - Easter 2023','New Life: Easter 2022','Rise: Easter 2021','Long Expected Jesus - Christmas 2022','Behold: Christmas 2021','Advent: Evergreen'];
+const SERIES_ICONS={
+  'The Book of Romans':'📖','The Gospel of Matthew':'📖','The Gospel of Luke':'📖',
+  'The Way: The Book of Acts':'📖','Gospel Roots: The Book of Galatians':'📖',
+  'The Christ-Centered Church: Letter to the Colossians':'📖','The First Epistle of John':'📖',
+  'East of Eden: The Book of Ecclesiastes':'📖','Renew: The Book of Haggai':'📖',
+  'Out of Egypt':'📖','Psalm 63':'📖','Jesus & (series)':'✦','More Like Him':'✦',
+  'Stand-Alone Sermons':'🎙️',
+  'Easter 2026':'✝️','Easter 2025':'✝️','Easter 2024':'✝️',
+  'Toward the Dawn - Easter 2023':'✝️','New Life: Easter 2022':'✝️','Rise: Easter 2021':'✝️',
+  'Long Expected Jesus - Christmas 2022':'🎄','Behold: Christmas 2021':'🎄','Advent: Evergreen':'🕯️'
+};
+
+let ALL=[], view='recent', activeTag=null, activeBook=null, showAll=false;
 
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function normPreacher(n){if(!n)return'';const m={'RD McClenagan':'RD','Rd McClenagan':'RD','Rd':'RD','Greg Pinkner':'Greg','Greg Fner':'Greg','Greg P.':'Greg','Devon Accardi':'Devon','Devin Accardi':'Devon','Devin':'Devon','Devin (Devon)':'Devon','JC Neely':'JC','Rick Dunn':'Rick','Rick Nelson':'Rick','Rick (likely Rick Nelson)':'Rick','Not explicitly identified (colleague of Rick Dunn)':'Rick','Zach Hume':'Zach','Brady Raby':'Brady','Unknown':'','Not specified':'','Not mentioned':''};return m[n]!==undefined?m[n]:(n.split(' ')[0]||n);}
 function cleanTitle(t){if(!t)return'';const known=new Set(['RD','Greg','Devon','JC','Rick','Zach','Brady']);const sep=t.lastIndexOf('\u2014');if(sep>0){const suf=t.slice(sep+1).trim();if(known.has(normPreacher(suf)))return t.slice(0,sep).trim();}const sep2=t.lastIndexOf(' - ');if(sep2>0){const suf=t.slice(sep2+3).trim();if(known.has(normPreacher(suf)))return t.slice(0,sep2).trim();}return t;}
 function fmt(d){if(!d)return'';const[y,m,dd]=d.split('-');return new Date(+y,+m-1,+dd).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}).toUpperCase()}
-function fmtLong(d){if(!d)return'';const[y,m,dd]=d.split('-');return new Date(+y,+m-1,+dd).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
-function bookFrom(passage){if(!passage)return'';const m=passage.match(/^(\d?\s?[A-Za-z]+)/);return m?m[1].trim():'';}
+
+function getVideoId(url){if(!url)return'';const m=url.match(/[?&]v=([^&]+)/);return m?m[1]:'';}
+function getPlaylistSeries(s){return PLAYLIST_SERIES[getVideoId(s.youtubeUrl)]||'';}
+
+function getBooksForSermon(s){
+  const raw=(s.booksOfBible||'');
+  if(!raw)return[];
+  const parts=raw.split(/[,;\/\n]+/);
+  const books=new Set();
+  parts.forEach(p=>{
+    const clean=p.trim().replace(/\s*\d+[:\d\-]*\s*$/,'').trim();
+    if(!clean)return;
+    // Try full match then prefix match
+    const key=clean.toLowerCase().replace(/\s+/g,' ').trim();
+    if(BOOK_ALIASES[key]){books.add(BOOK_ALIASES[key]);return;}
+    // Try removing trailing numbers/refs
+    const bare=clean.replace(/\s+\d.*$/,'').trim().toLowerCase();
+    if(BOOK_ALIASES[bare]){books.add(BOOK_ALIASES[bare]);return;}
+    // Try canonical match by prefix
+    const all=[...OT_BOOKS,...NT_BOOKS];
+    const found=all.find(b=>b.toLowerCase()===key||b.toLowerCase().startsWith(bare)||bare.startsWith(b.toLowerCase().substring(0,4)));
+    if(found)books.add(found);
+  });
+  return [...books];
+}
 
 async function load(){
   try{
     const r=await fetch('/api/sermons');
     const d=await r.json();
     ALL=d.sermons||[];
+    const urlSearch=new URLSearchParams(location.search).get('search');
+    if(urlSearch){document.getElementById('search').value=urlSearch;}
     buildSpeakers();
     buildTopics();
     render();
@@ -256,8 +381,9 @@ function getFiltered(){
 }
 
 function card(s){
-  const series=s.series?s.series.toUpperCase():'';
-  const header=series?(series+' &middot; '+fmt(s.date)):fmt(s.date);
+  const plSeries=getPlaylistSeries(s);
+  const displaySeries=(plSeries||s.series||'').toUpperCase();
+  const header=displaySeries?(displaySeries+' &middot; '+fmt(s.date)):fmt(s.date);
   const quote=s.keyQuote?'<div class="sermon-card__quote">&ldquo;'+esc(s.keyQuote)+'&rdquo;</div>':'<div class="sermon-card__pending">Analysis pending&hellip;</div>';
   const tags=(s.topics||[]).slice(0,3).map(t=>'<span class="sermon-card__tag">'+esc(t)+'</span>').join('');
   const play=s.youtubeUrl?'<div class="play-btn" role="button" title="Watch on YouTube" onclick="event.preventDefault();event.stopPropagation();window.open(\''+esc(s.youtubeUrl)+'\',\'_blank\',\'noopener\')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>':'';
@@ -272,47 +398,127 @@ function card(s){
 
 function hasData(s){return !!(s.keyQuote||s.summary||s.passage);}
 
-function renderGrid(sermons, container, limit){
+function renderGrid(sermons,container,limit){
   const analyzed=sermons.filter(hasData);
-  const shown = limit ? analyzed.slice(0,limit) : analyzed;
+  const shown=limit?analyzed.slice(0,limit):analyzed;
   if(!shown.length){container.innerHTML='<div class="empty">No sermons found. Try a different search or filter.</div>';return;}
   container.innerHTML=shown.map(card).join('');
   const sm=document.getElementById('show-more');
   const btn=document.getElementById('show-more-btn');
-  if(limit && analyzed.length>limit && view==='recent'){
+  if(limit&&analyzed.length>limit&&view==='recent'){
     sm.style.display='';
     btn.textContent='Show all '+analyzed.length+' analyzed sermons';
     btn.onclick=()=>{showAll=true;render()};
-  } else {
-    sm.style.display='none';
-  }
+  }else{sm.style.display='none';}
 }
 
-function renderByGroup(sermons, keyFn, container){
+function renderSeriesView(sermons,container){
+  // Build series → sermons map using playlist data
   const groups={};
-  sermons.filter(hasData).forEach(s=>{const k=keyFn(s)||'Other';if(!groups[k])groups[k]=[];groups[k].push(s)});
-  const sorted=Object.entries(groups).sort((a,b)=>b[1].length-a[1].length);
-  let html='';
-  sorted.forEach(([name,items])=>{
-    html+='<div class="sermon-group" data-group="'+esc(name)+'" style="grid-column:1/-1">'+
-      '<div class="group-header"><h3>'+esc(name)+'</h3><span class="group-count">'+items.length+' sermon'+(items.length!==1?'s':'')+'</span><span class="group-toggle">▾</span></div>'+
-      '<div class="group-cards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:16px;margin-bottom:8px">'+
-        items.map(card).join('')+
-      '</div></div>';
+  sermons.filter(hasData).forEach(s=>{
+    const series=getPlaylistSeries(s)||'Stand-Alone Sermons';
+    if(!groups[series])groups[series]=[];
+    groups[series].push(s);
   });
+
+  function makeSection(label,seriesList){
+    const items=seriesList.filter(name=>groups[name]&&groups[name].length>0);
+    if(!items.length)return'';
+    let html='<div class="series-section-label">'+label+'</div>';
+    items.forEach(name=>{
+      const sermons=groups[name]||[];
+      if(!sermons.length)return;
+      const icon=SERIES_ICONS[name]||'📖';
+      const newest=sermons[0]?sermons[0].date.split('-')[0]:'';
+      const oldest=sermons[sermons.length-1]?sermons[sermons.length-1].date.split('-')[0]:'';
+      const dateRange=oldest&&newest&&oldest!==newest?(oldest+' – '+newest):newest;
+      html+='<div class="series-card" id="sc-'+esc(name.replace(/\W/g,''))+'">'+
+        '<div class="series-card__header">'+
+          '<div class="series-card__icon">'+icon+'</div>'+
+          '<div class="series-card__info">'+
+            '<div class="series-card__name">'+esc(name)+'</div>'+
+            '<div class="series-card__sub">'+sermons.length+' sermon'+(sermons.length!==1?'s':'')+
+              (dateRange?' &middot; '+dateRange:'')+'</div>'+
+          '</div>'+
+          '<div class="series-card__toggle">▾</div>'+
+        '</div>'+
+        '<div class="series-card__body">'+sermons.map(card).join('')+'</div>'+
+      '</div>';
+    });
+    return html;
+  }
+
+  // Also catch any unmapped series
+  const knownSeries=new Set([...BOOK_STUDIES,...SPECIAL_SERIES]);
+  const otherGroups=Object.entries(groups).filter(([k])=>!knownSeries.has(k)).map(([k])=>k).sort();
+
+  let html=makeSection('Book Studies',BOOK_STUDIES)+makeSection('Special Series',SPECIAL_SERIES);
+  if(otherGroups.length){html+=makeSection('Other',otherGroups);}
+
   container.innerHTML=html||'<div class="empty">No sermons found.</div>';
-  container.querySelectorAll('.group-header').forEach(h=>{
+  container.querySelectorAll('.series-card__header').forEach(h=>{
     h.onclick=()=>{
-      const cards=h.nextElementSibling;
-      const hidden=cards.style.display==='none';
-      cards.style.display=hidden?'grid':'none';
-      h.classList.toggle('collapsed',!hidden);
+      const card=h.closest('.series-card');
+      card.classList.toggle('collapsed');
     };
   });
 }
 
+function renderBibleBookView(sermons,container){
+  // Build book → sermons index
+  const bookMap={};
+  sermons.filter(hasData).forEach(s=>{
+    getBooksForSermon(s).forEach(book=>{
+      if(!bookMap[book])bookMap[book]=[];
+      bookMap[book].push(s);
+    });
+    // Also index by primary passage book
+    if(s.passage){
+      const m=s.passage.match(/^(\d?\s?[A-Za-z ]+)/);
+      if(m){
+        const k=m[1].trim().toLowerCase();
+        const canon=BOOK_ALIASES[k];
+        if(canon&&!bookMap[canon]){bookMap[canon]=[];}
+        if(canon&&!bookMap[canon].includes(s))bookMap[canon].push(s);
+      }
+    }
+  });
+
+  // Auto-select first OT book that has sermons, or first NT book
+  if(!activeBook||!bookMap[activeBook]){
+    activeBook=NT_BOOKS.find(b=>bookMap[b]&&bookMap[b].length)||OT_BOOKS.find(b=>bookMap[b]&&bookMap[b].length)||null;
+  }
+
+  function pillSection(label,bookList){
+    const hasAny=bookList.some(b=>bookMap[b]&&bookMap[b].length>0);
+    if(!hasAny)return'';
+    const pills=bookList.map(b=>{
+      const count=bookMap[b]?bookMap[b].length:0;
+      const isActive=b===activeBook;
+      const cls='book-pill'+(isActive?' active':'')+(count===0?' empty':'');
+      const onclick=count>0?'onclick="selectBook(\''+b.replace(/'/g,"\'")+'\')"':'';
+      return'<button class="'+cls+'" '+onclick+'>'+esc(b)+(count?' <span style="opacity:.6;font-size:10px">('+count+')</span>':'')+'</button>';
+    }).join('');
+    return'<div class="pill-section"><div class="pill-section__header">'+label+'</div><div class="pill-row">'+pills+'</div></div>';
+  }
+
+  const pillsHtml=pillSection('Old Testament',OT_BOOKS)+pillSection('New Testament',NT_BOOKS);
+
+  const bookSermons=activeBook&&bookMap[activeBook]?bookMap[activeBook]:[];
+  const sorted=[...bookSermons].sort((a,b)=>b.date.localeCompare(a.date));
+  const gridHtml='<div style="grid-column:1/-1;margin-bottom:12px"><span style="font-size:13px;color:var(--muted);">'+
+    (activeBook?('<strong style="color:var(--text)">'+esc(activeBook)+'</strong> — '+bookSermons.length+' sermon'+(bookSermons.length!==1?'s':'')):'Select a book')+'</span></div>'+
+    (sorted.length?sorted.map(card).join(''):'<div class="empty">No sermons found for this book.</div>');
+
+  container.innerHTML='<div style="grid-column:1/-1">'+pillsHtml+'</div>'+gridHtml;
+}
+
+window.selectBook=function(book){
+  activeBook=book;
+  render();
+};
+
 function render(){
-  const grid=document.getElementById('grid-inner')||document.getElementById('sermon-grid');
   const sermons=getFiltered();
   const lbl=document.getElementById('count-label');
   const analyzed=sermons.filter(hasData).length;
@@ -321,24 +527,26 @@ function render(){
 
   const pills=document.getElementById('topic-pills');
   pills.style.display=view==='topic'?'flex':'none';
+  document.getElementById('show-more').style.display='none';
 
   const container=document.getElementById('sermon-grid');
 
   if(view==='recent'){
+    container.className='sermon-grid';
     const limit=showAll?0:20;
     renderGrid(sermons,container,limit);
-  } else if(view==='series'){
-    renderByGroup(sermons,s=>s.series||'',container);
-    document.getElementById('show-more').style.display='none';
-  } else if(view==='bible'){
-    renderByGroup(sermons,s=>bookFrom(s.passage),container);
-    document.getElementById('show-more').style.display='none';
-  } else if(view==='topic'){
+  }else if(view==='series'){
+    container.className='sermon-grid';
+    renderSeriesView(sermons,container);
+  }else if(view==='bible'){
+    container.className='sermon-grid';
+    renderBibleBookView(sermons,container);
+  }else if(view==='topic'){
+    container.className='sermon-grid';
     renderGrid(sermons,container,0);
   }
 }
 
-// Tab switching
 document.getElementById('tabs').addEventListener('click',e=>{
   const t=e.target.closest('.tab');
   if(!t)return;
@@ -350,7 +558,6 @@ document.getElementById('tabs').addEventListener('click',e=>{
   render();
 });
 
-// Ask Fellowship
 async function askQuestion(){
   const input=document.getElementById('ask-input');
   const btn=document.getElementById('ask-btn');
@@ -362,8 +569,7 @@ async function askQuestion(){
   try{
     const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});
     const d=await r.json();
-    if(d.error) throw new Error(d.error);
-    // Convert markdown links to HTML
+    if(d.error)throw new Error(d.error);
     const html=d.answer
       .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>')
       .replace(/\n/g,'<br>');
