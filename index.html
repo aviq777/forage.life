@@ -181,63 +181,107 @@
         </div>
       </section>
 
-      <!-- ── OPENCLAW AGENTS ── -->
+            <!-- ── OPENCLAW HUB ── -->
       <section id="agents">
-        <h2 class="section-title">Agent Hub <span class="section-title__badge">Live</span></h2>
-        <p class="section-sub">A fleet of AI agents running across projects — each with a role, a home, and work to do.</p>
+        <h2 class="section-title">OpenClaw Hub <span class="section-title__badge">Live</span></h2>
+        <p class="section-sub">A fleet of named AI agents living on a single VPS. Each has an identity, a workspace, and work to do — some run constantly in the background, others wake up when called.</p>
 
-        <div class="agent-hub">
-          <div class="agent-building agent-building--studio">
-            <div class="agent-building__icon">🎬</div>
-            <div class="agent-building__label">Video Studio</div>
-            <div class="agent-building__agents">
-              <div class="agent-dot agent-dot--active" title="Ollie's Crew pipeline"></div>
+        <div class="agent-grid">
+          <div class="agent-card agent-card--active">
+            <div class="agent-card__head">
+              <span class="agent-card__icon">🌿</span>
+              <span class="agent-card__status"><span class="agent-dot agent-dot--active"></span>Active</span>
             </div>
+            <h3 class="agent-card__name">Huck</h3>
+            <p class="agent-card__role">Project operator</p>
+            <p class="agent-card__vibe">Warm, witty, never lets Jordan babysit</p>
           </div>
-          <div class="agent-building agent-building--office">
-            <div class="agent-building__icon">💼</div>
-            <div class="agent-building__label">Dev Office</div>
-            <div class="agent-building__agents">
-              <div class="agent-dot agent-dot--active" title="CleanSearch Pro API"></div>
-              <div class="agent-dot agent-dot--active" title="ClawSuite Dashboard"></div>
+          <div class="agent-card agent-card--active">
+            <div class="agent-card__head">
+              <span class="agent-card__icon">💡</span>
+              <span class="agent-card__status"><span class="agent-dot agent-dot--active"></span>Active</span>
             </div>
+            <h3 class="agent-card__name">Lux</h3>
+            <p class="agent-card__role">Lighting & electrical specialist</p>
+            <p class="agent-card__vibe">Sharp, precise, two steps ahead</p>
           </div>
-          <div class="agent-building agent-building--gym">
-            <div class="agent-building__icon">🏋️</div>
-            <div class="agent-building__label">Fitness Lab</div>
-            <div class="agent-building__agents">
-              <div class="agent-dot agent-dot--active" title="Jeff Fitness"></div>
+          <div class="agent-card agent-card--active">
+            <div class="agent-card__head">
+              <span class="agent-card__icon">🎬</span>
+              <span class="agent-card__status"><span class="agent-dot agent-dot--active"></span>Active</span>
             </div>
+            <h3 class="agent-card__name">Alex</h3>
+            <p class="agent-card__role">Video editor for Ollie’s Crew</p>
+            <p class="agent-card__vibe">Calm, creative, turns raw footage into gold</p>
           </div>
-          <div class="agent-building agent-building--staging">
-            <div class="agent-building__icon">🏠</div>
-            <div class="agent-building__label">Staging Co.</div>
-            <div class="agent-building__agents">
-              <div class="agent-dot agent-dot--active" title="quickstage.io"></div>
+          <div class="agent-card agent-card--active">
+            <div class="agent-card__head">
+              <span class="agent-card__icon">🧭</span>
+              <span class="agent-card__status"><span class="agent-dot agent-dot--active"></span>Active</span>
             </div>
+            <h3 class="agent-card__name">Cam</h3>
+            <p class="agent-card__role">Reliability & systems steward</p>
+            <p class="agent-card__vibe">Plainspoken, design-literate, rigorous</p>
           </div>
-          <div class="agent-building agent-building--lighting">
-            <div class="agent-building__icon">💡</div>
-            <div class="agent-building__label">Lux HQ</div>
-            <div class="agent-building__agents">
-              <div class="agent-dot agent-dot--active" title="Ardd & Winter platform"></div>
-              <div class="agent-dot agent-dot--idle" title="Lux Proxy"></div>
+          <div class="agent-card agent-card--active">
+            <div class="agent-card__head">
+              <span class="agent-card__icon">🏋️</span>
+              <span class="agent-card__status"><span class="agent-dot agent-dot--active"></span>Active</span>
             </div>
+            <h3 class="agent-card__name">Jeff</h3>
+            <p class="agent-card__role">Strength & training coach</p>
+            <p class="agent-card__vibe">Direct, science-based, no BS</p>
           </div>
-          <div class="agent-building agent-building--infra">
-            <div class="agent-building__icon">🖥️</div>
-            <div class="agent-building__label">Infrastructure</div>
-            <div class="agent-building__agents">
-              <div class="agent-dot agent-dot--active" title="OpenClaw Gateway"></div>
-              <div class="agent-dot agent-dot--active" title="AgentMail"></div>
-              <div class="agent-dot agent-dot--idle" title="n8n pipeline"></div>
+          <div class="agent-card agent-card--idle">
+            <div class="agent-card__head">
+              <span class="agent-card__icon">₿</span>
+              <span class="agent-card__status"><span class="agent-dot agent-dot--idle"></span>Idle</span>
             </div>
+            <h3 class="agent-card__name">Gordon</h3>
+            <p class="agent-card__role">BTC / Polymarket trader</p>
+            <p class="agent-card__vibe">Cold, predatory, data first</p>
+          </div>
+          <div class="agent-card agent-card--idle">
+            <div class="agent-card__head">
+              <span class="agent-card__icon">📈</span>
+              <span class="agent-card__status"><span class="agent-dot agent-dot--idle"></span>Idle</span>
+            </div>
+            <h3 class="agent-card__name">Bud Fox</h3>
+            <p class="agent-card__role">Forex trader</p>
+            <p class="agent-card__vibe">Disciplined, unemotional, rules first</p>
+          </div>
+          <div class="agent-card agent-card--idle">
+            <div class="agent-card__head">
+              <span class="agent-card__icon">✅</span>
+              <span class="agent-card__status"><span class="agent-dot agent-dot--idle"></span>Idle</span>
+            </div>
+            <h3 class="agent-card__name">Ethan</h3>
+            <p class="agent-card__role">Habit & wins coach</p>
+            <p class="agent-card__vibe">Honest friend who calls slips kindly</p>
+          </div>
+          <div class="agent-card agent-card--idle">
+            <div class="agent-card__head">
+              <span class="agent-card__icon">🥗</span>
+              <span class="agent-card__status"><span class="agent-dot agent-dot--idle"></span>Idle</span>
+            </div>
+            <h3 class="agent-card__name">Nina</h3>
+            <p class="agent-card__role">Nutrition guide</p>
+            <p class="agent-card__vibe">Flexible, encouraging, makes eating well doable</p>
+          </div>
+          <div class="agent-card agent-card--idle">
+            <div class="agent-card__head">
+              <span class="agent-card__icon">🌑</span>
+              <span class="agent-card__status"><span class="agent-dot agent-dot--idle"></span>Idle</span>
+            </div>
+            <h3 class="agent-card__name">Shadow</h3>
+            <p class="agent-card__role">Psychological coach</p>
+            <p class="agent-card__vibe">Deep, Jungian, no flattery</p>
           </div>
         </div>
 
         <div class="agent-legend">
-          <span class="legend-item"><span class="agent-dot agent-dot--active"></span> Active</span>
-          <span class="legend-item"><span class="agent-dot agent-dot--idle"></span> Idle</span>
+          <span class="legend-item"><span class="agent-dot agent-dot--active"></span> Active services running</span>
+          <span class="legend-item"><span class="agent-dot agent-dot--idle"></span> Workspace ready, on call</span>
         </div>
       </section>
 

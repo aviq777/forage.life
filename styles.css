@@ -475,3 +475,64 @@ a:hover { opacity: .95 }
   .agent-hub { gap: 8px }
   .agent-building { flex: 1 1 calc(50% - 8px) }
 }
+/* ── OPENCLAW HUB CARDS ── */
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 6px;
+}
+.agent-card {
+  position: relative;
+  padding: 18px 18px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.22);
+  backdrop-filter: blur(8px);
+  transition: border-color .14s, transform .14s;
+}
+.agent-card:hover { border-color: rgba(255,255,255,.16); transform: translateY(-1px); }
+.agent-card--idle { opacity: .82; }
+.agent-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.agent-card__icon { font-size: 26px; line-height: 1; }
+.agent-card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.agent-card__name {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+.agent-card__role {
+  margin: 0 0 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: .02em;
+}
+.agent-card__vibe {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255,255,255,.78);
+}
+@media (max-width: 520px) {
+  .agent-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+  .agent-card { padding: 14px 14px 12px; border-radius: 14px; }
+  .agent-card__icon { font-size: 22px; }
+  .agent-card__name { font-size: 14.5px; }
+}
+
