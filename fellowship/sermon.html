@@ -45,9 +45,15 @@
     .key-quote::before{content:'\201C';font-size:44px;line-height:0;vertical-align:-16px;color:var(--accent);margin-right:3px;font-style:normal}
 
     /* Summary */
-    .summary-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin-bottom:20px}
-    .summary-box h2{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-    .summary-box p{font-size:15px;color:var(--dim);line-height:1.7}
+    .summary-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px 26px;margin-bottom:20px}
+    .summary-box > .summary-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+    .summary-body p{font-size:15px;color:var(--dim);line-height:1.75;margin-bottom:14px}
+    .summary-body p:last-child{margin-bottom:0}
+    .summary-body h3{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text);margin:20px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+    .summary-body h3:first-child{margin-top:0}
+    .summary-body ul{margin:0 0 14px 0;padding-left:18px}
+    .summary-body ul li{font-size:15px;color:var(--dim);line-height:1.7;margin-bottom:6px}
+    .summary-body strong{color:var(--text);font-weight:600}
 
     /* Analysis grid */
     .analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
@@ -102,6 +108,64 @@
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function fmt(d){if(!d)return'';const[y,m,dd]=d.split('-');return new Date(+y,+m-1,+dd).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})}
 
+function inlineFormat(text){
+  // Bold: **text**
+  return esc(text).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+}
+
+function formatSummary(raw){
+  if(!raw)return'';
+  // Normalize line endings and trim
+  const text=raw.replace(/\r\n/g,'\n').replace(/\r/g,'\n').trim();
+  // Split into blocks by double newline
+  const blocks=text.split(/\n{2,}/);
+  let html='';
+  for(const block of blocks){
+    const trimmed=block.trim();
+    if(!trimmed)continue;
+    // Section header: [HEADING] or **HEADING** on its own line
+    if(/^\[.+\]$/.test(trimmed)){
+      html+='<h3>'+esc(trimmed.replace(/^\[|\]$/g,''))+'</h3>';
+      continue;
+    }
+    // Detect bullet list: block contains multiple lines starting with - or •
+    const lines=trimmed.split('\n');
+    const bulletLines=lines.filter(l=>/^[-•*]\s/.test(l.trim()));
+    if(bulletLines.length>1||(bulletLines.length===1&&lines.length===1&&/^[-•*]\s/.test(trimmed))){
+      html+='<ul>';
+      for(const line of lines){
+        const t=line.trim();
+        if(/^[-•*]\s/.test(t)){
+          html+='<li>'+inlineFormat(t.replace(/^[-•*]\s+/,''))+'</li>';
+        } else if(t){
+          html+='<li>'+inlineFormat(t)+'</li>';
+        }
+      }
+      html+='</ul>';
+      continue;
+    }
+    // Numbered list: lines starting with 1. 2. etc
+    const numberedLines=lines.filter(l=>/^\d+\.\s/.test(l.trim()));
+    if(numberedLines.length>1){
+      html+='<ul>';
+      for(const line of lines){
+        const t=line.trim();
+        if(/^\d+\.\s/.test(t)){
+          html+='<li>'+inlineFormat(t.replace(/^\d+\.\s+/,''))+'</li>';
+        } else if(t){
+          html+='<li>'+inlineFormat(t)+'</li>';
+        }
+      }
+      html+='</ul>';
+      continue;
+    }
+    // Regular paragraph — join internal newlines with space
+    const paraText=lines.map(l=>l.trim()).filter(Boolean).join(' ');
+    html+='<p>'+inlineFormat(paraText)+'</p>';
+  }
+  return html;
+}
+
 function field(label,value,full,strong){
   if(!value||value.startsWith('Transcript unavailable'))return'';
   return'<div class="field'+(full?' field--full':'')+'">'+
@@ -129,7 +193,10 @@ function render(s){
     'Watch on YouTube</a>':'';
 
   const quote=s.keyQuote?'<blockquote class="key-quote">'+esc(s.keyQuote)+'</blockquote>':'';
-  const summary=hasAnalysis&&s.summary?'<div class="summary-box"><h2>Summary</h2><p>'+esc(s.summary)+'</p></div>':'';
+  const summaryHtml=formatSummary(s.summary);
+  const summary=hasAnalysis&&summaryHtml
+    ?'<div class="summary-box"><div class="summary-label">Summary</div><div class="summary-body">'+summaryHtml+'</div></div>'
+    :'';
   const pending=isPending?'<div class="pending"><strong>Analysis in progress</strong>This sermon is in the queue for AI analysis and will be fully annotated soon.</div>':'';
   const topics=(s.topics||[]).length?'<div class="topics-section"><h2>Topics</h2><div class="tags">'+(s.topics.map(t=>'<a class="tag" href="/fellowship?search='+encodeURIComponent(t)+'">'+esc(t)+'</a>').join(''))+'</div></div>':'';
 
