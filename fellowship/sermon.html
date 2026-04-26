@@ -115,28 +115,38 @@ function inlineFormat(text){
 
 function formatSummary(raw){
   if(!raw)return'';
-  // Normalize line endings and trim
-  const text=raw.replace(/\r\n/g,'\n').replace(/\r/g,'\n').trim();
-  // Split into blocks by double newline
-  const blocks=text.split(/\n{2,}/);
+  let cleaned=raw.replace(/^Kind:\s*captions\s*Language:\s*\w+\s*/,'').trim();
+  const text=cleaned.replace(/\r\n/g,'\n').replace(/\r/g,'\n').trim();
+  const normalized=text.replace(/([^\n])\n?\[([^\]]+)\]\s*(?=\S)/g,function(m,before,heading){
+    return before+'\n\n['+heading+']\n';
+  });
+  const blocks=normalized.split(/\n{2,}/);
   let html='';
   for(const block of blocks){
     const trimmed=block.trim();
     if(!trimmed)continue;
-    // Section header: [HEADING] or **HEADING** on its own line
-    if(/^\[.+\]$/.test(trimmed)){
-      html+='<h3>'+esc(trimmed.replace(/^\[|\]$/g,''))+'</h3>';
+    const headingOnly=trimmed.match(/^\[([^\]]+)\]$/);
+    if(headingOnly){
+      html+='<h3>'+esc(headingOnly[1])+'</h3>';
       continue;
     }
-    // Detect bullet list: block contains multiple lines starting with - or •
+    const inlineH=trimmed.match(/^\[([^\]]+)\]\s+([\s\S]+)$/);
+    if(inlineH){
+      html+='<h3>'+esc(inlineH[1])+'</h3>';
+      const rest=inlineH[2].trim();
+      const restLines=rest.split('\n');
+      const paraText=restLines.map(function(l){return l.trim();}).filter(Boolean).join(' ');
+      html+='<p>'+inlineFormat(paraText)+'</p>';
+      continue;
+    }
     const lines=trimmed.split('\n');
-    const bulletLines=lines.filter(l=>/^[-•*]\s/.test(l.trim()));
-    if(bulletLines.length>1||(bulletLines.length===1&&lines.length===1&&/^[-•*]\s/.test(trimmed))){
+    const bulletLines=lines.filter(function(l){return /^[-\u2022*]\s/.test(l.trim());});
+    if(bulletLines.length>1||(bulletLines.length===1&&lines.length===1&&/^[-\u2022*]\s/.test(trimmed))){
       html+='<ul>';
       for(const line of lines){
         const t=line.trim();
-        if(/^[-•*]\s/.test(t)){
-          html+='<li>'+inlineFormat(t.replace(/^[-•*]\s+/,''))+'</li>';
+        if(/^[-\u2022*]\s/.test(t)){
+          html+='<li>'+inlineFormat(t.replace(/^[-\u2022*]\s+/,''))+'</li>';
         } else if(t){
           html+='<li>'+inlineFormat(t)+'</li>';
         }
@@ -144,8 +154,7 @@ function formatSummary(raw){
       html+='</ul>';
       continue;
     }
-    // Numbered list: lines starting with 1. 2. etc
-    const numberedLines=lines.filter(l=>/^\d+\.\s/.test(l.trim()));
+    const numberedLines=lines.filter(function(l){return /^\d+\.\s/.test(l.trim());});
     if(numberedLines.length>1){
       html+='<ul>';
       for(const line of lines){
@@ -159,8 +168,7 @@ function formatSummary(raw){
       html+='</ul>';
       continue;
     }
-    // Regular paragraph — join internal newlines with space
-    const paraText=lines.map(l=>l.trim()).filter(Boolean).join(' ');
+    const paraText=lines.map(function(l){return l.trim();}).filter(Boolean).join(' ');
     html+='<p>'+inlineFormat(paraText)+'</p>';
   }
   return html;
