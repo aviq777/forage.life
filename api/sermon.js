@@ -29,6 +29,7 @@ function normalize(page) {
     seriesConnection: txt(p, 'Series Connection'),
     crossReferenceThemes: txt(p, 'Cross-Reference Themes'),
     youtubeDescription: txt(p, 'YouTube Description'),
+    studyGuide: p['Study Guide'] ? p['Study Guide'].url || '' : '',
   };
 }
 
