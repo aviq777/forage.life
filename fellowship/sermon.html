@@ -74,6 +74,12 @@
     .xref-link{padding:4px 11px;background:var(--tag-bg);border:1px solid var(--tag-b);border-radius:20px;font-size:12px;color:var(--tag);transition:all .15s;white-space:nowrap}
     .xref-link:hover{background:rgba(99,102,241,.2);border-color:var(--accent);color:#fff}
 
+
+    /* YouTube Description */
+    .desc-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px;margin:20px 0}
+    .desc-box__label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+    .desc-box__text{font-size:14px;color:var(--dim);line-height:1.7;white-space:pre-wrap}
+
     /* Loading */
     .loading{display:flex;align-items:center;justify-content:center;padding:100px 0;color:var(--muted)}
     .spinner{width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin-right:10px}
@@ -200,6 +206,7 @@ function render(s){
     '<svg viewBox="0 0 24 24" fill="#ff4444"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>'+
     'Watch on YouTube</a>':'';
 
+  const descBox=s.youtubeDescription?'<div class="desc-box"><div class="desc-box__label">Scripture &amp; Overview</div><div class="desc-box__text">'+esc(s.youtubeDescription)+'</div></div>':'';
   const quote=s.keyQuote?'<blockquote class="key-quote">'+esc(s.keyQuote)+'</blockquote>':'';
   const summaryHtml=formatSummary(s.summary);
   const summary=hasAnalysis&&summaryHtml
@@ -216,7 +223,7 @@ function render(s){
       '<div class="sermon-hero__meta">'+esc(s.preacher||'')+(s.series?' &middot; '+esc(s.series):'')+'</div>'+
       yt+
     '</section>'+
-    pending+quote+summary+
+    descBox+pending+quote+summary+
     '<div class="analysis-grid">'+
       field('Core Problem',s.coreProblem,false,true)+
       field('Core Solution',s.coreSolution,false,true)+

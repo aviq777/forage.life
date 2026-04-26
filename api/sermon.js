@@ -28,6 +28,7 @@ function normalize(page) {
     sinFearFalseBelief: txt(p, 'Sin/Fear/False Belief'),
     seriesConnection: txt(p, 'Series Connection'),
     crossReferenceThemes: txt(p, 'Cross-Reference Themes'),
+    youtubeDescription: txt(p, 'YouTube Description'),
   };
 }
 
