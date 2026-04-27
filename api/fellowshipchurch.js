@@ -1,6 +1,6 @@
 const NOTION_TOKEN = process.env.NOTION_TOKEN;
 const NOTION_DB = '34edc244-8617-81b8-ada6-dc6062b273a0';
-const { getBook } = require('./book-utils');
+const { getBook } = require('../lib/book-utils');
 
 function txt(p, key) {
   return (p[key] && p[key].rich_text ? p[key].rich_text.map(t => t.plain_text).join('') : '') || '';
