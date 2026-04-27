@@ -51,7 +51,6 @@
     #sort-select:focus{border-color:var(--accent)}
     .count-label{font-size:12px;color:var(--muted);white-space:nowrap}
 
-    /* Pill sections */
     .pill-section{margin-bottom:28px}
     .pill-section__header{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
     .pill-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:4px}
@@ -60,13 +59,11 @@
     .filter-pill.active{background:var(--tag-bg);border-color:var(--accent);color:var(--tag);font-weight:600}
     .filter-pill.empty{opacity:.35;cursor:default}
 
-    /* Topic pills */
     .topic-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
     .topic-pill{padding:5px 13px;background:var(--card);border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--dim);cursor:pointer;transition:all .15s}
     .topic-pill:hover{border-color:var(--border-h);color:var(--text)}
     .topic-pill.active{background:var(--tag-bg);border-color:var(--accent);color:var(--tag)}
 
-    /* Card grid */
     .sermon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:16px}
     .sermon-card{position:relative;display:block;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px 48px 20px 20px;transition:all .2s;cursor:pointer}
     .sermon-card:hover{border-color:var(--border-h);background:var(--card-h);box-shadow:0 4px 20px rgba(0,0,0,.3)}
@@ -80,11 +77,6 @@
     .play-btn:hover{background:rgba(99,102,241,.25);border-color:var(--accent)}
     .play-btn svg{width:12px;height:12px;margin-left:2px}
 
-    .show-more{text-align:center;margin-top:28px}
-    .show-more button{padding:10px 28px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);color:var(--dim);font-size:14px;cursor:pointer;transition:all .15s}
-    .show-more button:hover{border-color:var(--border-h);color:var(--text)}
-
-    /* Pagination */
     .pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:32px;flex-wrap:wrap}
     .page-btn{padding:7px 14px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--dim);font-size:13px;cursor:pointer;transition:all .15s}
     .page-btn:hover{border-color:var(--border-h);color:var(--text)}
@@ -168,23 +160,13 @@
 const OT_BOOKS=['Genesis','Exodus','Leviticus','Numbers','Deuteronomy','Joshua','Judges','Ruth','1 Samuel','2 Samuel','1 Kings','2 Kings','1 Chronicles','2 Chronicles','Ezra','Nehemiah','Esther','Job','Psalms','Proverbs','Ecclesiastes','Song of Solomon','Isaiah','Jeremiah','Lamentations','Ezekiel','Daniel','Hosea','Joel','Amos','Obadiah','Jonah','Micah','Nahum','Habakkuk','Zephaniah','Haggai','Zechariah','Malachi'];
 const NT_BOOKS=['Matthew','Mark','Luke','John','Acts','Romans','1 Corinthians','2 Corinthians','Galatians','Ephesians','Philippians','Colossians','1 Thessalonians','2 Thessalonians','1 Timothy','2 Timothy','Titus','Philemon','Hebrews','James','1 Peter','2 Peter','1 John','2 John','3 John','Jude','Revelation'];
 
-let ALL=[], view='recent', activeFilter=null, activeTopic=null, currentPage=1, totalPages=1, totalCount=0;
+let META=null, view='recent', activeFilter=null, activeTopic=null, currentPage=1, totalPages=1, totalCount=0;
 
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function fmt(d){if(!d)return'';const[y,m,dd]=d.split('-');return new Date(+y,+m-1,+dd).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}).toUpperCase()}
 
-function getBookFromScripture(s){
-  if(!s)return null;
-  const m=s.match(/^(\d\s+)?[A-Za-z]+/);
-  if(!m)return null;
-  const raw=m[0].trim().toLowerCase();
-  const allBooks=[...OT_BOOKS,...NT_BOOKS];
-  return allBooks.find(b=>b.toLowerCase().startsWith(raw.substring(0,4)))||null;
-}
-
 async function fetchPage(pg){
   const q=(document.getElementById('search').value||'').trim();
-  const sort=document.getElementById('sort-select').value;
   let url='/api/fellowshipchurch?page='+pg;
   if(q) url+='&search='+encodeURIComponent(q);
   if(view==='speaker'&&activeFilter) url+='&speaker='+encodeURIComponent(activeFilter);
@@ -196,106 +178,88 @@ async function fetchPage(pg){
 
 async function load(){
   try{
-    // Load all for building filter pills (first page metadata)
-    const d=await fetchPage(1);
+    const[_,d]=await Promise.all([
+      fetch('/api/fellowshipchurch-meta').then(r=>r.json()).then(m=>{META=m;}),
+      fetchPage(1)
+    ]);
     totalPages=d.totalPages||1;
     totalCount=d.total||0;
     currentPage=1;
-
-    // Also fetch ALL for building speaker/scripture index (limit to one big call)
-    const allR=await fetch('/api/fellowshipchurch?page=1&pageSize=999');
-    // We can't request pageSize >20 from the API but we can use the first batch
-    // Build filter metadata from what we have, refresh on navigation
-    ALL=d.sermons||[];
-
-    buildSpeakers(d.sermons||[]);
-    buildScriptures(d.sermons||[]);
-    buildTopics(d.sermons||[]);
-
+    document.getElementById('count-label').textContent=d.total+' sermons';
     renderCards(d.sermons||[]);
     renderPagination(d.totalPages||1,1,d.total||0);
-    document.getElementById('count-label').textContent=d.total+' sermons';
   }catch(e){
     document.getElementById('sermon-grid').innerHTML='<div class="empty">Could not load sermons: '+esc(e.message)+'</div>';
   }
 }
 
-async function loadFullForFilters(){
-  // Fetch all pages to build complete filter sets
-  let all=[];
-  let pg=1,tp=1;
-  do{
-    const d=await fetch('/api/fellowshipchurch?page='+pg).then(r=>r.json());
-    all=all.concat(d.sermons||[]);
-    tp=d.totalPages||1;pg++;
-  }while(pg<=tp&&pg<=50);
-  return all;
-}
-
-function buildSpeakers(sermons){
-  const counts={};
-  sermons.forEach(s=>{if(s.speaker)counts[s.speaker]=(counts[s.speaker]||0)+1});
+function buildSpeakers(){
+  if(!META)return;
   const wrap=document.getElementById('filter-pills');
   wrap.innerHTML='<div class="pill-section"><div class="pill-section__header">Speaker</div><div class="pill-row" id="speaker-pills"></div></div>';
   const row=document.getElementById('speaker-pills');
   const allBtn=document.createElement('button');
-  allBtn.className='filter-pill active';allBtn.textContent='All speakers';
+  allBtn.className='filter-pill'+(activeFilter===null?' active':'');
+  allBtn.textContent='All speakers';
   allBtn.onclick=()=>{activeFilter=null;wrap.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));allBtn.classList.add('active');goPage(1)};
   row.appendChild(allBtn);
-  Object.entries(counts).sort((a,b)=>b[1]-a[1]).forEach(([sp,c])=>{
-    const btn=document.createElement('button');btn.className='filter-pill';btn.textContent=sp+' ('+c+')';
-    btn.onclick=()=>{activeFilter=sp;wrap.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');goPage(1)};
+  (META.speakers||[]).forEach(function(item){
+    const btn=document.createElement('button');
+    btn.className='filter-pill'+(activeFilter===item.name?' active':'');
+    btn.textContent=item.name+' ('+item.count+')';
+    btn.onclick=(function(n){return function(){activeFilter=n;wrap.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');goPage(1)};})(item.name);
     row.appendChild(btn);
   });
 }
 
-function buildScriptures(sermons){
-  const bookCounts={};
-  sermons.forEach(s=>{
-    const book=getBookFromScripture(s.scripture);
-    if(book)bookCounts[book]=(bookCounts[book]||0)+1;
-  });
+function buildScriptures(){
+  if(!META)return;
+  const bookCounts=META.books||{};
   const wrap=document.getElementById('filter-pills');
-  const otPills=[...OT_BOOKS].map(b=>{
+  const otPills=OT_BOOKS.map(function(b){
     const c=bookCounts[b]||0;
     const cls='filter-pill'+(b===activeFilter?' active':'')+(c===0?' empty':'');
-    return'<button class="'+cls+'"'+(c>0?' onclick="selectBook(\''+b.replace(/'/g,"\\'")+'\')"':'')+'>'+esc(b)+(c?' <span style="opacity:.6;font-size:10px">('+c+')</span>':'')+'</button>';
+    const onclick=c>0?' onclick="selectBook(\''+b.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+'\')"':'';
+    return '<button class="'+cls+'"'+onclick+'>'+esc(b)+(c?' <span style="opacity:.6;font-size:10px">('+c+')</span>':'')+'</button>';
   }).join('');
-  const ntPills=[...NT_BOOKS].map(b=>{
+  const ntPills=NT_BOOKS.map(function(b){
     const c=bookCounts[b]||0;
     const cls='filter-pill'+(b===activeFilter?' active':'')+(c===0?' empty':'');
-    return'<button class="'+cls+'"'+(c>0?' onclick="selectBook(\''+b.replace(/'/g,"\\'")+'\')"':'')+'>'+esc(b)+(c?' <span style="opacity:.6;font-size:10px">('+c+')</span>':'')+'</button>';
+    const onclick=c>0?' onclick="selectBook(\''+b.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+'\')"':'';
+    return '<button class="'+cls+'"'+onclick+'>'+esc(b)+(c?' <span style="opacity:.6;font-size:10px">('+c+')</span>':'')+'</button>';
   }).join('');
   wrap.innerHTML=
     '<div class="pill-section"><div class="pill-section__header">Old Testament</div><div class="pill-row">'+otPills+'</div></div>'+
     '<div class="pill-section"><div class="pill-section__header">New Testament</div><div class="pill-row">'+ntPills+'</div></div>';
 }
 
-window.selectBook=function(book){activeFilter=book;goPage(1);};
+window.selectBook=function(book){activeFilter=book;buildScriptures();goPage(1);};
 
-function buildTopics(sermons){
-  const counts={};
-  sermons.forEach(s=>(s.topics||[]).forEach(t=>{counts[t]=(counts[t]||0)+1}));
+function buildTopics(){
+  if(!META)return;
   const wrap=document.getElementById('topic-pills');
   wrap.innerHTML='';
   const allBtn=document.createElement('button');
-  allBtn.className='topic-pill active';allBtn.textContent='All topics';
+  allBtn.className='topic-pill'+(activeTopic===null?' active':'');
+  allBtn.textContent='All topics';
   allBtn.onclick=()=>{activeTopic=null;wrap.querySelectorAll('.topic-pill').forEach(p=>p.classList.remove('active'));allBtn.classList.add('active');goPage(1)};
   wrap.appendChild(allBtn);
-  Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,40).forEach(([t,c])=>{
-    const btn=document.createElement('button');btn.className='topic-pill';btn.textContent=t+' ('+c+')';
-    btn.onclick=()=>{activeTopic=t;wrap.querySelectorAll('.topic-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');goPage(1)};
+  (META.topics||[]).slice(0,60).forEach(function(item){
+    const btn=document.createElement('button');
+    btn.className='topic-pill'+(activeTopic===item.name?' active':'');
+    btn.textContent=item.name+' ('+item.count+')';
+    btn.onclick=(function(n){return function(){activeTopic=n;wrap.querySelectorAll('.topic-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');goPage(1)};})(item.name);
     wrap.appendChild(btn);
   });
 }
 
 function card(s){
-  const series=s.series?(esc(s.series).toUpperCase()+' &middot; '):'' ;
+  const series=s.series?(esc(s.series).toUpperCase()+' &middot; '):'';
   const header=series+fmt(s.date);
   const scriptureHtml=s.scripture?'<div class="sermon-card__scripture">'+esc(s.scripture)+'</div>':'';
   const tags=(s.topics||[]).slice(0,3).map(t=>'<span class="sermon-card__tag">'+esc(t)+'</span>').join('');
   const play=s.youtubeUrl?'<div class="play-btn" role="button" title="Watch on YouTube" onclick="event.preventDefault();event.stopPropagation();window.open(\''+esc(s.youtubeUrl)+'\',\'_blank\',\'noopener\')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>':'';
-  return'<a class="sermon-card" href="/fellowshipchurch/sermon?id='+s.id+'">'+play+
+  return '<a class="sermon-card" href="/fellowshipchurch/sermon?id='+s.id+'">'+play+
     '<div class="sermon-card__header">'+header+'</div>'+
     '<div class="sermon-card__title">'+esc(s.title)+'</div>'+
     '<div class="sermon-card__meta">'+esc(s.speaker||'')+(s.series?' &middot; '+esc(s.series):'')+'</div>'+
@@ -317,9 +281,9 @@ function renderPagination(tp,cp,total){
   let html='<div class="pagination">';
   html+='<button class="page-btn" '+(cp<=1?'disabled':'')+' onclick="goPage('+(cp-1)+')">&#8592; Prev</button>';
   const start=Math.max(1,cp-2),end=Math.min(tp,cp+2);
-  if(start>1)html+='<button class="page-btn" onclick="goPage(1)">1</button>'+(start>2?'<span style="color:var(--muted);padding:0 4px">…</span>':'');
+  if(start>1)html+='<button class="page-btn" onclick="goPage(1)">1</button>'+(start>2?'<span style="color:var(--muted);padding:0 4px">&hellip;</span>':'');
   for(let i=start;i<=end;i++){html+='<button class="page-btn'+(i===cp?' active':'')+'" onclick="goPage('+i+')">'+i+'</button>';}
-  if(end<tp)html+=(end<tp-1?'<span style="color:var(--muted);padding:0 4px">…</span>':'')+'<button class="page-btn" onclick="goPage('+tp+')">'+tp+'</button>';
+  if(end<tp)html+=(end<tp-1?'<span style="color:var(--muted);padding:0 4px">&hellip;</span>':'')+'<button class="page-btn" onclick="goPage('+tp+')">'+tp+'</button>';
   html+='<button class="page-btn" '+(cp>=tp?'disabled':'')+' onclick="goPage('+(cp+1)+')">Next &#8594;</button>';
   html+='</div>';
   el.innerHTML=html;
@@ -348,9 +312,9 @@ document.getElementById('tabs').addEventListener('click',e=>{
   const tp=document.getElementById('topic-pills');
   fp.style.display=view==='speaker'||view==='scripture'?'':'none';
   tp.style.display=view==='topic'?'flex':'none';
-  if(view==='speaker'){buildSpeakers(ALL);}
-  else if(view==='scripture'){buildScriptures(ALL);}
-  else if(view==='topic'){buildTopics(ALL);}
+  if(view==='speaker'){buildSpeakers();}
+  else if(view==='scripture'){buildScriptures();}
+  else if(view==='topic'){buildTopics();}
   goPage(1);
 });
 

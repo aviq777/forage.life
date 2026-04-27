@@ -26,7 +26,6 @@
     .topbar__right a{font-size:12px;color:var(--muted);padding:5px 12px;border:1px solid var(--border);border-radius:20px;transition:all .15s}
     .topbar__right a:hover{border-color:var(--accent);color:var(--tag)}
 
-    /* Hero */
     .sermon-hero{margin-bottom:28px}
     .sermon-hero__date{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
     .sermon-hero__scripture{font-size:clamp(22px,4vw,36px);font-weight:700;color:var(--tag);margin-bottom:8px;line-height:1.1}
@@ -34,7 +33,6 @@
     .sermon-hero__meta{font-size:14px;color:var(--muted);margin-bottom:20px}
     .sermon-hero__series{display:inline-block;padding:3px 10px;background:var(--tag-bg);border:1px solid var(--tag-b);border-radius:20px;font-size:12px;color:var(--tag);margin-bottom:16px}
 
-    /* Buttons */
     .btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
     .yt-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:var(--r);color:#ff7070;font-size:13px;transition:all .15s}
     .yt-btn:hover{background:rgba(255,68,68,.18);border-color:rgba(255,68,68,.5);color:#ff9090}
@@ -43,7 +41,6 @@
     .guide-btn:hover{background:rgba(99,102,241,.18);border-color:var(--accent);color:#fff}
     .guide-btn svg{width:15px;height:15px}
 
-    /* Summary boxes */
     .summary-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px 26px;margin-bottom:20px}
     .summary-box__label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
     .summary-box__label.official{color:#34d399}
@@ -52,9 +49,11 @@
     .summary-body p{margin-bottom:14px}
     .summary-body p:last-child{margin-bottom:0}
     .summary-muted{font-size:14px;color:var(--muted);font-style:italic}
-    .summary-pre{white-space:pre-wrap;font-size:14px;color:var(--dim);line-height:1.7;font-family:inherit}
 
-    /* Topics */
+    .desc-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px;margin-bottom:20px}
+    .desc-box__label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+    .desc-box__text{font-size:14px;color:var(--dim);line-height:1.7;white-space:pre-wrap}
+
     .topics-section{margin-bottom:28px}
     .topics-section h2{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
     .tags{display:flex;flex-wrap:wrap;gap:8px}
@@ -62,21 +61,10 @@
     .tag a{color:inherit}
     .tag:hover{background:rgba(99,102,241,.2);border-color:var(--accent)}
 
-    /* YouTube description */
-    .desc-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px;margin-bottom:20px}
-    .desc-box__label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
-    .desc-box__text{font-size:14px;color:var(--dim);line-height:1.7;white-space:pre-wrap}
-    .desc-box__text.collapsed{max-height:120px;overflow:hidden;position:relative}
-    .desc-box__text.collapsed::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(transparent,var(--card))}
-    .show-more-btn{background:none;border:none;color:var(--tag);font-size:12px;cursor:pointer;margin-top:8px;padding:0}
-    .show-more-btn:hover{color:#fff}
-
-    /* Loading */
     .loading{display:flex;align-items:center;justify-content:center;padding:100px 0;color:var(--muted)}
     .spinner{width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin-right:10px}
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* Footer */
     .footer{margin-top:48px;padding:22px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;flex-wrap:wrap;gap:12px}
     .footer a{color:var(--muted);transition:color .15s}
     .footer a:hover{color:var(--text)}
@@ -130,47 +118,31 @@ function render(s){
 
   const seriesTag=s.series?'<span class="sermon-hero__series">'+esc(s.series)+'</span>':'';
 
-  // Official summary section
   let officialSummaryHtml='';
   if(s.officialSummary&&s.officialSummary.trim()){
-    const parsed=parseParagraphs(s.officialSummary);
     officialSummaryHtml='<div class="summary-box">'+
       '<div class="summary-box__label official">Fellowship\'s Official Summary</div>'+
-      '<div class="summary-body">'+parsed+'</div>'+
+      '<div class="summary-body">'+parseParagraphs(s.officialSummary)+'</div>'+
     '</div>';
   }
 
-  // Subsplash study guide text section
   let studyGuideTextHtml='';
   if(s.studyGuideText&&s.studyGuideText.trim()){
     const unavail=isUnavailable(s.studyGuideText);
-    if(unavail){
-      studyGuideTextHtml='<div class="summary-box">'+
-        '<div class="summary-box__label subsplash">Fellowship\'s Subsplash Summary</div>'+
-        '<div class="summary-muted">Not available for this sermon.</div>'+
-      '</div>';
-    }else{
-      const parsed=parseParagraphs(s.studyGuideText);
-      studyGuideTextHtml='<div class="summary-box">'+
-        '<div class="summary-box__label subsplash">Fellowship\'s Subsplash Summary</div>'+
-        '<div class="summary-body">'+parsed+'</div>'+
-      '</div>';
-    }
-  }
-
-  // YouTube description — collapsible if long
-  let descHtml='';
-  if(s.youtubeDescription&&s.youtubeDescription.trim()){
-    const isLong=s.youtubeDescription.length>400;
-    const textId='desc-text-'+Math.random().toString(36).substr(2,6);
-    descHtml='<div class="desc-box">'+
-      '<div class="desc-box__label"><span>YouTube Description</span></div>'+
-      '<div class="desc-box__text'+(isLong?' collapsed':'')+'" id="'+textId+'">'+esc(s.youtubeDescription)+'</div>'+
-      (isLong?'<button class="show-more-btn" onclick="toggleDesc(\''+textId+'\',this)">Show more &#8595;</button>':'')+
+    studyGuideTextHtml='<div class="summary-box">'+
+      '<div class="summary-box__label subsplash">Fellowship\'s Subsplash Summary</div>'+
+      (unavail?'<div class="summary-muted">Not available for this sermon.</div>':'<div class="summary-body">'+parseParagraphs(s.studyGuideText)+'</div>')+
     '</div>';
   }
 
-  // Topics
+  let descHtml='';
+  if(s.youtubeDescription&&s.youtubeDescription.trim()){
+    descHtml='<div class="desc-box">'+
+      '<div class="desc-box__label">YouTube Description</div>'+
+      '<div class="desc-box__text">'+esc(s.youtubeDescription)+'</div>'+
+    '</div>';
+  }
+
   const topicsHtml=(s.topics||[]).length?
     '<div class="topics-section"><h2>Topics</h2><div class="tags">'+
     (s.topics||[]).map(t=>'<span class="tag"><a href="/fellowshipchurch?search='+encodeURIComponent(t)+'">'+esc(t)+'</a></span>').join('')+
@@ -192,17 +164,6 @@ function render(s){
 
   document.title=(s.scripture||s.title)+(s.speaker?' — '+s.speaker:'')+' — Fellowship Archive';
 }
-
-window.toggleDesc=function(id,btn){
-  const el=document.getElementById(id);
-  if(el.classList.contains('collapsed')){
-    el.classList.remove('collapsed');
-    btn.textContent='Show less \u2191';
-  }else{
-    el.classList.add('collapsed');
-    btn.textContent='Show more \u2193';
-  }
-};
 
 async function load(){
   const id=new URLSearchParams(location.search).get('id');
