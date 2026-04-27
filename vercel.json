@@ -1,13 +1,11 @@
 {
   "rewrites": [
-    {
-      "source": "/demo",
-      "destination": "/demos.html"
-    },
-    {
-      "source": "/demos",
-      "destination": "/demos.html"
-    }
+    { "source": "/demo", "destination": "/demos.html" },
+    { "source": "/demos", "destination": "/demos.html" },
+    { "source": "/fellowship", "destination": "/fellowship/index.html" },
+    { "source": "/fellowship/sermon", "destination": "/fellowship/sermon.html" },
+    { "source": "/fellowshipchurch", "destination": "/fellowshipchurch/index.html" },
+    { "source": "/fellowshipchurch/sermon", "destination": "/fellowshipchurch/sermon.html" }
   ],
   "cleanUrls": true,
   "trailingSlash": false
