@@ -1,5 +1,6 @@
 const NOTION_TOKEN = process.env.NOTION_TOKEN;
 const NOTION_DB = '34edc244-8617-81b8-ada6-dc6062b273a0';
+const { getBook } = require('./book-utils');
 
 function txt(p, key) {
   return (p[key] && p[key].rich_text ? p[key].rich_text.map(t => t.plain_text).join('') : '') || '';
@@ -28,6 +29,14 @@ function matchesSearch(s, q) {
   return hay.includes(q);
 }
 
+function matchesScripture(s, filterFullName) {
+  // filterFullName is a full book name like "Romans" (lowercased)
+  const book = getBook(s.scripture);
+  if (book && book.toLowerCase() === filterFullName) return true;
+  // Fallback: raw includes (handles already-full names stored directly)
+  return s.scripture.toLowerCase().includes(filterFullName);
+}
+
 module.exports = async function handler(req, res) {
   try {
     let results = [];
@@ -51,7 +60,6 @@ module.exports = async function handler(req, res) {
 
     let sermons = results.map(normalize).filter(s => s.date);
 
-    // Filters
     const q = (req.query.search || '').toLowerCase().trim();
     const speakerFilter = (req.query.speaker || '').toLowerCase().trim();
     const topicFilter = (req.query.topic || '').toLowerCase().trim();
@@ -62,7 +70,7 @@ module.exports = async function handler(req, res) {
     if (q) sermons = sermons.filter(s => matchesSearch(s, q));
     if (speakerFilter) sermons = sermons.filter(s => s.speaker.toLowerCase().includes(speakerFilter));
     if (topicFilter) sermons = sermons.filter(s => (s.topics || []).some(t => t.toLowerCase().includes(topicFilter)));
-    if (scriptureFilter) sermons = sermons.filter(s => s.scripture.toLowerCase().includes(scriptureFilter));
+    if (scriptureFilter) sermons = sermons.filter(s => matchesScripture(s, scriptureFilter));
 
     const total = sermons.length;
     const totalPages = Math.ceil(total / pageSize) || 1;

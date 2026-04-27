@@ -1,17 +1,11 @@
 const NOTION_TOKEN = process.env.NOTION_TOKEN;
 const NOTION_DB = "34edc244-8617-81b8-ada6-dc6062b273a0";
+const { getBook, ALL_BOOKS_FULL } = require('./book-utils');
 
 const OT_BOOKS=["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi"];
 const NT_BOOKS=["Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"];
-const ALL_BOOKS=[...OT_BOOKS,...NT_BOOKS];
 
 function txt(p,key){return(p[key]&&p[key].rich_text?p[key].rich_text.map(t=>t.plain_text).join(""):"")||"";}
-
-function getBook(scripture){
-  if(!scripture)return null;
-  const sl=scripture.toLowerCase();
-  return ALL_BOOKS.find(b=>sl.startsWith(b.toLowerCase()))||null;
-}
 
 module.exports=async function handler(req,res){
   try{
@@ -41,6 +35,8 @@ module.exports=async function handler(req,res){
       const speaker=txt(p,"Speaker");
       if(speaker)speakerCounts[speaker]=(speakerCounts[speaker]||0)+1;
       const scripture=txt(p,"Scripture");
+      // A scripture field can have multiple refs like "Phil 1:6; Rom 8:28"
+      // Extract the primary book from the first reference
       const book=getBook(scripture);
       if(book)bookCounts[book]=(bookCounts[book]||0)+1;
       const topics=p["Topics"]&&p["Topics"].multi_select?p["Topics"].multi_select.map(s=>s.name):[];
@@ -49,11 +45,12 @@ module.exports=async function handler(req,res){
 
     const speakers=Object.entries(speakerCounts).sort((a,b)=>b[1]-a[1]).map(([name,count])=>({name,count}));
     const books={};
-    ALL_BOOKS.forEach(b=>{books[b]=bookCounts[b]||0;});
+    [...OT_BOOKS,...NT_BOOKS].forEach(b=>{books[b]=bookCounts[b]||0;});
     const topics=Object.entries(topicCounts).sort((a,b)=>b[1]-a[1]).map(([name,count])=>({name,count}));
+    const total=results.filter(p=>p.properties["Date"]&&p.properties["Date"].date).length;
 
     res.setHeader("Cache-Control","s-maxage=600,stale-while-revalidate=1200");
-    res.json({speakers,books,topics,total:results.filter(p=>p.properties["Date"]&&p.properties["Date"].date).length});
+    res.json({speakers,books,topics,total});
   }catch(err){
     res.status(500).json({error:err.message});
   }
