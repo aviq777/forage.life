@@ -27,6 +27,7 @@ module.exports=async function handler(req,res){
     const speakerCounts={};
     const bookCounts={};
     const topicCounts={};
+    const unmatchedScriptures=[];
 
     for(const page of results){
       const p=page.properties;
@@ -35,10 +36,12 @@ module.exports=async function handler(req,res){
       const speaker=txt(p,"Speaker");
       if(speaker)speakerCounts[speaker]=(speakerCounts[speaker]||0)+1;
       const scripture=txt(p,"Scripture");
-      // A scripture field can have multiple refs like "Phil 1:6; Rom 8:28"
-      // Extract the primary book from the first reference
       const book=getBook(scripture);
-      if(book)bookCounts[book]=(bookCounts[book]||0)+1;
+      if(book){
+        bookCounts[book]=(bookCounts[book]||0)+1;
+      } else if(scripture){
+        unmatchedScriptures.push(scripture);
+      }
       const topics=p["Topics"]&&p["Topics"].multi_select?p["Topics"].multi_select.map(s=>s.name):[];
       topics.forEach(t=>{topicCounts[t]=(topicCounts[t]||0)+1;});
     }
@@ -50,7 +53,13 @@ module.exports=async function handler(req,res){
     const total=results.filter(p=>p.properties["Date"]&&p.properties["Date"].date).length;
 
     res.setHeader("Cache-Control","s-maxage=600,stale-while-revalidate=1200");
-    res.json({speakers,books,topics,total});
+    const resp={speakers,books,topics,total};
+    // debug: include unmatched samples when ?debug=1
+    if(req.query&&req.query.debug){
+      resp.unmatched_count=unmatchedScriptures.length;
+      resp.unmatched_sample=unmatchedScriptures.slice(0,60);
+    }
+    res.json(resp);
   }catch(err){
     res.status(500).json({error:err.message});
   }
