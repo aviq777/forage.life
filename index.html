@@ -632,6 +632,18 @@
         var dt = Math.min(0.05, (t - lastT) / 1000);
         lastT = t;
 
+        // FIX v3: drain edge buckets every frame. v2 stopped flakes from
+        // depositing into bucket 0 / pile.length-1, but the angle-of-repose
+        // code in deposit() still transferred 0.5 into pile[0] from pile[1]
+        // each time pile[1] got tall — pile[0] silently accumulated as
+        // "phantom snow" that the draw code rendered. Same on the right.
+        // Zeroing each frame makes the edges true drains: anything pile[1]
+        // offloads to pile[0] just falls off the side.
+        if (pile) {
+          pile[0] = 0;
+          pile[pile.length - 1] = 0;
+        }
+
         updateWeather(dt);
 
         var spawnRate = 32 * intensity;
