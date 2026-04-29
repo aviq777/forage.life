@@ -11,6 +11,108 @@
     <meta property="og:type" content="website" />
     <link rel="icon" href="/assets/cleansearch-pro-logo.png" />
     <link rel="stylesheet" href="/styles.css?v=3" />
+    <style>
+      /* ── Chapter dividers for categorized projects ───────────── */
+      .projects-stack { display: flex; flex-direction: column; gap: 0; }
+      .projects-stack .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
+        margin: 0 0 8px;
+      }
+      .cat-divider {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 24px;
+        padding: 60px 0 22px;
+        border-top: 1px solid var(--stroke);
+        position: relative;
+      }
+      .projects-stack > .cat-divider:first-child {
+        padding-top: 28px;
+        border-top: none;
+      }
+      .cat-divider__heading { display: flex; flex-direction: column; gap: 4px; }
+      .cat-divider__title {
+        font-size: clamp(22px, 2.2vw, 30px);
+        font-weight: 700;
+        letter-spacing: -0.018em;
+        margin: 0;
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        line-height: 1.1;
+        color: var(--text);
+      }
+      .cat-divider__num {
+        font-family: ui-monospace, "SF Mono", "Fira Code", Consolas, monospace;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        color: var(--muted);
+        position: relative;
+        top: -3px;
+        padding: 3px 8px;
+        border-radius: 6px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--stroke);
+        white-space: nowrap;
+      }
+      .cat-divider__sub {
+        font-size: 14px;
+        color: var(--muted);
+        margin: 0;
+        max-width: 56ch;
+      }
+      .cat-divider__meta {
+        font-family: ui-monospace, "SF Mono", "Fira Code", Consolas, monospace;
+        font-size: 10.5px;
+        color: var(--muted);
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        white-space: nowrap;
+        padding-bottom: 4px;
+      }
+      .cat-divider__count { font-variant-numeric: tabular-nums; }
+      .cat-dots {
+        display: inline-flex;
+        gap: 5px;
+        align-items: center;
+      }
+      .cat-dots span {
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: var(--stroke);
+        display: inline-block;
+      }
+      .cat-dots span.is-live {
+        background: var(--aqua);
+        box-shadow: 0 0 8px rgba(18,233,255,0.55);
+      }
+      .cat-dots span.is-paper {
+        background: var(--orange);
+        box-shadow: 0 0 6px rgba(255,106,0,0.45);
+      }
+      /* Per-category accent on the numbered tag */
+      .cat-divider[data-cat="trading"] .cat-divider__num { color: #ffd357; border-color: rgba(255,211,87,0.28); background: rgba(255,211,87,0.06); }
+      .cat-divider[data-cat="saas"]    .cat-divider__num { color: #5b86ff; border-color: rgba(91,134,255,0.28);  background: rgba(91,134,255,0.06); }
+      .cat-divider[data-cat="media"]   .cat-divider__num { color: #c19eff; border-color: rgba(193,158,255,0.28); background: rgba(193,158,255,0.06); }
+      .cat-divider[data-cat="digital"] .cat-divider__num { color: #ff8a3c; border-color: rgba(255,138,60,0.28);  background: rgba(255,138,60,0.06); }
+      .cat-divider[data-cat="health"]  .cat-divider__num { color: #4ce39e; border-color: rgba(76,227,158,0.28);  background: rgba(76,227,158,0.06); }
+
+      @media (max-width: 640px) {
+        .cat-divider {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          padding: 44px 0 18px;
+        }
+        .cat-divider__meta { padding-bottom: 0; }
+      }
+    </style>
   </head>
 
   <body>
@@ -59,114 +161,26 @@
         </div>
       </section>
 
-      <!-- ── PROJECTS ── -->
-      <section id="projects">
-        <h2 class="section-title">Projects</h2>
-        <div class="project-grid">
+      <!-- ── PROJECTS (categorized) ── -->
+      <section id="projects" class="projects-stack">
 
-          <!-- CleanSearch Pro -->
-          <a class="project-card" href="https://chromewebstore.google.com/detail/cleansearch-pro-google-ai/bnoneaegdjkifkgmlfnlnimphjcopnli" target="_blank" rel="noopener noreferrer">
-            <div class="project-card__header">
-              <span class="project-tag project-tag--aqua">Chrome Extension</span>
-              <span class="project-arrow">↗</span>
-            </div>
-            <h3 class="project-card__name">CleanSearch Pro</h3>
-            <p class="project-card__desc">Removes AI clutter and sponsored noise from Google search. Fast, private, and lightweight.</p>
-            <div class="project-card__footer">
-              <span class="project-card__url">Chrome Web Store</span>
-            </div>
-          </a>
-
-          <!-- quickstage.io -->
-          <a class="project-card" href="https://quickstage.io" target="_blank" rel="noopener noreferrer">
-            <div class="project-card__header">
-              <span class="project-tag project-tag--blue">AI · Real Estate</span>
-              <span class="project-arrow">↗</span>
-            </div>
-            <h3 class="project-card__name">quickstage.io</h3>
-            <p class="project-card__desc">AI-powered real estate staging. Upload a photo, get a professionally staged version instantly.</p>
-            <div class="project-card__footer">
-              <span class="project-card__url">quickstage.io</span>
-            </div>
-          </a>
-
-          <!-- Ardd & Winter -->
-          <a class="project-card" href="https://lux.forage.life" target="_blank" rel="noopener noreferrer">
-            <div class="project-card__header">
-              <span class="project-tag project-tag--orange">AI · Enterprise</span>
-              <span class="project-arrow">↗</span>
-            </div>
-            <h3 class="project-card__name">Ardd &amp; Winter</h3>
-            <p class="project-card__desc">Lighting Intelligence Platform. AI workflow automation built for an East Tennessee lighting &amp; electrical company.</p>
-            <div class="project-card__footer">
-              <span class="project-card__url">lux.forage.life</span>
-            </div>
-          </a>
-
-          <!-- Fellowship Sermon Library -->
-          <a class="project-card" href="/fellowship">
-            <div class="project-card__header">
-              <span class="project-tag project-tag--purple">AI &middot; Theology</span>
-              <span class="project-arrow">&#8599;</span>
-            </div>
-            <h3 class="project-card__name">Fellowship Sermon Library</h3>
-            <p class="project-card__desc">Every Sunday sermon from Fellowship Church Knoxville, analyzed for passage, themes, Greek&nbsp;&amp;&nbsp;Hebrew words, and theological depth.</p>
-            <div class="project-card__footer">
-              <span class="project-card__url">forage.life/fellowship</span>
-            </div>
-          </a>
-
-          <!-- AI UGC TikTok Seller (local-only) -->
-          <a class="project-card" href="http://localhost:5678/workflow/O1qZ0EydzKqEe14o" rel="noopener noreferrer">
-            <div class="project-card__header">
-              <span class="project-tag project-tag--blue">AI &middot; UGC</span>
-              <span class="project-badge">Local Only</span>
-            </div>
-            <h3 class="project-card__name">AI UGC TikTok Seller</h3>
-            <p class="project-card__desc">Automated UGC video pipeline for TikTok Shop. Researches products, generates dialogue, and synthesizes 3-clip videos with AI influencers.</p>
-            <div class="project-card__footer">
-              <span class="project-card__url project-card__url--muted">localhost:5678 · n8n</span>
-            </div>
-          </a>
-
-          <!-- Etsy Digital Products Seller (planning, points to inspiration listing) -->
-          <a class="project-card project-card--muted" href="https://www.etsy.com/listing/1702251197/wedding-planner-spreadsheet-wedding" target="_blank" rel="noopener noreferrer">
-            <div class="project-card__header">
-              <span class="project-tag project-tag--purple">AI &middot; Etsy</span>
-              <span class="project-badge">Planning</span>
-            </div>
-            <h3 class="project-card__name">Etsy Digital Products Seller</h3>
-            <p class="project-card__desc">AI-managed Etsy shop selling digital-only products. Agent handles product research, listings, and customer support — reverse-engineering top sellers at lower cost.</p>
-            <div class="project-card__footer">
-              <span class="project-card__url project-card__url--muted">Inspiration: wedding planner listing</span>
-            </div>
-          </a>
-
-          <!-- Jeff Fitness -->
-          <div class="project-card project-card--muted">
-            <div class="project-card__header">
-              <span class="project-tag project-tag--muted">Fitness · PWA</span>
-              <span class="project-badge">Private Beta</span>
-            </div>
-            <h3 class="project-card__name">Jeff Fitness</h3>
-            <p class="project-card__desc">A personal workout tracking progressive web app with custom plans, logging, and progress visualization.</p>
-            <div class="project-card__footer">
-              <span class="project-card__url project-card__url--muted">Coming soon</span>
-            </div>
+        <!-- Chapter 01 — Trading & Markets -->
+        <div class="cat-divider" data-cat="trading">
+          <div class="cat-divider__heading">
+            <h2 class="cat-divider__title">
+              <span class="cat-divider__num">01 / TRADING</span>
+              Trading &amp; Markets
+            </h2>
+            <p class="cat-divider__sub">Strategy bots, copy trading, dashboards. Real money in, real money out.</p>
           </div>
-
-        
-          <a class="project-card" href="https://dashboard.forage.life">
-            <div class="project-card__header">
-              <span class="project-tag project-tag--blue">Local · SaaS</span>
-              <span class="project-badge">Private</span>
-            </div>
-            <h3 class="project-card__name">Website Pipeline</h3>
-            <p class="project-card__desc">Automated demo-site generator for local businesses. Scrapes leads, scores fit, builds tailored landing pages, and ships postcards with QR codes.</p>
-            <div class="project-card__footer">
-              <span class="project-card__url">dashboard.forage.life</span>
-            </div>
-          </a>
+          <div class="cat-divider__meta">
+            <span class="cat-divider__count">3 projects</span>
+            <span class="cat-dots" aria-label="2 live, 1 paper">
+              <span class="is-live"></span><span class="is-live"></span><span class="is-paper"></span>
+            </span>
+          </div>
+        </div>
+        <div class="project-grid">
           <a class="project-card" href="/btcpoly">
             <div class="project-card__header">
               <span class="project-tag project-tag--gold">LIVE</span>
@@ -178,8 +192,199 @@
               <span class="project-card__url">forage.life/btcpoly</span>
             </div>
           </a>
+          <a class="project-card" href="/budfox">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--aqua">PAPER</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <h3 class="project-card__name">Bud Fox</h3>
+            <p class="project-card__desc">Patient H4 forex bot on Oanda. Blue Horseshoe loves a clean pin bar at a major level &mdash; life all comes down to a few moments, and this bot waits for them.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url">forage.life/budfox</span>
+            </div>
+          </a>
+          <a class="project-card" href="/polycopy">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--blue">LIVE</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <h3 class="project-card__name">PolyCopy</h3>
+            <p class="project-card__desc">Watching the smartest money on Polymarket. The most valuable commodity I know of is information &mdash; alerts when top traders move, on-chain.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url">forage.life/polycopy</span>
+            </div>
+          </a>
+        </div>
 
-          <!-- Back Health E-Book (planning) -->
+        <!-- Chapter 02 — SaaS & Products -->
+        <div class="cat-divider" data-cat="saas">
+          <div class="cat-divider__heading">
+            <h2 class="cat-divider__title">
+              <span class="cat-divider__num">02 / PRODUCTS</span>
+              SaaS &amp; Products
+            </h2>
+            <p class="cat-divider__sub">Tools and services I ship to real customers.</p>
+          </div>
+          <div class="cat-divider__meta">
+            <span class="cat-divider__count">4 projects</span>
+            <span class="cat-dots" aria-label="3 live, 1 private">
+              <span class="is-live"></span><span class="is-live"></span><span class="is-live"></span><span></span>
+            </span>
+          </div>
+        </div>
+        <div class="project-grid">
+          <a class="project-card" href="https://chromewebstore.google.com/detail/cleansearch-pro-google-ai/bnoneaegdjkifkgmlfnlnimphjcopnli" target="_blank" rel="noopener noreferrer">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--aqua">Chrome Extension</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <h3 class="project-card__name">CleanSearch Pro</h3>
+            <p class="project-card__desc">Removes AI clutter and sponsored noise from Google search. Fast, private, and lightweight.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url">Chrome Web Store</span>
+            </div>
+          </a>
+          <a class="project-card" href="https://quickstage.io" target="_blank" rel="noopener noreferrer">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--blue">AI · Real Estate</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <h3 class="project-card__name">quickstage.io</h3>
+            <p class="project-card__desc">AI-powered real estate staging. Upload a photo, get a professionally staged version instantly.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url">quickstage.io</span>
+            </div>
+          </a>
+          <a class="project-card" href="https://lux.forage.life" target="_blank" rel="noopener noreferrer">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--orange">AI · Enterprise</span>
+              <span class="project-arrow">↗</span>
+            </div>
+            <h3 class="project-card__name">Ardd &amp; Winter</h3>
+            <p class="project-card__desc">Lighting Intelligence Platform. AI workflow automation built for an East Tennessee lighting &amp; electrical company.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url">lux.forage.life</span>
+            </div>
+          </a>
+          <a class="project-card" href="https://dashboard.forage.life">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--blue">Local · SaaS</span>
+              <span class="project-badge">Private</span>
+            </div>
+            <h3 class="project-card__name">Website Pipeline</h3>
+            <p class="project-card__desc">Automated demo-site generator for local businesses. Scrapes leads, scores fit, builds tailored landing pages, and ships postcards with QR codes.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url">dashboard.forage.life</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Chapter 03 — Media & Content -->
+        <div class="cat-divider" data-cat="media">
+          <div class="cat-divider__heading">
+            <h2 class="cat-divider__title">
+              <span class="cat-divider__num">03 / MEDIA</span>
+              Media &amp; Content
+            </h2>
+            <p class="cat-divider__sub">AI-driven research, analysis, and video pipelines.</p>
+          </div>
+          <div class="cat-divider__meta">
+            <span class="cat-divider__count">2 projects</span>
+            <span class="cat-dots" aria-label="1 live, 1 local">
+              <span class="is-live"></span><span></span>
+            </span>
+          </div>
+        </div>
+        <div class="project-grid">
+          <a class="project-card" href="/fellowship">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--purple">AI &middot; Theology</span>
+              <span class="project-arrow">&#8599;</span>
+            </div>
+            <h3 class="project-card__name">Fellowship Sermon Library</h3>
+            <p class="project-card__desc">Every Sunday sermon from Fellowship Church Knoxville, analyzed for passage, themes, Greek&nbsp;&amp;&nbsp;Hebrew words, and theological depth.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url">forage.life/fellowship</span>
+            </div>
+          </a>
+          <a class="project-card" href="/fellowshipchurch">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--purple">Official &middot; Theology</span>
+              <span class="project-arrow">&#8599;</span>
+            </div>
+            <h3 class="project-card__name">Fellowship Official Archive</h3>
+            <p class="project-card__desc">1,074 sermons straight from Fellowship Church&rsquo;s official Subsplash feed &mdash; browse by speaker, book of the Bible, or topic with full study guides.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url">forage.life/fellowshipchurch</span>
+            </div>
+          </a>
+          <a class="project-card" href="http://localhost:5678/workflow/O1qZ0EydzKqEe14o" rel="noopener noreferrer">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--blue">AI &middot; UGC</span>
+              <span class="project-badge">Local Only</span>
+            </div>
+            <h3 class="project-card__name">AI UGC TikTok Seller</h3>
+            <p class="project-card__desc">Automated UGC video pipeline for TikTok Shop. Researches products, generates dialogue, and synthesizes 3-clip videos with AI influencers.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url project-card__url--muted">localhost:5678 · n8n</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Chapter 04 — Digital Products -->
+        <div class="cat-divider" data-cat="digital">
+          <div class="cat-divider__heading">
+            <h2 class="cat-divider__title">
+              <span class="cat-divider__num">04 / DIGITAL</span>
+              Digital Products
+            </h2>
+            <p class="cat-divider__sub">Templates, spreadsheets, and storefronts built once, sold many.</p>
+          </div>
+          <div class="cat-divider__meta">
+            <span class="cat-divider__count">1 project</span>
+            <span class="cat-dots" aria-label="planning"><span></span></span>
+          </div>
+        </div>
+        <div class="project-grid">
+          <a class="project-card project-card--muted" href="https://www.etsy.com/listing/1702251197/wedding-planner-spreadsheet-wedding" target="_blank" rel="noopener noreferrer">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--purple">AI &middot; Etsy</span>
+              <span class="project-badge">Planning</span>
+            </div>
+            <h3 class="project-card__name">Etsy Digital Products Seller</h3>
+            <p class="project-card__desc">AI-managed Etsy shop selling digital-only products. Agent handles product research, listings, and customer support — reverse-engineering top sellers at lower cost.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url project-card__url--muted">Inspiration: wedding planner listing</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Chapter 05 — Wellness -->
+        <div class="cat-divider" data-cat="health">
+          <div class="cat-divider__heading">
+            <h2 class="cat-divider__title">
+              <span class="cat-divider__num">05 / WELLNESS</span>
+              Personal &amp; Health
+            </h2>
+            <p class="cat-divider__sub">Long-running personal projects in fitness and recovery.</p>
+          </div>
+          <div class="cat-divider__meta">
+            <span class="cat-divider__count">2 projects</span>
+            <span class="cat-dots" aria-label="in progress"><span></span><span></span></span>
+          </div>
+        </div>
+        <div class="project-grid">
+          <div class="project-card project-card--muted">
+            <div class="project-card__header">
+              <span class="project-tag project-tag--muted">Fitness · PWA</span>
+              <span class="project-badge">Private Beta</span>
+            </div>
+            <h3 class="project-card__name">Jeff Fitness</h3>
+            <p class="project-card__desc">A personal workout tracking progressive web app with custom plans, logging, and progress visualization.</p>
+            <div class="project-card__footer">
+              <span class="project-card__url project-card__url--muted">Coming soon</span>
+            </div>
+          </div>
           <div class="project-card project-card--muted">
             <div class="project-card__header">
               <span class="project-tag project-tag--orange">Health &middot; Book</span>
@@ -192,6 +397,7 @@
             </div>
           </div>
         </div>
+
       </section>
 
             <!-- ── OPENCLAW HUB ── -->
