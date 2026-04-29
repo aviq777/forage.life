@@ -599,24 +599,25 @@
         intensity += (intensityTarget - intensity) * Math.min(1, dt * 0.4);
       }
 
-      // FIX: return a sentinel (way below the canvas) for out-of-range x so
-      // off-screen flakes don't collide with edge buckets.
+      // FIX v2: edge buckets (i=0 and i=pile.length-1) are treated as DRAINS.
+      // The earlier fix only handled out-of-range x. Underlying bug was
+      // structural: edge buckets only have ONE angle-of-repose neighbor while
+      // interior buckets have TWO, so edges accumulated faster — that's why
+      // the leftmost (and rightmost, less visibly) column built a tall wall.
+      // Plus wraparound (x in [-4,0) wrapping to x near W) could deposit into
+      // the rightmost bucket on the very next frame. Now: anything in the
+      // outermost column on each side just falls through, no pile, no collide.
       function pileTopAt(x) {
         var i = Math.floor(x / COL_W);
-        if (i < 0 || i >= pile.length) return H + 1000;
+        if (i <= 0 || i >= pile.length - 1) return H + 1000;
         return H - pile[i];
       }
-
-      // FIX: ignore deposits for off-screen x. Previously Math.max(0, ...) and
-      // Math.min(pile.length-1, ...) clamped them to bucket 0 (or last), which
-      // accumulated leftward-drifting flakes in the leftmost ~4-pixel column.
       function deposit(x) {
         var i = Math.floor(x / COL_W);
-        if (i < 0 || i >= pile.length) return;
+        if (i <= 0 || i >= pile.length - 1) return;
         pile[i] += 0.9;
-        // simple angle of repose
-        if (i > 0 && pile[i] - pile[i - 1] > 4) { pile[i] -= 0.5; pile[i - 1] += 0.5; }
-        if (i < pile.length - 1 && pile[i] - pile[i + 1] > 4) { pile[i] -= 0.5; pile[i + 1] += 0.5; }
+        if (pile[i] - pile[i - 1] > 4) { pile[i] -= 0.5; pile[i - 1] += 0.5; }
+        if (pile[i] - pile[i + 1] > 4) { pile[i] -= 0.5; pile[i + 1] += 0.5; }
       }
 
       function avgPile() {
