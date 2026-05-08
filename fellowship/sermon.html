@@ -11,6 +11,8 @@
       --border:#1e2940;--border-h:#2e3f60;
       --text:#e2e8f0;--muted:#64748b;--dim:#8b9db5;
       --accent:#6366f1;--purple:#8b5cf6;
+      --official:#34d399;--official-bg:rgba(52,211,153,.08);--official-b:rgba(52,211,153,.22);
+      --subsplash:#f59e0b;
       --tag-bg:rgba(99,102,241,.1);--tag:#a5b4fc;--tag-b:rgba(99,102,241,.25);
       --r:12px;
     }
@@ -31,35 +33,59 @@
     .sermon-hero__date{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
     .sermon-hero__passage{font-size:clamp(22px,4vw,36px);font-weight:700;color:var(--tag);margin-bottom:8px;line-height:1.1}
     .sermon-hero__title{font-size:clamp(16px,2.5vw,22px);font-weight:600;color:#fff;margin-bottom:10px;line-height:1.3}
-    .sermon-hero__meta{font-size:14px;color:var(--muted);margin-bottom:20px}
+    .sermon-hero__meta{font-size:14px;color:var(--muted);margin-bottom:16px}
+    .sermon-hero__series{display:inline-block;padding:3px 10px;background:var(--tag-bg);border:1px solid var(--tag-b);border-radius:20px;font-size:12px;color:var(--tag);margin-bottom:16px}
+    .btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
     .yt-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(255,68,68,.1);border:1px solid rgba(255,68,68,.3);border-radius:var(--r);color:#ff7070;font-size:13px;transition:all .15s}
     .yt-btn:hover{background:rgba(255,68,68,.18);border-color:rgba(255,68,68,.5);color:#ff9090}
-.yt-btn svg{width:16px;height:16px}
-    .guide-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.3);border-radius:var(--r);color:var(--tag);font-size:13px;transition:all .15s;margin-left:10px}
+    .yt-btn svg{width:16px;height:16px}
+    .guide-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.3);border-radius:var(--r);color:var(--tag);font-size:13px;transition:all .15s}
     .guide-btn:hover{background:rgba(99,102,241,.18);border-color:var(--accent);color:#fff}
     .guide-btn svg{width:15px;height:15px}
+
+    /* Section banner — used for both Official and Forage Analysis */
+    .section-banner{display:flex;align-items:center;gap:14px;margin:36px 0 18px;padding:14px 18px;border-radius:var(--r);border-left:4px solid var(--accent);background:linear-gradient(90deg,rgba(99,102,241,.06),transparent)}
+    .section-banner--official{border-left-color:var(--official);background:linear-gradient(90deg,var(--official-bg),transparent)}
+    .section-banner__pill{font-size:9px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;padding:4px 9px;border-radius:6px;background:var(--accent);color:#fff;flex-shrink:0}
+    .section-banner--official .section-banner__pill{background:var(--official);color:#062e1d}
+    .section-banner__title{font-size:16px;font-weight:600;color:var(--text)}
+    .section-banner__title em{font-style:normal;color:var(--muted);font-weight:400;font-size:13px;margin-left:6px}
+
+    /* Soft divider between the two halves */
+    .section-divider{display:flex;align-items:center;gap:14px;margin:42px 0 0;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+    .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
 
     /* Pending banner */
     .pending{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;text-align:center;color:var(--muted);margin:20px 0}
     .pending strong{color:var(--dim);display:block;margin-bottom:4px}
 
     /* Key quote */
-    .key-quote{background:var(--card);border-left:3px solid var(--accent);border-radius:0 var(--r) var(--r) 0;padding:18px 22px;margin:28px 0;font-size:16px;line-height:1.6;color:var(--text);font-style:italic}
+    .key-quote{background:var(--card);border-left:3px solid var(--accent);border-radius:0 var(--r) var(--r) 0;padding:18px 22px;margin:22px 0;font-size:16px;line-height:1.6;color:var(--text);font-style:italic}
     .key-quote::before{content:'\201C';font-size:44px;line-height:0;vertical-align:-16px;color:var(--accent);margin-right:3px;font-style:normal}
 
-    /* Summary */
-    .summary-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px 26px;margin-bottom:20px}
-    .summary-box > .summary-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
-    .summary-body p{font-size:15px;color:var(--dim);line-height:1.75;margin-bottom:14px}
+    /* Summary boxes (used by both halves) */
+    .summary-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px 26px;margin-bottom:18px}
+    .summary-box__label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+    .summary-box__label--official{color:var(--official)}
+    .summary-box__label--subsplash{color:var(--subsplash)}
+    .summary-body{font-size:15px;color:var(--dim);line-height:1.75}
+    .summary-body p{margin-bottom:14px}
     .summary-body p:last-child{margin-bottom:0}
     .summary-body h3{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text);margin:20px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
     .summary-body h3:first-child{margin-top:0}
     .summary-body ul{margin:0 0 14px 0;padding-left:18px}
     .summary-body ul li{font-size:15px;color:var(--dim);line-height:1.7;margin-bottom:6px}
     .summary-body strong{color:var(--text);font-weight:600}
+    .summary-muted{font-size:14px;color:var(--muted);font-style:italic}
+
+    /* YouTube description box */
+    .desc-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px;margin-bottom:18px}
+    .desc-box__label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+    .desc-box__label--official{color:var(--official)}
+    .desc-box__text{font-size:14px;color:var(--dim);line-height:1.7;white-space:pre-wrap}
 
     /* Analysis grid */
-    .analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+    .analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
     .field{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px}
     .field--full{grid-column:1/-1}
     .field__label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
@@ -67,21 +93,16 @@
     .field__value--strong{color:var(--text);font-size:14px}
 
     /* Topics */
-    .topics-section{margin-bottom:28px}
+    .topics-section{margin-top:30px;margin-bottom:28px}
     .topics-section h2{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
     .tags{display:flex;flex-wrap:wrap;gap:8px}
     .tag{padding:5px 12px;background:var(--tag-bg);border:1px solid var(--tag-b);border-radius:20px;font-size:13px;color:var(--tag)}
+    .tag:hover{background:rgba(99,102,241,.2);border-color:var(--accent)}
 
     /* Cross-ref links */
     .xref-links{display:flex;flex-wrap:wrap;gap:8px}
     .xref-link{padding:4px 11px;background:var(--tag-bg);border:1px solid var(--tag-b);border-radius:20px;font-size:12px;color:var(--tag);transition:all .15s;white-space:nowrap}
     .xref-link:hover{background:rgba(99,102,241,.2);border-color:var(--accent);color:#fff}
-
-
-    /* YouTube Description */
-    .desc-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px;margin:20px 0}
-    .desc-box__label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-    .desc-box__text{font-size:14px;color:var(--dim);line-height:1.7;white-space:pre-wrap}
 
     /* Loading */
     .loading{display:flex;align-items:center;justify-content:center;padding:100px 0;color:var(--muted)}
@@ -93,7 +114,7 @@
     .footer a{color:var(--muted);transition:color .15s}
     .footer a:hover{color:var(--text)}
 
-    @media(max-width:640px){.analysis-grid{grid-template-columns:1fr}.field--full{grid-column:1}}
+    @media(max-width:640px){.analysis-grid{grid-template-columns:1fr}.field--full{grid-column:1}.btn-row{flex-direction:column;align-items:flex-start}}
   </style>
 </head>
 <body>
@@ -109,7 +130,7 @@
   <div id="content"><div class="loading"><div class="spinner"></div>Loading...</div></div>
 
   <footer class="footer">
-    <span>&copy; 2025 forage.life &mdash; Personal study project</span>
+    <span>&copy; 2025 forage.life &mdash; Fellowship's official archive plus Forage AI analysis</span>
     <a href="/fellowship">&#8592; Back to library</a>
   </footer>
 </div>
@@ -118,66 +139,56 @@ function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace
 function fmt(d){if(!d)return'';const[y,m,dd]=d.split('-');return new Date(+y,+m-1,+dd).toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})}
 
 function inlineFormat(text){
-  // Bold: **text**
   return esc(text).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
 }
 
-function formatSummary(raw){
+function parseParagraphs(text){
+  if(!text)return'';
+  const blocks=text.replace(/\r\n/g,'\n').replace(/\r/g,'\n').trim().split(/\n{2,}/);
+  return blocks.map(function(b){const t=b.trim();return t?'<p>'+esc(t)+'</p>':''}).join('');
+}
+
+function formatAnalysisSummary(raw){
   if(!raw)return'';
   let cleaned=raw.replace(/^Kind:\s*captions\s*Language:\s*\w+\s*/,'').trim();
   const text=cleaned.replace(/\r\n/g,'\n').replace(/\r/g,'\n').trim();
-  const normalized=text.replace(/([^\n])\n?\[([^\]]+)\]\s*(?=\S)/g,function(m,before,heading){
-    return before+'\n\n['+heading+']\n';
-  });
+  const normalized=text.replace(/([^\n])\n?\[([^\]]+)\]\s*(?=\S)/g,function(m,before,heading){return before+'\n\n['+heading+']\n'});
   const blocks=normalized.split(/\n{2,}/);
   let html='';
   for(const block of blocks){
     const trimmed=block.trim();
     if(!trimmed)continue;
     const headingOnly=trimmed.match(/^\[([^\]]+)\]$/);
-    if(headingOnly){
-      html+='<h3>'+esc(headingOnly[1])+'</h3>';
-      continue;
-    }
+    if(headingOnly){html+='<h3>'+esc(headingOnly[1])+'</h3>';continue}
     const inlineH=trimmed.match(/^\[([^\]]+)\]\s+([\s\S]+)$/);
     if(inlineH){
       html+='<h3>'+esc(inlineH[1])+'</h3>';
       const rest=inlineH[2].trim();
-      const restLines=rest.split('\n');
-      const paraText=restLines.map(function(l){return l.trim();}).filter(Boolean).join(' ');
-      html+='<p>'+inlineFormat(paraText)+'</p>';
-      continue;
+      const paraText=rest.split('\n').map(l=>l.trim()).filter(Boolean).join(' ');
+      html+='<p>'+inlineFormat(paraText)+'</p>';continue;
     }
     const lines=trimmed.split('\n');
-    const bulletLines=lines.filter(function(l){return /^[-\u2022*]\s/.test(l.trim());});
-    if(bulletLines.length>1||(bulletLines.length===1&&lines.length===1&&/^[-\u2022*]\s/.test(trimmed))){
+    const bulletLines=lines.filter(l=>/^[-•*]\s/.test(l.trim()));
+    if(bulletLines.length>1||(bulletLines.length===1&&lines.length===1&&/^[-•*]\s/.test(trimmed))){
       html+='<ul>';
       for(const line of lines){
         const t=line.trim();
-        if(/^[-\u2022*]\s/.test(t)){
-          html+='<li>'+inlineFormat(t.replace(/^[-\u2022*]\s+/,''))+'</li>';
-        } else if(t){
-          html+='<li>'+inlineFormat(t)+'</li>';
-        }
+        if(/^[-•*]\s/.test(t))html+='<li>'+inlineFormat(t.replace(/^[-•*]\s+/,''))+'</li>';
+        else if(t)html+='<li>'+inlineFormat(t)+'</li>';
       }
-      html+='</ul>';
-      continue;
+      html+='</ul>';continue;
     }
-    const numberedLines=lines.filter(function(l){return /^\d+\.\s/.test(l.trim());});
+    const numberedLines=lines.filter(l=>/^\d+\.\s/.test(l.trim()));
     if(numberedLines.length>1){
       html+='<ul>';
       for(const line of lines){
         const t=line.trim();
-        if(/^\d+\.\s/.test(t)){
-          html+='<li>'+inlineFormat(t.replace(/^\d+\.\s+/,''))+'</li>';
-        } else if(t){
-          html+='<li>'+inlineFormat(t)+'</li>';
-        }
+        if(/^\d+\.\s/.test(t))html+='<li>'+inlineFormat(t.replace(/^\d+\.\s+/,''))+'</li>';
+        else if(t)html+='<li>'+inlineFormat(t)+'</li>';
       }
-      html+='</ul>';
-      continue;
+      html+='</ul>';continue;
     }
-    const paraText=lines.map(function(l){return l.trim();}).filter(Boolean).join(' ');
+    const paraText=lines.map(l=>l.trim()).filter(Boolean).join(' ');
     html+='<p>'+inlineFormat(paraText)+'</p>';
   }
   return html;
@@ -190,7 +201,7 @@ function field(label,value,full,strong){
     '<div class="field__value'+(strong?' field__value--strong':'')+'">'+esc(value)+'</div>'+
   '</div>';
 }
-function fieldLinks(label,value,full){
+function fieldLinks(label,value){
   if(!value||value.startsWith('Transcript unavailable'))return'';
   const links=value.split(/[,;]+/).map(t=>t.trim()).filter(Boolean).map(t=>
     '<a class="xref-link" href="/fellowship?search='+encodeURIComponent(t)+'">'+esc(t)+'</a>'
@@ -201,58 +212,159 @@ function fieldLinks(label,value,full){
   '</div>';
 }
 
-function render(s){
-  const hasAnalysis=!!(s.summary&&!s.summary.startsWith('Transcript'));
-  const isPending=!hasAnalysis;
+function isUnavailable(t){return !t||t.toLowerCase().includes('not available')||t.toLowerCase().includes('unavailable')}
 
-  const yt=s.youtubeUrl?'<a class="yt-btn" href="'+esc(s.youtubeUrl)+'" target="_blank" rel="noopener">'+
+// Strip leading metadata header (title, "April 5, 2026 • Speaker • Scripture") so the
+// description doesn't redundantly repeat what's already in the hero.
+function stripDescHeader(s){
+  if(!s)return'';
+  const lines=s.replace(/\r\n/g,'\n').split('\n');
+  // Drop the first 4 lines if line 3 looks like "Date • Speaker • Scripture"
+  if(lines.length>=4 && /[•·]/.test(lines[2])){
+    return lines.slice(4).join('\n').trimStart();
+  }
+  return s;
+}
+
+function render(data){
+  const F = data.fellowship || {};
+  const O = data.official   || {};
+
+  const title    = O.title || F.title || '';
+  const date     = O.date  || F.date  || data.date || '';
+  const preacher = F.preacher || O.speaker || '';
+  const series   = O.series || F.series || '';
+  const scripture= O.scripture || F.passage || '';
+  const ytUrl    = O.youtubeUrl || F.youtubeUrl || '';
+  const ytDesc   = O.youtubeDescription || F.youtubeDescription || '';
+  const guideUrl = O.studyGuideUrl || '';
+
+  // ---------- Hero ----------
+  const ytBtn=ytUrl?'<a class="yt-btn" href="'+esc(ytUrl)+'" target="_blank" rel="noopener">'+
     '<svg viewBox="0 0 24 24" fill="#ff4444"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>'+
     'Watch on YouTube</a>':'';
+  const guideBtn=guideUrl?'<a class="guide-btn" href="'+esc(guideUrl)+'" target="_blank" rel="noopener">'+
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>'+
+    'Study Guide (PDF)</a>':'';
+  const seriesTag=series?'<span class="sermon-hero__series">'+esc(series)+'</span>':'';
 
-  const guideBtn=s.studyGuide?'<a class="guide-btn" href="'+ esc(s.studyGuide)+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Sermon Guide</a>':'';
-  const descBox=s.youtubeDescription?'<div class="desc-box"><div class="desc-box__label">Scripture &amp; Overview</div><div class="desc-box__text">'+esc(s.youtubeDescription)+'</div></div>':'';
-  const quote=s.keyQuote?'<blockquote class="key-quote">'+esc(s.keyQuote)+'</blockquote>':'';
-  const summaryHtml=formatSummary(s.summary);
-  const summary=hasAnalysis&&summaryHtml
-    ?'<div class="summary-box"><div class="summary-label">Summary</div><div class="summary-body">'+summaryHtml+'</div></div>'
-    :'';
-  const pending=isPending?'<div class="pending"><strong>Analysis in progress</strong>This sermon is in the queue for AI analysis and will be fully annotated soon.</div>':'';
-  const topics=(s.topics||[]).length?'<div class="topics-section"><h2>Topics</h2><div class="tags">'+(s.topics.map(t=>'<a class="tag" href="/fellowship?search='+encodeURIComponent(t)+'">'+esc(t)+'</a>').join(''))+'</div></div>':'';
-
-  document.getElementById('content').innerHTML=
+  const hero =
     '<section class="sermon-hero">'+
-      '<div class="sermon-hero__date">'+fmt(s.date)+'</div>'+
-      '<div class="sermon-hero__passage">'+esc(s.passage||s.series||'')+'</div>'+
-      '<div class="sermon-hero__title">'+esc(s.title)+'</div>'+
-      '<div class="sermon-hero__meta">'+esc(s.preacher||'')+(s.series?' &middot; '+esc(s.series):'')+'</div>'+
-      yt+guideBtn+
-    '</section>'+
-    descBox+pending+quote+summary+
-    '<div class="analysis-grid">'+
-      field('Core Problem',s.coreProblem,false,true)+
-      field('Core Solution',s.coreSolution,false,true)+
-      field('Nature of God',s.natureOfGod,true)+
-      field('Sin / Fear / False Belief',s.sinFearFalseBelief,true)+
-      field('Call to Action',s.callToAction,true)+
-      field('Promise from God',s.promise)+
-      field('Core Tension',s.coreTension)+
-      field('Greek / Hebrew Words',s.greekHebrew,true)+
-      field('Series Connection',s.seriesConnection,true)+
-      fieldLinks('Cross-Reference Themes',s.crossReferenceThemes,true)+
-      field('Books of Bible Referenced',s.booksOfBible)+
-    '</div>'+topics;
+      '<div class="sermon-hero__date">'+fmt(date)+'</div>'+
+      (scripture?'<div class="sermon-hero__passage">'+esc(scripture)+'</div>':'')+
+      '<div class="sermon-hero__title">'+esc(title)+'</div>'+
+      '<div class="sermon-hero__meta">'+esc(preacher)+(series?' &middot; '+esc(series):'')+'</div>'+
+      seriesTag+
+      ((ytBtn||guideBtn)?'<div class="btn-row">'+ytBtn+guideBtn+'</div>':'')+
+    '</section>';
 
-  document.title=(s.passage||s.title)+(s.preacher?' — '+s.preacher:'')+' — Fellowship Library';
+  // ---------- Fellowship's Official ----------
+  const officialSummary = O.officialSummary;
+  const subsplashSummary = O.studyGuideText;
+  const ytDescStripped = stripDescHeader(ytDesc);
+  // Don't render the YT description block if it's just a near-duplicate of the
+  // official summary already shown above.
+  const ytDescRedundant = officialSummary && ytDescStripped &&
+        ytDescStripped.replace(/\s+/g,' ').trim().slice(0,200) ===
+        officialSummary.replace(/\s+/g,' ').trim().slice(0,200);
+
+  let officialHtml = '';
+  if(officialSummary || subsplashSummary || (ytDescStripped && !ytDescRedundant)){
+    officialHtml +=
+      '<div class="section-banner section-banner--official">'+
+        '<span class="section-banner__pill">Fellowship\'s Official</span>'+
+        '<span class="section-banner__title">From the church<em>summary, Subsplash notes, and YouTube description</em></span>'+
+      '</div>';
+    if(officialSummary){
+      officialHtml += '<div class="summary-box">'+
+        '<div class="summary-box__label summary-box__label--official">Fellowship\'s Official Summary</div>'+
+        '<div class="summary-body">'+parseParagraphs(officialSummary)+'</div>'+
+      '</div>';
+    }
+    if(subsplashSummary){
+      const unavail = isUnavailable(subsplashSummary);
+      officialHtml += '<div class="summary-box">'+
+        '<div class="summary-box__label summary-box__label--subsplash">Fellowship\'s Subsplash Summary</div>'+
+        (unavail
+          ? '<div class="summary-muted">Not available for this sermon.</div>'
+          : '<div class="summary-body">'+parseParagraphs(subsplashSummary)+'</div>')+
+      '</div>';
+    }
+    if(ytDescStripped && !ytDescRedundant){
+      officialHtml += '<div class="desc-box">'+
+        '<div class="desc-box__label desc-box__label--official">YouTube Description</div>'+
+        '<div class="desc-box__text">'+esc(ytDescStripped)+'</div>'+
+      '</div>';
+    }
+  }
+
+  // ---------- Forage AI Analysis ----------
+  const hasAnalysis=!!(F.summary && !F.summary.startsWith('Transcript'));
+  const isPending=F && !hasAnalysis;
+  const quote=F.keyQuote?'<blockquote class="key-quote">'+esc(F.keyQuote)+'</blockquote>':'';
+  const summaryHtml=formatAnalysisSummary(F.summary);
+  const summary=hasAnalysis&&summaryHtml
+    ?'<div class="summary-box"><div class="summary-box__label">Summary</div><div class="summary-body">'+summaryHtml+'</div></div>'
+    :'';
+  const pending=(F && isPending && !officialHtml)
+    ? '<div class="pending"><strong>Analysis in progress</strong>This sermon is in the queue for AI analysis and will be fully annotated soon.</div>'
+    : (F && isPending)
+      ? '<div class="pending"><strong>Forage AI analysis pending</strong>Fellowship\'s official notes are above. AI breakdown will appear here once processed.</div>'
+      : '';
+
+  let analysisGrid =
+    field('Core Problem',F.coreProblem,false,true)+
+    field('Core Solution',F.coreSolution,false,true)+
+    field('Nature of God',F.natureOfGod,true)+
+    field('Sin / Fear / False Belief',F.sinFearFalseBelief,true)+
+    field('Call to Action',F.callToAction,true)+
+    field('Promise from God',F.promise)+
+    field('Core Tension',F.coreTension)+
+    field('Greek / Hebrew Words',F.greekHebrew,true)+
+    field('Series Connection',F.seriesConnection,true)+
+    fieldLinks('Cross-Reference Themes',F.crossReferenceThemes)+
+    field('Books of Bible Referenced',F.booksOfBible);
+  const analysisGridHtml = analysisGrid ? '<div class="analysis-grid">'+analysisGrid+'</div>' : '';
+
+  let analysisHtml = '';
+  if(quote || summary || analysisGridHtml || pending){
+    analysisHtml +=
+      (officialHtml ? '<div class="section-divider">Forage AI Analysis</div>' : '')+
+      '<div class="section-banner">'+
+        '<span class="section-banner__pill">Forage AI</span>'+
+        '<span class="section-banner__title">Independent breakdown<em>generated from the YouTube transcript</em></span>'+
+      '</div>'+
+      pending+quote+summary+analysisGridHtml;
+  }
+
+  // ---------- Topics (combined, deduped) ----------
+  const topicSet = new Set();
+  (F.topics||[]).forEach(t=>topicSet.add(t));
+  (O.topics||[]).forEach(t=>topicSet.add(t));
+  const topics=topicSet.size?'<div class="topics-section"><h2>Topics</h2><div class="tags">'+
+    Array.from(topicSet).map(t=>'<a class="tag" href="/fellowship?search='+encodeURIComponent(t)+'">'+esc(t)+'</a>').join('')+
+    '</div></div>':'';
+
+  document.getElementById('content').innerHTML = hero + officialHtml + analysisHtml + topics;
+  document.title = (scripture||title) + (preacher?' — '+preacher:'') + ' — Fellowship Library';
 }
 
 async function load(){
-  const id=new URLSearchParams(location.search).get('id');
-  if(!id){document.getElementById('content').innerHTML='<div class="loading">No sermon ID.</div>';return;}
+  const params=new URLSearchParams(location.search);
+  const id=params.get('id');
+  const oid=params.get('oid');
+  const date=params.get('date');
+  if(!id&&!oid&&!date){
+    document.getElementById('content').innerHTML='<div class="loading">No sermon specified.</div>';return;
+  }
+  const q = id ? 'id='+encodeURIComponent(id)
+          : oid ? 'oid='+encodeURIComponent(oid)
+          : 'date='+encodeURIComponent(date);
   try{
-    const r=await fetch('/api/sermon?id='+encodeURIComponent(id));
-    const s=await r.json();
-    if(s.error)throw new Error(s.error);
-    render(s);
+    const r=await fetch('/api/sermon-merged?'+q);
+    const data=await r.json();
+    if(data.error)throw new Error(data.error);
+    render(data);
   }catch(e){
     document.getElementById('content').innerHTML='<div class="loading">Could not load: '+esc(e.message)+'</div>';
   }
