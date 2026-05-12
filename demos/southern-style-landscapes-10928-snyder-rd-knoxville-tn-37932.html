@@ -329,26 +329,17 @@
       document.getElementById('estimate-cta').classList.add('visible');
     }
 
-    // Lazy-load: swap quickstart (8s) for full 24s cinematic reel once cached
-    (function() {
-      var full = new XMLHttpRequest();
-      full.open('GET', 'https://pub-050cac0cc92447eda5be913217e6ea94.r2.dev/demos/test-images/southern-cinematic-reel.mp4', true);
-      full.responseType = 'blob';
-      full.onload = function() {
-        if (full.status === 200) {
-          var video = document.getElementById('hero-video');
-          video.src = URL.createObjectURL(full.response);
-          video.currentTime = 0;
-          video.play();
-        }
-      };
-      full.send();
-    })();
-
-    /* Video: play only when visible, crossfade at loop point */
+    /* Video: play only when visible. Keep opacity stable so loops never flash black. */
     (function() {
       var videos = document.querySelectorAll('video[autoplay]');
       if (!videos.length) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        videos.forEach(function(video) {
+          video.removeAttribute('autoplay');
+          video.pause();
+        });
+        return;
+      }
       var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if (entry.isIntersecting) entry.target.play().catch(function(){});
@@ -357,16 +348,6 @@
       }, { threshold: 0.25 });
       videos.forEach(function(video) {
         observer.observe(video);
-        video.addEventListener('timeupdate', function() {
-          if (this.duration && this.currentTime > this.duration - 0.4) {
-            this.style.opacity = '0';
-            this.style.transition = 'opacity 0.4s ease';
-          }
-        });
-        video.addEventListener('seeking', function() {
-          this.style.opacity = '1';
-          this.style.transition = 'opacity 0.3s ease';
-        });
       });
     })();
   </script>
