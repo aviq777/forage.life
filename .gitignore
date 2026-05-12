@@ -1,0 +1,4 @@
+# Media assets are served from R2, not deployed through Vercel/Git.
+demos/*/assets/*.mp4
+demos/*/assets/*.webp
+demos/*/assets/*.png
