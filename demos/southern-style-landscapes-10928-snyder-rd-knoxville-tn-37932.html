@@ -76,7 +76,7 @@
     .planner-section {
       position: relative;
       padding: 3rem 1.5rem;
-      background: url('test-images/southern-garden-hero.jpg') center 70%/cover no-repeat fixed;
+      background: url('https://pub-050cac0cc92447eda5be913217e6ea94.r2.dev/demos/test-images/southern-garden-hero.jpg') center 70%/cover no-repeat fixed;
     }
     .planner-section::before {
       content: '';
@@ -140,7 +140,7 @@
     /* ── Image break between sections ── */
     .image-break {
       width: 100%; height: 35vh; min-height: 200px;
-      background: url('test-images/southern-path-hero.jpg') center 40%/cover no-repeat;
+      background: url('https://pub-050cac0cc92447eda5be913217e6ea94.r2.dev/demos/test-images/southern-path-hero.jpg') center 40%/cover no-repeat;
       position: relative;
     }
     .image-break::after {
@@ -153,7 +153,7 @@
     .review-section {
       position: relative;
       padding: 3rem 1.5rem;
-      background: url('test-images/southern-lawn-hero.jpg') center 55%/cover no-repeat fixed;
+      background: url('https://pub-050cac0cc92447eda5be913217e6ea94.r2.dev/demos/test-images/southern-lawn-hero.jpg') center 55%/cover no-repeat fixed;
     }
     .review-section::before {
       content: '';
@@ -208,8 +208,8 @@
   <!-- Full-screen hero -->
   <div class="hero">
     <div class="hero-bg">
-      <video id="hero-video" autoplay muted loop playsinline poster="test-images/southern-lawn-hero.jpg">
-        <source src="test-images/southern-quickstart.mp4" type="video/mp4">
+      <video id="hero-video" autoplay muted loop playsinline poster="https://pub-050cac0cc92447eda5be913217e6ea94.r2.dev/demos/test-images/southern-lawn-hero.jpg">
+        <source src="https://pub-050cac0cc92447eda5be913217e6ea94.r2.dev/demos/test-images/southern-quickstart.mp4" type="video/mp4">
       </video>
     </div>
     <div class="hero-overlay"></div>
@@ -332,7 +332,7 @@
     // Lazy-load: swap quickstart (8s) for full 24s cinematic reel once cached
     (function() {
       var full = new XMLHttpRequest();
-      full.open('GET', 'test-images/southern-cinematic-reel.mp4', true);
+      full.open('GET', 'https://pub-050cac0cc92447eda5be913217e6ea94.r2.dev/demos/test-images/southern-cinematic-reel.mp4', true);
       full.responseType = 'blob';
       full.onload = function() {
         if (full.status === 200) {

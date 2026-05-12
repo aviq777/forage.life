@@ -2,3 +2,8 @@
 demos/*/assets/*.mp4
 demos/*/assets/*.webp
 demos/*/assets/*.png
+
+# Shared reference demo media lives in R2 too.
+demos/test-images/*.mp4
+demos/test-images/*.jpg
+demos/test-images/*.jpeg
